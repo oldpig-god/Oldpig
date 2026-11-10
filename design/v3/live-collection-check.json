@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-11-10T06:51:25.254706+00:00",
+  "health": {
+    "mode": "source_data",
+    "server_time": "2026-11-10T06:51:25.241662+00:00",
+    "market": {
+      "date": "2026-11-10",
+      "previous_trade_date": "2026-11-09",
+      "calendar_source": "新浪 / AKShare",
+      "state": "trading",
+      "label": "交易时段",
+      "expected_daily": "2026-11-09"
+    },
+    "counts": {
+      "1d": 4470,
+      "1m": 11950,
+      "5m": 15310
+    },
+    "batches": 51,
+    "auto_refresh": {
+      "enabled": true,
+      "interval_seconds": 60,
+      "daily_date": null,
+      "close_date": null
+    },
+    "job": {
+      "running": false,
+      "started_at": "2026-11-10T06:50:29.180778+00:00",
+      "finished_at": "2026-11-10T06:50:41.370067+00:00",
+      "progress": 10,
+      "total": 10,
+      "last_result": {
+        "batch_id": "b632e3e5be7b4688bedc6f64c9c834e8",
+        "symbol": "300750.SZ",
+        "interval": "1m",
+        "status": "partial",
+        "rows": 1196,
+        "accepted": 1195,
+        "rejected": 1,
+        "changed": 1,
+        "issues": {
+          "open_absent_in_trend_payload": 964,
+          "unclosed_or_future_period": 1
+        }
+      },
+      "error": null
+    }
+  },
+  "latest": [
+    {
+      "symbol": "510300.SH",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "159915.SZ",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "510500.SH",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "510880.SH",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "600519.SH",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "000001.SZ",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "600036.SH",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "601318.SH",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "000333.SZ",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    },
+    {
+      "symbol": "300750.SZ",
+      "event_time": "2026-11-10T14:50:00+08:00",
+      "freshness": "recent"
+    }
+  ]
+}

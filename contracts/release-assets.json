@@ -1,0 +1,19 @@
+{
+  "repository": "oldpig-god/Oldpig",
+  "release_tag": "finance-v2026.11.10",
+  "zip_name": "finance-workbench-20261110.zip",
+  "zip_bytes": 3071183865,
+  "zip_sha256": "d298bba103408f9fee1c380970dabe4330e0b628990b816b3514ad2564969db4",
+  "parts": [
+    {
+      "name": "finance-workbench-20261110.zip.part001",
+      "bytes": 1610612736,
+      "sha256": "cf1c306b01453e127918e5b079f20eaf7564d8086695435d0d7bfc6b5dff0cfa"
+    },
+    {
+      "name": "finance-workbench-20261110.zip.part002",
+      "bytes": 1460571129,
+      "sha256": "1eadb91025e2258c1504dc18b362265e8263a0e3abc5362faaea2d7891f218dc"
+    }
+  ]
+}

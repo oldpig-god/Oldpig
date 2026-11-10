@@ -1,0 +1,51 @@
+{
+  "repository": "https://github.com/YuxuanXiu/China-ETF-LOF-Daily-Market-Data",
+  "decision": "quarantined_not_integrated",
+  "reason": "Adjustment semantics undeclared; sample close differences and README/schema discrepancy",
+  "samples": [
+    {
+      "symbol": "510880.SH",
+      "rows": 4576,
+      "overlap_days": 211,
+      "close_mismatch_days": 13,
+      "examples": [
+        "2025-01-02",
+        "2025-01-03",
+        "2025-01-06",
+        "2025-01-07",
+        "2025-01-08"
+      ],
+      "date_column_header": ""
+    },
+    {
+      "symbol": "159915.SZ",
+      "rows": 3384,
+      "overlap_days": 211,
+      "close_mismatch_days": 0,
+      "examples": [],
+      "date_column_header": ""
+    },
+    {
+      "symbol": "510300.SH",
+      "rows": 3275,
+      "overlap_days": 211,
+      "close_mismatch_days": 108,
+      "examples": [
+        "2025-01-02",
+        "2025-01-03",
+        "2025-01-06",
+        "2025-01-07",
+        "2025-01-08"
+      ],
+      "date_column_header": ""
+    },
+    {
+      "symbol": "510050.SH",
+      "rows": 5040,
+      "overlap_days": 211,
+      "close_mismatch_days": 0,
+      "examples": [],
+      "date_column_header": ""
+    }
+  ]
+}

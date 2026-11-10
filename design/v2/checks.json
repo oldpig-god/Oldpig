@@ -1,0 +1,40 @@
+{
+  "library": "KLineChart 9.8.12",
+  "errors": [],
+  "responsive": [
+    {
+      "viewport": 768,
+      "width": 736,
+      "scroll": 736
+    },
+    {
+      "viewport": 390,
+      "width": 358,
+      "scroll": 358
+    },
+    {
+      "viewport": 320,
+      "width": 288,
+      "scroll": 288
+    }
+  ],
+  "checks": [
+    "real chart library loaded",
+    "search",
+    "empty search",
+    "asset class filter",
+    "linked price and source table",
+    "watchlist sort",
+    "weekly aggregation view",
+    "minute session timestamps",
+    "MA toggle",
+    "MACD pane created and removed",
+    "focus mode",
+    "zoom reset",
+    "ETF fee sort",
+    "quality snapshot",
+    "theme switch",
+    "responsive overflow",
+    "missing chart dependency fallback"
+  ]
+}

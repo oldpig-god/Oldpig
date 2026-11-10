@@ -1,0 +1,92 @@
+[
+  {
+    "symbol": "510300.SH",
+    "rows": 3421,
+    "start": "2012-05-28",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "601318.SH",
+    "rows": 4630,
+    "start": "2007-03-01",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "600036.SH",
+    "rows": 5805,
+    "start": "2002-04-09",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "510880.SH",
+    "rows": 4722,
+    "start": "2007-01-18",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "159915.SZ",
+    "rows": 3529,
+    "start": "2011-12-09",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "000333.SZ",
+    "rows": 3039,
+    "start": "2013-09-18",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "510500.SH",
+    "rows": 3225,
+    "start": "2013-03-15",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "000001.SZ",
+    "rows": 8397,
+    "start": "1991-04-03",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "600519.SH",
+    "rows": 5948,
+    "start": "2001-08-27",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  },
+  {
+    "symbol": "300750.SZ",
+    "rows": 1951,
+    "start": "2018-06-11",
+    "end": "2026-06-26",
+    "overlap": 357,
+    "ohlc_mismatches": 0,
+    "examples": []
+  }
+]

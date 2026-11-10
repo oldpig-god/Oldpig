@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "initial render",
+    "search match",
+    "search empty",
+    "selection linked to detail",
+    "stale label",
+    "period switch",
+    "sort",
+    "ETF navigation",
+    "quality navigation",
+    "exception expansion",
+    "mobile no document overflow",
+    "dark screenshot"
+  ],
+  "page_errors": [],
+  "mobile_dimensions": {
+    "scroll": 308,
+    "width": 308
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "name": "local chart and data without CDN",
+      "passed": true
+    },
+    {
+      "name": "1d displayed price matches saved source",
+      "passed": true
+    },
+    {
+      "name": "1d table matches source",
+      "passed": true
+    },
+    {
+      "name": "5m displayed price matches saved source",
+      "passed": true
+    },
+    {
+      "name": "5m table matches source",
+      "passed": true
+    },
+    {
+      "name": "1m displayed price matches saved source",
+      "passed": true
+    },
+    {
+      "name": "1m table matches source",
+      "passed": true
+    },
+    {
+      "name": "1m uses real close only",
+      "passed": true
+    },
+    {
+      "name": "1m absent OHLC shown honestly",
+      "passed": true
+    },
+    {
+      "name": "symbol selection updates graph",
+      "passed": true
+    },
+    {
+      "name": "watchlist search",
+      "passed": true
+    },
+    {
+      "name": "ETF filter",
+      "passed": true
+    },
+    {
+      "name": "batch audit rows",
+      "passed": true
+    },
+    {
+      "name": "raw evidence available",
+      "passed": true
+    },
+    {
+      "name": "ETF metadata not fabricated",
+      "passed": true
+    },
+    {
+      "name": "mobile has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "no runtime JavaScript errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "external_requests": []
+}

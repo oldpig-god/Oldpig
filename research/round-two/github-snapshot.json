@@ -1,0 +1,158 @@
+{
+  "queried_at_utc": "2026-11-10T03:58:08.237602+00:00",
+  "repositories": [
+    {
+      "full_name": "wealthfolio/wealthfolio",
+      "html_url": "https://github.com/wealthfolio/wealthfolio",
+      "description": "A beautiful, private, local-first personal finance tracker. Investments, net worth, spending, and simulations.",
+      "stargazers_count": 9399,
+      "pushed_at": "2026-11-10T03:45:50Z",
+      "archived": false,
+      "default_branch": "main",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "created_at": "2024-05-27T14:44:18Z"
+    },
+    {
+      "full_name": "ghostfolio/ghostfolio",
+      "html_url": "https://github.com/ghostfolio/ghostfolio",
+      "description": "Open Source Wealth Management Software. Angular + NestJS + Prisma + Nx + TypeScript 🤍",
+      "stargazers_count": 9680,
+      "pushed_at": "2026-11-10T03:44:20Z",
+      "archived": false,
+      "default_branch": "main",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "created_at": "2021-04-13T19:51:25Z"
+    },
+    {
+      "full_name": "Fincept-Corporation/FinceptTerminal",
+      "html_url": "https://github.com/Fincept-Corporation/FinceptTerminal",
+      "description": "FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.",
+      "stargazers_count": 33642,
+      "pushed_at": "2026-11-09T13:04:41Z",
+      "archived": false,
+      "default_branch": "main",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "created_at": "2024-08-29T14:38:08Z"
+    },
+    {
+      "full_name": "Open-Dev-Society/OpenStock",
+      "html_url": "https://github.com/Open-Dev-Society/OpenStock",
+      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
+      "stargazers_count": 21398,
+      "pushed_at": "2026-11-09T19:21:59Z",
+      "archived": false,
+      "default_branch": "main",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "created_at": "2025-09-28T18:16:32Z"
+    },
+    {
+      "full_name": "perspective-dev/perspective",
+      "html_url": "https://github.com/perspective-dev/perspective",
+      "description": "A data visualization and analytics component, especially well-suited for large and/or streaming datasets.",
+      "stargazers_count": 11406,
+      "pushed_at": "2026-11-09T12:12:26Z",
+      "archived": false,
+      "default_branch": "master",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "created_at": "2017-11-02T16:27:54Z"
+    },
+    {
+      "full_name": "klinecharts/KLineChart",
+      "html_url": "https://github.com/klinecharts/KLineChart",
+      "description": "📈Lightweight k-line chart that can be highly customized. Zero dependencies. Support mobile.（可高度自定义的轻量级k线图，无第三方依赖，支持移动端）",
+      "stargazers_count": 4297,
+      "pushed_at": "2026-11-08T17:28:40Z",
+      "archived": false,
+      "default_branch": "main",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "created_at": "2019-05-19T09:04:23Z"
+    },
+    {
+      "full_name": "dlt-hub/dlt",
+      "html_url": "https://github.com/dlt-hub/dlt",
+      "description": "data load tool (dlt) is an open source Python library that makes data loading easy 🛠️ ",
+      "stargazers_count": 6068,
+      "pushed_at": "2026-11-09T12:13:12Z",
+      "archived": false,
+      "default_branch": "devel",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "created_at": "2022-01-26T09:51:04Z"
+    },
+    {
+      "full_name": "fivetran/great_expectations",
+      "html_url": "https://github.com/fivetran/great_expectations",
+      "description": "Always know what to expect from your data.",
+      "stargazers_count": 11922,
+      "pushed_at": "2026-11-09T10:25:22Z",
+      "archived": false,
+      "default_branch": "develop",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "created_at": "2017-09-11T00:18:46Z"
+    },
+    {
+      "full_name": "caplin/FlexLayout",
+      "html_url": "https://github.com/caplin/FlexLayout",
+      "description": "Docking Layout Manager for React",
+      "stargazers_count": 1385,
+      "pushed_at": "2026-10-21T03:42:04Z",
+      "archived": false,
+      "default_branch": "master",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "created_at": "2015-12-08T12:19:06Z"
+    }
+  ]
+}

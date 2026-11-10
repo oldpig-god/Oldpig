@@ -1,0 +1,15 @@
+{
+  "unit_tests_passed": 41,
+  "clean_extraction_unit_tests_passed": 38,
+  "database_quick_check": "ok",
+  "clean_extraction_http_checks": [
+    "/",
+    "/api/health",
+    "/api/universe?limit=2",
+    "/static/research/index.html",
+    "/static/research/analysis.json"
+  ],
+  "release_package_crc_and_sha256_verified": true,
+  "windows_native_tested": false,
+  "zip_parts": 2
+}

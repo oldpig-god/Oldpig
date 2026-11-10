@@ -1,0 +1,27 @@
+{
+  "range": {
+    "start": "2005-02-23T15:00:00+08:00",
+    "end": "2026-06-26T15:00:00+08:00",
+    "count": 5186
+  },
+  "audit": {
+    "compared_days": 357,
+    "ohlc_mismatch_days": 0,
+    "examples": [],
+    "tolerance_cny": 0.0011,
+    "audited_at": "2026-11-10T07:21:00.406240+00:00",
+    "note": "重叠窗口价格比较不证明早期历史完整性或全部复权口径"
+  },
+  "quality": {
+    "invalid_rows": 0,
+    "conflicting_dates": 0
+  },
+  "provenance": {
+    "repository": "https://github.com/tomuopc/a-stock-data",
+    "commit": "cd1ee3a2e2c28ba5b623b159e8444130ca7546e1",
+    "path": "fund/fund-data/51005050ETF.csv",
+    "sha256": "2da3d301b16cad1a41cd22bacb9f6f1af6e578e0451d54c64b6576821b903d5c"
+  },
+  "symbol": "510050.SH",
+  "seconds": 4.61
+}

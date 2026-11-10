@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/
+
+# Large data handoffs belong in Releases, not Git history.
+*.zip
+*.zip.partial
+*.zip.part*
+deliveries/

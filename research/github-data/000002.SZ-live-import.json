@@ -1,0 +1,27 @@
+{
+  "range": {
+    "start": "1991-01-29T15:00:00+08:00",
+    "end": "2026-06-26T15:00:00+08:00",
+    "count": 8423
+  },
+  "audit": {
+    "compared_days": 357,
+    "ohlc_mismatch_days": 0,
+    "examples": [],
+    "tolerance_cny": 0.0101,
+    "audited_at": "2026-11-10T07:20:55.652562+00:00",
+    "note": "重叠窗口价格比较不证明早期历史完整性或全部复权口径"
+  },
+  "quality": {
+    "invalid_rows": 0,
+    "conflicting_dates": 0
+  },
+  "provenance": {
+    "repository": "https://github.com/tomuopc/a-stock-data",
+    "commit": "cd1ee3a2e2c28ba5b623b159e8444130ca7546e1",
+    "path": "stock/stock-data/000002万科Ａ.csv",
+    "sha256": "35654e41c919ab5baa0c8fd2a1c97137cfc5374a61de13657183c8047a721816"
+  },
+  "symbol": "000002.SZ",
+  "seconds": 5.16
+}

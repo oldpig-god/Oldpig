@@ -1,0 +1,83 @@
+{
+  "checked_on": "2026-11-10",
+  "scope": "whole-market current A-share / listed ETF inventory, snapshots and resumable daily history",
+  "integrated": [
+    {
+      "name": "klinecharts",
+      "version": "9.8.12",
+      "license": "Apache-2.0",
+      "script_url": "https://cdn.jsdelivr.net/npm/klinecharts@9.8.12/dist/umd/klinecharts.min.js",
+      "npm_tarball_integrity": "sha512-yKLWMliwwIsiQsAI8geNOkE8P6SFsvaa0leX2isgB4Y1SvM3tS6Y9pe7ZbKkiLtOE0P0W9W9wb0M2wH0xAPG7w==",
+      "features": [
+        "candlesticks",
+        "close-only price line",
+        "crosshair",
+        "zoom",
+        "MA",
+        "local static asset"
+      ],
+      "data": "saved unadjusted AKShare/Eastmoney observations",
+      "local_path": "app/static/vendor/klinecharts.min.js",
+      "sha256": "a8c3ba3a681e8a5a09eff69dd7727efdac7e50ccb0e8e025230c5fbadf8c0147"
+    },
+    {
+      "name": "akshare",
+      "version": "1.18.64",
+      "role": "isolated source adapter"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.136.3",
+      "role": "local API"
+    },
+    {
+      "name": "SQLite",
+      "role": "raw batch index, observations, append-only revisions, successful cursor"
+    }
+  ],
+  "design_references": [
+    "wealthfolio/wealthfolio",
+    "ghostfolio/ghostfolio",
+    "Open-Dev-Society/OpenStock"
+  ],
+  "planned_only": [
+    "dlt-hub/dlt",
+    "perspective-dev/perspective",
+    "fivetran/great_expectations",
+    "caplin/FlexLayout"
+  ],
+  "source_copy_from_agpl_apps": false,
+  "network": "Server-side bounded market-data requests; browser calls local API only",
+  "raw_quality_snapshot": "research/probes/report.json",
+  "frontend_source": "app/static/index.html",
+  "historical_demo_source": "frontend/workbench-preview.html",
+  "tests": {
+    "pipeline": 30,
+    "browser": 21,
+    "browser_report": "design/v4/validation.json"
+  },
+  "data_sources": [
+    "AKShare exchange-derived A-share inventory",
+    "AKShare Eastmoney stock/ETF snapshots",
+    "Eastmoney kline direct adapter v1 for daily history",
+    "AKShare on-demand minute endpoints"
+  ],
+  "coverage_policy": "Rolling five calendar years in Asia/Shanghai; current A-share membership and ETF category; minute history on demand",
+  "github_history": {
+    "repo": "tomuopc/a-stock-data",
+    "commit": "cd1ee3a2e2c28ba5b623b159e8444130ca7546e1",
+    "current_symbols_available": 6089,
+    "cached_verified_symbols": 12,
+    "audit_overlap_days": 4284,
+    "ohlc_mismatch_days": 0,
+    "mode": "separate on-demand CSV archive; only rolling five-year rows exposed; source adjustment unspecified",
+    "end_date": "2026-06-26",
+    "source_data_not_redistributed": true
+  },
+  "history_window": {
+    "years": 5,
+    "as_of": "2026-11-10",
+    "start": "2021-11-10",
+    "rolling": true
+  }
+}

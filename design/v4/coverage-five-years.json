@@ -1,0 +1,121 @@
+{
+  "instruments": [
+    {
+      "kind": "etf",
+      "exchange": "SH",
+      "count": 913
+    },
+    {
+      "kind": "etf",
+      "exchange": "SZ",
+      "count": 753
+    },
+    {
+      "kind": "stock",
+      "exchange": "BJ",
+      "count": 355
+    },
+    {
+      "kind": "stock",
+      "exchange": "SH",
+      "count": 2319
+    },
+    {
+      "kind": "stock",
+      "exchange": "SZ",
+      "count": 2906
+    }
+  ],
+  "total": 7246,
+  "quote_symbols": 7246,
+  "valid_quote_prices": 7243,
+  "history": [
+    {
+      "interval": "1d",
+      "symbols": 7245,
+      "rows": 7397946
+    },
+    {
+      "interval": "1m",
+      "symbols": 10,
+      "rows": 12010
+    },
+    {
+      "interval": "5m",
+      "symbols": 10,
+      "rows": 15310
+    }
+  ],
+  "tasks": [
+    {
+      "interval": "1d",
+      "status": "done",
+      "count": 7245
+    },
+    {
+      "interval": "1d",
+      "status": "empty",
+      "count": 1
+    }
+  ],
+  "sources": {
+    "market_inventory": {
+      "batch_id": "7b2d5986429446649dafcdf094e521e8",
+      "endpoint": "stock_info_a_code_name",
+      "fetched_at": "2026-11-10T06:57:07.512467+00:00",
+      "rejected": 0,
+      "rows": 5580,
+      "unique": 5580
+    },
+    "market_stock": {
+      "batch_id": "3a4a772498ae4b52ae233ac69d0a1e6f",
+      "endpoint": "stock_zh_a_spot_em",
+      "fetched_at": "2026-11-10T07:27:38.721836+00:00",
+      "rejected": 0,
+      "rows": 5928,
+      "unique": 5928
+    },
+    "market_etf": {
+      "batch_id": "a093b9b0745240418624652ea0f525c9",
+      "endpoint": "fund_etf_spot_em",
+      "fetched_at": "2026-11-10T07:27:58.157708+00:00",
+      "rejected": 0,
+      "rows": 1666,
+      "unique": 1666
+    }
+  },
+  "missing_quote_examples": [],
+  "missing_price_examples": [
+    {
+      "symbol": "000831.SZ",
+      "name": "中国稀土",
+      "kind": "stock"
+    },
+    {
+      "symbol": "002129.SZ",
+      "name": "TCL中环",
+      "kind": "stock"
+    },
+    {
+      "symbol": "002717.SZ",
+      "name": "*ST岭南",
+      "kind": "stock"
+    }
+  ],
+  "missing_history_examples": [
+    {
+      "symbol": "688827.SH",
+      "name": "N钶锐",
+      "kind": "stock",
+      "status": "empty"
+    }
+  ],
+  "excluded_inactive": 348,
+  "scope": "当前上游可发现的沪深京A股与沪深场内ETF；不含历史退市全集",
+  "history_window": {
+    "years": 5,
+    "start": "2021-11-10",
+    "end": "2026-11-10",
+    "mode": "rolling_calendar_years"
+  }
+}

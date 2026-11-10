@@ -1,0 +1,63 @@
+{
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "unit_tests": {
+    "passed": 38
+  },
+  "research_browser_checks": [
+    {
+      "name": "data declares back-adjustment",
+      "passed": true
+    },
+    {
+      "name": "sample count matches artifact",
+      "passed": true
+    },
+    {
+      "name": "all heatmap cells and pairs",
+      "passed": true
+    },
+    {
+      "name": "matrix metric switches to correct residual",
+      "passed": true
+    },
+    {
+      "name": "pair filter",
+      "passed": true
+    },
+    {
+      "name": "numeric sorting",
+      "passed": true
+    },
+    {
+      "name": "adjustment sensitivity disclosed",
+      "passed": true
+    },
+    {
+      "name": "all downloads resolve",
+      "passed": true
+    },
+    {
+      "name": "mobile no page overflow",
+      "passed": true
+    },
+    {
+      "name": "no JavaScript errors",
+      "passed": true
+    },
+    {
+      "name": "no external browser dependencies",
+      "passed": true
+    }
+  ],
+  "windows_native_tested": false,
+  "windows_portability": [
+    "stdlib msvcrt process lock",
+    "tzdata dependency",
+    "UTF-8 JSON and provider subprocesses",
+    "platform font lookup",
+    "cmd setup/start launchers",
+    "browser executable override"
+  ],
+  "packaging": "ZIP64 with checkpointed SQLite, SHA-256 per file and archive CRC verification"
+}

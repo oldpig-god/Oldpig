@@ -1,0 +1,93 @@
+{
+  "checked_at_utc": "2026-11-10T03:45:31.559638+00:00",
+  "akshare_version": "1.18.64",
+  "purpose": "Connectivity only; no freshness, coverage or unit certification",
+  "results": [
+    {
+      "case": "stock_daily",
+      "function": "stock_zh_a_hist",
+      "parameters": {
+        "symbol": "000001",
+        "period": "daily",
+        "start_date": "20261001",
+        "end_date": "20261109",
+        "adjust": ""
+      },
+      "rows": 23,
+      "columns": [
+        "日期",
+        "股票代码",
+        "开盘",
+        "收盘",
+        "最高",
+        "最低",
+        "成交量",
+        "成交额",
+        "振幅",
+        "涨跌幅",
+        "涨跌额",
+        "换手率"
+      ],
+      "first_event": "2026-10-08",
+      "last_event": "2026-11-09",
+      "raw_file": "research/probes/stock_daily.csv",
+      "status": "returned_rows",
+      "elapsed_seconds": 1.52
+    },
+    {
+      "case": "etf_daily",
+      "function": "fund_etf_hist_em",
+      "parameters": {
+        "symbol": "510300",
+        "period": "daily",
+        "start_date": "20261001",
+        "end_date": "20261109",
+        "adjust": ""
+      },
+      "rows": 23,
+      "columns": [
+        "日期",
+        "开盘",
+        "收盘",
+        "最高",
+        "最低",
+        "成交量",
+        "成交额",
+        "振幅",
+        "涨跌幅",
+        "涨跌额",
+        "换手率"
+      ],
+      "first_event": "2026-10-08",
+      "last_event": "2026-11-09",
+      "raw_file": "research/probes/etf_daily.csv",
+      "status": "returned_rows",
+      "elapsed_seconds": 0.82
+    },
+    {
+      "case": "etf_minute",
+      "function": "fund_etf_hist_min_em",
+      "parameters": {
+        "symbol": "510300",
+        "period": "1",
+        "adjust": ""
+      },
+      "rows": 1085,
+      "columns": [
+        "时间",
+        "开盘",
+        "收盘",
+        "最高",
+        "最低",
+        "成交量",
+        "成交额",
+        "均价"
+      ],
+      "first_event": "2026-11-04 09:30:00",
+      "last_event": "2026-11-10 11:30:00",
+      "raw_file": "research/probes/etf_minute.csv",
+      "status": "returned_rows",
+      "elapsed_seconds": 0.77
+    }
+  ]
+}

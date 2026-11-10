@@ -1,0 +1,270 @@
+{
+  "checked_at": "2026-11-10T07:46:05.883756+00:00",
+  "window": {
+    "years": 5,
+    "start": "2021-11-10",
+    "end": "2026-11-10",
+    "mode": "rolling_calendar_years"
+  },
+  "last_expected_daily": "2026-11-09",
+  "calendar_sessions": 1211,
+  "symbols_with_rows": 7245,
+  "rows": 7397946,
+  "queue": [
+    {
+      "status": "done",
+      "count": 7245
+    },
+    {
+      "status": "empty",
+      "count": 1
+    }
+  ],
+  "symbols_with_count_gap": 1294,
+  "count_gap_examples": [
+    {
+      "symbol": "000007.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1208,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 3
+    },
+    {
+      "symbol": "000008.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1206,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 5
+    },
+    {
+      "symbol": "000010.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1210,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 1
+    },
+    {
+      "symbol": "000045.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1198,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 13
+    },
+    {
+      "symbol": "000049.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1205,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 6
+    },
+    {
+      "symbol": "000056.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1210,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 1
+    },
+    {
+      "symbol": "000065.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1205,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 6
+    },
+    {
+      "symbol": "000070.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1209,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 2
+    },
+    {
+      "symbol": "000078.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1210,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 1
+    },
+    {
+      "symbol": "000088.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1201,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 10
+    },
+    {
+      "symbol": "000151.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1203,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 8
+    },
+    {
+      "symbol": "000153.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1201,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 10
+    },
+    {
+      "symbol": "000155.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1201,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 10
+    },
+    {
+      "symbol": "000301.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1210,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 1
+    },
+    {
+      "symbol": "000401.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1200,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 11
+    },
+    {
+      "symbol": "000403.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1209,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 2
+    },
+    {
+      "symbol": "000407.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1201,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 10
+    },
+    {
+      "symbol": "000408.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1206,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 5
+    },
+    {
+      "symbol": "000410.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1199,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 12
+    },
+    {
+      "symbol": "000411.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1200,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 11
+    },
+    {
+      "symbol": "000420.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1194,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 17
+    },
+    {
+      "symbol": "000421.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1201,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 10
+    },
+    {
+      "symbol": "000425.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1198,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 13
+    },
+    {
+      "symbol": "000430.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1206,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 5
+    },
+    {
+      "symbol": "000488.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1210,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 1
+    },
+    {
+      "symbol": "000504.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1209,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 2
+    },
+    {
+      "symbol": "000506.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1199,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 12
+    },
+    {
+      "symbol": "000509.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1210,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 1
+    },
+    {
+      "symbol": "000510.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1201,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 10
+    },
+    {
+      "symbol": "000516.SZ",
+      "first": "2021-11-10T15:00:00+08:00",
+      "last": "2026-11-09T15:00:00+08:00",
+      "rows": 1209,
+      "expected_sessions_between_observed_bounds": 1211,
+      "count_gap": 2
+    }
+  ],
+  "outside_calendar_symbols": 0,
+  "outside_calendar_examples": [],
+  "symbols_reaching_target_day": 7237,
+  "note": "按已观察到的首尾日期核对交易日数量；不推断上市日前或停牌原因，不保证源完整性。"
+}

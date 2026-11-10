@@ -1,0 +1,90 @@
+{
+  "checks": [
+    {
+      "name": "whole-market total matches API",
+      "passed": true
+    },
+    {
+      "name": "browser renders bounded first page",
+      "passed": true
+    },
+    {
+      "name": "next page changes securities",
+      "passed": true
+    },
+    {
+      "name": "previous page restores securities",
+      "passed": true
+    },
+    {
+      "name": "Beijing exchange filter",
+      "passed": true
+    },
+    {
+      "name": "search finds BSE new code",
+      "passed": true
+    },
+    {
+      "name": "selected BSE quote distinguished from candles",
+      "passed": true
+    },
+    {
+      "name": "ETF filter shows all source ETFs",
+      "passed": true
+    },
+    {
+      "name": "1d displayed price matches stored data",
+      "passed": true
+    },
+    {
+      "name": "5m displayed price matches stored data",
+      "passed": true
+    },
+    {
+      "name": "1m displayed price matches stored data",
+      "passed": true
+    },
+    {
+      "name": "one-minute OHLC not invented",
+      "passed": true
+    },
+    {
+      "name": "GitHub history constrained to rolling five years",
+      "passed": true
+    },
+    {
+      "name": "GitHub provenance and audit visible",
+      "passed": true
+    },
+    {
+      "name": "GitHub adjustment uncertainty visible",
+      "passed": true
+    },
+    {
+      "name": "GitHub archive does not masquerade as minute bars",
+      "passed": true
+    },
+    {
+      "name": "quality scoped to selected instrument",
+      "passed": true
+    },
+    {
+      "name": "raw batch evidence",
+      "passed": true
+    },
+    {
+      "name": "mobile page does not overflow",
+      "passed": true
+    },
+    {
+      "name": "no JavaScript errors",
+      "passed": true
+    },
+    {
+      "name": "no external browser dependencies",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "external": []
+}

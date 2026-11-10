@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "name": "data declares back-adjustment",
+      "passed": true
+    },
+    {
+      "name": "sample count matches artifact",
+      "passed": true
+    },
+    {
+      "name": "all heatmap cells and pairs",
+      "passed": true
+    },
+    {
+      "name": "matrix metric switches to correct residual",
+      "passed": true
+    },
+    {
+      "name": "pair filter",
+      "passed": true
+    },
+    {
+      "name": "numeric sorting",
+      "passed": true
+    },
+    {
+      "name": "adjustment sensitivity disclosed",
+      "passed": true
+    },
+    {
+      "name": "all downloads resolve",
+      "passed": true
+    },
+    {
+      "name": "mobile no page overflow",
+      "passed": true
+    },
+    {
+      "name": "no JavaScript errors",
+      "passed": true
+    },
+    {
+      "name": "no external browser dependencies",
+      "passed": true
+    }
+  ],
+  "errors": []
+}
