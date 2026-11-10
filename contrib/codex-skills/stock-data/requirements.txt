@@ -1,0 +1,11 @@
+# Separate environment; do not merge these into Oldpig requirements.
+# Provider constraint: Python >=3.13, <=3.14.3; tested on Python 3.13.12.
+openbb==4.7.1
+openbb-core==1.6.13
+openbb-akshare==1.2.5
+akshare==1.18.56
+pandas==3.1.1
+numpy==2.5.4
+requests==2.34.2
+tabulate==0.10.0
+# Optional: install openbb-tushare==1.2.2 only when needed.
