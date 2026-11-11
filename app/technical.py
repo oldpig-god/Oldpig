@@ -1,5 +1,7 @@
-"""Six-stock technical research. CLI and API share this reproducible pipeline."""
+"""Selectable A-share/ETF technical research. CLI and API share this reproducible pipeline."""
 import argparse
+import re
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
 import hashlib
@@ -44,6 +46,24 @@ REFERENCES=[
 ]
 
 
+def resolve_watchlist(queries):
+    if not 1<=len(queries)<=12:raise ValueError('每次请选择1至12只证券')
+    result={}
+    for query in queries:
+        query=query.strip().upper()
+        with core.db() as connection:
+            rows=connection.execute("SELECT symbol,name FROM instruments WHERE active=1 AND (symbol=? OR code=? OR name=?)",(query,query,query)).fetchall()
+        if len(rows)==1:
+            result[rows[0]['symbol']]=rows[0]['name'];continue
+        if len(rows)>1:raise ValueError('名称存在歧义，请使用完整证券代码：'+query)
+        if re.fullmatch(r'\d{6}',query):
+            exchange='SH' if query[0] in '56' else 'BJ' if query[0] in '489' else 'SZ'
+            query+='.'+exchange
+        if not re.fullmatch(r'\d{6}\.(SH|SZ|BJ)',query):raise ValueError('未找到证券，请输入六位代码或完整名称：'+query)
+        result[query]=query
+    return result
+
+
 def fetch_one(spec,directory,start,end):
     symbol,adjustment=spec;code,exchange=symbol.split('.');market=1 if exchange=='SH' else 0
     params=dict(secid=f'{market}.{code}',klt='101',fqt=str(adjustment),beg=start.replace('-',''),end=end.replace('-',''),
@@ -77,21 +97,28 @@ def quote_snapshot(symbol,directory):
 
 def attach_quotes(directory):
     path=directory/'manifest.json';manifest=json.loads(path.read_text(encoding='utf-8'))
-    with ThreadPoolExecutor(max_workers=2) as pool:manifest['quotes']=list(pool.map(lambda s:quote_snapshot(s,directory),WATCHLIST))
+    with ThreadPoolExecutor(max_workers=2) as pool:manifest['quotes']=list(pool.map(lambda s:quote_snapshot(s,directory),manifest['watchlist']))
     path.write_text(core.dumps(manifest),encoding='utf-8')
 
 
-def download_snapshot():
+def download_snapshot(watchlist=None):
+    watchlist=dict(watchlist or WATCHLIST)
+    assets=dict(watchlist,**{BENCHMARK:'沪深300ETF'})
     local=core.now().astimezone(core.SH);start=core.history_start()
     bound=local.date() if local.hour>=16 else local.date()-timedelta(days=1)
     days=[d for d in core.calendar_dates() if start<=d<=bound.isoformat()]
     if not days:raise ValueError('Trading calendar unavailable; refresh saved calendar first')
-    directory=core.DATA/'research/technical'/local.strftime('%Y%m%dT%H%M%S');directory.mkdir(parents=True,exist_ok=False)
-    specs=[(s,a) for s in ASSETS for a in [0,1,2]]
+    directory=core.DATA/'research/technical'/(local.strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]);directory.mkdir(parents=True,exist_ok=False)
+    specs=[(s,a) for s in assets for a in [0,1,2]]
     with ThreadPoolExecutor(max_workers=2) as pool:
         sources=list(pool.map(lambda spec:fetch_one(spec,directory,start,days[-1]),specs))
+    # Trust validated source identity for the display name, including code-only input.
+    for source in sources:
+        if source.get('source_name'):
+            assets[source['symbol']]=source['source_name']
+            if source['symbol'] in watchlist:watchlist[source['symbol']]=source['source_name']
     manifest=dict(schema_version=1,generated_at=core.iso(),window_start=start,expected_end=days[-1],calendar=days,
-                  assets=ASSETS,watchlist=WATCHLIST,benchmark=BENCHMARK,sources=sources)
+                  assets=assets,watchlist=watchlist,benchmark=BENCHMARK,sources=sources)
     (directory/'manifest.json').write_text(core.dumps(manifest),encoding='utf-8')
     attach_quotes(directory)
     return directory
@@ -134,6 +161,13 @@ def load_frames(directory,manifest):
         source_time=datetime.fromtimestamp(int(data['f86']),core.timezone.utc)
         if source_time!=datetime.fromisoformat(quote['event_time']):raise ValueError('Quote source time mismatch')
     return frames,quality
+
+
+def clean_numbers(value):
+    if isinstance(value,dict):return {k:clean_numbers(v) for k,v in value.items()}
+    if isinstance(value,list):return [clean_numbers(v) for v in value]
+    if isinstance(value,float) and not np.isfinite(value):return None
+    return value
 
 
 def finite(value):
@@ -188,54 +222,60 @@ def summarize(symbol,frame,raw,return_price,benchmark):
     if pd.notna(row['rsi14']):notes.append('RSI进入70以上，强势也可能持续，不能据此单独判断反转' if row['rsi14']>=70 else 'RSI低于30，弱势也可能延续' if row['rsi14']<30 else 'RSI位于30至70之间')
     if pd.notna(row['volume_ratio20']):notes.append(f"当日量为此前20日均量的{row['volume_ratio20']:.2f}倍")
     if pd.notna(row['prior_high20']):notes.append('收盘突破前20日最高价' if row['close']>row['prior_high20'] else f"距前20日高点{(row['close']/row['prior_high20']-1)*100:.1f}%")
-    return dict(symbol=symbol,name=ASSETS[symbol],latest=snapshot,trend=trend,observations=len(raw.dropna()),notes=notes)
+    return dict(symbol=symbol,name=symbol,latest=snapshot,trend=trend,observations=len(raw.dropna()),notes=notes)
 
 
 def analyze_snapshot(directory):
     manifest=json.loads((directory/'manifest.json').read_text(encoding='utf-8'));frames,quality=load_frames(directory,manifest)
-    days=manifest['calendar'];split=int(len(days)*.8);benchmark=frames[(BENCHMARK,2)]['close']
+    watchlist={s['symbol']:manifest['watchlist'][s['symbol']] for s in manifest['sources'] if s['symbol'] in manifest['watchlist']}
+    benchmark_symbol=manifest['benchmark']
+    days=manifest['calendar'];split=int(len(days)*.8);benchmark=frames[(benchmark_symbol,2)]['close']
     assets=[];series={};event_rows=[];event_stats=[];returns={};qfq_returns={}
-    for symbol in WATCHLIST:
+    for symbol in watchlist:
         raw=frames[(symbol,0)];qfq=frames[(symbol,1)].copy();date=raw['close'].last_valid_index()
         factor=float(raw.loc[date,'close']/qfq.loc[date,'close'])
         qfq[['open','high','low','close']]*=factor
         frame=indicators.calculate(qfq);return_price=frames[(symbol,2)]['close']
         assets.append(summarize(symbol,frame,raw,return_price,benchmark))
         assets[-1]['anchor_factor']=factor
+        assets[-1]['name']=watchlist[symbol]
         stats,events=event_study(frame,return_price,benchmark,split)
-        event_stats.extend(dict(symbol=symbol,name=WATCHLIST[symbol],**r) for r in stats)
-        event_rows.extend(dict(symbol=symbol,name=WATCHLIST[symbol],**r) for r in events)
+        event_stats.extend(dict(symbol=symbol,name=watchlist[symbol],**r) for r in stats)
+        event_rows.extend(dict(symbol=symbol,name=watchlist[symbol],**r) for r in events)
         chart=frame.copy();chart['raw_close']=raw['close'];chart['return_hfq']=np.log(return_price).diff()
         chart['date']=chart.index
         series[symbol]=json.loads(chart.to_json(orient='records',force_ascii=False))
         returns[symbol]=np.log(return_price).diff();qfq_returns[symbol]=np.log(qfq['close']).diff()
-    returns[BENCHMARK]=np.log(benchmark).diff()
-    aligned=pd.DataFrame(returns).dropna();stocks=aligned[list(WATCHLIST)]
-    x=np.column_stack([np.ones(len(aligned)),aligned[BENCHMARK]])
+    returns[benchmark_symbol]=np.log(benchmark).diff()
+    aligned=pd.DataFrame(returns).dropna();stocks=aligned[list(watchlist)]
+    x=np.column_stack([np.ones(len(aligned)),aligned[benchmark_symbol]])
     residual=stocks.to_numpy()-x@np.linalg.lstsq(x,stocks.to_numpy(),rcond=None)[0]
-    correlation=stocks.corr();recent=stocks.tail(60).corr();residual_corr=pd.DataFrame(residual,columns=WATCHLIST).corr()
+    # A benchmark regressed on itself has no residual variation.
+    if len(residual):residual[:,np.max(np.abs(residual),axis=0)<1e-12]=np.nan
+    correlation=stocks.corr();recent=stocks.tail(60).corr();residual_corr=pd.DataFrame(residual,columns=watchlist).corr()
     qcorr=pd.DataFrame(qfq_returns).reindex(aligned.index).corr()
     pairs=[]
-    symbols=list(WATCHLIST)
+    symbols=list(watchlist)
     for i,a in enumerate(symbols):
-        for b in symbols[i+1:]:pairs.append(dict(a=a,b=b,names=WATCHLIST[a]+' / '+WATCHLIST[b],
+        for b in symbols[i+1:]:pairs.append(dict(a=a,b=b,names=watchlist[a]+' / '+watchlist[b],
             correlation=float(correlation.loc[a,b]),recent60=float(recent.loc[a,b]),residual=float(residual_corr.loc[a,b]),
             qfq_correlation=float(qcorr.loc[a,b])))
     pairs.sort(key=lambda r:r['recent60'],reverse=True)
     qfq_delta=float(np.max(np.abs(correlation.to_numpy()-qcorr.to_numpy())))
     actual_end=min(q['last'] for q in quality if q['adjustment']==0)
     result=dict(schema_version=1,generated_at=core.iso(),source_fetched_at=manifest['generated_at'],
-        window_start=manifest['window_start'],expected_end=manifest['expected_end'],daily_asof=actual_end,watchlist=WATCHLIST,benchmark=BENCHMARK,
-        assets=assets,series=series,quality=quality,methods=METHODS,references=REFERENCES,
+        window_start=manifest['window_start'],expected_end=manifest['expected_end'],daily_asof=actual_end,watchlist=watchlist,benchmark=benchmark_symbol,
+        assets=assets,series=series,quality=quality,methods=dict(METHODS,bias='当前用户选择的证券存在选择与存续偏差；复权历史可修订，非严格时点回测；组间事件可能受共同市场因素影响'),references=REFERENCES,
         dates=dict(train_start=days[250],train_end=days[split-1],holdout_start=days[split],holdout_end=days[-1],
-                   calendar_sessions=len(days),return_start=aligned.index[0],return_end=aligned.index[-1],
-                   return_observations=len(aligned),recent60_start=aligned.tail(60).index[0]),
+                   calendar_sessions=len(days),return_start=aligned.index[0] if len(aligned) else None,return_end=aligned.index[-1] if len(aligned) else None,
+                   return_observations=len(aligned),recent60_start=aligned.tail(60).index[0] if len(aligned) else None),
         event_statistics=event_stats,events=event_rows,
         comovement=dict(correlation=correlation.to_dict(orient='index'),recent60=recent.to_dict(orient='index'),
-            residual=residual_corr.to_dict(orient='index'),sample_cov_daily=stocks.cov().to_dict(orient='index'),
+            residual=residual_corr.to_dict(orient='index'),sample_cov_daily=(stocks.cov() if len(stocks)>1 else pd.DataFrame(np.nan,index=stocks.columns,columns=stocks.columns)).to_dict(orient='index'),
             pairs=pairs,qfq_hfq_max_correlation_delta=qfq_delta),
         quotes=manifest.get('quotes',[]),provenance=manifest,evidence_path='evidence.zip')
-    return result
+    # Undefined correlations (short/constant/disjoint histories) are null, never NaN.
+    return clean_numbers(result)
 
 
 def publish(result,directory,output=PUBLIC,portable=True):
@@ -260,16 +300,20 @@ def publish(result,directory,output=PUBLIC,portable=True):
     temp=output/'analysis.json.tmp';temp.write_text(encoded,encoding='utf-8');temp.replace(output/'analysis.json')
 
 
-def build(snapshot=None,output=PUBLIC):
+def build(snapshot=None,output=PUBLIC,watchlist=None):
     core.DATA.mkdir(parents=True,exist_ok=True)
     with (core.DATA/'technical.lock').open('a+b') as lock:
         process_lock.acquire(lock)
-        directory=Path(snapshot) if snapshot else download_snapshot()
-        result=analyze_snapshot(directory);publish(result,directory,output)
+        directory=Path(snapshot) if snapshot else download_snapshot(watchlist)
+        result=analyze_snapshot(directory);publish(result,directory,output,portable=watchlist is None)
         return result
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--snapshot',type=Path);parser.add_argument('--output',type=Path,default=PUBLIC)
-    args=parser.parse_args();result=build(args.snapshot,args.output)
+    parser.add_argument('--symbols',nargs='+',help='1-12个A股/ETF代码或完整名称；与--snapshot互斥')
+    args=parser.parse_args()
+    if args.snapshot and args.symbols:parser.error('--snapshot与--symbols不能同时使用')
+    if args.symbols:core.init()
+    result=build(args.snapshot,args.output,resolve_watchlist(args.symbols) if args.symbols else None)
     print(json.dumps(dict(dates=result['dates'],assets=[dict(symbol=a['symbol'],name=a['name'],trend=a['trend'],latest=a['latest']) for a in result['assets']]),ensure_ascii=False,indent=2))

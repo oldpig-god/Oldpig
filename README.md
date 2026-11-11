@@ -135,3 +135,18 @@ python scripts/check_technical_ui.py
 ```
 
 Windows用 `.venv\Scripts\python.exe` 替换解释器。实际输入在 `research/technical/snapshot/`，数值参考测试在 `tests/fixtures/ta-lib/`；页面提供逐行输入、来源参数、哈希及事件日期下载。旧Release仍保留原日期版本，不包含本次新模块；获取新功能以最新源码为准。
+
+
+### 自选技术面分析
+
+打开 `/technical`，按名称/代码搜索A股或ETF，添加或移除证券后点击“分析所选证券”。支持每次1—12只；单只显示指标和历史事件，多只额外显示共同样本相关性/协方差。结果保存在本地，刷新页面可继续使用；“更新研究数据”更新当前结果中的证券。恢复原六股按钮只修改待分析列表，点击分析后生效。
+
+数据窗口为近5年；新股和停牌不补价，指标窗口不足或共同收益样本不足显示空值。名录之外可以输入完整代码（如 `600519.SH`、`000001.SZ`、`920001.BJ`），能否生成以源端是否提供有效日线为准；尚不支持港美股。名称搜索依赖本地证券名录。新的联网分析仍需要已保存的交易日历。
+
+Windows / Linux 命令行示例（已配置依赖和数据目录）：
+
+```bash
+python -X utf8 -m app.technical --symbols 600519.SH 000001.SZ 510300.SH
+```
+
+API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSON `{"symbols":["600519.SH","510300.SH"]}`，请求头 `x-workbench-action: local-refresh`。同源限制与并发锁继续有效；无正文保留原默认六股兼容行为。失败保留上一份分析。自选采集不会覆盖仓库内原六股离线输入；当前研究可通过页面下载 `evidence.zip`，解压后用 `--snapshot` 重算。输出目录仍为 `app/static/technical`，每次成功更新替换当前研究，不是多用户隔离存储。

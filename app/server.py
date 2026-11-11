@@ -137,16 +137,31 @@ def technical_status():
     with TECH_LOCK:return dict(TECH_JOB)
 
 
+class TechnicalSelection(BaseModel):
+    symbols:list[str]=Field(min_length=1,max_length=12)
+
+
+@app.get('/api/technical/search')
+def technical_search(q:str=''):
+    with core.db() as c:
+        rows=c.execute("SELECT symbol,name,kind FROM instruments WHERE active=1 AND (instr(name,?)>0 OR instr(symbol,?)>0) ORDER BY symbol LIMIT 20",(q.strip(),q.strip().upper())).fetchall()
+    return {'items':[dict(r) for r in rows]}
+
+
 @app.post('/api/technical/refresh')
-def refresh_technical(request:Request):
+def refresh_technical(request:Request,body:TechnicalSelection|None=None):
     require_local_action(request)
+    from . import technical
+    try:watchlist=technical.resolve_watchlist(body.symbols) if body else None
+    except ValueError as exc:raise HTTPException(400,str(exc))
     with TECH_LOCK:
         if TECH_JOB['running']:raise HTTPException(409,'技术研究正在更新')
         TECH_JOB.update(running=True,started_at=core.iso(),finished_at=None,error=None)
     def run():
         try:
             from . import technical
-            technical.build()
+            if watchlist is None:technical.build()
+            else:technical.build(watchlist=watchlist)
         except Exception as exc:
             with TECH_LOCK:TECH_JOB['error']=str(exc)[:500]
         finally:

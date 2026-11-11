@@ -47,3 +47,19 @@ class TechnicalApiTests(unittest.TestCase):
         self.assertEqual(self.client.get('/api/technical/status').json()['error'],'upstream unavailable')
         after=self.client.get('/api/technical');self.assertEqual(after.content,before)
         self.assertEqual(after.headers['cache-control'],'no-store')
+
+    def test_selection_passes_resolved_symbols_to_pipeline(self):
+        with patch('app.technical.build') as mocked:
+            r=self.client.post('/api/technical/refresh',json={'symbols':['600519','000001.SZ']},headers={'x-workbench-action':'local-refresh'})
+            self.assertEqual(r.status_code,200)
+            for _ in range(100):
+                if not self.client.get('/api/technical/status').json()['running']:break
+                time.sleep(.01)
+            self.assertEqual(set(mocked.call_args.kwargs['watchlist']),{'600519.SH','000001.SZ'})
+
+    def test_invalid_selection_never_launches_download(self):
+        with patch('app.technical.build') as mocked:
+            for symbols,status in [([],422),(['600519']*13,422),(['../bad'],400)]:
+                r=self.client.post('/api/technical/refresh',json={'symbols':symbols},headers={'x-workbench-action':'local-refresh'})
+                self.assertEqual(r.status_code,status)
+            mocked.assert_not_called()
