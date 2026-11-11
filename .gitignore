@@ -8,3 +8,6 @@ data/
 *.zip.partial
 *.zip.part*
 deliveries/
+
+# Small auditable input bundle for six-stock technical research.
+!app/static/technical/evidence.zip

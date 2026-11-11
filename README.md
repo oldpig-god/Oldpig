@@ -2,16 +2,18 @@
 
 **给接手Agent：先读 [foragent.md](foragent.md)。推荐Windows Python 3.11 x64，也支持Linux/macOS。**
 
-完整可运行交接包与近5年全市场数据库位于 [finance-v2026.11.10 Release](https://github.com/oldpig-god/Oldpig/releases/tag/finance-v2026.11.10)。源码仓库保留轻量，未将约10GB解压数据写入Git历史。
+**新增六股技术面研究（2026-11-11）**：直接克隆最新源码即可使用附带的轻量样本，无须先下载大数据库。安装研究依赖后运行 `python -X utf8 -m app.technical --snapshot research/technical/snapshot`，启动服务后打开 `/technical`。默认研究沪电股份、东山精密、宏和科技、鹏鼎控股、江海股份与三一重工，支持快照/完整日线分时点展示、均线/RSI/MACD/ATR/布林带、历史事件检验和六股相关性。
+
+首次完整交付包与近5年全市场数据库位于 [finance-v2026.11.10 Release](https://github.com/oldpig-god/Oldpig/releases/tag/finance-v2026.11.10)。源码仓库保留轻量，未将约10GB解压数据写入Git历史。
 
 1. 从Release下载两个 `.zip.part001`、`.zip.part002` 附件，放在同一个目录。
 2. 使用Python合并并校验：`python -X utf8 scripts/join_release.py --parts-dir 分片目录 --output finance-workbench-20261110.zip`。
-3. 解压完整ZIP；Windows在解压目录依次运行 `setup-windows.cmd` 和 `start-windows.cmd`；Linux使用 `bash setup-linux.sh`、`bash start-linux.sh`。
+3. 克隆最新源码。解压旧ZIP后，只把其中的 `data/` 目录复制到最新仓库根目录，保留最新程序；不要用旧包的 `app/` 覆盖新代码。Windows在最新仓库目录运行 `setup-windows.cmd`、`start-windows.cmd`；Linux使用 `bash setup-linux.sh`、`bash start-linux.sh`。
 4. 打开 `http://127.0.0.1:8765/`；共振研究入口在页面右上角。首次安装依赖需要网络，查看已保存数据可离线。
 
 完整包约3.07GB、解压约9.92GB；建议25GB可用空间。它包含7,245个证券的约740万条日线和研究结果，属于2026-11-10交接快照，并非未来启动日的实时数据。Windows已做兼容适配，尚需接收者在Windows实机验收。
 
-本地应用已扩展为全市场证券名录、批量行情快照和可续传历史日线采集。**当前统一研究范围为滚动近5年：2021-11-10 至 2026-11-10，随上海日期滚动。**2026-11-10 首轮发现 **5,580 只当前沪深京 A股、1,666 只沪深场内 ETF**，共 7,246 只。运行时覆盖数量与补采结果以页面和 `/api/coverage` 为准。
+本地应用已扩展为全市场证券名录、批量行情快照和可续传历史日线采集。**统一研究范围为滚动近5年；2026-11-10交付时窗口为2021-11-10至2026-11-10，运行时随上海日期滚动。**2026-11-10 首轮发现 **5,580 只当前沪深京 A股、1,666 只沪深场内 ETF**，共 7,246 只。运行时覆盖数量与补采结果以页面和 `/api/coverage` 为准。
 
 A股范围以 AKShare 从交易所取得的当前上市名录为准；行情快照中额外出现的退市、转换等代码保留在原始记录中，不计入当前覆盖。ETF 范围为上游 ETF 分类列表，包含股票、债券、商品、跨境等场内 ETF；不含场外联接基金。当前名录不等于历史退市证券全集。页面分别显示“窗口内有记录”和“近5年请求完成数”，后者未完成时表示仍在补齐旧年份。
 
@@ -114,3 +116,22 @@ python3 scripts/check_research_ui.py
 ```
 
 本轮验证：37项Python测试、11项研究页浏览器检查、21项原行情页回归检查通过。近5年全市场补采完成：7,245个证券有日线、7,397,946行，另1个返回空；1,294个证券在已观察首尾日期之间存在交易日数量缺口（原因未核验），未进行填充。最终覆盖见 `design/v4/coverage-five-years.json`，缺口审计见 `design/v4/history-window-audit.json`。
+
+
+## 六股技术面研究（2026-11-11新增）
+
+入口 `/technical`，后端 `app/technical.py` 与 `app/indicators.py`。技术图使用前复权价格并锚定样本末日实际收盘价；收益率/协方差使用后复权价格收益代理，两种口径明确分开，均不宣称已核验的分红再投资总回报。当前完整日线截至11月10日，11月11日行情快照单独展示，不补成一根假日K。
+
+固定3个规则：MA20上穿MA60、突破此前20日高点且量比≥1.5、RSI首次进入70以上；按时间前80%形成期、后20%留出期观察20交易日超额表现。首250日预热；形成期结果不跨入留出期，同证券/规则持有窗口不重叠。样本由用户当前截图选择，存在选择偏差；留出期事件大多不足10次，不能据此宣称有效交易策略。
+
+```bash
+# 仅技术研究：不需要全市场SQLite，也不发网络请求
+python -X utf8 scripts/doctor.py --technical-only
+python -X utf8 -m app.technical --snapshot research/technical/snapshot
+# 重新采集：需要已保存/更新的交易日历，或使用页面“更新研究数据”
+python -X utf8 -m app.technical
+# 有服务运行时，浏览器验收
+python scripts/check_technical_ui.py
+```
+
+Windows用 `.venv\Scripts\python.exe` 替换解释器。实际输入在 `research/technical/snapshot/`，数值参考测试在 `tests/fixtures/ta-lib/`；页面提供逐行输入、来源参数、哈希及事件日期下载。旧Release仍保留原日期版本，不包含本次新模块；获取新功能以最新源码为准。

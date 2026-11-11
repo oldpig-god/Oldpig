@@ -1,0 +1,30 @@
+{
+  "unit_tests_passed": 58,
+  "browser_checks": {
+    "technical": 16,
+    "market": 21,
+    "comovement": 11
+  },
+  "daily_asof": "2026-11-10",
+  "quote_times": [
+    "2026-11-11T15:13:45+08:00",
+    "2026-11-11T15:13:45+08:00",
+    "2026-11-11T15:13:44+08:00",
+    "2026-11-11T15:13:30+08:00",
+    "2026-11-11T15:13:45+08:00",
+    "2026-11-11T15:13:29+08:00"
+  ],
+  "real_refresh_cycle": {
+    "started_at": "2026-11-11T07:13:49.020410+00:00",
+    "finished_at": "2026-11-11T07:13:52.853231+00:00",
+    "error": null
+  },
+  "offline_replay_without_sqlite": true,
+  "ta_lib_reference_functions": [
+    "RSI",
+    "ATR",
+    "MACD",
+    "BBANDS"
+  ],
+  "windows_native_tested": false
+}

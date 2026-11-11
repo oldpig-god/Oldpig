@@ -17,6 +17,8 @@ JOB = {'running':False,'started_at':None,'finished_at':None,'progress':0,'total'
 LOCK=threading.Lock()
 AUTO={'enabled':False,'interval_seconds':60,'last_attempt':0.,'daily_date':None,'close_date':None,'cooldown_until':0.}
 STOP=threading.Event()
+TECH_JOB={'running':False,'started_at':None,'finished_at':None,'error':None}
+TECH_LOCK=threading.Lock()
 
 
 def snapshot():
@@ -117,6 +119,40 @@ async def lifespan(app):
 
 app=FastAPI(title='观澜本地金融工作台',lifespan=lifespan)
 app.mount('/static',StaticFiles(directory=core.ROOT/'app/static'),name='static')
+
+
+@app.get('/technical')
+def technical_page():return FileResponse(core.ROOT/'app/static/technical/index.html')
+
+
+@app.get('/api/technical')
+def technical_analysis():
+    path=core.ROOT/'app/static/technical/analysis.json'
+    if not path.exists():raise HTTPException(404,'尚无技术研究结果，请先运行 python -m app.technical')
+    return FileResponse(path,media_type='application/json',headers={'Cache-Control':'no-store'})
+
+
+@app.get('/api/technical/status')
+def technical_status():
+    with TECH_LOCK:return dict(TECH_JOB)
+
+
+@app.post('/api/technical/refresh')
+def refresh_technical(request:Request):
+    require_local_action(request)
+    with TECH_LOCK:
+        if TECH_JOB['running']:raise HTTPException(409,'技术研究正在更新')
+        TECH_JOB.update(running=True,started_at=core.iso(),finished_at=None,error=None)
+    def run():
+        try:
+            from . import technical
+            technical.build()
+        except Exception as exc:
+            with TECH_LOCK:TECH_JOB['error']=str(exc)[:500]
+        finally:
+            with TECH_LOCK:TECH_JOB.update(running=False,finished_at=core.iso())
+    threading.Thread(target=run,daemon=True).start()
+    return technical_status()
 
 
 @app.get('/')

@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "name": "six specified stocks",
+      "passed": true
+    },
+    {
+      "name": "daily cutoff and quote time separate",
+      "passed": true
+    },
+    {
+      "name": "quote not inserted into candle data",
+      "passed": true
+    },
+    {
+      "name": "displayed close matches input",
+      "passed": true
+    },
+    {
+      "name": "three historical rules and low sample warnings",
+      "passed": true
+    },
+    {
+      "name": "stock selection updates chart and metrics",
+      "passed": true
+    },
+    {
+      "name": "keyboard chart inspection",
+      "passed": true
+    },
+    {
+      "name": "range changes plotted dates",
+      "passed": true
+    },
+    {
+      "name": "Bollinger overlay toggle",
+      "passed": true
+    },
+    {
+      "name": "historical period toggle",
+      "passed": true
+    },
+    {
+      "name": "residual correlation matches data",
+      "passed": true
+    },
+    {
+      "name": "all downloads available",
+      "passed": true
+    },
+    {
+      "name": "refresh failure preserves results",
+      "passed": true
+    },
+    {
+      "name": "mobile no page overflow",
+      "passed": true
+    },
+    {
+      "name": "no browser exceptions",
+      "passed": true
+    },
+    {
+      "name": "no external browser dependencies",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "external": []
+}

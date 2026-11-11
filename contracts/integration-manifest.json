@@ -1,6 +1,6 @@
 {
-  "checked_on": "2026-11-10",
-  "scope": "whole-market current A-share / listed ETF inventory, snapshots and resumable daily history",
+  "checked_on": "2026-11-11",
+  "scope": "whole-market current A-share / listed ETF inventory, snapshots and resumable daily history; six-stock technical indicators, source-timed quotes and retrospective event study",
   "integrated": [
     {
       "name": "klinecharts",
@@ -52,9 +52,13 @@
   "frontend_source": "app/static/index.html",
   "historical_demo_source": "frontend/workbench-preview.html",
   "tests": {
-    "pipeline": 30,
-    "browser": 21,
-    "browser_report": "design/v4/validation.json"
+    "python_unit": 58,
+    "browser_total": 48,
+    "technical_browser": 16,
+    "reports": [
+      "design/v6/technical-validation.json",
+      "design/v6/validation.json"
+    ]
   },
   "data_sources": [
     "AKShare exchange-derived A-share inventory",
@@ -72,12 +76,43 @@
     "ohlc_mismatch_days": 0,
     "mode": "separate on-demand CSV archive; only rolling five-year rows exposed; source adjustment unspecified",
     "end_date": "2026-06-26",
-    "source_data_not_redistributed": true
+    "source_data_not_redistributed": true,
+    "verification_as_of": "2026-11-10",
+    "caches_included_in_handoff": false
   },
   "history_window": {
     "years": 5,
-    "as_of": "2026-11-10",
-    "start": "2021-11-10",
+    "as_of": "2026-11-11",
+    "start": "2021-11-11",
     "rolling": true
+  },
+  "technical_research": {
+    "watchlist": [
+      "002463.SZ",
+      "002384.SZ",
+      "603256.SH",
+      "002938.SZ",
+      "002484.SZ",
+      "600031.SH"
+    ],
+    "benchmark": "510300.SH",
+    "runtime": "own causal indicator code using existing pandas/NumPy",
+    "library_method_references": [
+      "TA-Lib",
+      "bukosabino/ta"
+    ],
+    "native_library_required": false,
+    "verified_against": "TA-Lib official RSI/ATR/MACD/BBANDS reference CSV",
+    "reference_hashes": "tests/fixtures/ta-lib/sources.json",
+    "snapshot": "research/technical/snapshot/manifest.json",
+    "route": "/technical",
+    "daily_asof": "2026-11-10",
+    "quotes_date": "2026-11-11",
+    "quote_time_field": "Eastmoney f86 source update time; separate from fetched time",
+    "technical_adjustment": "qfq, anchored to final raw close",
+    "return_adjustment": "hfq price-return proxy; not independently verified total return",
+    "offline_without_full_database": true,
+    "event_study": "fixed 3 rules, 20-session horizon, 80/20 retrospective time split, nonoverlapping within stock/rule, 250-session warmup; not execution backtest",
+    "windows_native_tested": false
   }
 }

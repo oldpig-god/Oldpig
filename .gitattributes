@@ -4,3 +4,8 @@
 *.png binary
 *.woff binary
 *.woff2 binary
+
+# Preserve immutable HTTP evidence and official reference bytes across Windows checkout.
+research/technical/snapshot/*.json -text
+tests/fixtures/ta-lib/*.csv -text
+*.zip binary

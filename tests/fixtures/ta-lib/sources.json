@@ -1,0 +1,22 @@
+[
+  {
+    "name": "rsi",
+    "url": "https://ta-lib.org/functions/rsi.csv",
+    "sha256": "e0800313019bac20e5f4ea670203b20939d044b27fa6c6a549462120c6f25c0f"
+  },
+  {
+    "name": "atr",
+    "url": "https://ta-lib.org/functions/atr.csv",
+    "sha256": "a6503337cafe387f12a4f81272b8d1f4b59eaf1050cece57054511f46eac9149"
+  },
+  {
+    "name": "macd",
+    "url": "https://ta-lib.org/functions/macd.csv",
+    "sha256": "898619c7a20cf3f4fa5e0bf427106cdad5c6134d7ff18d98b0bda7d058be4876"
+  },
+  {
+    "name": "bbands",
+    "url": "https://ta-lib.org/functions/bbands.csv",
+    "sha256": "7b977e5d192f2f2e247a6873708552e09c254f9a8ab9d44f4667a2091a45a26a"
+  }
+]
