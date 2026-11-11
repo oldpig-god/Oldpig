@@ -177,3 +177,8 @@ python -X utf8 -m app.technical --symbols 600519.SH 000001.SZ 510300.SH
 ```
 
 API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSON `{"symbols":["600519.SH","510300.SH"]}`，请求头 `x-workbench-action: local-refresh`。同源限制与并发锁继续有效；无正文保留原默认六股兼容行为。失败保留上一份分析。自选采集不会覆盖仓库内原六股离线输入；当前研究可通过页面下载 `evidence.zip`，解压后用 `--snapshot` 重算。输出目录仍为 `app/static/technical`，每次成功更新替换当前研究，不是多用户隔离存储。
+
+
+### CloudBase 国内站云端版本
+
+已增加 Python HTTP 云函数入口、私有 PG Storage 数据适配、受邀账号登录、按账号隔离的技术分析结果和云端行情更新。部署和维护步骤见 [CloudBase 部署说明](deploy/cloudbase/README.md)。云端持久数据存储与函数 `/tmp` 缓存分离，不可把 `/tmp` 当数据库备份；凭证和账号密码必须放在仓库外私有目录。原本的本地启动方式继续可用。

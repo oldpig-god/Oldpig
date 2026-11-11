@@ -1,0 +1,17 @@
+{
+  "checked_on": "2026-11-11",
+  "site": "domestic",
+  "region": "ap-shanghai",
+  "function": "guanlan-api",
+  "status": "Active",
+  "runtime": "Python3.10",
+  "memory_mb": 1024,
+  "request_timeout_seconds": 120,
+  "origin": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com",
+  "domain_scope": "CloudBase development/test default domain; confirmation page on first browser visit",
+  "primary_archive": {"rows": 7427581, "daily_rows": 7400261, "daily_symbols": 7246, "compressed_history_mib": 260.3},
+  "cloud_data_provider": "Tencent public source; original Eastmoney archive retains row provenance",
+  "login": "separate invited accounts, passwords delivered outside repository",
+  "tests": {"python": 73, "live_api": 28, "browser": 11, "packaged_indicator_reference": 9},
+  "limits": ["test-domain platform reminder and rate limits", "trial resource-point quota", "browser-open trading-session polling only", "original historical raw response files not fully migrated; normalized records and batch source hashes retained"]
+}

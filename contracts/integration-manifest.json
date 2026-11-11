@@ -1,6 +1,6 @@
 {
   "checked_on": "2026-11-11",
-  "scope": "whole-market current A-share / listed ETF inventory, snapshots and resumable daily history; six-stock technical indicators, source-timed quotes and retrospective event study",
+  "scope": "whole-market A-share/ETF inventory and five-year history; selectable technical research; authenticated CloudBase domestic deployment",
   "integrated": [
     {
       "name": "klinecharts",
@@ -47,24 +47,30 @@
     "caplin/FlexLayout"
   ],
   "source_copy_from_agpl_apps": false,
-  "network": "Server-side bounded market-data requests; browser calls local API only",
+  "network": "Browser calls the authenticated same-origin API. Cloud runtime reads private CloudBase PG Storage and bounded Tencent public data endpoints; local mode keeps its existing Eastmoney adapters.",
   "raw_quality_snapshot": "research/probes/report.json",
   "frontend_source": "app/static/index.html",
   "historical_demo_source": "frontend/workbench-preview.html",
   "tests": {
-    "python_unit": 58,
+    "python_unit": 73,
     "browser_total": 48,
     "technical_browser": 16,
     "reports": [
       "design/v6/technical-validation.json",
-      "design/v6/validation.json"
-    ]
+      "design/v6/validation.json",
+      "design/cloudbase/live-validation.json",
+      "design/cloudbase/browser-validation.json"
+    ],
+    "cloud_live": 28,
+    "cloud_browser": 11,
+    "packaged_indicator_reference": 9
   },
   "data_sources": [
     "AKShare exchange-derived A-share inventory",
     "AKShare Eastmoney stock/ETF snapshots",
     "Eastmoney kline direct adapter v1 for daily history",
-    "AKShare on-demand minute endpoints"
+    "AKShare on-demand minute endpoints",
+    "Tencent public quote/day/qfq/hfq/minute adapters for cloud runtime; exact source evidence retained"
   ],
   "coverage_policy": "Rolling five calendar years in Asia/Shanghai; current A-share membership and ETF category; minute history on demand",
   "github_history": {
@@ -114,5 +120,23 @@
     "offline_without_full_database": true,
     "event_study": "fixed 3 rules, 20-session horizon, 80/20 retrospective time split, nonoverlapping within stock/rule, 250-session warmup; not execution backtest",
     "windows_native_tested": false
+  },
+  "cloudbase": {
+    "site": "domestic",
+    "region": "ap-shanghai",
+    "runtime": "Python3.10 HTTP function",
+    "storage": "private PG Storage",
+    "ephemeral_cache": "rebuildable SQLite seed and bounded /tmp history cache",
+    "auth": "invited accounts, PBKDF2 hashes, signed Secure HttpOnly cookies",
+    "selection_isolation": "per-user immutable generation + final pointer commit",
+    "data_snapshot": {
+      "records": 7427581,
+      "daily_records": 7400261,
+      "daily_symbols": 7246,
+      "compressed_history_mib": 260.3
+    },
+    "default_domain": "development/test only; platform confirmation interstitial",
+    "secrets_in_repository": false,
+    "documentation": "deploy/cloudbase/README.md"
   }
 }

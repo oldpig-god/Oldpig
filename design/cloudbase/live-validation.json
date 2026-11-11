@@ -1,0 +1,234 @@
+{
+  "origin": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com",
+  "checks": [
+    {
+      "name": "HTTPS login",
+      "ok": true,
+      "detail": 200
+    },
+    {
+      "name": "Secure HttpOnly cookie",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "/",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 7446
+      }
+    },
+    {
+      "name": "/technical",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 9205
+      }
+    },
+    {
+      "name": "/static/research/index.html",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 7493
+      }
+    },
+    {
+      "name": "/static/app.js",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 17053
+      }
+    },
+    {
+      "name": "/api/health",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 564
+      }
+    },
+    {
+      "name": "/api/coverage",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 2060
+      }
+    },
+    {
+      "name": "/api/technical/search?q=茅台",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 71
+      }
+    },
+    {
+      "name": "/api/universe?q=三一",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 1412
+      }
+    },
+    {
+      "name": "/api/series/600519.SH?interval=1d",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 569734
+      }
+    },
+    {
+      "name": "/api/technical",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 5139778
+      }
+    },
+    {
+      "name": "/static/technical/summary.csv",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 4064
+      }
+    },
+    {
+      "name": "/static/technical/evidence.zip",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "bytes": 803749
+      }
+    },
+    {
+      "name": "Full cloud history",
+      "ok": true,
+      "detail": [
+        {
+          "interval": "1d",
+          "rows": 7400261,
+          "symbols": 7246
+        },
+        {
+          "interval": "1m",
+          "rows": 12010,
+          "symbols": 10
+        },
+        {
+          "interval": "5m",
+          "rows": 15310,
+          "symbols": 10
+        }
+      ]
+    },
+    {
+      "name": "Cloud source refresh 1m",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "seconds": 1.64,
+        "error": null
+      }
+    },
+    {
+      "name": "Durable refreshed 1m",
+      "ok": true,
+      "detail": {
+        "rows": 1447,
+        "last": "2026-11-11T15:00:00+08:00"
+      }
+    },
+    {
+      "name": "Cloud source refresh 5m",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "seconds": 1.52,
+        "error": null
+      }
+    },
+    {
+      "name": "Durable refreshed 5m",
+      "ok": true,
+      "detail": {
+        "rows": 1584,
+        "last": "2026-11-11T15:00:00+08:00"
+      }
+    },
+    {
+      "name": "Cloud source refresh 1d",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "seconds": 1.77,
+        "error": null
+      }
+    },
+    {
+      "name": "Durable refreshed 1d",
+      "ok": true,
+      "detail": {
+        "rows": 1212,
+        "last": "2026-11-11T15:00:00+08:00"
+      }
+    },
+    {
+      "name": "Whole-market live snapshot",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "updated": 7246,
+        "detail": null
+      }
+    },
+    {
+      "name": "Second account login",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "Live three-security technical analysis",
+      "ok": true,
+      "detail": {
+        "status": 200,
+        "seconds": 7.2,
+        "error": null
+      }
+    },
+    {
+      "name": "Selection persisted",
+      "ok": true,
+      "detail": "2026-11-10"
+    },
+    {
+      "name": "Other account unaffected",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "Unauthenticated data denied",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "Cross-origin write denied",
+      "ok": true,
+      "detail": null
+    }
+  ],
+  "result": {
+    "daily_asof": "2026-11-10",
+    "assets": [
+      "600519.SH",
+      "000001.SZ",
+      "510300.SH"
+    ]
+  }
+}

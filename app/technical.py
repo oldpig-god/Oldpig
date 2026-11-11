@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 import requests
 
-from . import core, indicators, process_lock
+from . import core, indicators, process_lock, tencent_source
 
 WATCHLIST={'002463.SZ':'沪电股份','002384.SZ':'东山精密','603256.SH':'宏和科技',
            '002938.SZ':'鹏鼎控股','002484.SZ':'江海股份','600031.SH':'三一重工'}
@@ -65,6 +65,7 @@ def resolve_watchlist(queries):
 
 
 def fetch_one(spec,directory,start,end):
+    if core.os.environ.get('FINANCE_TECH_PROVIDER')=='tencent':return tencent_source.fetch_one(spec,directory,start,end)
     symbol,adjustment=spec;code,exchange=symbol.split('.');market=1 if exchange=='SH' else 0
     params=dict(secid=f'{market}.{code}',klt='101',fqt=str(adjustment),beg=start.replace('-',''),end=end.replace('-',''),
                 fields1='f1,f2,f3,f4,f5,f6',fields2='f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61')
@@ -78,6 +79,7 @@ def fetch_one(spec,directory,start,end):
 
 
 def quote_snapshot(symbol,directory):
+    if core.os.environ.get('FINANCE_TECH_PROVIDER')=='tencent':return tencent_source.quote_snapshot(symbol,directory)
     code,exchange=symbol.split('.');params={'secid':('1' if exchange=='SH' else '0')+'.'+code,'fields':'f43,f57,f58,f59,f60,f86'}
     endpoint='https://push2.eastmoney.com/api/qt/stock/get';fetched=core.iso()
     try:
@@ -97,7 +99,7 @@ def quote_snapshot(symbol,directory):
 
 def attach_quotes(directory):
     path=directory/'manifest.json';manifest=json.loads(path.read_text(encoding='utf-8'))
-    with ThreadPoolExecutor(max_workers=2) as pool:manifest['quotes']=list(pool.map(lambda s:quote_snapshot(s,directory),manifest['watchlist']))
+    with ThreadPoolExecutor(max_workers=int(core.os.environ.get('FINANCE_SOURCE_WORKERS','2'))) as pool:manifest['quotes']=list(pool.map(lambda s:quote_snapshot(s,directory),manifest['watchlist']))
     path.write_text(core.dumps(manifest),encoding='utf-8')
 
 
@@ -110,7 +112,7 @@ def download_snapshot(watchlist=None):
     if not days:raise ValueError('Trading calendar unavailable; refresh saved calendar first')
     directory=core.DATA/'research/technical'/(local.strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]);directory.mkdir(parents=True,exist_ok=False)
     specs=[(s,a) for s in assets for a in [0,1,2]]
-    with ThreadPoolExecutor(max_workers=2) as pool:
+    with ThreadPoolExecutor(max_workers=int(core.os.environ.get('FINANCE_SOURCE_WORKERS','2'))) as pool:
         sources=list(pool.map(lambda spec:fetch_one(spec,directory,start,days[-1]),specs))
     # Trust validated source identity for the display name, including code-only input.
     for source in sources:
@@ -129,7 +131,13 @@ def load_frames(directory,manifest):
     for source in manifest['sources']:
         content=(directory/source['file']).read_bytes()
         if hashlib.sha256(content).hexdigest()!=source['sha256']:raise ValueError('Evidence checksum mismatch: '+source['file'])
-        payload=json.loads(content);data=payload['data'];symbol=source['symbol'];code,exchange=symbol.split('.')
+        payload=json.loads(content);symbol=source['symbol'];code,exchange=symbol.split('.')
+        is_tencent=source.get('provider')=='tencent'
+        if is_tencent:
+            tx_rows,_=tencent_source.rows_from_evidence(payload,symbol,int(source['adjustment']),manifest['window_start'],manifest['expected_end'])
+            lines=[','.join(map(str,cells))+',0,0,0,0,0' for cells in tx_rows]
+            data={'code':code,'market':1 if exchange=='SH' else 0,'klines':lines}
+        else:data=payload['data']
         if str(data.get('code'))!=code or data.get('market')!=(1 if exchange=='SH' else 0):raise ValueError('Snapshot identity mismatch')
         rows=[];seen=set()
         for line in data['klines']:
@@ -140,11 +148,20 @@ def load_frames(directory,manifest):
             seen.add(date);o,c,h,l,v,amount=map(float,cells[1:7])
             if not np.isfinite([o,c,h,l,v,amount]).all() or min(o,c,h,l)<=0 or min(v,amount)<0 or not l<=min(o,c)<=max(o,c)<=h:
                 raise ValueError('Invalid OHLCV: '+symbol+' '+date)
-            rows.append(dict(date=date,open=o,close=c,high=h,low=l,volume=v,amount=amount,pct_source=float(cells[8])))
+            rows.append(dict(date=date,open=o,close=c,high=h,low=l,volume=v,amount=None if is_tencent else amount,pct_source=None if is_tencent else float(cells[8])))
         frame=pd.DataFrame(rows).set_index('date').reindex(calendar)
         frames[(symbol,int(source['adjustment']))]=frame
         quality.append(dict(symbol=symbol,adjustment=source['adjustment'],rows=len(rows),missing_sessions=len(calendar)-len(rows),
                             first=min(seen),last=max(seen)))
+    # Different adjustment feeds can finish today's candle at different times.
+    # Trim only the unfinished trailing suffix across the cohort, never fill an interior gap.
+    common_end=min(frame['close'].last_valid_index() for frame in frames.values())
+    for key,frame in list(frames.items()):
+        frames[key]=frame.loc[:common_end]
+    for item in quality:
+        frame=frames[(item['symbol'],item['adjustment'])];valid=frame['close'].dropna()
+        if item['last']>common_end:item.update(source_last=item['last'],trailing_unaligned_excluded=item['rows']-len(valid))
+        item.update(rows=len(valid),missing_sessions=len(frame)-len(valid),last=valid.index[-1])
     for symbol in manifest['assets']:
         raw=frames[(symbol,0)]
         for adjustment in [1,2]:
@@ -155,6 +172,10 @@ def load_frames(directory,manifest):
         if quote['status']!='ok':continue
         content=(directory/quote['file']).read_bytes()
         if hashlib.sha256(content).hexdigest()!=quote['sha256']:raise ValueError('Quote evidence checksum mismatch')
+        if quote.get('provider')=='tencent':
+            value=tencent_source.parse_quotes(content,[quote['symbol']]).get(quote['symbol'])
+            if not value or value['price']!=quote['price'] or value['event_time']!=quote['event_time']:raise ValueError('Tencent quote evidence mismatch')
+            continue
         data=json.loads(content)['data'];scale=10**int(data['f59'])
         if data['f57']!=quote['symbol'].split('.')[0] or float(data['f43'])/scale!=quote['price']:
             raise ValueError('Quote snapshot identity/value mismatch')
@@ -222,14 +243,14 @@ def summarize(symbol,frame,raw,return_price,benchmark):
     if pd.notna(row['rsi14']):notes.append('RSI进入70以上，强势也可能持续，不能据此单独判断反转' if row['rsi14']>=70 else 'RSI低于30，弱势也可能延续' if row['rsi14']<30 else 'RSI位于30至70之间')
     if pd.notna(row['volume_ratio20']):notes.append(f"当日量为此前20日均量的{row['volume_ratio20']:.2f}倍")
     if pd.notna(row['prior_high20']):notes.append('收盘突破前20日最高价' if row['close']>row['prior_high20'] else f"距前20日高点{(row['close']/row['prior_high20']-1)*100:.1f}%")
-    return dict(symbol=symbol,name=symbol,latest=snapshot,trend=trend,observations=len(raw.dropna()),notes=notes)
+    return dict(symbol=symbol,name=symbol,latest=snapshot,trend=trend,observations=int(raw['close'].notna().sum()),notes=notes)
 
 
 def analyze_snapshot(directory):
     manifest=json.loads((directory/'manifest.json').read_text(encoding='utf-8'));frames,quality=load_frames(directory,manifest)
     watchlist={s['symbol']:manifest['watchlist'][s['symbol']] for s in manifest['sources'] if s['symbol'] in manifest['watchlist']}
     benchmark_symbol=manifest['benchmark']
-    days=manifest['calendar'];split=int(len(days)*.8);benchmark=frames[(benchmark_symbol,2)]['close']
+    days=list(frames[(benchmark_symbol,2)].index);split=int(len(days)*.8);benchmark=frames[(benchmark_symbol,2)]['close']
     assets=[];series={};event_rows=[];event_stats=[];returns={};qfq_returns={}
     for symbol in watchlist:
         raw=frames[(symbol,0)];qfq=frames[(symbol,1)].copy();date=raw['close'].last_valid_index()
@@ -275,6 +296,9 @@ def analyze_snapshot(directory):
             pairs=pairs,qfq_hfq_max_correlation_delta=qfq_delta),
         quotes=manifest.get('quotes',[]),provenance=manifest,evidence_path='evidence.zip')
     # Undefined correlations (short/constant/disjoint histories) are null, never NaN.
+    if any(s.get('provider')=='tencent' for s in manifest['sources']):
+        result['methods']['source']='本次指标统一使用腾讯证券的不复权、前复权、后复权日线；成交额与单日涨跌幅未提供，保留空值。各复权源当日更新进度不同，统一截取所有源均已发布的日线末日；历史缺口仍拒绝混算。与主行情东方财富来源不同，不混算价格。'
+        result['methods']['quote']='腾讯快照价格直接解析十进制字段，按源时间标注；涨幅由源昨收计算，不拼入完整日线。'
     return clean_numbers(result)
 
 

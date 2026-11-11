@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Private landing redirects to login",
+    "ok": true
+  },
+  {
+    "name": "Main page cloud chart and inventory",
+    "ok": true
+  },
+  {
+    "name": "Account and logout visible",
+    "ok": true
+  },
+  {
+    "name": "Main page mobile no body overflow",
+    "ok": true
+  },
+  {
+    "name": "Owner default six stocks",
+    "ok": true
+  },
+  {
+    "name": "Technical candle chart rendered",
+    "ok": true
+  },
+  {
+    "name": "Technical mobile no body overflow",
+    "ok": true
+  },
+  {
+    "name": "Logout removes API session",
+    "ok": true
+  },
+  {
+    "name": "Second user own three-stock results",
+    "ok": true
+  },
+  {
+    "name": "Three-stock correlation matrix",
+    "ok": true
+  },
+  {
+    "name": "No JavaScript runtime errors",
+    "ok": true
+  }
+]
