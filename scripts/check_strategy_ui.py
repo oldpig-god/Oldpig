@@ -11,10 +11,12 @@ with sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto(args.url+'/strategy');page.wait_for_function("!document.querySelector('#history').textContent.includes('尚未加载')")
     checks.append('strategy route and experiment archive load')
+    if not page.locator('#run').is_visible():page.locator('#config-toggle').click()
     page.locator('#run').click();page.wait_for_function("document.querySelector('#run-status').textContent.startsWith('已保存') || !document.querySelector('#error').hidden",timeout=120000)
     if page.locator('#error').is_visible():raise RuntimeError(page.locator('#error').inner_text())
     page.locator('#report').wait_for(state='visible');assert page.locator('#nav-chart svg').count()==1
     assert '600031.SH' in page.locator('#report-title').inner_text();checks.append('live Sany data runs and creates persisted experiment')
+    page.get_by_role('tab',name='交易账本').click();assert page.locator('#trades').is_visible();page.get_by_role('tab',name='稳健性检验').click();assert page.locator('#walk-results').is_visible();page.get_by_role('tab',name='收益与风险').click()
     assert page.locator('#comparison tr').count()==17;assert page.locator('#trades tr').count()>0;checks.append('metrics, benchmark chart and execution ledger render')
     page.locator('#replay').click();page.wait_for_function("document.querySelector('#replay-status').textContent.includes('验证通过')",timeout=120000);checks.append('exact snapshot replay matches')
     page.locator('#period').select_option('full');assert page.locator('#trades tr').count()>0;checks.append('period selector updates charts and trades')

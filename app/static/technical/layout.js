@@ -1,0 +1,11 @@
+(()=>{'use strict';
+const selection=document.querySelector('.selection-panel');selection.id='technical-selection';
+const toggle=document.createElement('button');toggle.id='technical-selection-toggle';toggle.type='button';toggle.textContent='选择研究证券';toggle.setAttribute('aria-controls',selection.id);
+const hero=document.querySelector('.hero');hero.querySelector('.asof').append(toggle);
+function set(open){selection.hidden=!open;toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'收起证券选择':'选择研究证券';}toggle.onclick=()=>set(selection.hidden);set(new URLSearchParams(location.search).has('symbol'));
+const chart=document.querySelector('.chart-layout'),overview=document.querySelector('.overview');overview.before(chart);
+const switcher=document.createElement('select');switcher.id='technical-quick-switch';switcher.setAttribute('aria-label','选择图表证券');
+chart.querySelector('.section-head').append(switcher);
+const observer=new MutationObserver(()=>{const rows=[...document.querySelectorAll('#stock-rows tr[data-symbol]')];switcher.replaceChildren(...rows.map(r=>{const o=document.createElement('option');o.value=r.dataset.symbol;o.textContent=r.querySelector('button')?.textContent||r.dataset.symbol;o.selected=r.classList.contains('active');return o;}));});observer.observe(document.getElementById('stock-rows'),{childList:true});
+switcher.onchange=()=>document.querySelector(`#stock-rows [data-symbol="${CSS.escape(switcher.value)}"] button`)?.click();
+})();

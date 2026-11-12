@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+import re
 import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
@@ -36,14 +37,23 @@ def validate(bundle):
     return bundle
 
 
-def profile(symbol,name):
-    code=symbol.split('.')[0]
-    # First release excludes boards whose minimum order size differs from 100 shares.
-    if code.startswith(('688','689')) or symbol.endswith('.BJ'):raise ValueError('第一版仅支持沪深主板、创业板股票及510300 ETF；科创板/北交所的申报规则尚未接入')
-    if symbol=='510300.SH':return dict(kind='etf',limit_rate=.10,lot=100,tick=.001)
-    if not (symbol.endswith('.SH') and code.startswith(('600','601','603','605')) or symbol.endswith('.SZ') and code.startswith(('000','001','002','003','300','301'))):raise ValueError('第一版仅支持沪深A股与沪深300 ETF基准')
-    if 'ST' in name.upper() or '退' in name:raise ValueError('ST/退市整理股票需逐日历史状态，当前免费数据不足以可靠建模')
-    return dict(kind='stock',limit_rate=.20 if code.startswith(('300','301')) else .10,lot=100,tick=.01)
+def profile(symbol,name,kind=None,allow_research=False):
+    code,exchange=symbol.split('.')
+    is_etf=kind=='etf' or (kind is None and (code.startswith(('51','52','56','58','15','16'))))
+    risk=bool(re.match(r'^(?:S\*?ST|\*?ST)',name.upper())) or '退' in name
+    board='etf' if is_etf else 'beijing' if exchange=='BJ' else 'star' if exchange=='SH' and code.startswith(('688','689')) else 'chinext' if exchange=='SZ' and code.startswith(('300','301','302')) else 'main' if (exchange=='SH' and code.startswith(('600','601','603','605')) or exchange=='SZ' and code.startswith(('000','001','002','003'))) else 'unknown'
+    labels={'etf':'ETF','beijing':'北交所','star':'科创板','chinext':'创业板','main':'沪深主板','unknown':'其他证券'}
+    reason=''
+    if board=='unknown':reason='尚未核验该证券的交易制度，仅提供行情与指标研究'
+    elif risk:reason='缺历史ST/退市状态与逐日涨跌停价，可做技术观察，暂不开放回测'
+    elif is_etf and symbol!='510300.SH':reason='ETF含不同涨跌幅、回转与资产类别，当前仅510300的回测规则已接入'
+    if reason and not allow_research:raise ValueError(reason)
+    return dict(kind='etf' if is_etf else 'stock',board=board,board_label=labels[board],risk_warning=risk,
+                limit_rate=None if is_etf and symbol!='510300.SH' else .30 if board=='beijing' else .20 if board in ('star','chinext') else .10,
+                lot=1 if board in ('star','beijing') else 100,min_buy=200 if board=='star' else 100,
+                max_buy=100000 if board=='star' else 1000000,tick=.001 if is_etf else .01,
+                backtest_allowed=not bool(reason),backtest_reason=reason,
+                rule_note='普通交易日板块假设；历史ST、首发/重新上市豁免及企业行动未核验')
 
 
 def acquire(symbol):

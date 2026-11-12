@@ -1,0 +1,99 @@
+{
+  "checked_on": "2026-11-12",
+  "url": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com/stocks",
+  "checks": [
+    "new API requires authentication",
+    "existing account login",
+    "full inventory",
+    "600031.SH real cloud analysis",
+    "688001.SH real cloud analysis",
+    "920002.BJ real cloud analysis",
+    "600079.SH real cloud analysis",
+    "159915.SZ real cloud analysis",
+    "302132.SZ real cloud analysis",
+    "cloud login lands on functioning stocks page",
+    "cloud global search",
+    "cloud mobile no overflow",
+    "cloud browser no errors"
+  ],
+  "coverage": {
+    "total": 7246,
+    "boards": {
+      "ETF": 1666,
+      "北交所": 355,
+      "沪深主板": 3195,
+      "科创板": 619,
+      "创业板": 1411
+    },
+    "risk_warning": 198,
+    "note": "名录覆盖不等于每只证券都有完整历史；单只证券按实际数据标注"
+  },
+  "samples": [
+    {
+      "symbol": "600031.SH",
+      "status": "ready",
+      "range": {
+        "start": "2021-11-12",
+        "end": "2026-11-10",
+        "count": 1210
+      },
+      "board": "main",
+      "backtest_allowed": true
+    },
+    {
+      "symbol": "688001.SH",
+      "status": "ready",
+      "range": {
+        "start": "2021-11-12",
+        "end": "2026-11-10",
+        "count": 1210
+      },
+      "board": "star",
+      "backtest_allowed": true
+    },
+    {
+      "symbol": "920002.BJ",
+      "status": "ready",
+      "range": {
+        "start": "2024-05-30",
+        "end": "2026-11-10",
+        "count": 594
+      },
+      "board": "beijing",
+      "backtest_allowed": true
+    },
+    {
+      "symbol": "600079.SH",
+      "status": "ready",
+      "range": {
+        "start": "2021-11-12",
+        "end": "2026-11-10",
+        "count": 1209
+      },
+      "board": "main",
+      "backtest_allowed": false
+    },
+    {
+      "symbol": "159915.SZ",
+      "status": "ready",
+      "range": {
+        "start": "2021-11-12",
+        "end": "2026-11-10",
+        "count": 1210
+      },
+      "board": "etf",
+      "backtest_allowed": false
+    },
+    {
+      "symbol": "302132.SZ",
+      "status": "ready",
+      "range": {
+        "start": "2021-11-12",
+        "end": "2026-11-10",
+        "count": 1200
+      },
+      "board": "chinext",
+      "backtest_allowed": true
+    }
+  ]
+}

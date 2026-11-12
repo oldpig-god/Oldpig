@@ -21,12 +21,12 @@
     "existing route /api/universe?limit=2",
     "no key headers reflected"
   ],
-  "experiment_id": "20261112T025745368888-6bfe2c137f0e6d25",
-  "elapsed_seconds": 6.14,
-  "data_end": "2026-11-11",
-  "data_hash": "682225d5074cb15ede95669bdf2a476f9419f64267616cf6ad98cd3a8e99c898",
-  "result_hash": "d2318c6ac0b3237f5f036cc45c510e27ccce3f71a97bf662d840fc71b65403d3",
-  "code_hash": "724067939ba1b4246e39db9e8c196d0e77dc28a00aed4b07aee91c4ebc3e2eeb",
+  "experiment_id": "20261112T092647194107-8ff18f6b8a0db449",
+  "elapsed_seconds": 4.08,
+  "data_end": "2026-11-12",
+  "data_hash": "2f06c04af5347f1296235a0e7133cbad0942cc6c4579f1132225e6bfa6441bbe",
+  "result_hash": "17e2cc8d7c875836904c5db17aa393707310255eb7bc689a2bbae7f89cd48fc1",
+  "code_hash": "ca6d996221b58638c86973b7dc85ac484d562c7473bb20e9d8e5a41eca5ad380",
   "holdout": {
     "total_return": -0.25143980000000044,
     "annual_return": -0.19066032492384755,
@@ -34,8 +34,8 @@
     "volatility": 0.21159563795597314,
     "sharpe": -0.8939087417990504,
     "calmar": -0.5260193782843883,
-    "turnover": 5.752507488879735,
-    "annual_turnover": 4.201831557094763,
+    "turnover": 5.756907099546338,
+    "annual_turnover": 4.205045185755586,
     "trades": 6,
     "round_trips": 3,
     "average_holding_days": 55,
@@ -50,15 +50,15 @@
   "random": {
     "status": "ok",
     "requested_runs": 100,
-    "matched_runs": 79,
+    "matched_runs": 74,
     "requested_round_trips": 3,
     "holding_lengths": [
       82,
       41,
       42
     ],
-    "percentile": 0.02531645569620253,
-    "upper_tail_p": 0.975,
+    "percentile": 0.04054054054054054,
+    "upper_tail_p": 0.96,
     "seed": 20261112,
     "message": "固定交易次数与持有交易日数，随机分配空仓间隔；若有期末未平仓头寸，其起止日固定。仅对实际成交次数/持有期完全匹配的样本报告描述性排名。条件筛选与非独立收益使其不等同正式显著性证明。"
   }

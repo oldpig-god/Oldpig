@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "real Sany daily candles, indicators and date",
+    "global keyboard search selects STAR equity",
+    "Beijing board history and indicators",
+    "ST observations available, unsupported backtest disabled",
+    "ETF observations use real history",
+    "chart history range controls",
+    "light mode persists across reload",
+    "390px stock page no horizontal overflow",
+    "mobile drawer navigates to strategy",
+    "all strategy tabs reveal their complete content",
+    "security links prefill a new experiment without displaying another security result",
+    "technical chart first, stock switcher and collapsible editor",
+    "market, technical and correlation pages share shell and fit mobile",
+    "no JavaScript errors or missing static assets"
+  ],
+  "errors": [],
+  "missing_assets": []
+}

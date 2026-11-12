@@ -188,3 +188,11 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 先读 `research/strategy/README.md`。引擎 `app/strategy.py`、数据 `app/strategy_data.py`、账号实验 API `app/strategy_service.py`、界面 `app/static/strategy/`。不要把复权价/原价比率当送转比例，不要移除“净价格收益/数据缺口”提示。旧实验不可改写；版本变化应拒绝假称同版本重放。
 
 离线复现（Windows/Linux）：`python -X utf8 scripts/replay_strategy.py <下载的JSON路径>`。文件保存了数据、原始响应、参数、源码与运行版本。使用可信仓库中对应版本的代码，勿自动执行不可信下载文件携带的代码。测试：`python -m unittest discover -s tests -v`；本地网页验证：`python scripts/check_strategy_ui.py`（需要Playwright与Chrome，使用真实公开行情）。
+
+## 全市场研究与新版终端（2026-11-12）
+
+默认研究入口 `/stocks`，统一侧栏、顶部代码/名称搜索、深浅主题和手机导航。当前名录7,246只：A股5,580只、ETF1,666只；包含主板、创业板（含302代码段）、科创板、北交所与风险警示证券。名录覆盖不代表每只都有完整五年历史。指标按实际日线计算，缺失显式报告；这里使用不复权价格，除权除息可能影响指标，不作为总回报。
+
+`/strategy` 按收益与风险、稳健性检验、交易账本、方法与证据分栏。engine strategy-v1.1 支持科创板/北交所申报数量；ST及未建模ETF交易规则仍禁止回测，样本不足也会拒绝。旧实验可查看下载；代码变化后的旧实验不承诺直接重放，下载中保留对应代码证据。
+
+全市场接口：`/api/securities/coverage`、`/api/securities/search`、`/api/securities/{symbol}/analysis`。云端沿用登录和私有云历史读取，不向浏览器暴露存储凭证。没有新增本机库依赖；Windows启动方式沿用原说明。UI提示词与设计来源见 `design/terminal-v3/frontend-prompt.md`。

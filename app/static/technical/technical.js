@@ -37,7 +37,7 @@ function charts(){
  if($('bands').checked){parts+=line(rows,'boll_upper',x,y,'#c7d3df',1)+line(rows,'boll_lower',x,y,'#c7d3df',1);}
  const candleWidth=Math.max(.5,Math.min(6,plot/rows.length*.65));
  rows.forEach((r,i)=>{if(!['open','close','high','low'].every(k=>valid(r[k])))return;const color=r.close>=r.open?'#b95e62':'#4e9787',xx=x(i);parts+=`<line x1="${xx}" x2="${xx}" y1="${y(r.high)}" y2="${y(r.low)}" stroke="${color}" stroke-width=".8"/><rect x="${xx-candleWidth/2}" y="${Math.min(y(r.open),y(r.close))}" width="${candleWidth}" height="${Math.max(.7,Math.abs(y(r.open)-y(r.close)))}" fill="${color}"/>`;});
- for(const [key,color] of [['ma20','#c29453'],['ma60','#527da0'],['ma120','#9775a5']])parts+=line(rows,key,x,y,color);
+ for(const [key,color] of [['ma20','#c29453'],['ma60','#527da0'],['ma120','#77baa6']])parts+=line(rows,key,x,y,color);
  for(const i of [0,Math.floor(rows.length/2),rows.length-1])parts+=`<text x="${x(i)}" y="${h-8}" text-anchor="${i===0?'start':i===rows.length-1?'end':'middle'}">${rows[i].date}</text>`;
  parts+=`<line id="cursor" class="cursor" x1="0" x2="0" y1="${top}" y2="${h-bottom}" visibility="hidden"/>`;
  $('price-chart').innerHTML=svg(w,h,parts);
@@ -52,7 +52,7 @@ function charts(){
  let momentum=`<text x="${left}" y="12">MACD 12/26/9 · 柱×1</text><line class="tick" x1="${left}" x2="${w-right}" y1="54" y2="54"/><text x="${left}" y="106">RSI 14</text>`;
  for(const level of [30,70])momentum+=`<line x1="${left}" x2="${w-right}" y1="${ry(level)}" y2="${ry(level)}" stroke="#d7e1ea" stroke-dasharray="4 3"/><text x="${left-8}" y="${ry(level)+3}" text-anchor="end">${level}</text>`;
  rows.forEach((r,i)=>{if(valid(r.macd_hist))momentum+=`<rect x="${x(i)-candleWidth/2}" y="${Math.min(my(0),my(r.macd_hist))}" width="${candleWidth}" height="${Math.max(.5,Math.abs(my(r.macd_hist)-my(0)))}" fill="${r.macd_hist>=0?'#cc9698':'#91b6ab'}"/>`;});
- momentum+=line(rows,'macd',x,my,'#527da0')+line(rows,'macd_signal',x,my,'#c29453')+line(rows,'rsi14',x,ry,'#8375a2');$('momentum-chart').innerHTML=svg(w,mh,momentum);
+ momentum+=line(rows,'macd',x,my,'#527da0')+line(rows,'macd_signal',x,my,'#c29453')+line(rows,'rsi14',x,ry,'#81a9e8');$('momentum-chart').innerHTML=svg(w,mh,momentum);
 }
 function eventTable(){const period=$('period').value,stats=data.event_statistics.filter(r=>r.symbol===selected&&r.period===period),dates=data.dates;
  $('study-dates').textContent=`形成期 ${dates.train_start} — ${dates.train_end}；留出期 ${dates.holdout_start} — ${dates.holdout_end}。表格为${asset().name}，持有观察窗口20个交易日。`;
@@ -76,7 +76,7 @@ async function refresh(symbols=null){try{$('error').hidden=true;$('refresh').dis
 $('stock-rows').addEventListener('click',e=>{const row=e.target.closest('[data-symbol]');if(row)select(row.dataset.symbol);});
 $('range').addEventListener('change',charts);$('bands').addEventListener('change',charts);$('period').addEventListener('change',eventTable);$('correlation').addEventListener('change',comovement);$('refresh').addEventListener('click',()=>refresh());
 $('heatmap').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const m=data.comovement[$('correlation').value];$('co-selected').textContent=`${data.watchlist[b.dataset.a]} / ${data.watchlist[b.dataset.b]}：${number(m[b.dataset.a][b.dataset.b],3)}。${b.dataset.a===b.dataset.b?'对角线是自身相关性。':'同期相关不表示存在领先关系。'}`;});
-load().catch(e=>error(e.message));
+load().then(()=>{const query=new URLSearchParams(location.search).get('symbol');if(query){pending=[{symbol:query,name:query}];selectionDirty=true;renderSelection();$('selection-status').textContent='已带入所选证券，点击分析生成复权研究。';}}).catch(e=>error(e.message));
 
 function renderSelection(){
  $('selection-chips').innerHTML=pending.map((a,i)=>`<button class="selection-chip" data-remove="${i}" aria-label="移除 ${escapeHtml(a.name)}">${escapeHtml(a.name)} · ${escapeHtml(a.symbol)} ×</button>`).join('');

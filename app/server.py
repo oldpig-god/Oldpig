@@ -327,3 +327,6 @@ def auto_refresh(body:AutoRefresh,request:Request):
 # Strategy validation has a separate immutable experiment ledger.
 from . import strategy_service
 app.include_router(strategy_service.routes(strategy_service.LocalStore,lambda request:'local',require_local_action))
+
+from . import security_research
+app.include_router(security_research.routes(lambda symbol:series(symbol,'1d',2000,'primary')))

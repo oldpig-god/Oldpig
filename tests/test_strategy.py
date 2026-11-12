@@ -34,8 +34,14 @@ class DataTests(unittest.TestCase):
         b=fixture();b['calendar'][0]='2001-01-01'
         with self.assertRaises(ValueError):run(b)
     def test_unsupported_board_and_st(self):
-        for symbol,name in [('688001.SH','test'),('600001.SH','ST test'),('830001.BJ','test')]:
+        for symbol,name in [('600001.SH','ST test'),('999999.SH','test'),('159915.SZ','创业板ETF')]:
             with self.assertRaises(ValueError):profile(symbol,name)
+
+    def test_star_beijing_rule_profiles(self):
+        star=profile('688001.SH','华兴源创');bj=profile('920002.BJ','万达轴承')
+        self.assertEqual((star['min_buy'],star['lot'],star['limit_rate']),(200,1,.2))
+        self.assertEqual((bj['min_buy'],bj['lot'],bj['limit_rate']),(100,1,.3))
+        self.assertFalse(profile('000001.SZ','ST测试',allow_research=True)['backtest_allowed'])
 
 class EngineTests(unittest.TestCase):
     def setUp(self):
@@ -48,6 +54,13 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(sells['date'],self.days[2]);self.assertEqual(sells['holding_days'],1)
         self.assertEqual(buys['fees']['total'],5);self.assertEqual(sells['fees']['total'],9.5)
         self.assertEqual(result['curve'][-1]['equity'],9985.5)
+    def test_star_minimum_and_one_share_step(self):
+        self.asset.update(profile('688001.SH','test'))
+        r=self.simulate([1]+[0]*9)
+        self.assertEqual(r['trades'][0]['quantity'],999)
+        self.cfg=replace(self.cfg,capital=1999)
+        self.assertEqual(self.simulate([1]*10)['trades'][0]['reason'],'insufficient_cash_for_lot')
+
     def test_limit_up_buy_and_limit_down_sell(self):
         self.asset['bars'][1].update(open=11,close=11,high=11,low=11,adjusted_close=11)
         self.assertEqual(self.simulate([1]*10)['trades'][0]['reason'],'limit_up')

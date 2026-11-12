@@ -13,7 +13,7 @@ import statistics
 from pathlib import Path
 from .strategy_data import validate, digest
 
-ENGINE_VERSION='strategy-v1.0'
+ENGINE_VERSION='strategy-v1.1'
 
 
 @dataclass(frozen=True)
@@ -146,9 +146,9 @@ def simulate(asset,dates,target,cfg,start=0,end=None,weight=1.,entry_mode=False)
                     else:
                         if action=='buy':
                             budget=cash*weight
-                            quantity=math.floor(budget/(fill*(1+cfg.commission+cfg.transfer))/asset['lot'])*asset['lot']
+                            quantity=min(asset.get('max_buy',1000000),math.floor(budget/(fill*(1+cfg.commission+cfg.transfer))/asset['lot'])*asset['lot'])
                             while quantity>0 and quantity*fill+costs(quantity*fill,action,day,asset,cfg)['total']>budget:quantity-=asset['lot']
-                            if quantity<=0:reason='insufficient_cash_for_lot'
+                            if quantity<asset.get('min_buy',asset['lot']):reason='insufficient_cash_for_lot'
                         else:quantity=qty
                         if reason is None:
                             notional=quantity*fill;fee=costs(notional,action,day,asset,cfg)
@@ -263,7 +263,7 @@ def run(bundle,cfg=None):
         '当前股票池是看过近期表现后挑选的，结果只能视为个股研究，不能推广到全市场；全市场结论需要包含退市股票的历史股票池，以避免幸存者偏差。',
         '回测基于历史数据，不代表未来表现，不构成投资建议。']
     result=dict(schema=1,engine_version=ENGINE_VERSION,code_hash=code_hash(),data_hash=expected,config=asdict(cfg),symbol=symbol,name=asset['name'],
-                benchmark=bundle['benchmark'],source=bundle['source'],adjustment=bundle['adjustment'],data_start=dates[0],data_end=dates[-1],captured_at=bundle['captured_at'],
+                benchmark=bundle['benchmark'],trading_profile={k:asset.get(k) for k in ('board','board_label','min_buy','lot','max_buy','limit_rate','rule_note')},source=bundle['source'],adjustment=bundle['adjustment'],data_start=dates[0],data_end=dates[-1],captured_at=bundle['captured_at'],
                 evaluation_start=dates[warmup],split_date=dates[split],status='provisional_research',warnings=warnings,quality=dict(missing_dates=gaps,source=bundle['quality']),
                 rule='收盘后短期SMA高于长期SMA则目标满仓，否则空仓；缺失后重新预热。只在下一交易日尝试成交，未成交按最新有效目标重试。',
                 full=full,train=train,holdout=holdout,walk_forward=walk,sensitivity=sensitivity,

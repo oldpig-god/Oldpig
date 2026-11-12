@@ -33,6 +33,12 @@
     {
       "name": "SQLite",
       "role": "raw batch index, observations, append-only revisions, successful cursor"
+    },
+    {
+      "name": "lucide",
+      "role": "14 local SVG icons",
+      "license": "ISC/MIT; bundled LICENSE",
+      "provenance": "app/static/vendor/lucide/provenance.json"
     }
   ],
   "design_references": [
@@ -52,18 +58,23 @@
   "frontend_source": "app/static/index.html",
   "historical_demo_source": "frontend/workbench-preview.html",
   "tests": {
-    "python_unit": 73,
+    "python_unit": 118,
     "browser_total": 48,
     "technical_browser": 16,
     "reports": [
       "design/v6/technical-validation.json",
       "design/v6/validation.json",
       "design/cloudbase/live-validation.json",
-      "design/cloudbase/browser-validation.json"
+      "design/cloudbase/browser-validation.json",
+      "design/terminal-v3/browser-validation.json",
+      "design/terminal-v3/live-validation.json"
     ],
     "cloud_live": 28,
     "cloud_browser": 11,
-    "packaged_indicator_reference": 9
+    "packaged_indicator_reference": 9,
+    "terminal_browser": 14,
+    "terminal_cloud": 13,
+    "strategy_cloud": 18
   },
   "data_sources": [
     "AKShare exchange-derived A-share inventory",
@@ -143,7 +154,7 @@
     "path": "/strategy",
     "rule": "fixed SMA crossover; next session execution",
     "engine": "app/strategy.py",
-    "scope": "single Shanghai/Shenzhen main-board or ChiNext equity; 510300 benchmark",
+    "scope": "single main-board, ChiNext, STAR or Beijing non-ST equity; 510300 benchmark; strict sample requirements",
     "performance_basis": "net price return only; missing verified corporate-action/historical-status ledger",
     "experiments": "immutable per-account private cloud objects; raw evidence, code snapshot, hashes, deterministic replay",
     "tests": [
@@ -151,6 +162,15 @@
       "tests/test_strategy_api.py",
       "scripts/check_strategy_ui.py"
     ],
-    "documentation": "research/strategy/README.md"
+    "documentation": "research/strategy/README.md",
+    "version": "strategy-v1.1"
+  },
+  "universal_research": {
+    "route": "/stocks",
+    "inventory": 7246,
+    "a_shares": 5580,
+    "etfs": 1666,
+    "adjustment": "raw price observations; corporate actions may affect indicators",
+    "tests": "design/terminal-v3/browser-validation.json"
   }
 }
