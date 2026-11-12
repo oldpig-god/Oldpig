@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-11",
+  "checked_on": "2026-11-12",
   "scope": "whole-market A-share/ETF inventory and five-year history; selectable technical research; authenticated CloudBase domestic deployment",
   "integrated": [
     {
@@ -138,5 +138,19 @@
     "default_domain": "development/test only; platform confirmation interstitial",
     "secrets_in_repository": false,
     "documentation": "deploy/cloudbase/README.md"
+  },
+  "strategy_validation": {
+    "path": "/strategy",
+    "rule": "fixed SMA crossover; next session execution",
+    "engine": "app/strategy.py",
+    "scope": "single Shanghai/Shenzhen main-board or ChiNext equity; 510300 benchmark",
+    "performance_basis": "net price return only; missing verified corporate-action/historical-status ledger",
+    "experiments": "immutable per-account private cloud objects; raw evidence, code snapshot, hashes, deterministic replay",
+    "tests": [
+      "tests/test_strategy.py",
+      "tests/test_strategy_api.py",
+      "scripts/check_strategy_ui.py"
+    ],
+    "documentation": "research/strategy/README.md"
   }
 }

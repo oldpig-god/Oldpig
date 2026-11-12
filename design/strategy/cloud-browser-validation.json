@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "test domain confirmation, login and strategy navigation",
+    "persisted live experiment survives redeployment",
+    "price-only limitation visible without expanding details",
+    "exact replay through cloud browser",
+    "mobile cloud report no overflow",
+    "logout ends protected browser session",
+    "no JavaScript runtime errors"
+  ],
+  "errors": []
+}

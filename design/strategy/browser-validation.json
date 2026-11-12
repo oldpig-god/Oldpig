@@ -1,0 +1,54 @@
+{
+  "checks": [
+    "strategy route and experiment archive load",
+    "live Sany data runs and creates persisted experiment",
+    "metrics, benchmark chart and execution ledger render",
+    "exact snapshot replay matches",
+    "period selector updates charts and trades",
+    "chart pointer shows point values",
+    "reload restores latest experiment",
+    "download contains frozen evidence, config and hash",
+    "390px mobile has no document overflow",
+    "market and technical navigation link to strategy",
+    "no browser runtime errors"
+  ],
+  "errors": [],
+  "experiment_id": "20261112T025502948358-3269094cea3f415f",
+  "symbol": "600031.SH",
+  "data_end": "2026-11-11",
+  "holdout": {
+    "annual_return": -0.19066032492384755,
+    "annual_turnover": 4.201831557094763,
+    "average_exposure": 0.470968350755163,
+    "average_holding_days": 55,
+    "calmar": -0.5260193782843883,
+    "fees": 300.97999999999996,
+    "max_drawdown": -0.3624587473292068,
+    "payoff_ratio": 0.1990378482410263,
+    "round_trips": 3,
+    "sessions": 345,
+    "sharpe": -0.8939087417990504,
+    "slippage_cost": 276.0000000000094,
+    "total_return": -0.25143980000000044,
+    "trades": 6,
+    "turnover": 5.752507488879735,
+    "unfilled": 0,
+    "volatility": 0.21159563795597314,
+    "win_rate": 0.3333333333333333
+  },
+  "random": {
+    "holding_lengths": [
+      82,
+      41,
+      42
+    ],
+    "matched_runs": 79,
+    "message": "固定交易次数与持有交易日数，随机分配空仓间隔；若有期末未平仓头寸，其起止日固定。仅对实际成交次数/持有期完全匹配的样本报告描述性排名。条件筛选与非独立收益使其不等同正式显著性证明。",
+    "percentile": 0.02531645569620253,
+    "requested_round_trips": 3,
+    "requested_runs": 100,
+    "seed": 20261112,
+    "status": "ok",
+    "upper_tail_p": 0.975
+  }
+}

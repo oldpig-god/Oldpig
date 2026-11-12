@@ -43,3 +43,15 @@ class CloudStore:
     def get_json(self,key,optional=False):
         content=self.get(key,optional)
         return json.loads(gzip.decompress(content)) if content is not None else None
+    def list_keys(self,prefix):
+        """Documented PG Storage v2 listing; immutable experiment objects avoid lost indexes."""
+        keys=[];cursor=None
+        while True:
+            body={'prefix':prefix,'limit':1000,'with_delimiter':False,'sortBy':{'column':'name','order':'desc'}}
+            if cursor:body['cursor']=cursor
+            page=self._request('POST','/v1/storages/object/list/'+quote(self.bucket,safe=''),json=body).json()
+            keys.extend(item.get('key') or item['name'] for item in page.get('objects',[]))
+            if not page.get('hasNext'):return keys
+            next_cursor=page.get('nextCursor')
+            if not next_cursor or next_cursor==cursor:raise RuntimeError('Cloud storage pagination cursor missing')
+            cursor=next_cursor

@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-11",
+  "checked_on": "2026-11-12",
   "site": "domestic",
   "region": "ap-shanghai",
   "function": "guanlan-api",
@@ -9,9 +9,33 @@
   "request_timeout_seconds": 120,
   "origin": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com",
   "domain_scope": "CloudBase development/test default domain; confirmation page on first browser visit",
-  "primary_archive": {"rows": 7427581, "daily_rows": 7400261, "daily_symbols": 7246, "compressed_history_mib": 260.3},
+  "primary_archive": {
+    "rows": 7427581,
+    "daily_rows": 7400261,
+    "daily_symbols": 7246,
+    "compressed_history_mib": 260.3
+  },
   "cloud_data_provider": "Tencent public source; original Eastmoney archive retains row provenance",
   "login": "separate invited accounts, passwords delivered outside repository",
-  "tests": {"python": 73, "live_api": 28, "browser": 11, "packaged_indicator_reference": 9},
-  "limits": ["test-domain platform reminder and rate limits", "trial resource-point quota", "browser-open trading-session polling only", "original historical raw response files not fully migrated; normalized records and batch source hashes retained"]
+  "tests": {
+    "python": 73,
+    "live_api": 28,
+    "browser": 11,
+    "packaged_indicator_reference": 9
+  },
+  "limits": [
+    "test-domain platform reminder and rate limits",
+    "trial resource-point quota",
+    "browser-open trading-session polling only",
+    "original historical raw response files not fully migrated; normalized records and batch source hashes retained"
+  ],
+  "strategy_validation": {
+    "url": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com/strategy",
+    "status": "deployed; net-price research estimate",
+    "unit_tests_total": 110,
+    "python310_engine_tests": 18,
+    "local_browser_checks": 11,
+    "live_api_checks": 18,
+    "documentation": "research/strategy/README.md"
+  }
 }

@@ -323,3 +323,7 @@ def auto_refresh(body:AutoRefresh,request:Request):
     require_local_action(request)
     AUTO['enabled']=body.enabled
     return dict(enabled=AUTO['enabled'],interval_seconds=60,market=core.calendar_state())
+
+# Strategy validation has a separate immutable experiment ledger.
+from . import strategy_service
+app.include_router(strategy_service.routes(strategy_service.LocalStore,lambda request:'local',require_local_action))

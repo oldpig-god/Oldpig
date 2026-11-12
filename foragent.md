@@ -182,3 +182,9 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ### CloudBase 国内站云端版本
 
 已增加 Python HTTP 云函数入口、私有 PG Storage 数据适配、受邀账号登录、按账号隔离的技术分析结果和云端行情更新。部署和维护步骤见 [CloudBase 部署说明](deploy/cloudbase/README.md)。云端持久数据存储与函数 `/tmp` 缓存分离，不可把 `/tmp` 当数据库备份；凭证和账号密码必须放在仓库外私有目录。原本的本地启动方式继续可用。
+
+## 策略验证模块
+
+先读 `research/strategy/README.md`。引擎 `app/strategy.py`、数据 `app/strategy_data.py`、账号实验 API `app/strategy_service.py`、界面 `app/static/strategy/`。不要把复权价/原价比率当送转比例，不要移除“净价格收益/数据缺口”提示。旧实验不可改写；版本变化应拒绝假称同版本重放。
+
+离线复现（Windows/Linux）：`python -X utf8 scripts/replay_strategy.py <下载的JSON路径>`。文件保存了数据、原始响应、参数、源码与运行版本。使用可信仓库中对应版本的代码，勿自动执行不可信下载文件携带的代码。测试：`python -m unittest discover -s tests -v`；本地网页验证：`python scripts/check_strategy_ui.py`（需要Playwright与Chrome，使用真实公开行情）。

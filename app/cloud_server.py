@@ -371,6 +371,12 @@ def refresh_series(request:Request,body:server.Refresh):
     finally:lock.release()
 
 
+# Keep strategy experiment access inside the existing authenticated account boundary.
+from . import strategy_service
+app.include_router(strategy_service.routes(lambda:STORE,lambda request:request.state.user,check_action,
+    page=lambda:html_page(core.ROOT/'app/static/strategy/index.html')))
+
+
 # Read-only routes (inventory/search/static assets) reuse the tested local workbench.
 owned={r.path for r in app.routes}
 for route in server.app.routes:
