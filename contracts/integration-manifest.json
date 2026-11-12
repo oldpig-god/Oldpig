@@ -58,7 +58,7 @@
   "frontend_source": "app/static/index.html",
   "historical_demo_source": "frontend/workbench-preview.html",
   "tests": {
-    "python_unit": 118,
+    "python_unit": 126,
     "browser_total": 48,
     "technical_browser": 16,
     "reports": [
@@ -172,5 +172,23 @@
     "etfs": 1666,
     "adjustment": "raw price observations; corporate actions may affect indicators",
     "tests": "design/terminal-v3/browser-validation.json"
+  },
+  "daily_sync": {
+    "function": "guanlan-daily-sync",
+    "trigger": "daily-incremental",
+    "cron": "0 */5 * * * * *",
+    "timezone": "Asia/Shanghai",
+    "enabled": true,
+    "windows": [
+      "07:00-09:59",
+      "17:30-23:59"
+    ],
+    "max_symbols_per_invocation": 160,
+    "concurrency": 4,
+    "timeout_seconds": 240,
+    "calendar_end": "2026-12-31",
+    "progress_route": "/api/daily-sync/status",
+    "documentation": "deploy/cloudbase/daily-worker/README.md",
+    "validation": "design/daily-sync/timer-validation.json"
   }
 }

@@ -25,7 +25,7 @@ import pandas as pd
 import requests
 from . import core,server,technical,indicators,github_history
 from .cloud_store import CloudStore
-from . import tencent_source
+from . import tencent_source,daily_sync
 
 STORE=CloudStore()
 CACHE=OrderedDict();CACHE_LOCK=threading.Lock();CACHE_BYTES=0
@@ -248,13 +248,26 @@ def technical_download(filename:str,request:Request):
 
 def history(symbol,interval):
     overlay=cache_get('live/'+symbol+'/'+interval+'.json.gz',ttl=60)
-    if overlay:return overlay
+    scheduled=cache_get('scheduled/'+symbol+'/1d.json.gz',ttl=60) if interval=='1d' else None
     entry=CATALOG['entries'].get(symbol+'/'+interval)
-    if not entry:return {'records':[],'last_batch':None}
-    chunk=cache_get(entry['chunk'],ttl=3600)
-    if chunk is None:raise HTTPException(503,'历史数据暂时读取失败')
-    result=chunk[symbol+'/'+interval]
-    return dict(result,records=[r for r in result['records'] if r['event_time']>=core.history_start()])
+    base=None
+    if entry:
+        chunk=cache_get(entry['chunk'],ttl=3600)
+        if chunk is None:raise HTTPException(503,'历史数据暂时读取失败')
+        base=chunk[symbol+'/'+interval]
+    return daily_sync.merge_history(base,scheduled,overlay)
+
+
+@app.get('/api/daily-sync/status')
+def daily_sync_status(symbol:str|None=None):
+    status=cache_get(daily_sync.STATUS,ttl=30) or {'state':'not_started'}
+    config=cache_get('system/daily-sync/config.json.gz',ttl=30) or {}
+    status=dict(status,enabled=bool(config.get('enabled')))
+    if symbol:
+        if not core.instrument(symbol):raise HTTPException(404,'证券不存在')
+        state=cache_get(daily_sync.STATE,ttl=30) or {}
+        return dict(status,security=state.get('jobs',{}).get(symbol),symbol=symbol)
+    return status
 
 
 @app.get('/api/series/{symbol}')

@@ -1,0 +1,40 @@
+{
+  "automatic_timer_observed": true,
+  "baseline_current": 8,
+  "status": {
+    "target_date": "2026-11-12",
+    "updated_at": "2026-11-12T09:55:16.697434+00:00",
+    "total": 7246,
+    "counts": {
+      "pending": 7218,
+      "current": 28,
+      "retry": 0,
+      "exhausted": 0
+    },
+    "complete": false,
+    "last_run": {
+      "at": "2026-11-12T09:55:16.390696+00:00",
+      "processed": 20
+    },
+    "calendar_end": "2026-12-31",
+    "policy": "收盘17:30后分批更新；失败15/60/180分钟后重试，每个目标日最多4次。停牌或源未覆盖不伪造日线。"
+  },
+  "latest_status": {
+    "target_date": "2026-11-12",
+    "updated_at": "2026-11-12T09:56:50.308824+00:00",
+    "total": 7246,
+    "counts": {
+      "pending": 7078,
+      "current": 168,
+      "retry": 0,
+      "exhausted": 0
+    },
+    "complete": false,
+    "last_run": {
+      "at": "2026-11-12T09:56:49.672812+00:00",
+      "processed": 160
+    },
+    "calendar_end": "2026-12-31",
+    "policy": "收盘17:30后分批更新；失败15/60/180分钟后重试，每个目标日最多4次。停牌或源未覆盖不伪造日线。"
+  }
+}

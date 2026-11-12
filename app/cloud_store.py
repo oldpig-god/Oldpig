@@ -9,9 +9,10 @@ class CloudStore:
     def __init__(self,env=None,key=None,bucket=None):
         self.base='https://'+(env or os.environ['CLOUDBASE_ENV_ID'])+'.api.tcloudbasegateway.com'
         self.key=key or os.environ['CLOUDBASE_APIKEY']
+        self.timeout=float(os.environ.get('FINANCE_CLOUD_TIMEOUT','90'))
         self.bucket=bucket or os.environ.get('FINANCE_CLOUD_BUCKET','oldpig-finance')
     def _request(self,method,path,**kwargs):
-        r=requests.request(method,self.base+path,headers={'Authorization':'Bearer '+self.key,**kwargs.pop('headers',{})},timeout=(8,90),**kwargs)
+        r=requests.request(method,self.base+path,headers={'Authorization':'Bearer '+self.key,**kwargs.pop('headers',{})},timeout=(8,self.timeout),**kwargs)
         if not r.ok:
             # Do not include response bodies, signed URLs, headers or credential-bearing URLs.
             raise RuntimeError('Cloud storage request failed: HTTP '+str(r.status_code))
@@ -21,6 +22,15 @@ class CloudStore:
     def put(self,key,content):
         path='/v1/storages/object/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')
         return self._request('PUT',path,data=content,headers={'Content-Type':'application/octet-stream','Content-Length':str(len(content))}).json()
+    def claim(self,key):
+        """Atomic create-only slot claim, never overwrite an existing claim."""
+        path='/v1/storages/object/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')
+        r=requests.post(self.base+path,headers={'Authorization':'Bearer '+self.key,'Content-Type':'application/octet-stream','x-upsert':'false'},data=b'claimed',timeout=(8,self.timeout))
+        if r.ok:return True
+        # Fail closed for every non-success; no work is allowed without a claim.
+        if r.status_code in (400,409):return False
+        raise RuntimeError('Cloud claim failed: HTTP '+str(r.status_code))
+
     def get(self,key,optional=False):
         path='/v1/storages/object/sign/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')
         r=requests.post(self.base+path,headers={'Authorization':'Bearer '+self.key},json={'expiresIn':120},timeout=(8,30))
@@ -34,7 +44,7 @@ class CloudStore:
         if not url:raise RuntimeError('Cloud storage returned no download URL')
         if url.startswith('/'):url=self.base+url
         if not url.startswith('https://'):raise RuntimeError('Insecure cloud download URL')
-        data=requests.get(url,timeout=(8,90))
+        data=requests.get(url,timeout=(8,self.timeout))
         if optional and data.status_code==404:return None
         if not data.ok:raise RuntimeError('Cloud storage download failed: HTTP '+str(data.status_code))
         return data.content

@@ -65,7 +65,8 @@ def fetch_one(spec,directory,start,end):
     symbol,adjustment=spec;adjust={0:'',1:'qfq',2:'hfq'}[adjustment];responses=[]
     first=int(start[:4]);last=int(end[:4])
     for year in range(first,last+1,2):
-        params={'param':f'{tx_code(symbol)},day,{year}-01-01,{min(year+1,last)}-12-31,640,{adjust}'}
+        window_start=max(start,f'{year}-01-01');window_end=min(end,f'{min(year+1,last)}-12-31')
+        params={'param':f'{tx_code(symbol)},day,{window_start},{window_end},640,{adjust}'}
         response=get(HISTORY,params)
         # Validate before writing the wrapper, keeping original bytes rather than a fabricated EM payload.
         decode_history(response.content,symbol,adjustment)
@@ -114,15 +115,16 @@ def market_quotes(known):
     return {'fetched_at':stamp,'items':rows,'source':'Tencent'}
 
 
-def refresh_series(symbol,interval,previous,store):
+def refresh_series(symbol,interval,previous,store,*,start=None,end=None,output_prefix='live',allowed_dates=None):
     fetched=core.iso();batch_id=core.uuid.uuid4().hex;responses=[]
     if interval=='1d':
         bound=core.now().astimezone(core.SH)
-        end=bound.date() if bound.hour>=16 else bound.date()-timedelta(days=1)
+        end=end or (bound.date() if bound.hour>=17 else bound.date()-timedelta(days=1)).isoformat()
+        start=start or core.history_start()
         with tempfile.TemporaryDirectory() as directory:
-            spec=fetch_one((symbol,0),core.Path(directory),core.history_start(),end.isoformat())
+            spec=fetch_one((symbol,0),core.Path(directory),start,end)
             evidence=json.loads((core.Path(directory)/spec['file']).read_text())
-            values,_=rows_from_evidence(evidence,symbol,0,core.history_start(),end.isoformat())
+            values,_=rows_from_evidence(evidence,symbol,0,start,end)
             responses=evidence['responses']
         raw=[dict(zip(['日期','开盘','收盘','最高','最低','成交量'],cells[:6])) for cells in values]
         endpoint=HISTORY
@@ -156,6 +158,7 @@ def refresh_series(symbol,interval,previous,store):
                 record['volume_unit']='source_unverified_cumulative';record['flags']=list(set(record['flags']+['cumulative_volume_and_amount']))
             accepted.append(record)
     if not accepted:raise ValueError('No complete valid Tencent records')
+    if allowed_dates is not None and any(r['event_time'][:10] not in allowed_dates for r in accepted):raise ValueError('Tencent record outside verified trading calendar')
     # Preserve the previous archive, then replace only observations actually supplied by this source.
     merged={r['event_time']:r for r in previous['records'] if r['event_time']>=core.history_start()}
     for row in accepted:merged[row['event_time']]=row
@@ -163,5 +166,5 @@ def refresh_series(symbol,interval,previous,store):
     raw_key='evidence/'+symbol+'/'+batch_id+'.json.gz';store.put_json(raw_key,evidence)
     batch={'id':batch_id,'symbol':symbol,'interval':interval,'endpoint':endpoint,'parameters':'{}','started_at':fetched,'finished_at':core.iso(),'status':'ok','rows_in':len(raw),'rows_accepted':len(accepted),'rows_rejected':len(raw)-len(accepted),'changed':0,'issues':core.dumps(issues),'raw_path':raw_key,'raw_sha256':hashlib.sha256(core.dumps(evidence).encode()).hexdigest(),'cloud_raw':True}
     result={'records':[merged[k] for k in sorted(merged)],'last_batch':batch}
-    store.put_json('live/'+symbol+'/'+interval+'.json.gz',result);store.put_json('batches/'+batch_id+'.json.gz',batch)
+    store.put_json(output_prefix+'/'+symbol+'/'+interval+'.json.gz',result);store.put_json('batches/'+batch_id+'.json.gz',batch)
     return result

@@ -4,7 +4,7 @@ import re
 import pandas as pd
 from fastapi import APIRouter,HTTPException
 from fastapi.responses import FileResponse
-from . import core,indicators
+from . import core,indicators,daily_sync
 from .strategy_data import profile
 
 
@@ -45,7 +45,7 @@ def analyze(payload,calendar):
         if day in by_date and by_date[day]!=bar:raise ValueError('同日行情存在冲突，拒绝拼接分析')
         by_date[day]=bar
     source_days=sorted(by_date)
-    if not source_days:return dict(instrument=instrument,profile=policy,status='no_history',series=[],summary={},observations=[],quality=dict(valid_rows=0,missing_dates=[],issues=issues),quote=payload.get('quote'),note='当前无可用日线。可尝试更新该证券；新上市、长期停牌或源未覆盖时不会生成指标。')
+    if not source_days:return dict(instrument=instrument,profile=policy,status='no_history',freshness=daily_sync.freshness(None,calendar),series=[],summary={},observations=[],quality=dict(valid_rows=0,missing_dates=[],issues=issues),quote=payload.get('quote'),note='当前无可用日线。可尝试更新该证券；新上市、长期停牌或源未覆盖时不会生成指标。')
     dates=[d for d in calendar if source_days[0]<=d<=source_days[-1]]
     if any(day not in dates for day in source_days):raise ValueError('行情包含交易日历以外日期，需先核验日历')
     frame=pd.DataFrame([by_date.get(d,dict(date=d)) for d in dates]).set_index('date')
@@ -75,7 +75,7 @@ def analyze(payload,calendar):
     return dict(instrument=instrument,profile=policy,status='ready' if latest and latest.get('ma60') is not None else 'limited_history',
                 series=series,summary=summary,observations=observations,quote=payload.get('quote'),
                 source=payload['source'],adjustment='不复权价格观察；不计算投资收益率',range=dict(start=dates[0],end=dates[-1],count=len(by_date)),
-                freshness=payload.get('freshness'),quality=dict(valid_rows=len(by_date),missing_dates=missing,zero_volume_dates=list(frame.index[zero]),issues=issues),
+                freshness=daily_sync.freshness(summary.get('date'),calendar),quality=dict(valid_rows=len(by_date),missing_dates=missing,zero_volume_dates=list(frame.index[zero]),issues=issues),
                 note='个股研究覆盖名录内所有A股与ETF；不复权指标可能受除权除息影响。缺失交易日不填价，递推指标重新预热；历史数据日期不等于实时行情。')
 
 

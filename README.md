@@ -169,3 +169,9 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 `/strategy` 按收益与风险、稳健性检验、交易账本、方法与证据分栏。engine strategy-v1.1 支持科创板/北交所申报数量；ST及未建模ETF交易规则仍禁止回测，样本不足也会拒绝。旧实验可查看下载；代码变化后的旧实验不承诺直接重放，下载中保留对应代码证据。
 
 全市场接口：`/api/securities/coverage`、`/api/securities/search`、`/api/securities/{symbol}/analysis`。云端沿用登录和私有云历史读取，不向浏览器暴露存储凭证。没有新增本机库依赖；Windows启动方式沿用原说明。UI提示词与设计来源见 `design/terminal-v3/frontend-prompt.md`。
+
+## 云端每日增量与补采（2026-11-12）
+
+独立Event函数 `guanlan-daily-sync` 每5分钟检查一次，按北京时间17:30后采集日线、07:00—09:59补采。当前名录全部证券进入持久化队列；失败退避重试，重启继续，原档案保留。个股页展示应有交易日、有效日线日期、落后交易日数及采集状态。此功能无需用户电脑或浏览器保持打开。
+
+`/api/daily-sync/status?symbol=000034.SZ` 受原账号登录保护。设计、并发约束、暂停方法与部署步骤见 `deploy/cloudbase/daily-worker/README.md`。当前交易日历到2026-12-31，越界停止并明确提示；到期前应更新可核验日历。不能把全名录队列等同所有源都能成功，也不能把日线更新等同分钟实时行情。
