@@ -22,6 +22,16 @@ class CloudStore:
     def put(self,key,content):
         path='/v1/storages/object/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')
         return self._request('PUT',path,data=content,headers={'Content-Type':'application/octet-stream','Content-Length':str(len(content))}).json()
+    def create_json(self,key,value):
+        """Atomic immutable request creation; duplicate submissions reuse the same ID."""
+        content=gzip.compress(json.dumps(value,ensure_ascii=False,allow_nan=False,separators=(',',':')).encode(),mtime=0)
+        path='/v1/storages/object/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')
+        r=requests.post(self.base+path,headers={'Authorization':'Bearer '+self.key,'Content-Type':'application/octet-stream','x-upsert':'false'},data=content,timeout=(8,self.timeout))
+        if r.ok:return True
+        if r.status_code in (400,409):
+            if self.get_json(key,optional=True) is not None:return False
+        raise RuntimeError('Cloud storage create failed: HTTP '+str(r.status_code))
+
     def claim(self,key):
         """Atomic create-only slot claim, never overwrite an existing claim."""
         path='/v1/storages/object/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')

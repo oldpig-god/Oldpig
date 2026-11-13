@@ -333,3 +333,6 @@ app.include_router(security_research.routes(lambda symbol:series(symbol,'1d',200
 
 from . import comparison
 app.include_router(comparison.routes(strategy_service.LocalStore,lambda request:'local',require_local_action))
+
+from . import health_service
+app.include_router(health_service.routes(health_service.LocalStore,lambda request:'local',require_local_action))

@@ -206,3 +206,8 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ## 双对象比较（2026-11-13）
 
 新增 `/compare`：任意股票/ETF，或两组各1—10只自选证券。煤炭、元件为可编辑代表组合，非完整行业指数。输出复权日收益协方差、相关系数、滚动图、散点图、窗口对比及剔除大盘后的相关性。每份报告可下载冻结原始证据并重算；账号隔离保持不变。方法和限制见 `research/comparison/README.md`。
+
+
+## 数据健康中心（日更）
+
+新增 `/data-health`，实现与运维见 [docs-data-health.md](docs-data-health.md)。先运行独立审计脚本生成快照，禁止在页面请求内扫描全部行情。部署日更 worker 时一并打包 `data_health.py`、`health_service.py`、`health_status_source.py`；它们运行时不要求 pandas/FastAPI。补采由定时 worker 消费，HTTP 排队不等于已采集。

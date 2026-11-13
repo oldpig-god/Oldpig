@@ -400,6 +400,9 @@ app.include_router(comparison.routes(lambda:STORE,lambda request:request.state.u
 
 
 # Read-only routes (inventory/search/static assets) reuse the tested local workbench.
+from . import health_service
+app.include_router(health_service.routes(lambda:STORE,lambda request:request.state.user,check_action,page=lambda:html_page(core.ROOT/'app/static/data-health/index.html')))
+
 owned={r.path for r in app.routes}
 for route in server.app.routes:
     if route.path not in owned and route.path not in ('/api/market-refresh','/api/refresh','/api/auto-refresh','/static'):

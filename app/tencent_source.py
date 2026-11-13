@@ -158,6 +158,8 @@ def refresh_series(symbol,interval,previous,store,*,start=None,end=None,output_p
                 record['volume_unit']='source_unverified_cumulative';record['flags']=list(set(record['flags']+['cumulative_volume_and_amount']))
             accepted.append(record)
     if not accepted:raise ValueError('No complete valid Tencent records')
+    if len(accepted)!=len(raw):raise ValueError('Validation rejected rows; previous data preserved')
+    if len({r['event_time'] for r in accepted})!=len(accepted):raise ValueError('Duplicate observation dates; previous data preserved')
     if allowed_dates is not None and any(r['event_time'][:10] not in allowed_dates for r in accepted):raise ValueError('Tencent record outside verified trading calendar')
     # Preserve the previous archive, then replace only observations actually supplied by this source.
     merged={r['event_time']:r for r in previous['records'] if r['event_time']>=core.history_start()}
@@ -166,5 +168,6 @@ def refresh_series(symbol,interval,previous,store,*,start=None,end=None,output_p
     raw_key='evidence/'+symbol+'/'+batch_id+'.json.gz';store.put_json(raw_key,evidence)
     batch={'id':batch_id,'symbol':symbol,'interval':interval,'endpoint':endpoint,'parameters':'{}','started_at':fetched,'finished_at':core.iso(),'status':'ok','rows_in':len(raw),'rows_accepted':len(accepted),'rows_rejected':len(raw)-len(accepted),'changed':0,'issues':core.dumps(issues),'raw_path':raw_key,'raw_sha256':hashlib.sha256(core.dumps(evidence).encode()).hexdigest(),'cloud_raw':True}
     result={'records':[merged[k] for k in sorted(merged)],'last_batch':batch}
-    store.put_json(output_prefix+'/'+symbol+'/'+interval+'.json.gz',result);store.put_json('batches/'+batch_id+'.json.gz',batch)
+    store.put_json('batches/'+batch_id+'.json.gz',batch)
+    store.put_json(output_prefix+'/'+symbol+'/'+interval+'.json.gz',result)
     return result

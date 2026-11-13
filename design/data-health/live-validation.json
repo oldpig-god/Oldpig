@@ -1,0 +1,69 @@
+{
+  "checks": [
+    "health API requires login",
+    "full-market preaggregated overview",
+    "server-side pagination",
+    "cross-origin repair rejected",
+    "real durable repair enqueue is idempotent",
+    "threshold configuration restricted to owner",
+    "authenticated cloud browser overview",
+    "cloud symbol search and drilldown",
+    "mobile layout and no JavaScript errors",
+    "real worker repair completed",
+    "existing OHLC and unique row counts preserved",
+    "manual repair included in source metrics",
+    "final deployed source/storage/completed-task panels verified",
+    "overview uses separate small snapshot and precomputed first failure page"
+  ],
+  "repair_id": "917cbefb82d96793356f3ec0e94f723a",
+  "counts": {
+    "total": 7246,
+    "expected": 7239,
+    "success": 7236,
+    "failed": 3,
+    "skipped": 7,
+    "stale": 0,
+    "missing": 0,
+    "gaps": 1291,
+    "normal_gaps": 0,
+    "unverified": 1666,
+    "unaudited": 0
+  },
+  "state": "attention",
+  "overview_api_seconds": 1.356,
+  "first_render_after_login_seconds": 3.566,
+  "measurement_scope": "first health-page navigation after authentication; warm cloud function; real full-market index",
+  "url": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com/data-health",
+  "repair_result": {
+    "id": "c9ac06582ecbe9796a693014b85b146b",
+    "total": 1,
+    "page": 1,
+    "items": [
+      {
+        "symbol": "600031.SH",
+        "status": "success",
+        "finished_at": "2026-11-13T07:55:29.957457+00:00",
+        "last_date": "2026-11-12",
+        "missing_dates": [],
+        "duration_seconds": 2.504,
+        "unresolved_dates": []
+      }
+    ]
+  },
+  "worker_duration_ms": 17764,
+  "worker_memory_mib": 96.66,
+  "health_compute_local_seconds": 0.121,
+  "source_metrics": {
+    "Tencent": {
+      "attempts": 1,
+      "successes": 1,
+      "seconds": 2.504,
+      "success_rate": 1.0,
+      "average_seconds": 2.504
+    }
+  },
+  "unit_tests_passed": 154,
+  "overview_gzip_bytes": 4755,
+  "previous_uncached_first_render_seconds": 10.659,
+  "performance_note": "After separating overview/detail/storage objects: first health page after authentication 3.566s, without prewarming health APIs; no cold-start SLA."
+}

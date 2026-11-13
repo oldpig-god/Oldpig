@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "overview and first page rendered",
+    "gap drilldown rendered",
+    "backend symbol search",
+    "range repair dialog without unintended submit",
+    "tasks panel",
+    "sources panel",
+    "calendar panel",
+    "storage panel",
+    "config panel",
+    "mobile no horizontal page overflow"
+  ],
+  "first_render_seconds": 0.417,
+  "scope": "Full local audited universe; first navigation in a new browser context; warm API process",
+  "errors": []
+}
