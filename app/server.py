@@ -336,3 +336,6 @@ app.include_router(comparison.routes(strategy_service.LocalStore,lambda request:
 
 from . import health_service
 app.include_router(health_service.routes(health_service.LocalStore,lambda request:'local',require_local_action))
+
+from . import research_workspace
+app.include_router(research_workspace.routes(health_service.LocalStore,lambda request:'local',require_local_action))

@@ -211,3 +211,7 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ## 数据健康中心（日更）
 
 新增 `/data-health`，实现与运维见 [docs-data-health.md](docs-data-health.md)。先运行独立审计脚本生成快照，禁止在页面请求内扫描全部行情。部署日更 worker 时一并打包 `data_health.py`、`health_service.py`、`health_status_source.py`；它们运行时不要求 pandas/FastAPI。补采由定时 worker 消费，HTTP 排队不等于已采集。
+
+## 个人研究台
+
+新增 `/research`，说明见 `docs-research-workspace.md`。核心为 `app/research_cards.py`；账号分组、设置和变化提醒由 `app/research_workspace.py` 提供，存储沿用私有 CloudStore / LocalStore。无需新增依赖和数据库表。提醒在主动检查时生成，尚无后台推送。运行 `python -m unittest discover -s tests -p test_research_workspace.py` 验证。
