@@ -215,3 +215,7 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ## 个人研究台
 
 新增 `/research`，说明见 `docs-research-workspace.md`。核心为 `app/research_cards.py`；账号分组、设置和变化提醒由 `app/research_workspace.py` 提供，存储沿用私有 CloudStore / LocalStore。无需新增依赖和数据库表。提醒在主动检查时生成，尚无后台推送。运行 `python -m unittest discover -s tests -p test_research_workspace.py` 验证。
+
+## 行业板块比较（真实数据联调待完成）
+
+`/compare` 增加双行业选择，计算模块 `app/sector_comparison.py`，说明见 `docs-sector-comparison.md`。代码和合成样本浏览器测试通过，但东方财富接口在2026-11-13联调中持续断连，尚未验收真实行业端到端结果。不要把模拟测试通过写成生产功能全部可用。原证券比较可继续使用。
