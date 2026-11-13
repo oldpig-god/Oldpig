@@ -395,6 +395,10 @@ app.include_router(security_research.routes(lambda symbol:series(symbol,'1d',200
     page=lambda:html_page(core.ROOT/'app/static/stocks/index.html')))
 
 
+from . import comparison
+app.include_router(comparison.routes(lambda:STORE,lambda request:request.state.user,check_action,page=lambda:html_page(core.ROOT/'app/static/compare/index.html')))
+
+
 # Read-only routes (inventory/search/static assets) reuse the tested local workbench.
 owned={r.path for r in app.routes}
 for route in server.app.routes:

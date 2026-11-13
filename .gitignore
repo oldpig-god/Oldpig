@@ -11,3 +11,6 @@ deliveries/
 
 # Small auditable input bundle for six-stock technical research.
 !app/static/technical/evidence.zip
+
+# Private source evidence; use authenticated comparison report download.
+research/coal-components/evidence/

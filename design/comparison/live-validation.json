@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "comparison endpoints require authentication",
+    "real coal versus components computed and durably saved in cloud",
+    "downloaded frozen snapshot recomputes identically",
+    "report download isolated between accounts",
+    "cross-origin writes rejected",
+    "cloud browser sector comparison from sidebar",
+    "cloud mobile and JavaScript checks"
+  ],
+  "report_id": "20261113T062301390527-961e95c44d1edb09",
+  "metrics": {
+    "n": 1199,
+    "start": "2021-11-16",
+    "end": "2026-11-12",
+    "covariance": -9.538639e-06,
+    "annualized_covariance": -0.002403737084,
+    "correlation": -0.023943909468,
+    "residual_correlation": -0.262559858418,
+    "volatility_a": 0.242410952542,
+    "volatility_b": 0.414132833482,
+    "variance_a": 0.000233186785,
+    "variance_b": 0.00068057938
+  },
+  "enabled_route": "https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com/compare"
+}

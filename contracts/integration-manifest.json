@@ -58,7 +58,7 @@
   "frontend_source": "app/static/index.html",
   "historical_demo_source": "frontend/workbench-preview.html",
   "tests": {
-    "python_unit": 126,
+    "python_unit": 133,
     "browser_total": 48,
     "technical_browser": 16,
     "reports": [
@@ -74,7 +74,9 @@
     "packaged_indicator_reference": 9,
     "terminal_browser": 14,
     "terminal_cloud": 13,
-    "strategy_cloud": 18
+    "strategy_cloud": 18,
+    "comparison_browser": 9,
+    "comparison_cloud": 7
   },
   "data_sources": [
     "AKShare exchange-derived A-share inventory",
@@ -190,5 +192,18 @@
     "progress_route": "/api/daily-sync/status",
     "documentation": "deploy/cloudbase/daily-worker/README.md",
     "validation": "design/daily-sync/timer-validation.json"
+  },
+  "comparison": {
+    "route": "/compare",
+    "mode": "single stock/ETF or two editable fixed-equal-weight baskets",
+    "max_members_per_side": 10,
+    "presets": [
+      "coal",
+      "components"
+    ],
+    "presets_are_official_industry_indices": false,
+    "adjustment": "Tencent hfq price-return proxy",
+    "source_evidence": "private account-scoped downloadable frozen reports",
+    "documentation": "research/comparison/README.md"
   }
 }

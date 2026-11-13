@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "editable coal and component presets",
+    "real adjusted basket comparison renders covariance and both charts",
+    "frozen evidence downloadable",
+    "arbitrary stock versus ETF and zero benchmark residual handled",
+    "editing sector creates explicit custom basket",
+    "empty side validation",
+    "mobile no horizontal overflow",
+    "light theme",
+    "no runtime errors"
+  ],
+  "errors": []
+}

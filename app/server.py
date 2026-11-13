@@ -330,3 +330,6 @@ app.include_router(strategy_service.routes(strategy_service.LocalStore,lambda re
 
 from . import security_research
 app.include_router(security_research.routes(lambda symbol:series(symbol,'1d',2000,'primary')))
+
+from . import comparison
+app.include_router(comparison.routes(strategy_service.LocalStore,lambda request:'local',require_local_action))
