@@ -91,3 +91,12 @@ class DailyCarryTests(unittest.TestCase):
   new=[target,11,11,11,11,1]
   with patch.object(d.industry_ths,'fetch_catalog',return_value={'items':[dict(code=code,name='A')]}),patch.object(d.industry_ths,'load_year',return_value={'rows':[new]}) as load:
    result=d.sync_tick(store,target,[old,target]);self.assertTrue(result['complete']);self.assertEqual(load.call_count,1);self.assertEqual(load.call_args.args[2],2026);self.assertEqual(store.get_json(d.STATE)['profiles'][code]['rows'],[row,new])
+
+class DownsideTests(unittest.TestCase):
+ def test_denominator_missing_and_equal_weight_mean(self):
+  a=[-.02,-.01,.02,0,.03,None]*15;b=[-.04,.03,-.01,0,.02,-.01]*15
+  x=d.downside(a,b);self.assertEqual(x['valid_n'],75);self.assertEqual(x['n'],45);self.assertEqual(x['joint_down_days'],15);self.assertAlmostEqual(x['joint_down_share'],1/3);self.assertAlmostEqual(x['equal_weight_mean'],(-.03+.01+.005)/3)
+ def test_no_down_days_and_short_sample(self):
+  self.assertIsNone(d.downside([.01]*60,[.02]*60)['joint_down_share']);self.assertIsNone(d.downside([-.01]*29,[-.02]*29)['equal_weight_mean'])
+ def test_windowed_pair_fields(self):
+  p,c=sample();report=d.build(p,c,c[-1],3);self.assertEqual(report['version'],2);self.assertEqual(set(report['pairs'][0]['downside']),{'60','120','250'})

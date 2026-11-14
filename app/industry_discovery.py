@@ -28,15 +28,23 @@ def stats(a,b):
     corr=cov/math.sqrt(vx*vy) if vx>1e-24 and vy>1e-24 else None
     return dict(n=n,correlation=max(-1,min(1,corr)) if corr is not None else None,covariance=cov,volatility_a=math.sqrt(vx*252),volatility_b=math.sqrt(vy*252))
 
+def downside(a,b):
+    valid=[(x,y) for x,y in zip(a,b) if x is not None and y is not None]
+    down=[(x,y) for x,y in valid if x<0 or y<0]
+    n=len(down);joint=sum(x<0 and y<0 for x,y in down)
+    return dict(n=n,valid_n=len(valid),joint_down_days=joint,
+                joint_down_share=joint/n if n>=MIN_SAMPLES else None,
+                equal_weight_mean=sum((x+y)/2 for x,y in down)/n if n>=MIN_SAMPLES else None)
+
 def build(profiles,calendar,target,total,failures=None):
     dates=[d for d in calendar if d<=target][-311:];series={k:returns(v['rows'],dates) for k,v in profiles.items()};pairs=[]
     for a,b in combinations(sorted(profiles),2):
         windows={str(w):stats(series[a][-w:],series[b][-w:]) for w in WINDOWS}
         formation={str(w):stats(series[a][-w-60:-60],series[b][-w-60:-60]) for w in WINDOWS}
         current=[x['correlation'] for x in windows.values()];last=min(profiles[a]['last_date'],profiles[b]['last_date'])
-        pairs.append(dict(id=a+'_'+b,left=a,right=b,left_name=profiles[a]['name'],right_name=profiles[b]['name'],windows=windows,formation=formation,validation=windows['60'],consistent_negative=all(c is not None and c<0 for c in current),last_date=last,stale=last<target))
+        pairs.append(dict(id=a+'_'+b,left=a,right=b,left_name=profiles[a]['name'],right_name=profiles[b]['name'],windows=windows,downside={str(w):downside(series[a][-w:],series[b][-w:]) for w in WINDOWS},formation=formation,validation=windows['60'],consistent_negative=all(c is not None and c<0 for c in current),last_date=last,stale=last<target))
     items=[dict(code=k,name=v['name'],last_date=v['last_date']) for k,v in sorted(profiles.items())]
-    return dict(version=1,target=target,generated_at=core.iso(),total_industries=total,covered_industries=len(items),current_industries=sum(i['last_date']==target for i in items),possible_pairs=total*(total-1)//2,computed_pairs=len(pairs),items=items,pairs=pairs,failures=failures or [],formation_end=dates[-61] if len(dates)>60 else None,validation_start=dates[-60] if len(dates)>=60 else None,calendar_start=dates[0] if dates else None,source=industry_ths.SOURCE)
+    return dict(version=2,target=target,generated_at=core.iso(),total_industries=total,covered_industries=len(items),current_industries=sum(i['last_date']==target for i in items),possible_pairs=total*(total-1)//2,computed_pairs=len(pairs),items=items,pairs=pairs,failures=failures or [],formation_end=dates[-61] if len(dates)>60 else None,validation_start=dates[-60] if len(dates)>=60 else None,calendar_start=dates[0] if dates else None,source=industry_ths.SOURCE)
 
 def due(store,target,stamp):
     state=store.get_json(STATE,optional=True)
