@@ -1,0 +1,35 @@
+[
+  {
+    "entity_id": "cninfo_gssz0000005",
+    "symbol": "000005.SZ",
+    "field": "listed",
+    "value": true,
+    "published_at": "2023-04-29",
+    "time_precision": "day",
+    "ingested_at": "2026-11-14T18:34:08.672339+08:00",
+    "effective_at": "2023-04-29T00:00:00+08:00",
+    "provenance": "reconstructed_pit",
+    "document_id": "84a76d03a15d48ec56263602816fead3a776116edc4727d0560efced3fc664c3",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2023-04-29/1216706131.PDF",
+    "basis": "原始年度报告中的上市公司证券身份，生效时点取该文档公开日",
+    "id": "4e6e059a7a0d4e484818ca2246abf1c79a316597ecda8a0922ae9aac704c6f21"
+  },
+  {
+    "entity_id": "cninfo_gssz0000005",
+    "symbol": "000005.SZ",
+    "field": "delisted",
+    "value": true,
+    "published_at": "2024-04-26",
+    "time_precision": "day",
+    "ingested_at": "2026-11-14T18:36:16.772764+08:00",
+    "effective_at": "2024-04-26T00:00:00+08:00",
+    "provenance": "reconstructed_pit",
+    "document_id": "d7503cb9dc88d527b60ca122b3def78ebed64862bb9fe37ea8e82720274c1f31",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-26/1219817895.PDF",
+    "proof": {
+      "page": 1,
+      "quote": "5、摘牌日期：2024 年4 月26 日"
+    },
+    "id": "8000284d0b45c0b2b390c4882a17259ad6d01aeeb15955015eb67664af278108"
+  }
+]

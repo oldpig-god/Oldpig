@@ -1,0 +1,194 @@
+{
+  "schema": "earnings-data-v1",
+  "companies": [
+    {
+      "entity_id": "cninfo_gssh0600031",
+      "name": "三一重工",
+      "events": 16,
+      "periods": 16,
+      "first": "2022-12-31",
+      "last": "2026-09-30",
+      "core_profit_periods": 15,
+      "corrections": []
+    },
+    {
+      "entity_id": "cninfo_9900013929",
+      "name": "沪电股份",
+      "events": 19,
+      "periods": 16,
+      "first": "2022-12-31",
+      "last": "2026-09-30",
+      "core_profit_periods": 19,
+      "corrections": [
+        {
+          "id": "64514958b44b113501071870088683ba937f047a6098e2db72587b7c00d1d32c",
+          "period": "2022-12-31",
+          "published_at": "2023-03-24",
+          "version_published_at": "2025-11-28",
+          "supersedes": "623ff525c9dfd36a3a12f678bb3889c767ad200cf84dad03e5424c2f785dd0a3"
+        },
+        {
+          "id": "73aa07d88fa1790dcb833f4ed68185ecc3f382b841b541ea9794776760cf6692",
+          "period": "2023-12-31",
+          "published_at": "2024-03-26",
+          "version_published_at": "2025-11-28",
+          "supersedes": "171e63563e9fe347366e33504ec597077e1578e4ee2d96543c24a31ba74bf26e"
+        },
+        {
+          "id": "a0b18c6190ba42a24f24be24eaf544248414f8b9c1b52ed9d4183ce2972c16ec",
+          "period": "2024-12-31",
+          "published_at": "2025-03-26",
+          "version_published_at": "2025-11-28",
+          "supersedes": "97e69b0b2b61849f2aec268fb9c3211302b58f2e9692dc81f6a552e41ed0764a"
+        }
+      ]
+    },
+    {
+      "entity_id": "cninfo_gssz0000005",
+      "name": "ST星源",
+      "events": 4,
+      "periods": 4,
+      "first": "2022-12-31",
+      "last": "2023-09-30",
+      "core_profit_periods": 4,
+      "corrections": []
+    }
+  ],
+  "feature_definitions": 48,
+  "manual_checks": [
+    {
+      "announcement_id": "1225061378",
+      "report_period": "2025-12-31",
+      "metric": "core_profit",
+      "value": "8221213000",
+      "published_at": "2026-03-31",
+      "available_at": "2026-04-01T00:00:00+08:00",
+      "document_id": "fe756b5c085ee0cff44d95eaffef8aa0e5c6e6d8a1ba3beb4d32e645bb270d2a",
+      "proof": {
+        "column": "current_ytd",
+        "label_page": 6,
+        "label_quote": "归属于上市公司股东的扣除非",
+        "page": 6,
+        "quote": "                                  8,221,213     5,333,989      5,333,989       54.13      4,388,393经常性损益的净利润",
+        "raw_value": "8,221,213",
+        "unit": "千元"
+      },
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-03-31/1225061378.PDF"
+    },
+    {
+      "announcement_id": "1225535109",
+      "report_period": "2026-06-30",
+      "metric": "core_profit",
+      "value": "4681837000",
+      "published_at": "2026-08-31",
+      "available_at": "2026-09-01T00:00:00+08:00",
+      "document_id": "5cee1fc8a19829b8cab4a419efef35bd8119d37302cd88d8a73271f8537a4002",
+      "proof": {
+        "column": "current_ytd",
+        "label_page": 5,
+        "label_quote": " 归属于上市公司股东的扣除非经常",
+        "page": 5,
+        "quote": "                                          4,681,837     5,409,442     5,409,442          -13.45 性损益的净利润",
+        "raw_value": "4,681,837",
+        "unit": "千元"
+      },
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-31/1225535109.PDF"
+    },
+    {
+      "announcement_id": "1225639954",
+      "report_period": "2026-09-30",
+      "metric": "core_profit",
+      "value": "6724224000",
+      "published_at": "2026-10-30",
+      "available_at": "2026-10-31T00:00:00+08:00",
+      "document_id": "c9a35606624a3661982317668cacfb944e78dbb376de3cc011745e182fa57e99",
+      "proof": {
+        "column": "current_ytd",
+        "label_page": 2,
+        "label_quote": "股东的扣除非经",
+        "page": 1,
+        "quote": "归属于上市公司    2,042,387   1,696,805   1,696,805    20.37   6,724,224   7,106,247   7,106,247             -5.38",
+        "raw_value": "6,724,224",
+        "unit": "千元"
+      },
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-10-30/1225639954.PDF"
+    },
+    {
+      "announcement_id": "1222896592",
+      "report_period": "2024-12-31",
+      "metric": "core_profit",
+      "value": "2546301588",
+      "published_at": "2025-03-26",
+      "available_at": "2025-03-27T00:00:00+08:00",
+      "document_id": "4590b36c4c140c28170dc07b0ac598fa3c3b4e5a9d50f030606331c7bc6d0b0f",
+      "proof": {
+        "column": "current_ytd",
+        "label_page": 7,
+        "label_quote": "归属于上市公司股东的扣除非经常性",
+        "page": 7,
+        "quote": "                                         2,546,301,588    1,408,380,964             80.80%   1,264,664,764",
+        "raw_value": "2,546,301,588",
+        "unit": "元"
+      },
+      "source_url": "https://static.cninfo.com.cn/finalpage/2025-03-26/1222896592.PDF"
+    },
+    {
+      "announcement_id": "1225027832",
+      "report_period": "2025-12-31",
+      "metric": "core_profit",
+      "value": "3760567906",
+      "published_at": "2026-03-25",
+      "available_at": "2026-03-26T00:00:00+08:00",
+      "document_id": "13d506043307cc58e4046042238527a583548e5e2dd9bc8d2fb7700f141bbba2",
+      "proof": {
+        "column": "current_ytd",
+        "label_page": 7,
+        "label_quote": "归属于上市公司股东的扣除非经常性",
+        "page": 7,
+        "quote": "                                         3,760,567,906     2,546,301,588         47.69%      1,408,380,964",
+        "raw_value": "3,760,567,906",
+        "unit": "元"
+      },
+      "source_url": "https://static.cninfo.com.cn/finalpage/2026-03-25/1225027832.PDF"
+    }
+  ],
+  "asof_replay": {
+    "before_id": "6498ea8e01d080b10cd6de9d00589ec4fcfea07c62b41a55036fc0a0d28fd651",
+    "after_id": "1f2502e5cdbb2e194df3dd2ef5cddd87dc21fb9d0c5a8fa4b6156a6b2e5d5391",
+    "before_last": "2026-06-30",
+    "after_last": "2026-09-30",
+    "quarter_profit": "2042387000",
+    "repeat_identical": true
+  },
+  "local_objects": 172,
+  "quarter_label_coverage": [
+    {
+      "entity_id": "cninfo_gssh0600031",
+      "periods": 16,
+      "quarter_labels": 4,
+      "missing_reasons": {
+        "缺少同年相邻累计报告": 1,
+        "字段缺失": 1,
+        "合并范围或会计口径不可比": 10
+      }
+    },
+    {
+      "entity_id": "cninfo_9900013929",
+      "periods": 16,
+      "quarter_labels": 4,
+      "missing_reasons": {
+        "缺少同年相邻累计报告": 1,
+        "合并范围或会计口径不可比": 11
+      }
+    },
+    {
+      "entity_id": "cninfo_gssz0000005",
+      "periods": 4,
+      "quarter_labels": 1,
+      "missing_reasons": {
+        "缺少同年相邻累计报告": 1,
+        "合并范围或会计口径不可比": 2
+      }
+    }
+  ]
+}

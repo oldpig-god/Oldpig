@@ -229,3 +229,8 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ## 个股财务与新图表
 
 个股入口 `/stocks?symbol=600031.SH&view=financial`。实现、数据口径、依赖归属与验证见 `docs-financial-analysis.md`。Lightweight Charts和ECharts资源已本地打包，运行时不需要npm/CDN。财务模块只有现有requests依赖，每日首次查询检查更新，云端复用已有Store。财务单位/累计口径不可作为单季度值或历史时点值使用。
+
+
+## 盈利预测数据层
+
+入口为 `scripts/earnings_data.py`，文档见 `docs-earnings-data.md`。原始PDF、财务版本、公开时间、单季度拆分和固定版本特征仓库位于独立 `earnings/` 云存储前缀。PDF采集另安装 `requirements-earnings.txt`；财务展示原缓存不作为历史PIT训练数据。当前是三公司原始公告试验，尚无盈利预测模型战绩。

@@ -1,0 +1,536 @@
+{
+  "local": {
+    "database": "/home/xietianyou/work/finance-workbench/data/workbench.sqlite",
+    "tables": [
+      "batches",
+      "observations",
+      "revisions",
+      "watermarks",
+      "metadata",
+      "instruments",
+      "market_quotes",
+      "history_tasks",
+      "market_members"
+    ],
+    "instruments": [
+      {
+        "kind": "stock",
+        "exchange": "BJ",
+        "active": 0,
+        "n": 10
+      },
+      {
+        "kind": "stock",
+        "exchange": "SH",
+        "active": 0,
+        "n": 149
+      },
+      {
+        "kind": "stock",
+        "exchange": "SZ",
+        "active": 0,
+        "n": 189
+      },
+      {
+        "kind": "etf",
+        "exchange": "SH",
+        "active": 1,
+        "n": 913
+      },
+      {
+        "kind": "etf",
+        "exchange": "SZ",
+        "active": 1,
+        "n": 753
+      },
+      {
+        "kind": "stock",
+        "exchange": "BJ",
+        "active": 1,
+        "n": 355
+      },
+      {
+        "kind": "stock",
+        "exchange": "SH",
+        "active": 1,
+        "n": 2319
+      },
+      {
+        "kind": "stock",
+        "exchange": "SZ",
+        "active": 1,
+        "n": 2906
+      }
+    ],
+    "observations": [
+      {
+        "interval": "1d",
+        "n": 7405183,
+        "symbols": 7246,
+        "start": "2021-11-10T15:00:00+08:00",
+        "end": "2026-11-10T15:00:00+08:00"
+      },
+      {
+        "interval": "1m",
+        "n": 12010,
+        "symbols": 10,
+        "start": "2026-11-04T09:30:00+08:00",
+        "end": "2026-11-10T14:56:00+08:00"
+      },
+      {
+        "interval": "5m",
+        "n": 15310,
+        "symbols": 10,
+        "start": "2026-09-18T09:35:00+08:00",
+        "end": "2026-11-10T14:35:00+08:00"
+      }
+    ],
+    "batches": [
+      {
+        "status": "empty",
+        "n": 2,
+        "first_collect": "2026-11-10T07:15:37.319011+00:00",
+        "last_collect": "2026-11-10T07:44:26.504985+00:00"
+      },
+      {
+        "status": "error",
+        "n": 5,
+        "first_collect": "2026-11-10T07:01:44.101529+00:00",
+        "last_collect": "2026-11-10T09:32:19.437446+00:00"
+      },
+      {
+        "status": "ok",
+        "n": 21751,
+        "first_collect": "2026-11-10T06:48:53.365869+00:00",
+        "last_collect": "2026-11-10T09:47:31.881959+00:00"
+      },
+      {
+        "status": "partial",
+        "n": 110,
+        "first_collect": "2026-11-10T06:39:06.593217+00:00",
+        "last_collect": "2026-11-10T06:56:40.223112+00:00"
+      }
+    ],
+    "revisions": [
+      {
+        "interval": "1d",
+        "n": 7405183,
+        "symbols": 7246
+      },
+      {
+        "interval": "1m",
+        "n": 12010,
+        "symbols": 10
+      },
+      {
+        "interval": "5m",
+        "n": 15310,
+        "symbols": 10
+      }
+    ],
+    "instrument_schema": [
+      {
+        "cid": 0,
+        "name": "symbol",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 1
+      },
+      {
+        "cid": 1,
+        "name": "code",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 2,
+        "name": "exchange",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 3,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 4,
+        "name": "kind",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 5,
+        "name": "source",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 6,
+        "name": "seen_at",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 7,
+        "name": "active",
+        "type": "INTEGER",
+        "notnull": 0,
+        "dflt_value": "1",
+        "pk": 0
+      }
+    ],
+    "metadata_keys": [
+      {
+        "key": "calendar",
+        "bytes": 114420
+      },
+      {
+        "key": "market_inventory",
+        "bytes": 170
+      },
+      {
+        "key": "history_policy",
+        "bytes": 13
+      },
+      {
+        "key": "market_stock",
+        "bytes": 166
+      },
+      {
+        "key": "market_etf",
+        "bytes": 164
+      },
+      {
+        "key": "daily_enqueued_date",
+        "bytes": 10
+      }
+    ],
+    "quotes": [
+      {
+        "n": 7594,
+        "first_collect": "2026-11-10T08:00:43.094841+00:00",
+        "last_collect": "2026-11-10T08:01:03.940980+00:00"
+      }
+    ],
+    "financial_cache": [
+      {
+        "symbol": "600031.SH",
+        "rows": 20,
+        "first": "2021-12-31",
+        "last": "2026-09-30",
+        "null_notice": 0,
+        "fields": [
+          "cash_per_share",
+          "core_profit",
+          "core_profit_yoy",
+          "current_ratio",
+          "date",
+          "debt_ratio",
+          "eps",
+          "gross_margin",
+          "inventory_days",
+          "label",
+          "net_margin",
+          "notice_date",
+          "profit",
+          "profit_yoy",
+          "quick_ratio",
+          "receivable_days",
+          "revenue",
+          "revenue_yoy",
+          "roe"
+        ],
+        "checked_date": "2026-11-14",
+        "path": "/home/xietianyou/work/finance-workbench/data/strategy/system/financials/600031.SH.json.gz"
+      },
+      {
+        "symbol": "920002.BJ",
+        "rows": 19,
+        "first": "2021-12-31",
+        "last": "2026-09-30",
+        "null_notice": 0,
+        "fields": [
+          "cash_per_share",
+          "core_profit",
+          "core_profit_yoy",
+          "current_ratio",
+          "date",
+          "debt_ratio",
+          "eps",
+          "gross_margin",
+          "inventory_days",
+          "label",
+          "net_margin",
+          "notice_date",
+          "profit",
+          "profit_yoy",
+          "quick_ratio",
+          "receivable_days",
+          "revenue",
+          "revenue_yoy",
+          "roe"
+        ],
+        "checked_date": "2026-11-14",
+        "path": "/home/xietianyou/work/finance-workbench/data/strategy/system/financials/920002.BJ.json.gz"
+      },
+      {
+        "symbol": "000001.SZ",
+        "rows": 20,
+        "first": "2021-12-31",
+        "last": "2026-09-30",
+        "null_notice": 0,
+        "fields": [
+          "cash_per_share",
+          "core_profit",
+          "core_profit_yoy",
+          "current_ratio",
+          "date",
+          "debt_ratio",
+          "eps",
+          "gross_margin",
+          "inventory_days",
+          "label",
+          "net_margin",
+          "notice_date",
+          "profit",
+          "profit_yoy",
+          "quick_ratio",
+          "receivable_days",
+          "revenue",
+          "revenue_yoy",
+          "roe"
+        ],
+        "checked_date": "2026-11-14",
+        "path": "/home/xietianyou/work/finance-workbench/data/strategy/system/financials/000001.SZ.json.gz"
+      },
+      {
+        "symbol": "002463.SZ",
+        "rows": 20,
+        "first": "2021-12-31",
+        "last": "2026-09-30",
+        "null_notice": 0,
+        "fields": [
+          "cash_per_share",
+          "core_profit",
+          "core_profit_yoy",
+          "current_ratio",
+          "date",
+          "debt_ratio",
+          "eps",
+          "gross_margin",
+          "inventory_days",
+          "label",
+          "net_margin",
+          "notice_date",
+          "profit",
+          "profit_yoy",
+          "quick_ratio",
+          "receivable_days",
+          "revenue",
+          "revenue_yoy",
+          "roe"
+        ],
+        "checked_date": "2026-11-14",
+        "path": "/home/xietianyou/work/finance-workbench/data/strategy/system/financials/002463.SZ.json.gz"
+      }
+    ]
+  },
+  "cloud": {
+    "system_prefix_counts": {
+      "system/technical": 2,
+      "system/research-cards": 3,
+      "system/industry-ths": 547,
+      "system/industry-discovery": 93,
+      "system/health": 19,
+      "system/financials": 2,
+      "system/daily-sync": 189,
+      "system/current.json.gz": 1,
+      "system/comparison-prices": 16,
+      "system/batch-metadata.json.gz": 1
+    },
+    "financial": [
+      {
+        "symbol": "600031.SH",
+        "rows": 20,
+        "first": "2021-12-31",
+        "last": "2026-09-30",
+        "null_notice": 0,
+        "fields": [
+          "cash_per_share",
+          "core_profit",
+          "core_profit_yoy",
+          "current_ratio",
+          "date",
+          "debt_ratio",
+          "eps",
+          "gross_margin",
+          "inventory_days",
+          "label",
+          "net_margin",
+          "notice_date",
+          "profit",
+          "profit_yoy",
+          "quick_ratio",
+          "receivable_days",
+          "revenue",
+          "revenue_yoy",
+          "roe"
+        ],
+        "checked_date": "2026-11-14",
+        "generated_at": "2026-11-14T17:34:45.690331+08:00"
+      },
+      {
+        "symbol": "002463.SZ",
+        "rows": 20,
+        "first": "2021-12-31",
+        "last": "2026-09-30",
+        "null_notice": 0,
+        "fields": [
+          "cash_per_share",
+          "core_profit",
+          "core_profit_yoy",
+          "current_ratio",
+          "date",
+          "debt_ratio",
+          "eps",
+          "gross_margin",
+          "inventory_days",
+          "label",
+          "net_margin",
+          "notice_date",
+          "profit",
+          "profit_yoy",
+          "quick_ratio",
+          "receivable_days",
+          "revenue",
+          "revenue_yoy",
+          "roe"
+        ],
+        "checked_date": "2026-11-14",
+        "generated_at": "2026-11-14T17:34:48.132958+08:00"
+      }
+    ],
+    "system/health/security-status.json.gz": {
+      "outer_keys": [
+        "600001.SH",
+        "600002.SH",
+        "600003.SH",
+        "600005.SH",
+        "600065.SH",
+        "600068.SH",
+        "600069.SH",
+        "600070.SH",
+        "600074.SH",
+        "600077.SH",
+        "600083.SH",
+        "600086.SH"
+      ],
+      "root_size": 5947,
+      "entries": 5947,
+      "listed": 5947,
+      "delisted": 368,
+      "suspended": 8,
+      "sample": [
+        [
+          "600001.SH",
+          {
+            "source": "AKShare stock_info_sh_delist / exchange termination list",
+            "verified_at": "2026-11-13T07:46:32.993664+00:00",
+            "delisted_at": "2009-12-29",
+            "listed_at": "1998-01-22",
+            "raw": {
+              "公司代码": "600001",
+              "公司简称": "邯郸钢铁",
+              "上市日期": "1998-01-22T00:00:00.000",
+              "暂停上市日期": "2009-12-29T00:00:00.000"
+            }
+          }
+        ],
+        [
+          "600002.SH",
+          {
+            "source": "AKShare stock_info_sh_delist / exchange termination list",
+            "verified_at": "2026-11-13T07:46:32.993691+00:00",
+            "delisted_at": "2006-04-24",
+            "listed_at": "1998-04-08",
+            "raw": {
+              "公司代码": "600002",
+              "公司简称": "齐鲁退市",
+              "上市日期": "1998-04-08T00:00:00.000",
+              "暂停上市日期": "2006-04-24T00:00:00.000"
+            }
+          }
+        ]
+      ]
+    },
+    "system/current.json.gz": {
+      "prefix": "history/2026-11-11-v1",
+      "catalog": "history/2026-11-11-v1/catalog.json.gz",
+      "seed": "history/2026-11-11-v1/seed.sqlite.gz",
+      "coverage": "history/2026-11-11-v1/coverage.json.gz"
+    },
+    "system/industry-discovery/latest.json.gz": {
+      "target": "2026-11-13",
+      "generated_at": "2026-11-14T08:39:16.090396+00:00",
+      "total_industries": 90,
+      "covered_industries": 90,
+      "current_industries": 90,
+      "computed_pairs": 4005,
+      "possible_pairs": 4005
+    },
+    "system/daily-sync/status.json.gz": {
+      "target_date": "2026-11-13",
+      "updated_at": "2026-11-14T10:00:19.795975+00:00",
+      "total": 7246,
+      "counts": {
+        "pending": 0,
+        "current": 7230,
+        "retry": 1,
+        "exhausted": 6,
+        "skipped": 9,
+        "running": 0
+      }
+    }
+  },
+  "coverage": {
+    "catalog_generated_at": "2026-11-11T08:16:45.308235+00:00",
+    "catalog_daily_symbols": 7246,
+    "health_status_entries": 5947,
+    "active_stocks_with_listing_evidence": 5580,
+    "active_stocks_missing_listing_evidence": [],
+    "delisted_flags": 368,
+    "delisted_flags_in_five_years": 202,
+    "delisted_flags_in_inventory": 338,
+    "delisted_flags_in_archived_daily": 1,
+    "recent_delisted_in_archived_daily": 1,
+    "inactive_inventory_not_retired_flag": 11,
+    "delisted_flags_by_exchange": {
+      "SH": 155,
+      "SZ": 213
+    },
+    "suspension_intervals": 8,
+    "industry_2026": {
+      "rows": 208,
+      "first": "2026-01-05",
+      "last": "2026-11-13",
+      "fetched_at": "2026-11-14T07:17:14.151459+00:00"
+    }
+  },
+  "audit_date": "2026-11-14",
+  "scope": "Read-only inventory of current code, local SQLite, saved financial caches and CloudBase system objects; no model fitted and no acquisition job started."
+}
