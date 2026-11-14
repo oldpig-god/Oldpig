@@ -64,8 +64,8 @@ def compute(snapshot,left,right,lookback=0,rolling=60):
     corr=metrics['correlation'];text='任一板块收益波动过低，相关系数不可定义。' if corr is None else ('样本期整体呈反向共同波动。' if corr<-.3 else '样本期线性关联较弱。' if corr<.3 else '样本期整体呈同向共同波动。')
     valid_roll=roll.dropna();negative_share=finite((valid_roll<0).mean()) if len(valid_roll) else None
     if negative_share is not None:text+=f'可计算的{rolling}日滚动窗口中，负相关占 {negative_share:.1%}。'
-    text+='相关性描述历史关系，会随时间变化，不证明因果或未来对冲有效。'
-    warnings=['使用同花顺行业指数原始点位，不是代表股拼接，也不是分红再投资总回报。','目录采用同花顺行业分类；不与东方财富或申万代码混用，未核验历史成分重叠。','协方差基于简单日收益率，样本估计分母 n−1；不对指数点位本身计算协方差。','滚动窗口重叠，负相关占比只作描述，不是统计显著性或获利概率。']
+    text+='结果随研究区间变化。'
+    warnings=['同花顺行业指数原始点位，收益不含分红。','同花顺行业分类；历史成分重叠尚未核验。','简单日收益率，协方差样本分母 n−1。','滚动窗口相互重叠，负相关占比描述历史频率。']
     for asset in snapshot['assets'].values():
         if asset.get('refresh_error'):warnings.append(asset['name']+'：'+asset['refresh_error'])
     if left==right:warnings.append('两边为同一板块；相关性不构成独立共振证据。')
@@ -76,7 +76,7 @@ def compute(snapshot,left,right,lookback=0,rolling=60):
 
 class Selection(BaseModel):
     model_config=ConfigDict(extra='forbid')
-    left:str=Field(pattern=r'^THS\d{6}$');right:str=Field(pattern=r'^THS\d{6}$');lookback:int=250;rolling:int=60
+    left:str=Field(pattern=r'^THS\d{6}$');right:str=Field(pattern=r'^THS\d{6}$');lookback:int=250;rolling:int=60;weight:float=Field(default=.5,ge=0,le=1);cost_bps:float=Field(default=10,ge=0,le=100)
 
 def routes(store_factory,user_for,check_action,record_failure=None):
     router=APIRouter()
@@ -94,6 +94,8 @@ def routes(store_factory,user_for,check_action,record_failure=None):
             store=store_factory();listing=catalog(store);known={x['code'] for x in listing['items']}
             if body.left not in known or body.right not in known:raise ValueError('所选代码不在行业目录中，请刷新目录')
             snapshot=acquire([body.left,body.right],store,listing);result=compute(snapshot,body.left,body.right,body.lookback,body.rolling)
+            from .portfolio_risk import calculate
+            result['portfolio']=calculate(result['observations'],body.weight,body.cost_bps)
             if listing.get('stale'):result['warnings'].append(listing['notice'])
             report_id=core.now().strftime('%Y%m%dT%H%M%S%f')+'-'+secrets.token_hex(8)
             store.put_json('users/'+user+'/comparisons/'+report_id+'.json.gz',dict(id=report_id,created_at=core.iso(),result=result,snapshot=snapshot,code_hash=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()))

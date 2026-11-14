@@ -409,6 +409,9 @@ app.include_router(research_workspace.routes(lambda:STORE,lambda request:request
 from . import sector_comparison
 app.include_router(sector_comparison.routes(lambda:STORE,lambda request:request.state.user,check_action,record_failure))
 
+from . import industry_discovery
+app.include_router(industry_discovery.routes(lambda:STORE,lambda request:request.state.user,check_action,page=lambda:html_page(core.ROOT/'app/static/discover/index.html')))
+
 owned={r.path for r in app.routes}
 for route in server.app.routes:
     if route.path not in owned and route.path not in ('/api/market-refresh','/api/refresh','/api/auto-refresh','/static'):

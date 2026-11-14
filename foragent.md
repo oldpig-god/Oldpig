@@ -221,3 +221,7 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 `/compare` 支持选择两个同花顺行业，真实目录90项。数据适配器 `app/industry_ths.py`，计算模块 `app/sector_comparison.py`；完整缓存、环境和验收说明见 `docs-sector-comparison.md`。新增依赖 py-mini-racer==0.6.0，Windows使用相匹配的x64原生轮子；云端Linux包包含libmini_racer.glibc.so。原生Windows尚未实机验收。
 
 近五年真实数据本地联调已通过，当前源与旧东方财富缓存隔离，不混用分类。按需每日刷新，失败保留有效旧记录并明确提示；不是后台全行业定时预采集。2026-11-14资源恢复后已更新云函数并完成真实云端验收：两行业分析、五年窗口、报告下载、移动端及账号隔离均通过。新增上游502/503/504至多一次退避重试及私有错误诊断编号；全套190项测试通过。不要把资源点不足等同账户现金欠费，也不要未经授权购买套餐。
+
+## 发现组合与组合风险
+
+新增 `/discover`。每日同花顺行业快照由现有日更函数分批计算；候选组合按较早区间排序，最近60日单独展示。热力图和列表链接到双行业比较，支持初始权重、首尾费用和持有风险。账号可保存组合，打开“我的观察”时记录关系、数据和波动变化。实现、调度、存储和费用口径见 `docs-industry-discovery.md`。日更包现在需要MiniRacer Linux原生库，无需pandas/FastAPI。

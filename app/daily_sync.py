@@ -158,8 +158,9 @@ def main(event,context):
     # Atomic five-minute slot claim + 240s platform timeout prevent overlapping writers.
     from .cloud_store import CloudStore
     local=core.now().astimezone(core.SH)
+    industry_manual=isinstance(event,dict) and event.get('action')=='industry_sync'
     manual=isinstance(event,dict) and event.get('action')=='health_repair'
-    if not manual and not (7<=local.hour<10 or local.hour*60+local.minute>=1050):return {'state':'outside_window'}
+    if not (manual or industry_manual) and not (7<=local.hour<10 or local.hour*60+local.minute>=1050):return {'state':'outside_window'}
     store=CloudStore()
     config=store.get_json('system/daily-sync/config.json.gz',optional=True) or {}
     if not config.get('enabled'):return {'state':'disabled'}
@@ -170,5 +171,10 @@ def main(event,context):
     CATALOG.clear();CATALOG.update(initialize(store))
     from . import health_status_source
     target=freshness(None,core.calendar_dates())['expected_date']
+    # Every third slot prioritizes the 90-sector daily snapshot until complete.
+    # It shares the existing atomic slot and 240-second timeout.
+    if target and not manual and (industry_manual or int(stamp//300)%3==0):
+        from . import industry_discovery
+        if industry_manual or industry_discovery.due(store,target,stamp):return industry_discovery.sync_tick(store,target,core.calendar_dates(),budget=100)
     if target:health_status_source.refresh(store,target)
     return run(store,max_symbols=0,budget_seconds=0) if manual else run(store)
