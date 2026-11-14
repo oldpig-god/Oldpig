@@ -225,3 +225,7 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ## 发现组合与组合风险
 
 新增 `/discover`。每日同花顺行业快照由现有日更函数分批计算；候选组合按较早区间排序，最近60日单独展示。热力图和列表链接到双行业比较，支持初始权重、首尾费用和持有风险。账号可保存组合，打开“我的观察”时记录关系、数据和波动变化。实现、调度、存储和费用口径见 `docs-industry-discovery.md`。日更包现在需要MiniRacer Linux原生库，无需pandas/FastAPI。
+
+## 个股财务与新图表
+
+个股入口 `/stocks?symbol=600031.SH&view=financial`。实现、数据口径、依赖归属与验证见 `docs-financial-analysis.md`。Lightweight Charts和ECharts资源已本地打包，运行时不需要npm/CDN。财务模块只有现有requests依赖，每日首次查询检查更新，云端复用已有Store。财务单位/累计口径不可作为单季度值或历史时点值使用。

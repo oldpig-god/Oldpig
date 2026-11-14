@@ -14,3 +14,5 @@
 
 /* Quiet navigation leaves the research surface in focus. */
 .terminal-app .terminal-sidebar{padding-top:26px}.terminal-sidebar nav a[aria-current]{color:var(--ui-accent);font-weight:550}.terminal-app .terminal-header{background:var(--ui-panel)}.sidebar-guide{display:none}.terminal-brand{font-size:21px}.terminal-brand small{font-size:9px}.terminal-app .brand-mark{background:var(--ui-accent);color:#fff}.terminal-app .global-search{background:var(--ui-panel-2)}
+
+.terminal-app .nav-tools{margin-top:20px;border-top:1px solid var(--ui-border);padding-top:18px}.terminal-app .nav-tools summary{font-size:11px;cursor:pointer;padding:0 12px 12px;color:var(--ui-muted)}.nav-tools a{margin-top:4px}
