@@ -407,7 +407,7 @@ from . import research_workspace
 app.include_router(research_workspace.routes(lambda:STORE,lambda request:request.state.user,check_action,page=lambda:html_page(core.ROOT/'app/static/research-workspace/index.html')))
 
 from . import sector_comparison
-app.include_router(sector_comparison.routes(lambda:STORE,lambda request:request.state.user,check_action))
+app.include_router(sector_comparison.routes(lambda:STORE,lambda request:request.state.user,check_action,record_failure))
 
 owned={r.path for r in app.routes}
 for route in server.app.routes:

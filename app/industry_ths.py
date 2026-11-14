@@ -31,6 +31,10 @@ def get_text(url,allow_missing=False):
             try:
                 r=requests.get(url,headers=headers(),timeout=(4,10))
                 if r.status_code==404 and allow_missing:return None
+                # Retry transient upstream gateway failures once, never validation failures.
+                if r.status_code in (502,503,504) and not attempt:
+                    time.sleep(1)
+                    continue
                 r.raise_for_status()
                 if not r.content:raise ValueError('行业数据源返回空响应')
                 return r.text

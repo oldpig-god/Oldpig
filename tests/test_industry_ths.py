@@ -54,3 +54,13 @@ class THSTests(unittest.TestCase):
   store.put_json(key,{'rows':[[DAY,10,10,12,9,100]],'expected_end':'2026-11-12','closed_year':False})
   with patch.object(t,'get_text',return_value=response()) as get:
    r=t.load_year(store,CODE,2026,DAY,[DAY],s.validate_rows);get.assert_called_once();self.assertEqual(r['rows'][-1][2],11);self.assertEqual(r['expected_end'],DAY)
+
+ def test_transient_gateway_retry_is_bounded(self):
+  good=Mock(status_code=200,content=b'good',text='good')
+  for status in (502,503,504):
+   bad=Mock(status_code=status);bad.raise_for_status.side_effect=requests.HTTPError()
+   with patch.object(t,'headers',return_value={}),patch.object(t.requests,'get',side_effect=[bad,good]) as get,patch.object(t.time,'sleep'):
+    self.assertEqual(t.get_text('https://example.test'),'good');self.assertEqual(get.call_count,2)
+   with patch.object(t,'headers',return_value={}),patch.object(t.requests,'get',return_value=bad) as get,patch.object(t.time,'sleep'):
+    with self.assertRaises(requests.HTTPError):t.get_text('https://example.test')
+    self.assertEqual(get.call_count,2)

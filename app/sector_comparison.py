@@ -78,7 +78,7 @@ class Selection(BaseModel):
     model_config=ConfigDict(extra='forbid')
     left:str=Field(pattern=r'^THS\d{6}$');right:str=Field(pattern=r'^THS\d{6}$');lookback:int=250;rolling:int=60
 
-def routes(store_factory,user_for,check_action):
+def routes(store_factory,user_for,check_action,record_failure=None):
     router=APIRouter()
     @router.get('/api/comparison/industries')
     def industries():
@@ -99,6 +99,8 @@ def routes(store_factory,user_for,check_action):
             store.put_json('users/'+user+'/comparisons/'+report_id+'.json.gz',dict(id=report_id,created_at=core.iso(),result=result,snapshot=snapshot,code_hash=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()))
             return dict(id=report_id,result=result)
         except ValueError as exc:raise HTTPException(422,str(exc))
-        except Exception:raise HTTPException(502,'行业行情获取或保存失败，请稍后重试；未生成替代数据')
+        except Exception as exc:
+            reference=record_failure('industry_comparison',exc) if record_failure else None
+            raise HTTPException(502,'行业行情获取或保存失败，请稍后重试；未生成替代数据'+('；诊断编号 '+reference if reference else ''))
         finally:lock.release()
     return router
