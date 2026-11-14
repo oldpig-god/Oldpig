@@ -11,6 +11,7 @@ from pydantic import BaseModel,Field,ConfigDict
 from . import core,tencent_source,daily_sync,security_research,strategy_service
 
 PRESETS={'coal':{'name':'煤炭代表组合','symbols':['601088.SH','601225.SH','601898.SH','600188.SH','600985.SH','601699.SH']},'components':{'name':'元件代表组合','symbols':['002463.SZ','002384.SZ','002938.SZ','002916.SZ','600183.SH','300408.SZ']}}
+LOOKBACKS=(0,60,120,126,250,252,756)
 LOCKS=defaultdict(threading.Lock)
 class Side(BaseModel):
     model_config=ConfigDict(extra='forbid')
@@ -95,7 +96,7 @@ def routes(store_factory,user_for,check_action,page=None):
     @router.post('/api/comparison/run')
     def run(request:Request,body:Selection):
         check_action(request)
-        if body.lookback not in (0,60,126,252,756) or body.rolling not in (20,60,120):raise HTTPException(400,'不支持的时间窗口')
+        if body.lookback not in LOOKBACKS or body.rolling not in (20,60,120):raise HTTPException(400,'不支持的时间窗口')
         selection=body.model_dump()
         for side in ('left','right'):
             selection[side]['symbols']=list(dict.fromkeys(security_research.resolve(s)['symbol'] for s in selection[side]['symbols']))

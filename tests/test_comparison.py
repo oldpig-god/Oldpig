@@ -31,3 +31,22 @@ class ComparisonTests(unittest.TestCase):
  def test_invalid_prices_rejected(self):
   s,c=fixture();s['assets']['a']['rows'][10][2]=0
   with self.assertRaises(ValueError):compute(s,c)
+
+
+class ComparisonWindowApiTests(unittest.TestCase):
+ def test_every_visible_window_works_for_securities(self):
+  from unittest.mock import patch
+  from fastapi import FastAPI
+  from fastapi.testclient import TestClient
+  from app import comparison
+  class Store:
+   def put_json(self,key,value):pass
+  app=FastAPI();app.include_router(comparison.routes(Store,lambda request:'test',lambda request:None));client=TestClient(app)
+  snapshot,_=fixture()
+  with patch.object(comparison,'acquire',return_value=snapshot),patch.object(comparison.security_research,'resolve',side_effect=lambda symbol:{'symbol':symbol}):
+   for window in comparison.LOOKBACKS:
+    with self.subTest(window=window):
+     response=client.post('/api/comparison/run',json={'left':{'name':'A','symbols':['a']},'right':{'name':'B','symbols':['b']},'lookback':window,'rolling':60})
+     self.assertEqual(response.status_code,200,response.text)
+   response=client.post('/api/comparison/run',json={'left':{'symbols':['a']},'right':{'symbols':['b']},'lookback':999})
+   self.assertEqual(response.status_code,400)

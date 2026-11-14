@@ -38,3 +38,5 @@ CloudBase Python 3.10 Linux x86_64 包须包含 py_mini_racer 的 libmini_racer.
 恢复初次请求曾遇上游历史接口HTTP 502，已增加至多一次退避重试；持续故障仍明确失败，不冒充成功。行业报告失败复用服务端私有诊断记录，页面只返回诊断编号，不返回密钥、Cookie、原始请求头。此前资源点耗尽导致的HTTP 410已消失，不再是当前阻塞。
 
 线上入口：https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com/compare
+
+2026-11-14 窗口兼容修复：行业和证券模式统一接受0/60/120/126/250/252/756日窗口，复用comparison.LOOKBACKS。修复从发现页携带250日或切换到股票模式时HTTP400的问题；覆盖所有可见窗口的接口回归测试已加入。比较设置收拢，成功生成自动定位报告；视觉说明与验收见design/maybe-workspace/README.md。

@@ -87,7 +87,7 @@ def routes(store_factory,user_for,check_action,record_failure=None):
     @router.post('/api/comparison/industries/run')
     def run(body:Selection,request:Request):
         check_action(request)
-        if body.lookback not in (0,60,120,126,250,252,756) or body.rolling not in (20,60,120):raise HTTPException(400,'不支持的窗口')
+        if body.lookback not in comparison.LOOKBACKS or body.rolling not in (20,60,120):raise HTTPException(400,'不支持的窗口')
         user=user_for(request);lock=comparison.LOCKS[user]
         if not lock.acquire(False):raise HTTPException(409,'已有比较正在计算，请稍候')
         try:
