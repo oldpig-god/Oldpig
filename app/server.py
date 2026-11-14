@@ -341,4 +341,4 @@ from . import research_workspace
 app.include_router(research_workspace.routes(health_service.LocalStore,lambda request:'local',require_local_action))
 
 from . import sector_comparison
-app.include_router(sector_comparison.routes(health_service.LocalStore,lambda request:"local",require_local_action))
+app.include_router(sector_comparison.routes(strategy_service.LocalStore,lambda request:"local",require_local_action))

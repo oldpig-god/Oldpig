@@ -4,3 +4,4 @@ uvicorn==0.48.0
 pandas==2.3.3
 requests==2.34.2
 tzdata>=2023.3
+py-mini-racer==0.6.0

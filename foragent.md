@@ -216,6 +216,8 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 
 新增 `/research`，说明见 `docs-research-workspace.md`。核心为 `app/research_cards.py`；账号分组、设置和变化提醒由 `app/research_workspace.py` 提供，存储沿用私有 CloudStore / LocalStore。无需新增依赖和数据库表。提醒在主动检查时生成，尚无后台推送。运行 `python -m unittest discover -s tests -p test_research_workspace.py` 验证。
 
-## 行业板块比较（真实数据联调待完成）
+## 行业板块比较（同花顺真实源）
 
-`/compare` 增加双行业选择，计算模块 `app/sector_comparison.py`，说明见 `docs-sector-comparison.md`。代码和合成样本浏览器测试通过，但东方财富接口在2026-11-13联调中持续断连，尚未验收真实行业端到端结果。不要把模拟测试通过写成生产功能全部可用。原证券比较可继续使用。
+`/compare` 支持选择两个同花顺行业，真实目录90项。数据适配器 `app/industry_ths.py`，计算模块 `app/sector_comparison.py`；完整缓存、环境和验收说明见 `docs-sector-comparison.md`。新增依赖 py-mini-racer==0.6.0，Windows使用相匹配的x64原生轮子；云端Linux包包含libmini_racer.glibc.so。原生Windows尚未实机验收。
+
+近五年真实数据本地联调已通过，当前源与旧东方财富缓存隔离，不混用分类。按需每日刷新，失败保留有效旧记录并明确提示；不是后台全行业定时预采集。2026-11-14新代码已部署，但云环境因体验版资源点耗尽整体返回410，最终云端验收须恢复套餐资源后补做。不要把资源点不足等同账户现金欠费，也不要未经授权购买套餐。

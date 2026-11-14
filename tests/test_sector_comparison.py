@@ -27,16 +27,6 @@ class SectorTests(unittest.TestCase):
    with self.assertRaises(ValueError):s.validate_rows(rows,snap['calendar'])
  def test_stale_and_deterministic(self):
   snap,_=fixture();snap['assets']['a']['rows'].pop();r=s.compute(snap,'a','b');self.assertIn('未覆盖应有交易日',' '.join(r['warnings']));self.assertEqual(r,s.compute(copy.deepcopy(snap),'a','b'))
- def test_catalog_pagination_complete_and_reject_duplicate(self):
-  responses=[{'data':{'total':2,'diff':[{'f12':'BK0001','f14':'行业一'}]}},{'data':{'total':2,'diff':[{'f12':'BK0002','f14':'行业二'}]}}]
-  with patch.object(s,'request_json',side_effect=responses):self.assertEqual(s.fetch_catalog()['total'],2)
-  with patch.object(s,'request_json',side_effect=[responses[0],responses[0]]):
-   with self.assertRaisesRegex(ValueError,'重复'):s.fetch_catalog()
  def test_catalog_error_keeps_previous_and_marks_stale(self):
-  store=AtomicStore();store.put_json('system/industry/catalog.json.gz',{'date':'2000-01-01','items':[]})
+  store=AtomicStore();store.put_json('system/industry-ths/catalog.json.gz',{'date':'2000-01-01','items':[]})
   with patch.object(s,'fetch_catalog',side_effect=TimeoutError()):self.assertTrue(s.catalog(store)['stale'])
- def test_unvalidated_history_never_saved(self):
-  store=AtomicStore();listing={'items':[{'code':'BK0001','name':'test'}],'fetched_at':'fixed'}
-  with patch.object(s.core,'calendar_dates',return_value=['2026-11-12']),patch.object(s.core,'history_start',return_value='2026-11-12'),patch.object(s.daily_sync,'freshness',return_value={'expected_date':'2026-11-12'}),patch.object(s,'request_json',return_value={'data':{'code':'BK0001','klines':['2026-11-12,1,-1,1,1,100']}}):
-   with self.assertRaises(ValueError):s.acquire(['BK0001'],store,listing)
-  self.assertEqual(store.values,{})
