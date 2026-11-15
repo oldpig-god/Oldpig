@@ -164,6 +164,21 @@ class PdfContractTests(unittest.TestCase):
 
 
 class UniverseTests(unittest.TestCase):
+    def test_retirement_notice_uses_delisting_date_not_decision_date(self):
+        from unittest.mock import patch
+        from datetime import datetime
+        from app.earnings.schema import SH
+        from app.earnings.universe import collect_retirement
+        class Source:
+            def announcements(self,*args,**kwargs):
+                return dict(orgId='retired',zwjc='退市样本'),[dict(secCode='000005',announcementId='delist',
+                    announcementTitle='关于股票终止上市暨摘牌的公告',
+                    announcementTime=int(datetime(2024,2,6,tzinfo=SH).timestamp()*1000))]
+            def download(self,a):return 'https://static.cninfo.com.cn/finalpage/2024-02-06/delist.PDF',b'%PDF-test'
+        page='证券代码：000005\n终止上市决定日期：2024年1月26日\n摘牌日期：2024年2月7日'
+        with tempfile.TemporaryDirectory() as root,patch('app.earnings.pdf_extract.pages_from_pdf',return_value=[page]):
+            result=collect_retirement(Repository(LocalStore(root)),'000005.SZ','2024-01-01','2024-12-31',source=Source())
+        self.assertEqual(result['records'][0]['effective_at'],'2024-02-07T00:00:00+08:00')
     def test_future_delisting_does_not_remove_historical_member(self):
         from app.earnings.universe import eligible_entities
         base=dict(entity_id='cninfo_test',published_at='2020-01-01',time_precision='day',ingested_at='2026-11-14T09:00:00+08:00',provenance='reconstructed_pit',value=True)

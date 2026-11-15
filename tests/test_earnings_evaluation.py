@@ -4,6 +4,7 @@ from datetime import date
 import tempfile
 import unittest
 import random
+import json
 
 from app.earnings.dataset import SamplePolicy, audit, build,load_panel,save_panel,sample, scheduled_at, shift_period
 from app.earnings.evaluation import EvaluationPolicy, evaluate, interval, metrics, paired_comparison
@@ -137,6 +138,9 @@ class SampleTests(unittest.TestCase):
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_json_roundtrip_preserves_entire_report(self):
+        rows=panel()
+        self.assertEqual(evaluate(rows),evaluate(json.loads(json.dumps(rows,sort_keys=True))))
     def test_retired_periods_are_business_inapplicable_not_failed_predictions(self):
         identity=dict(entity_id='sample',field='listed',value=True,published_at='2020-01-01',time_precision='day',
             effective_at='2020-01-01T00:00:00+08:00',provenance='reconstructed_pit')
@@ -241,7 +245,7 @@ class EvaluationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             repo=Repository(LocalStore(root));rows=panel()
             a=evaluate_registered(repo,rows,data_version='test')
-            self.assertEqual(a,evaluate_registered(repo,rows,data_version='test'))
+            self.assertEqual(a,evaluate_registered(repo,json.loads(json.dumps(rows,sort_keys=True)),data_version='test'))
             bad=copy.deepcopy(rows);bad[0]['feature_evidence'].append(dict(available_at='2099-01-01T00:00:00+08:00'))
             bad[0]['id']=digest(bad[0])
             with self.assertRaises(ValueError):evaluate_registered(repo,bad,data_version='injected')

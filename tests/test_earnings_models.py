@@ -1,6 +1,7 @@
 import copy
 from dataclasses import replace
 import unittest
+import json
 
 from app.earnings.evaluation import EvaluationPolicy, evaluate, interval, metrics
 from app.earnings.models import TreeConfig, feature_names, shuffled_label_factory, tree_factory
@@ -32,7 +33,7 @@ class QuantileTests(unittest.TestCase):
         rows=panel();policy=EvaluationPolicy(min_training_samples=10,min_training_periods=2,
             min_calibration_samples=4,min_calibration_periods=1)
         fit=tree_factory(TreeConfig(iterations=3,min_samples_leaf=3))
-        a=evaluate(rows,policy,predictor=fit);b=evaluate(rows,policy,predictor=fit)
+        a=evaluate(rows,policy,predictor=fit);b=evaluate(json.loads(json.dumps(rows,sort_keys=True)),policy,predictor=fit)
         self.assertEqual(a,b)
         self.assertIn('quantile_tree_financials',a['models'])
         for row in a['predictions']:

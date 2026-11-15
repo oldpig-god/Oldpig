@@ -41,13 +41,13 @@ def evaluate_registered(repository, rows, *, data_version, evaluation_policy=Eva
         report = evaluate(rows, evaluation_policy, predictor=predictor, retired_entities=retired_entities)
         report['data_exclusions']=list(exclusions)
         report['id']=digest({k:v for k,v in report.items() if k!='id'})
+        result = dict(experiment_id=experiment_id, status='completed', report=report)
+        repository.append('earnings/experiments/results/'+experiment_id+'.json.gz', result)
     except Exception as error:
         failure = dict(experiment_id=experiment_id, status='failed', error=type(error).__name__, message=str(error))
         failure['id'] = digest(failure)
         repository.append('earnings/experiments/failures/'+failure['id']+'.json.gz', failure)
         raise
-    result = dict(experiment_id=experiment_id, status='completed', report=report)
-    repository.append('earnings/experiments/results/'+experiment_id+'.json.gz', result)
     return result
 
 

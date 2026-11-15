@@ -163,7 +163,8 @@ def evaluate(rows, policy=EvaluationPolicy(), *, predictor=None, retired_entitie
                 point_values['selected_baseline'] = point_values[chosen]
             if fitted:
                 point_values.update(fitted(row))
-            for model, point in point_values.items():
+            for model in sorted(point_values):
+                point=point_values[model]
                 bounds={}
                 if isinstance(point,dict):
                     bounds={k:point[k] for k in ('raw_lower','raw_upper')}
