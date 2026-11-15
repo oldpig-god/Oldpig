@@ -95,8 +95,8 @@ def _by_event(events, records):
     return result
 
 
-def history(events, records, at, metric='core_profit'):
-    versions = select(events, at)
+def history(events, records, at, metric='core_profit',issues=None):
+    versions = select(events, at,issues=issues)
     direct = _by_event(events, records)
     result = {}
     for p, event in sorted(versions.items(), key=lambda item: availability(item[1])):
@@ -116,6 +116,7 @@ def history(events, records, at, metric='core_profit'):
 
 def target(events, records, report_period, metric='core_profit'):
     label = first_disclosed_target(events, report_period, metric)
+    if label['reason']=='首次披露版本待核验':return dict(label,cell_ids=[])
     first = [e for e in events if e['report_period'] == report_period and e['revision_kind'] == 'initial'
              and e['provenance'] in ('reconstructed_pit', 'observed_pit')]
     if not first:

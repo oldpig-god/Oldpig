@@ -157,16 +157,20 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(result['warmup_samples'],1)
         self.assertTrue(all(r['target_period']>='2021-11-14' for r in result['predictions']))
 
-    def test_version_conflict_excludes_company_with_a_recorded_reason(self):
+    def test_version_conflict_is_local_to_its_period_and_recorded(self):
         with tempfile.TemporaryDirectory() as root:
-            repo=Repository(LocalStore(root));bad=events('bad',2022,2022)
+            repo=Repository(LocalStore(root));bad=events('bad',2022,2023)
             duplicate=copy.deepcopy(bad[0]);duplicate['id']=digest(['duplicate',duplicate['id']])
             for e in bad+[duplicate]+events('good',2022,2023):
                 repo.append('earnings/events/'+e['entity_id']+'/'+e['report_period']+'/'+e['id']+'.json.gz',e)
             excluded=[];rows=build(repo,start='2022-01-01',end='2023-12-31',exclusions=excluded)
-            self.assertTrue(rows);self.assertEqual({r['entity_id'] for r in rows},{'good'})
-            self.assertEqual(excluded[0]['entity_id'],'bad')
-            self.assertIn('未关联',excluded[0]['reason'])
+            self.assertEqual({r['entity_id'] for r in rows},{'good','bad'})
+            self.assertEqual(excluded,[])
+            later=next(r for r in rows if r['entity_id']=='bad' and r['target_period']=='2023-12-31')
+            self.assertIn('未关联',later['quality_issues'][0]['reason'])
+            self.assertIsNotNone(later['label']['value'])
+            conflicted=next(r for r in rows if r['entity_id']=='bad' and r['target_period']=='2022-03-31')
+            self.assertIsNone(conflicted['label']['value'])
 
     def test_80_percent_interval_on_independent_synthetic_errors(self):
         rng=random.Random(1729)

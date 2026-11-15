@@ -13,7 +13,7 @@ def availability(event):
     return effective
 
 
-def select(events, at):
+def select(events, at, issues=None):
     """Strictly earlier than t. Conflicting independent versions require a revision link."""
     cutoff = stamp(at)
     visible = [e for e in events if e['provenance'] in ADMITTED and availability(e) < cutoff]
@@ -23,12 +23,17 @@ def select(events, at):
     result = {}
     for p, values in by_period.items():
         ids = {e['id'] for e in values}
+        reason=None
         for e in values:
-            if e['supersedes'] and e['supersedes'] not in ids:raise DataError('修订链前序版本缺失')
+            if e['supersedes'] and e['supersedes'] not in ids:reason='修订链前序版本缺失'
         superseded = {e['supersedes'] for e in values if e['supersedes'] in ids}
         tips = [e for e in values if e['id'] not in superseded]
         if len(tips) != 1:
-            raise DataError(p+' 存在未关联的报告版本')
+            reason='存在未关联的报告版本'
+        if reason:
+            if issues is None:raise DataError(p+' '+reason)
+            issues[p]=dict(report_period=p,reason=reason,event_ids=sorted(ids))
+            continue
         result[p] = tips[0]
     return result
 
@@ -71,8 +76,15 @@ def first_disclosed_target(events, report_period, metric='core_profit'):
         return dict(value=None, parents=[], reason='缺少首次正式披露')
     first = min(candidates, key=lambda e:availability(e))
     # At this instant the target is known, while features at t remain strictly earlier.
-    eligible = [e for e in events if availability(e) <= stamp(first['available_at'])]
+    relevant={report_period,previous_period(report_period)}
+    eligible = [e for e in events if e['report_period'] in relevant and availability(e) <= stamp(first['available_at'])]
     from datetime import timedelta
-    versions = select(eligible, (stamp(first['available_at'])+timedelta(microseconds=1)).isoformat())
-    return dict(quarter(first, versions.get(previous_period(report_period)), metric),
+    issues={}
+    versions = select(eligible, (stamp(first['available_at'])+timedelta(microseconds=1)).isoformat(),issues=issues)
+    if report_period in issues:
+        return dict(value=None,parents=issues[report_period]['event_ids'],reason='首次披露版本待核验',
+                    label_available_at=first['available_at'],report_period=report_period)
+    result=quarter(first,versions.get(previous_period(report_period)),metric)
+    if result['value'] is None and previous_period(report_period) in issues:result['reason']='前序报告版本待核验'
+    return dict(result,
         label_available_at=first['available_at'], report_period=report_period)

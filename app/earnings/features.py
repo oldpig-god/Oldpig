@@ -27,7 +27,8 @@ def registry():
 
 def snapshot(events, entity_id, prediction_at, target_period, policy=Policy()):
     target = period(target_period)
-    versions = select([e for e in events if e['entity_id']==entity_id], prediction_at)
+    quality_issues={}
+    versions = select([e for e in events if e['entity_id']==entity_id], prediction_at,issues=quality_issues)
     cutoff = stamp(prediction_at)
     inputs = sorted(e['id'] for e in versions.values())
     latest_period = max((p for p in versions if p < target_period), default=None)
@@ -58,8 +59,9 @@ def snapshot(events, entity_id, prediction_at, target_period, policy=Policy()):
         for name in definitions:add(name,None,[],'预测时点无已披露历史报告')
     mode='forecast' if cutoff.date()<=target else 'nowcast'
     result=dict(schema=SCHEMA,entity_id=entity_id,prediction_at=cutoff.isoformat(),target_period=target_period,
-        horizon_mode=mode,status='target_disclosed' if target_period in versions else 'ready' if latest_period else 'no_history',
+        horizon_mode=mode,status='target_disclosed' if target_period in versions or target_period in quality_issues else 'ready' if latest_period else 'no_history',
         latest_report_period=latest_period,features=features,input_event_ids=inputs,policy=asdict(policy),
         registry_hash=digest(definitions))
+    result['quality_issues']=[quality_issues[p] for p in sorted(quality_issues)]
     result['id']=digest(result)
     return result

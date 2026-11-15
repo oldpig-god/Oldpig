@@ -44,12 +44,13 @@ def feature_registry():
 
 def sample(events, cells, entity_id, report_period, *, policy=SamplePolicy(), universe=()):
     at = scheduled_at(report_period, policy)
-    versions = select(events, at)
-    profits = {p: v for p, v in history(events, cells, at).items() if p < report_period}
+    quality_issues={}
+    versions = select(events, at,issues=quality_issues)
+    profits = {p: v for p, v in history(events, cells, at,issues=quality_issues).items() if p < report_period}
     periods = sorted(profits)
     latest = max((p for p in versions if p < report_period), default=None)
     reasons = []
-    if report_period in versions:
+    if report_period in versions or report_period in quality_issues:
         reasons.append('目标已披露')
     if len(periods) < policy.min_history_quarters:
         reasons.append('历史单季样本不足')
@@ -68,7 +69,7 @@ def sample(events, cells, entity_id, report_period, *, policy=SamplePolicy(), un
             scale_method = 'public_assets'
             evidence.append(dict(kind='scale', parents=[event['id']], available_at=event['available_at']))
         else:
-            revenues = history(events, cells, at, metric='revenue')
+            revenues = history(events, cells, at, metric='revenue',issues=quality_issues)
             trailing = [revenues.get(shift_period(latest, -i)) for i in range(4)]
             if all(trailing):
                 ttm = sum(float(v['value']) for v in trailing)
@@ -138,6 +139,7 @@ def sample(events, cells, entity_id, report_period, *, policy=SamplePolicy(), un
                   features=features, feature_registry_hash=digest(feature_registry()),
                   feature_evidence=evidence, baselines=baselines,
                   year_ago=seasonal, label=label, groups=groups, membership=membership)
+    result['quality_issues']=[quality_issues[p] for p in sorted(quality_issues)]
     audit(result)
     result['id'] = digest(result)
     return result

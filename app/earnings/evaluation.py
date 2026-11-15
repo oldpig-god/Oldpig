@@ -205,6 +205,8 @@ def evaluate(rows, policy=EvaluationPolicy(), *, predictor=None, retired_entitie
                   label_missing_by_quarter=dict(Counter(r['groups']['target_quarter'] for r in population
                                                         if r['label'].get('value') is None)),
                   missing_membership=sum(r['membership'] == 'unverified' for r in candidates),
+                  samples_with_quality_issues=sum(bool(r['quality_issues']) for r in candidates),
+                  companies_with_quality_issues=len({r['entity_id'] for r in candidates if r['quality_issues']}),
                   external_baselines={'earnings_guidance': 'not_connected', 'earnings_express': 'not_connected',
                                       'analyst_consensus': 'not_connected'},
                   folds=folds, models=summary, predictions=forecasts,

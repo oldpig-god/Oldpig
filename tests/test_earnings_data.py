@@ -22,6 +22,12 @@ def fixture(period='2025-03-31',published='2025-04-20',values=None,**options):
 
 
 class TemporalTests(unittest.TestCase):
+    def test_old_version_conflict_does_not_block_recent_snapshot(self):
+        old=fixture('2019-03-31','2019-04-20');duplicate=fixture('2019-03-31','2019-04-20',values={'core_profit':'99'})
+        current=fixture()
+        result=snapshot([old,duplicate,current],'cninfo_test','2025-07-01T08:30:00+08:00','2025-06-30')
+        self.assertEqual(result['status'],'ready');self.assertEqual(result['features']['core_profit_ytd']['value'],'20')
+        self.assertEqual(result['quality_issues'][0]['report_period'],'2019-03-31')
     def test_day_precision_is_next_day_and_strict_before(self):
         e=fixture();self.assertEqual(select([e],'2025-04-20T23:59:59+08:00'),{})
         self.assertEqual(select([e],'2025-04-21T00:00:00+08:00'),{})

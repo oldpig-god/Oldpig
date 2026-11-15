@@ -73,6 +73,7 @@ def main():
     base=results['baselines']['report']
     summary['coverage']={k:base[k] for k in ('samples','warmup_samples','evaluated_samples','heldout_samples',
         'research_population','business_inapplicable','membership_unresolved',
+        'samples_with_quality_issues','companies_with_quality_issues',
         'abstained','abstention_rate','abstention_reasons','label_missing','label_missing_by_quarter','missing_membership','data_exclusions')}
     combined=results['tree_profit_history']['report']['predictions']+results['tree_financials']['report']['predictions']
     summary['financial_feature_ablation']=paired_comparison(combined,'quantile_tree_financials','quantile_tree_profit_history',policy)
