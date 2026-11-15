@@ -1,0 +1,140 @@
+[
+  {
+    "symbol": "002384.SZ",
+    "run_id": "249ceb7eb40b60076fd2c3e25ec76ad30ee33347808ffb17b780e1c19daa1af6",
+    "name": "东山精密",
+    "entity_id": "cninfo_9900011647",
+    "statuses": {
+      "created": 24,
+      "data_error": 1
+    },
+    "elapsed": 19.3
+  },
+  {
+    "symbol": "603256.SH",
+    "run_id": "d56cafeb6ce3e81aa4894fad9b1bba93a65a2f49c4158b5db789f7bb8cbc05d2",
+    "name": "宏和科技",
+    "entity_id": "cninfo_9900035335",
+    "statuses": {
+      "created": 24
+    },
+    "elapsed": 19.5
+  },
+  {
+    "symbol": "002938.SZ",
+    "run_id": "7efc09290569cabe237d49b9a6af129edcf683d6fd3fde0d4ac27cbf78c03e9c",
+    "name": "鹏鼎控股",
+    "entity_id": "cninfo_9900036236",
+    "statuses": {
+      "created": 24,
+      "data_error": 2
+    },
+    "elapsed": 21.9
+  },
+  {
+    "symbol": "002484.SZ",
+    "run_id": "597abf392f1244c7c5ff105829e81ff56951209d0ac396f549cda3d7e38c82e5",
+    "name": "江海股份",
+    "entity_id": "cninfo_9900014777",
+    "statuses": {
+      "created": 24,
+      "data_error": 1
+    },
+    "elapsed": 20.7
+  },
+  {
+    "symbol": "600519.SH",
+    "run_id": "b798780e42fff2bc1312be75a4a9b44c743e87605c5add1f9aac2ae8c371e126",
+    "name": "贵州茅台",
+    "entity_id": "cninfo_gssh0600519",
+    "statuses": {
+      "created": 24,
+      "needs_accounting_review": 1
+    },
+    "elapsed": 17.2
+  },
+  {
+    "symbol": "601088.SH",
+    "run_id": "0f173a8742500227f0fdf42be4c11d6b8eb9a756106d61aa8239d28e2dbfe573",
+    "name": "中国神华",
+    "entity_id": "cninfo_9900003701",
+    "statuses": {
+      "created": 19
+    },
+    "elapsed": 17.5
+  },
+  {
+    "symbol": "000858.SZ",
+    "run_id": "f4136a85fe6ed40767d3729fe7a85ad7829eaf6f0bef907558cbb226ea026fef",
+    "name": "五粮液",
+    "entity_id": "cninfo_gssz0000858",
+    "statuses": {
+      "created": 20,
+      "announcement_only": 1,
+      "data_error": 3,
+      "needs_revision_link": 7
+    },
+    "elapsed": 20.4
+  },
+  {
+    "symbol": "600036.SH",
+    "run_id": "2140f712d072d50c0996959fefb7d74ceb4ded06bcb6d3be46702961c4ab883b",
+    "name": "招商银行",
+    "entity_id": "cninfo_gssh0600036",
+    "statuses": {
+      "needs_extraction": 8,
+      "data_error": 11
+    },
+    "elapsed": 14.2
+  },
+  {
+    "symbol": "000002.SZ",
+    "run_id": "49c46a99df14be4f997f36fa98db2949884de78135ac18d42547125b15dc5874",
+    "name": "万科A",
+    "entity_id": "cninfo_gssz0000002",
+    "statuses": {
+      "created": 24,
+      "needs_extraction": 1
+    },
+    "elapsed": 33.7
+  },
+  {
+    "symbol": "600031.SH",
+    "run_id": "85cc099c36b90a4a8ca51b7b37efc3bf31ebe4b7bb5da03ad85b6b25930c3f5f",
+    "name": "三一重工",
+    "entity_id": "cninfo_gssh0600031",
+    "statuses": {
+      "created": 7,
+      "existing": 16,
+      "needs_accounting_review": 1
+    },
+    "elapsed": 18.3
+  },
+  {
+    "symbol": "002463.SZ",
+    "run_id": "efaa306eb82ab6bedbe270b1e3b97ca04d37f1a6068c5441649c724ee81ecdce",
+    "name": "沪电股份",
+    "entity_id": "cninfo_9900013929",
+    "statuses": {
+      "needs_revision_link": 1,
+      "created": 7,
+      "existing": 19,
+      "announcement_only": 1,
+      "data_error": 1
+    },
+    "elapsed": 18.4
+  },
+  {
+    "symbol": "000005.SZ",
+    "run_id": "c7d6bb81ecf3550e5793529b783a4908db0eecede820b1c7f0dd241d1e1bf1a7",
+    "name": "ST星源",
+    "entity_id": "cninfo_gssz0000005",
+    "statuses": {
+      "created": 7,
+      "existing": 4,
+      "data_error": 1,
+      "needs_extraction": 1
+    },
+    "elapsed": 8.1
+  }
+]

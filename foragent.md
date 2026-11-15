@@ -233,4 +233,4 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 
 ## 盈利预测数据层
 
-入口为 `scripts/earnings_data.py`，文档见 `docs-earnings-data.md`。原始PDF、财务版本、公开时间、单季度拆分和固定版本特征仓库位于独立 `earnings/` 云存储前缀。PDF采集另安装 `requirements-earnings.txt`；财务展示原缓存不作为历史PIT训练数据。当前是三公司原始公告试验，尚无盈利预测模型战绩。
+入口为 `scripts/earnings_data.py`，文档见 `docs-earnings-data.md`。原始PDF、财务版本、公开时间、单季度拆分和固定版本特征仓库位于独立 `earnings/` 云存储前缀。PDF采集另安装 `requirements-earnings.txt`；财务展示原缓存不作为历史PIT训练数据。2026-11-15已扩展到47家公司、含5家退市公司，完成固定基准和分位数树历史验证。结果、Windows独立重放包和云端数据版本见 [docs-earnings-evaluation.md](docs-earnings-evaluation.md)。增强模型未显著打败基准；保留最终两季度，不开放生产预测。原始PDF全量云镜像未完成，规范化研究输入与实验已上云。

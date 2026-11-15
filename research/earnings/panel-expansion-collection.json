@@ -1,0 +1,47 @@
+[
+  {
+    "symbol": "600066.SH",
+    "run_id": "ed026d673240fb09105a2455fea4221fe0d69630c41665ea4bf21f179bcfc3d1",
+    "name": "宇通客车",
+    "entity_id": "cninfo_gssh0600066",
+    "statuses": {
+      "created": 24,
+      "needs_extraction": 1
+    },
+    "elapsed": 17.8
+  },
+  {
+    "symbol": "000338.SZ",
+    "run_id": "17b35bea22312aca06725f527437a953c389d36ab1bc2c3758fad4d74677878a",
+    "name": "潍柴动力",
+    "entity_id": "cninfo_9900002961",
+    "statuses": {
+      "created": 24,
+      "data_error": 1
+    },
+    "elapsed": 22.7
+  },
+  {
+    "symbol": "600585.SH",
+    "run_id": "b7a237ac6ea542a4acf77256d77700243088451919a796392e176ddb058e3212",
+    "name": "海螺水泥",
+    "entity_id": "cninfo_gssh0600585",
+    "statuses": {
+      "created": 14,
+      "needs_extraction": 6
+    },
+    "elapsed": 15.5
+  },
+  {
+    "symbol": "002594.SZ",
+    "run_id": "e12ad1c531a1df450c0a99510550031b92a23305db6d89be92c25f15426eb118",
+    "name": "比亚迪",
+    "entity_id": "cninfo_gshk0001211",
+    "statuses": {
+      "created": 20,
+      "needs_extraction": 4,
+      "data_error": 7
+    },
+    "elapsed": 31.9
+  }
+]

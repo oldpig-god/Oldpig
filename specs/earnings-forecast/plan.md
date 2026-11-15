@@ -1,6 +1,6 @@
 # 盈利预测第一版实施计划（已确认）
 
-前置结论见[data-inventory.md](data-inventory.md)。用户已确认推进。数据层进展见 ../../docs-earnings-data.md，尚无模型成绩。
+前置结论见[data-inventory.md](data-inventory.md)。用户已确认推进。数据层进展见 ../../docs-earnings-data.md；第一轮基准、树模型和校准结果见 ../../docs-earnings-evaluation.md。47家公司历史验证未证明增强树胜过季节基准，最终两季度继续保留。会计分解层、逐日nowcasting与盈利预测页面待完成。
 
 ## 固定任务定义
 

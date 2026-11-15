@@ -1,0 +1,523 @@
+{
+  "companies": [
+    {
+      "entity_id": "cninfo_9900000161",
+      "reextracted": 0,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_9900002961",
+      "reextracted": 19,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900003701",
+      "reextracted": 10,
+      "direct_quarter_reports": 4,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_9900003825",
+      "reextracted": 0,
+      "direct_quarter_reports": 8,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900003904",
+      "reextracted": 0,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 3
+    },
+    {
+      "entity_id": "cninfo_9900004143",
+      "reextracted": 3,
+      "direct_quarter_reports": 6,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_9900005970",
+      "reextracted": 0,
+      "direct_quarter_reports": 6,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_9900011647",
+      "reextracted": 20,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900012688",
+      "reextracted": 21,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900013929",
+      "reextracted": 22,
+      "direct_quarter_reports": 17,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900014448",
+      "reextracted": 8,
+      "direct_quarter_reports": 15,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900014777",
+      "reextracted": 3,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900022338",
+      "reextracted": 0,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_9900022995",
+      "reextracted": 0,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_9900035335",
+      "reextracted": 6,
+      "direct_quarter_reports": 10,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_9900036236",
+      "reextracted": 8,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_GD165627",
+      "reextracted": 2,
+      "direct_quarter_reports": 11,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gshk0001211",
+      "reextracted": 16,
+      "direct_quarter_reports": 12,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssh0600011",
+      "reextracted": 7,
+      "direct_quarter_reports": 11,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssh0600031",
+      "reextracted": 10,
+      "direct_quarter_reports": 13,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssh0600036",
+      "reextracted": 0,
+      "direct_quarter_reports": 0,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssh0600050",
+      "reextracted": 0,
+      "direct_quarter_reports": 15,
+      "duplicate_reports": 4
+    },
+    {
+      "entity_id": "cninfo_gssh0600066",
+      "reextracted": 13,
+      "direct_quarter_reports": 11,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssh0600104",
+      "reextracted": 0,
+      "direct_quarter_reports": 13,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600276",
+      "reextracted": 13,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600309",
+      "reextracted": 9,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 3
+    },
+    {
+      "entity_id": "cninfo_gssh0600346",
+      "reextracted": 10,
+      "direct_quarter_reports": 13,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssh0600436",
+      "reextracted": 1,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600438",
+      "reextracted": 0,
+      "direct_quarter_reports": 15,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600519",
+      "reextracted": 12,
+      "direct_quarter_reports": 13,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssh0600585",
+      "reextracted": 6,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600690",
+      "reextracted": 4,
+      "direct_quarter_reports": 15,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssh0600809",
+      "reextracted": 0,
+      "direct_quarter_reports": 17,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600887",
+      "reextracted": 0,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssh0600900",
+      "reextracted": 5,
+      "direct_quarter_reports": 14,
+      "duplicate_reports": 2
+    },
+    {
+      "entity_id": "cninfo_gssz0000002",
+      "reextracted": 11,
+      "direct_quarter_reports": 17,
+      "duplicate_reports": 4
+    },
+    {
+      "entity_id": "cninfo_gssz0000005",
+      "reextracted": 5,
+      "direct_quarter_reports": 9,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000023",
+      "reextracted": 0,
+      "direct_quarter_reports": 10,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000046",
+      "reextracted": 0,
+      "direct_quarter_reports": 10,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000150",
+      "reextracted": 0,
+      "direct_quarter_reports": 7,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000416",
+      "reextracted": 0,
+      "direct_quarter_reports": 11,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000538",
+      "reextracted": 16,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 1
+    },
+    {
+      "entity_id": "cninfo_gssz0000651",
+      "reextracted": 8,
+      "direct_quarter_reports": 16,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000858",
+      "reextracted": 9,
+      "direct_quarter_reports": 13,
+      "duplicate_reports": 0
+    },
+    {
+      "entity_id": "cninfo_gssz0000876",
+      "reextracted": 0,
+      "direct_quarter_reports": 8,
+      "duplicate_reports": 0
+    }
+  ],
+  "corrections": [
+    {
+      "announcement_id": "1206289033",
+      "title": "2019年第一季度报告全文（更新后）",
+      "report_period": "2019-03-31",
+      "status": "data_error",
+      "error": "原文证券代码需要核对"
+    },
+    {
+      "announcement_id": "1206400486",
+      "title": "2018年年度报告（更新后）",
+      "report_period": "2018-12-31",
+      "status": "needs_revision_link",
+      "document_id": "da0022db71d7043fa463d50e1c3eef7599ea20ea590239e88725dd2e893fd0c2",
+      "fields": 25
+    },
+    {
+      "announcement_id": "1207837552",
+      "title": "2019年年度报告（更新后）",
+      "report_period": "2019-12-31",
+      "status": "needs_revision_link",
+      "document_id": "5128641931cfb905b810c688879910797ce21dc84400ca3fdb02996dd605ba84",
+      "fields": 23
+    },
+    {
+      "announcement_id": "1208773930",
+      "title": "2020年第三季度报告全文（更新后）",
+      "report_period": "2020-09-30",
+      "status": "data_error",
+      "error": "原文证券代码需要核对"
+    },
+    {
+      "announcement_id": "1208773931",
+      "title": "2020年第三季度报告正文（更新后）",
+      "report_period": "2020-09-30",
+      "status": "needs_revision_link",
+      "document_id": "68ec3632583cdd575d0ffee45ea9a4d2248c0aa940570244d13931de5e0d8dc2",
+      "fields": 1
+    },
+    {
+      "announcement_id": "1209449895",
+      "title": "2020年年度报告（更新后）",
+      "report_period": "2020-12-31",
+      "status": "needs_revision_link",
+      "document_id": "05e12a896a95e4bd16260a098c3113f5e6630c4d2d769c47cea0f672b278b3ab",
+      "fields": 0
+    },
+    {
+      "announcement_id": "1209463080",
+      "title": "紫金矿业集团股份有限公司2020年年度报告（更新后）",
+      "report_period": "2020-12-31",
+      "status": "data_error",
+      "error": "原文证券代码需要核对"
+    },
+    {
+      "announcement_id": "1210161818",
+      "title": "恒瑞医药2021年第一季度报告正文（更正后）",
+      "report_period": "2021-03-31",
+      "status": "created",
+      "document_id": "d4791969f8d7d08d99501b796d3123efbb8e7013706daa6ad3327173a88f5a73",
+      "event_id": "d59189194d8026c5b985c3cc34bb086b9040a863bef65ed1c771702273754d44",
+      "fields": 1,
+      "core_profit": "1471304323.43",
+      "available_at": "2021-06-05T00:00:00+08:00",
+      "scope_reviewed": false,
+      "issues": [
+        "assets 未提取",
+        "revenue 未提取",
+        "parent_profit 未提取",
+        "operating_cashflow 未提取"
+      ],
+      "proofs": {
+        "core_profit": {
+          "raw_value": "1,471,304,323.43",
+          "unit": "元",
+          "page": 2,
+          "quote": "归属于上市公司股东的扣除非         1,471,304,323.43        1,276,423,724.90                15.27",
+          "column": "current_ytd",
+          "label_page": 2,
+          "label_quote": "归属于上市公司股东的扣除非         1,471,304,323.43        1,276,423,724.90                15.27"
+        }
+      }
+    },
+    {
+      "announcement_id": "1210161819",
+      "title": "恒瑞医药2021年第一季度报告（更正后）",
+      "report_period": "2021-03-31",
+      "status": "created",
+      "document_id": "43289619de0a630aac1c5235fc9c3af0c1937786eaccefd713edfec88864e5f5",
+      "event_id": "eadda37763071e55597f3484c6cde6c1fd189bbe248241d6f1e611714dab1d40",
+      "fields": 27,
+      "core_profit": "1471304323.43",
+      "available_at": "2021-06-05T00:00:00+08:00",
+      "scope_reviewed": false,
+      "issues": [],
+      "proofs": {
+        "assets": {
+          "raw_value": "36,157,171,063.36",
+          "unit": "元",
+          "page": 7,
+          "quote": "\n   资产总计                                 36,157,171,063.36   34,729,589,915.43",
+          "column": "current_period_end"
+        },
+        "parent_profit": {
+          "raw_value": "1,496,547,606.47",
+          "unit": "元",
+          "page": 10,
+          "quote": "\n  1.归属于母公司股东的净利润（净亏损以“-”号填列）       1,496,547,606.47    1,315,425,921.76",
+          "column": "current_ytd"
+        },
+        "core_profit": {
+          "raw_value": "1,471,304,323.43",
+          "unit": "元",
+          "page": 3,
+          "quote": "归属于上市公司股东的扣除非         1,471,304,323.43        1,276,423,724.90                 15.27",
+          "column": "current_ytd",
+          "label_page": 3,
+          "label_quote": "归属于上市公司股东的扣除非         1,471,304,323.43        1,276,423,724.90                 15.27"
+        }
+      }
+    },
+    {
+      "announcement_id": "1210920839",
+      "title": "2021年半年度报告（更新后）",
+      "report_period": "2021-06-30",
+      "status": "needs_revision_link",
+      "document_id": "41286b8a84193d650fa0e40d54ac6c8c21b5c785d93448395f96ca5f976c4dd1",
+      "fields": 26
+    },
+    {
+      "announcement_id": "1210937568",
+      "title": "2021年半年度报告（更新后）",
+      "report_period": "2021-06-30",
+      "status": "data_error",
+      "error": "原文证券代码需要核对"
+    },
+    {
+      "announcement_id": "1213104187",
+      "title": "通威股份有限公司2022年第一季度报告（修订稿）",
+      "report_period": "2022-03-31",
+      "status": "needs_revision_link",
+      "document_id": "ff3c2bf645bf608a6a22a367e4e1e976b46d3e0d83035a6025510ba26ae7fd6d",
+      "fields": 27
+    },
+    {
+      "announcement_id": "1213265632",
+      "title": "2021年年度报告（更新前）",
+      "report_period": "2021-12-31",
+      "status": "needs_revision_link",
+      "document_id": "0292cf12c734162ca1abde5546d7da383cb6be00c5b7ea23fc01300d969961fd",
+      "fields": 26
+    },
+    {
+      "announcement_id": "1214577336",
+      "title": "2021年年度报告全文（更新后）",
+      "report_period": "2021-12-31",
+      "status": "needs_revision_link",
+      "document_id": "29a1e3b195b2cf8e4c14dc72305a7665eb52552472732aac6437ba17ded28c04",
+      "fields": 26
+    },
+    {
+      "announcement_id": "1216694445",
+      "title": "2022年年度报告（更新前）",
+      "report_period": "2022-12-31",
+      "status": "needs_revision_link",
+      "document_id": "ab15398bb78d73c88436e99295b91529833f29346203b8efcbc21bbc5dd3eb95",
+      "fields": 25
+    },
+    {
+      "announcement_id": "1217010215",
+      "title": "深圳市天地(集团)股份有限公司2022年年度报告（更新后）",
+      "report_period": "2022-12-31",
+      "status": "needs_revision_link",
+      "document_id": "2afaf0e0a570c37c25f67452bd53e2a0a99bd6e00677aec26ebc09f7056a9ff0",
+      "fields": 25
+    },
+    {
+      "announcement_id": "1223311586",
+      "title": "2025年一季度报告（更新前）",
+      "report_period": "2025-03-31",
+      "status": "needs_revision_link",
+      "document_id": "f242a26507538e6e66234cb272b66cbc65b16dd0ffa15806ea0168914138f8e3",
+      "fields": 26
+    },
+    {
+      "announcement_id": "1224596951",
+      "title": "2025年半年度报告（更新前）",
+      "report_period": "2025-06-30",
+      "status": "needs_revision_link",
+      "document_id": "effd07996d5698d6228ac60095d04be80eec6b96cff597513f7e33119d4b535b",
+      "fields": 26
+    },
+    {
+      "announcement_id": "1224774300",
+      "title": "2025年三季度报告（更新前）",
+      "report_period": "2025-09-30",
+      "status": "needs_revision_link",
+      "document_id": "9cf6be70bc70e47759c7b7875a6243f294b9383fb12023cc667a32f6c6bab484",
+      "fields": 27
+    },
+    {
+      "announcement_id": "1224831827",
+      "title": "2022年年度报告全文（更正后）",
+      "report_period": "2022-12-31",
+      "status": "needs_revision_link",
+      "document_id": "78ab2996db2e21f80b5fae23ea29383c5a45dc5f7dd719439851a9ac8c590e53",
+      "fields": 1
+    },
+    {
+      "announcement_id": "1224831828",
+      "title": "2024年年度报告全文（更正后）",
+      "report_period": "2024-12-31",
+      "status": "needs_revision_link",
+      "document_id": "0b6a4db32367953952d143d2b9fd1065fb05b105486e7795685e8820b597bb3c",
+      "fields": 28
+    },
+    {
+      "announcement_id": "1224831829",
+      "title": "2023年年度报告全文（更正后）",
+      "report_period": "2023-12-31",
+      "status": "needs_revision_link",
+      "document_id": "d4e5e23e23767ad0f6bdd197f35ce3da4b6bba7d7629d295037a645c894884ab",
+      "fields": 1
+    },
+    {
+      "announcement_id": "1225273123",
+      "title": "2025年第三季度报告（更新后）",
+      "report_period": "2025-09-30",
+      "status": "needs_revision_link",
+      "document_id": "44e79bf4086a310869656e484c16f1339592d2aa1652021e2538688cdc034c85",
+      "fields": 27
+    },
+    {
+      "announcement_id": "1225273125",
+      "title": "2025年第一季度报告（更新后）",
+      "report_period": "2025-03-31",
+      "status": "needs_revision_link",
+      "document_id": "06bb4e3d4a802a12e31594710f283b9ed6179ad420c024061427cbb581c7aa47",
+      "fields": 25
+    },
+    {
+      "announcement_id": "1225273126",
+      "title": "2025年半年度报告（更新后）",
+      "report_period": "2025-06-30",
+      "status": "needs_revision_link",
+      "document_id": "5166fdceb9173548cfe8dd594e0376397ee960b0c47bdeed970d73a617740285",
+      "fields": 26
+    }
+  ]
+}

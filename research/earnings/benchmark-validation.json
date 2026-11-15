@@ -1,0 +1,47 @@
+{
+  "replay_exact": true,
+  "experiment_id": "55da5d1d6276d777d0ade5788011669f41b60cb1404437ae26541b7b3aa463a2",
+  "report_id": "78bc70a700357df6beb1dfdff29bfc8085681b384d323eb3aa3454dd5a34b8ef",
+  "formal_leak_rejected": true,
+  "reason": "发现预测时点之后的特征",
+  "real_scaled_mae": 0.0070196137626189975,
+  "intentionally_leaked_oracle_mae": 0.0,
+  "registry_counts": {
+    "experiments": 26,
+    "configurations": 9,
+    "failures": 3
+  },
+  "decimal_baseline_checks": [
+    {
+      "symbol": "600031.SH",
+      "target_period": "2026-03-31",
+      "prediction_at": "2026-04-01T08:30:00+08:00",
+      "year_ago": "2403303000",
+      "recent_period": "2025-09-30",
+      "recent_profit": "1696805000",
+      "recent_year_ago": "1502002000",
+      "expected_prediction": "2598106000",
+      "engine_prediction": 2598106000.0,
+      "evidence_parents": [
+        "195b8a674452762ec79fbb719a1744371696535d80119d2a0f9df8fe61f26868",
+        "91f9d65f888acdc9bae29d7f803ede6510e670e7b0883ee96460fd1fbbe3695b",
+        "b8b964fd5698ce53743f9c2278e9e3e7b145924e4ab509b6c45824a42db87d55"
+      ]
+    },
+    {
+      "symbol": "000005.SZ",
+      "target_period": "2023-09-30",
+      "prediction_at": "2023-10-01T08:30:00+08:00",
+      "year_ago": "3068665.74",
+      "recent_period": "2022-09-30",
+      "recent_profit": "3068665.74",
+      "recent_year_ago": "-17691197.40",
+      "expected_prediction": "23828528.88",
+      "engine_prediction": 23828528.880000003,
+      "evidence_parents": [
+        "f1062667802780d897cace35d7ea2d195b6684db339aabc133c4bdcdc0573c5c",
+        "f2d6f2579950cde4ff89e9bd66c3e4523ee0250383193169b05e35b8e852d83c"
+      ]
+    }
+  ]
+}

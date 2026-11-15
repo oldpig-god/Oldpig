@@ -1,0 +1,631 @@
+{
+  "plan_id": "46a813e78f0e3fee70dc3c0e1d9268e94e94ba88bedacfae4dd7d6c5c8d22a83",
+  "companies": [
+    {
+      "symbol": "002384.SZ",
+      "name": "东山精密",
+      "entity_id": "cninfo_9900011647",
+      "run_id": "d3233e3c4a037a41223a10872d3492ba7740842f1e2ab756e66ccd65a2ca8ead",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "existing": 24,
+        "created": 8
+      }
+    },
+    {
+      "symbol": "603256.SH",
+      "name": "宏和科技",
+      "entity_id": "cninfo_9900035335",
+      "run_id": "0cbc34687ff1621a0a6694f3f99ce8c3cec0cba91edcb1a79484ce8500d6def1",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 24,
+        "created": 6
+      }
+    },
+    {
+      "symbol": "002938.SZ",
+      "name": "鹏鼎控股",
+      "entity_id": "cninfo_9900036236",
+      "run_id": "f55a90232a22cf7a4ae3f26e569dddbe9ae33324570fb25b68d02aaffc49b17a",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 4,
+        "existing": 24,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "002484.SZ",
+      "name": "江海股份",
+      "entity_id": "cninfo_9900014777",
+      "run_id": "ac6a138892e6491e8b182d540589433a1619ca329c72a516044f8ed90b4b4217",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "existing": 24,
+        "created": 8
+      }
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "贵州茅台",
+      "entity_id": "cninfo_gssh0600519",
+      "run_id": "e9bc14461d460d08027fb00bda32f63f18fe17898910b9604bfc748bb677f498",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_accounting_review": 1,
+        "needs_extraction": 1,
+        "existing": 24,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "601088.SH",
+      "name": "中国神华",
+      "entity_id": "cninfo_9900003701",
+      "run_id": "c9fbab75a675a16874616741d2f35f7245536f7ac5208e0aaad6d9fb8c804807",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 19,
+        "created": 15
+      }
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "五粮液",
+      "entity_id": "cninfo_gssz0000858",
+      "run_id": "1ce12bd226c37b789a70ebf9bd08230271ac847f7bd05cd305287e26ace26d7a",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 20,
+        "created": 4,
+        "announcement_only": 1,
+        "data_error": 10,
+        "needs_revision_link": 7
+      }
+    },
+    {
+      "symbol": "600036.SH",
+      "name": "招商银行",
+      "entity_id": "cninfo_gssh0600036",
+      "run_id": "ee33cab6dad2dfb6a4be13d605e66db8044f47915acf5ee0e49e5284fc79ba46",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 17,
+        "needs_extraction": 16,
+        "created": 2
+      }
+    },
+    {
+      "symbol": "000002.SZ",
+      "name": "万科A",
+      "entity_id": "cninfo_gssz0000002",
+      "run_id": "7c7f1942371fb533bf6095cf1cd65efd8f99c48c0bf658fd1a75bc0cbac2237e",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 24,
+        "created": 12
+      }
+    },
+    {
+      "symbol": "600031.SH",
+      "name": "三一重工",
+      "entity_id": "cninfo_gssh0600031",
+      "run_id": "76f1cf85ade173e19be92de1f608eec6b9a9a263c91fc78f402f99b0fb75635b",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_accounting_review": 1,
+        "needs_extraction": 1,
+        "existing": 23,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "002463.SZ",
+      "name": "沪电股份",
+      "entity_id": "cninfo_9900013929",
+      "run_id": "61683fe97745389c4a382312dc72b7b24ce422ac4c587a7226dff7ac5c4457fe",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 26,
+        "created": 7,
+        "announcement_only": 2,
+        "needs_extraction": 1,
+        "data_error": 5,
+        "needs_revision_link": 1
+      }
+    },
+    {
+      "symbol": "000005.SZ",
+      "name": "ST星源",
+      "entity_id": "cninfo_gssz0000005",
+      "run_id": "dfcf0f54af74a2d8428bf06d749d1988a242d6181726286c3372d8ae529f2067",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 11,
+        "created": 6,
+        "needs_extraction": 2,
+        "data_error": 5,
+        "needs_revision_link": 1
+      }
+    },
+    {
+      "symbol": "600066.SH",
+      "name": "宇通客车",
+      "entity_id": "cninfo_gssh0600066",
+      "run_id": "abf5b5d64a841f5c6349b8774b403a8d4998273b26f6327138c6bd4a19390454",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 2,
+        "existing": 23,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "000338.SZ",
+      "name": "潍柴动力",
+      "entity_id": "cninfo_9900002961",
+      "run_id": "4953b127e14bcb709c3031c2793f82759cc92c866ccb051eee239324c1f0ac09",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "existing": 24,
+        "created": 8
+      }
+    },
+    {
+      "symbol": "600585.SH",
+      "name": "海螺水泥",
+      "entity_id": "cninfo_gssh0600585",
+      "run_id": "5201afbe34f1ba21bafe32098fbf643771861a701c850ddb7aa05aeeb09c69e5",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 9,
+        "existing": 15,
+        "created": 12
+      }
+    },
+    {
+      "symbol": "002594.SZ",
+      "name": "比亚迪",
+      "entity_id": "cninfo_gshk0001211",
+      "run_id": "543e2eefe2480399f3dd31c9a53d452e8e0dc306dff8361549eeaa3c62e65f33",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "needs_extraction": 4,
+        "existing": 20,
+        "created": 8
+      }
+    },
+    {
+      "symbol": "000333.SZ",
+      "name": "美的集团",
+      "entity_id": "cninfo_9900005965",
+      "run_id": "66e0b03e1718c7a529ce32f512ac4c4fb3ea535b1404630910a30ba84da3c707",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "needs_extraction": 32
+      }
+    },
+    {
+      "symbol": "000651.SZ",
+      "name": "格力电器",
+      "entity_id": "cninfo_gssz0000651",
+      "run_id": "3347f54ddecafcaa2cd5f78799c5a620c9e0df1690f2954ef4b1ef7bfef557a8",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "announcement_only": 1,
+        "existing": 24,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600690.SH",
+      "name": "海尔智家",
+      "entity_id": "cninfo_gssh0600690",
+      "run_id": "3ca1a3235af1039b692d14abe56af7c21302ce747fe6588e46eef931aff2ecb9",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 23,
+        "created": 10
+      }
+    },
+    {
+      "symbol": "002475.SZ",
+      "name": "立讯精密",
+      "entity_id": "cninfo_9900014448",
+      "run_id": "b44d7598db1ba8bac3f7be46db9a00cf369838d31ef6d5347eaf3771374fcd71",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 23,
+        "created": 7,
+        "announcement_only": 1,
+        "data_error": 6,
+        "needs_revision_link": 1
+      }
+    },
+    {
+      "symbol": "002415.SZ",
+      "name": "海康威视",
+      "entity_id": "cninfo_9900012688",
+      "run_id": "0c80739c81ac96f4eb2ec36358915e2ce95b5eaaf5c03acec6f88e94fbaf67f1",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "existing": 24,
+        "created": 8
+      }
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "宁德时代",
+      "entity_id": "cninfo_GD165627",
+      "run_id": "faefc960360d3525a5ab112c536c40b3658c42fc116db90e28f2a6d37931f3b8",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 24,
+        "created": 8
+      }
+    },
+    {
+      "symbol": "601899.SH",
+      "name": "紫金矿业",
+      "entity_id": "cninfo_9900004143",
+      "run_id": "4f91c6a762323dc0ce561c28c0f8230bfbe9c2e9bf62aa549919e0eb231836ef",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 13,
+        "needs_accounting_review": 1,
+        "created": 7,
+        "needs_extraction": 1,
+        "data_error": 21
+      }
+    },
+    {
+      "symbol": "600028.SH",
+      "name": "中国石化",
+      "entity_id": "cninfo_gssh0600028",
+      "run_id": "62988e752bf3ecbc7281d1eea8aed5229fe1b170976bd47a72930a107391073f",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 27,
+        "needs_extraction": 7
+      }
+    },
+    {
+      "symbol": "601857.SH",
+      "name": "中国石油",
+      "entity_id": "cninfo_9900003825",
+      "run_id": "58c6e01c155d8c0b07c66c1de255c12702135014b1aa89e025a3fd2528bd8f4c",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 6,
+        "existing": 14,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600309.SH",
+      "name": "万华化学",
+      "entity_id": "cninfo_gssh0600309",
+      "run_id": "abd189f477dfeeccfe37e799c39bdaf8d238cfa6ab89d26581bc9661c7294c50",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 23,
+        "created": 11
+      }
+    },
+    {
+      "symbol": "600346.SH",
+      "name": "恒力石化",
+      "entity_id": "cninfo_gssh0600346",
+      "run_id": "2de775543955bf6e77939b4bb26cfe43f154e796956d2ca731593d7c3e194f7e",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 2,
+        "existing": 25,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600436.SH",
+      "name": "片仔癀",
+      "entity_id": "cninfo_gssh0600436",
+      "run_id": "2af4764a825716b9b42adbeccee95cf3c6a7d67ff2722e873a8514391da0e675",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 25,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600276.SH",
+      "name": "恒瑞医药",
+      "entity_id": "cninfo_gssh0600276",
+      "run_id": "0527b4da28309eb28c58e741993781c7c5ea883a2a4b60eb5e43f5c2a75add77",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 25,
+        "created": 9,
+        "announcement_only": 1,
+        "needs_extraction": 1,
+        "data_error": 2
+      }
+    },
+    {
+      "symbol": "000538.SZ",
+      "name": "云南白药",
+      "entity_id": "cninfo_gssz0000538",
+      "run_id": "a1fc0908f559d3dace07a10f31ad302fc2296e80d683beeeb031553932f7d15d",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 4,
+        "existing": 24,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "长江电力",
+      "entity_id": "cninfo_gssh0600900",
+      "run_id": "5de32d16f043f4d31b79060d8c9b6e645a4662e6c0c636adc96e0a5bbb41f9aa",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 25,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600011.SH",
+      "name": "华能国际",
+      "entity_id": "cninfo_gssh0600011",
+      "run_id": "1b9bdcb35a405f30653e87eaa800f0d4aea1ea021194b85d866070314c693715",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 25,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "601668.SH",
+      "name": "中国建筑",
+      "entity_id": "cninfo_9900005970",
+      "run_id": "19d308bb07471badc9139bb4a4c05a06d28e93e180cc1bf7ae92cdc8d3c75f3a",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 16,
+        "needs_accounting_review": 1,
+        "created": 7,
+        "needs_extraction": 7,
+        "data_error": 4
+      }
+    },
+    {
+      "symbol": "601390.SH",
+      "name": "中国中铁",
+      "entity_id": "cninfo_9900003904",
+      "run_id": "99677dc3344e720ed05947ff93ebccd347a5d789abf1df25df7952567b746c78",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 3,
+        "existing": 22,
+        "created": 10
+      }
+    },
+    {
+      "symbol": "600048.SH",
+      "name": "保利发展",
+      "entity_id": "cninfo_9900000161",
+      "run_id": "f4184a5a56a966ecec5bd9288ad38ce10d15776bfbaa6ffc756d57cd3ef04740",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "existing": 25,
+        "created": 10
+      }
+    },
+    {
+      "symbol": "600104.SH",
+      "name": "上汽集团",
+      "entity_id": "cninfo_gssh0600104",
+      "run_id": "a437c1de254e9445aeaaf43d0089f9bd1f55198bbe792d852ee20918fa8680e4",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_accounting_review": 1,
+        "needs_extraction": 1,
+        "existing": 24,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600050.SH",
+      "name": "中国联通",
+      "entity_id": "cninfo_gssh0600050",
+      "run_id": "512c30f9d941ca4f02065899e7b17954f7f29bdf525781ee66ffc8ae7051ec77",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 27,
+        "created": 10
+      }
+    },
+    {
+      "symbol": "600887.SH",
+      "name": "伊利股份",
+      "entity_id": "cninfo_gssh0600887",
+      "run_id": "476243137d32218fb88b9685c76ce47c82b4639ad47fb6d293355cdcdf51844d",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 25,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600809.SH",
+      "name": "山西汾酒",
+      "entity_id": "cninfo_gssh0600809",
+      "run_id": "d1a54629340eea6407803205d3726399326906e6911f1fd5548bf91a61aa4d42",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "existing": 23,
+        "created": 10
+      }
+    },
+    {
+      "symbol": "002714.SZ",
+      "name": "牧原股份",
+      "entity_id": "cninfo_9900022995",
+      "run_id": "ae87741cec942bebc286e017628cbe72e3c65eed6e8f3f43d82de1a13b680a48",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 10,
+        "announcement_only": 1,
+        "existing": 21,
+        "created": 6
+      }
+    },
+    {
+      "symbol": "000876.SZ",
+      "name": "新希望",
+      "entity_id": "cninfo_gssz0000876",
+      "run_id": "8affcb1d39a3512dd3e73b3407a25f11f3386a1ad0583fc21b447f1eeed9bfe8",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 21,
+        "existing": 7,
+        "created": 9
+      }
+    },
+    {
+      "symbol": "600438.SH",
+      "name": "通威股份",
+      "entity_id": "cninfo_gssh0600438",
+      "run_id": "a59cbbcb7801e7366d1dda6fcb8ec3ed97f60985b2c8929518a348db68ff782d",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_accounting_review": 1,
+        "needs_extraction": 1,
+        "needs_revision_link": 1,
+        "created": 33
+      }
+    },
+    {
+      "symbol": "601012.SH",
+      "name": "隆基绿能",
+      "entity_id": "cninfo_9900022338",
+      "run_id": "f9c241292b8a088237ce113bea9a75a99332e93fec5c35e187e12460e1ff1e8c",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "needs_extraction": 1,
+        "created": 36
+      }
+    },
+    {
+      "symbol": "000023.SZ",
+      "name": "*ST深天",
+      "entity_id": "cninfo_gssz0000023",
+      "run_id": "11c8ae2ebf81be262d77fcf3c1e07dff6f9aa6bd7236f4779dbb50c473cb451c",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "announcement_only": 1,
+        "needs_revision_link": 2,
+        "created": 22
+      }
+    },
+    {
+      "symbol": "000046.SZ",
+      "name": "*ST泛海",
+      "entity_id": "cninfo_gssz0000046",
+      "run_id": "729cdd135f42ff13f97b8c5d7fd6df9d309b0ce25b1d3dd55239702e889db30a",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "created": 20
+      }
+    },
+    {
+      "symbol": "000150.SZ",
+      "name": "*ST宜康",
+      "entity_id": "cninfo_gssz0000150",
+      "run_id": "340216b1dd8de800bae6a2b8e6957aa85e822d225afd580ac0810bed411544e8",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "announcement_only": 2,
+        "needs_revision_link": 3,
+        "created": 16
+      }
+    },
+    {
+      "symbol": "000416.SZ",
+      "name": "*ST民控",
+      "entity_id": "cninfo_gssz0000416",
+      "run_id": "486c49b28c3fbacc0e0d610b8e8783da96b1b3fa088e6b878cd454a4e34fe38b",
+      "resumed": false,
+      "remaining": 0,
+      "statuses": {
+        "data_error": 5,
+        "created": 22
+      }
+    }
+  ]
+}

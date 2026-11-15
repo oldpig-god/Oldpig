@@ -1,0 +1,98 @@
+[
+  {
+    "symbol": "000023.SZ",
+    "status": "verified",
+    "records": [
+      {
+        "entity_id": "cninfo_gssz0000023",
+        "symbol": "000023.SZ",
+        "field": "delisted",
+        "value": true,
+        "published_at": "2024-09-02",
+        "time_precision": "day",
+        "ingested_at": "2026-11-15T14:45:10.277323+08:00",
+        "effective_at": "2024-09-02T00:00:00+08:00",
+        "provenance": "reconstructed_pit",
+        "document_id": "31cb50c19d06065d00b3969515a6b8726f611c2a1b78b77bb8b680545ab2211c",
+        "source_url": "https://static.cninfo.com.cn/finalpage/2024-09-02/1221092726.PDF",
+        "proof": {
+          "page": 1,
+          "quote": "\n\n   5、摘牌日期：2024 年9 月2 日"
+        },
+        "id": "2016885d67bcdd6cb7a30869efa0f2ee5d09cb54a349fa7349e53304da90ad5a"
+      }
+    ]
+  },
+  {
+    "symbol": "000046.SZ",
+    "status": "verified",
+    "records": [
+      {
+        "entity_id": "cninfo_gssz0000046",
+        "symbol": "000046.SZ",
+        "field": "delisted",
+        "value": true,
+        "published_at": "2024-02-07",
+        "time_precision": "day",
+        "ingested_at": "2026-11-15T14:45:10.949677+08:00",
+        "effective_at": "2024-02-07T00:00:00+08:00",
+        "provenance": "reconstructed_pit",
+        "document_id": "6c6dd397bf83868c6f293fe3283e7202899223338cfd421d546163668bd7c38c",
+        "source_url": "https://static.cninfo.com.cn/finalpage/2024-02-07/1219111695.PDF",
+        "proof": {
+          "page": 2,
+          "quote": "  4、终止上市决定日期：2024 年1 月26 日\n\n   5、摘牌日期：2024 年2 月7 日"
+        },
+        "id": "efa408674e9a4dd7bb53bb04e9d0faef9fc16b74b782c38f16b6245fcb51afdd"
+      }
+    ]
+  },
+  {
+    "symbol": "000150.SZ",
+    "status": "verified",
+    "records": [
+      {
+        "entity_id": "cninfo_gssz0000150",
+        "symbol": "000150.SZ",
+        "field": "delisted",
+        "value": true,
+        "published_at": "2023-06-09",
+        "time_precision": "day",
+        "ingested_at": "2026-11-15T14:45:11.703372+08:00",
+        "effective_at": "2023-06-09T00:00:00+08:00",
+        "provenance": "reconstructed_pit",
+        "document_id": "be6cbe3bcbcf83e2545896cab2fe73b77967b692581e2c3a3bb986aa4b81dd15",
+        "source_url": "https://static.cninfo.com.cn/finalpage/2023-06-09/1217022522.PDF",
+        "proof": {
+          "page": 2,
+          "quote": "  （五）摘牌日期：2023 年6 月9 日\n\n"
+        },
+        "id": "24d4942bcdadf2f9629e7b0b4fcf720c0a88fd09db9a31ec88ad7f15dc7b1607"
+      }
+    ]
+  },
+  {
+    "symbol": "000416.SZ",
+    "status": "verified",
+    "records": [
+      {
+        "entity_id": "cninfo_gssz0000416",
+        "symbol": "000416.SZ",
+        "field": "delisted",
+        "value": true,
+        "published_at": "2024-06-04",
+        "time_precision": "day",
+        "ingested_at": "2026-11-15T14:45:12.511652+08:00",
+        "effective_at": "2024-06-05T00:00:00+08:00",
+        "provenance": "reconstructed_pit",
+        "document_id": "461befbbdfb97742896906cc0c4908b00316d818691d9db5a002e765a617fdd0",
+        "source_url": "https://static.cninfo.com.cn/finalpage/2024-06-04/1220247240.PDF",
+        "proof": {
+          "page": 2,
+          "quote": "  4、终止上市决定日期：2024年6月3日\n\n   5、摘牌日期：2024年6月5日"
+        },
+        "id": "f385294837bd5457425d837aa270da9966c074905eb4a7ba3130bcd9850dfb6a"
+      }
+    ]
+  }
+]
