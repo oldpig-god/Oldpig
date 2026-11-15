@@ -9,6 +9,55 @@ from .schema import DataError, canonical, digest, identity
 
 PREFIX = 'earnings/'
 
+class SegmentedStore:
+    """Keep large original PDFs below the existing cloud bucket's 50 MiB object limit.
+
+    Dataset manifests hash logical JSON values. Storage parts are an internal encoding,
+    so the same frozen manifest reads identically from local files and cloud storage.
+    """
+    def __init__(self,store,inline_chars=32*1024*1024,part_chars=8*1024*1024):
+        self.base=store
+        self.inline_chars=inline_chars
+        self.part_chars=part_chars
+
+    def create_json(self,key,value):
+        if not key.startswith(PREFIX+'raw/') or len(value['content_base64'])<=self.inline_chars:
+            return self.base.create_json(key,value)
+        text=value['content_base64']
+        parts=[]
+        for start in range(0,len(text),self.part_chars):
+            part=dict(text=text[start:start+self.part_chars])
+            part_hash=digest(part)
+            part_key=PREFIX+'blob_parts/'+part_hash+'.json.gz'
+            if not self.base.create_json(part_key,part) and self.base.get_json(part_key)!=part:
+                raise DataError('原文存储分块内容冲突')
+            parts.append(dict(key=part_key,sha256=part_hash))
+        descriptor=dict(storage_encoding='earnings-base64-parts-v1',
+                        metadata={k:v for k,v in value.items() if k!='content_base64'},
+                        parts=parts,value_hash=digest(value))
+        return self.base.create_json(key,descriptor)
+
+    def get_json(self,key,optional=False):
+        value=self.base.get_json(key,optional=optional)
+        if not isinstance(value,dict) or value.get('storage_encoding')!='earnings-base64-parts-v1':
+            return value
+        pieces=[]
+        for item in value['parts']:
+            part=self.base.get_json(item['key'])
+            if digest(part)!=item['sha256']:raise DataError('原文存储分块哈希不符')
+            pieces.append(part['text'])
+        original=dict(value['metadata'],content_base64=''.join(pieces))
+        if digest(original)!=value['value_hash']:raise DataError('重组原文内容哈希不符')
+        return original
+
+    def list_keys(self,prefix):
+        return [k for k in self.base.list_keys(prefix) if not k.startswith(PREFIX+'blob_parts/')]
+
+
+def logical_store(store):
+    return store if isinstance(store,SegmentedStore) else SegmentedStore(store)
+
+
 class LocalStore:
     """Atomic create-only files; also works on Windows without hard links."""
     def __init__(self, root):
@@ -52,7 +101,7 @@ class LocalStore:
 
 class Repository:
     def __init__(self, store):
-        self.store = store
+        self.store = logical_store(store)
 
     def append(self, key, value):
         if self.store.create_json(key, value):

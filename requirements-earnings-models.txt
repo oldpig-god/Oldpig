@@ -1,0 +1,6 @@
+# Offline training only; keep cloud HTTP functions on the base requirements.
+scikit-learn==1.7.2
+numpy==2.2.6
+scipy==1.15.2
+threadpoolctl==3.6.0
+joblib==1.5.3

@@ -76,7 +76,17 @@ def extract(pages,report_period):
                     if len(values)!=2:continue
                     facts[metric]=proof(values[0],statement_unit,index+1,row,'current_ytd' if section!='合并资产负债表' else 'current_period_end')
                     break
-    # Deducted parent profit appears in the key financial-data table, not the income statement.
+    core=extract_core(pages,report_period)
+    if core:facts['core_profit']=core
+    if 'core_profit' not in facts:issues.append('扣非利润单元格需要核对')
+    for name in ('assets','revenue','parent_profit','operating_cashflow'):
+        if name not in facts:issues.append(name+' 未提取')
+    return facts,issues
+
+
+def extract_core(pages,report_period):
+    """Deducted parent profit is in the summary, independent of statement extraction."""
+    facts={}
     summary_unit=None
     for index,text in enumerate(pages[:10]):
         lines=text.splitlines()
@@ -90,9 +100,17 @@ def extract(pages,report_period):
             context=compact('\n'.join(lines[max(0,n-1):n+4]))
             if '每股' in compact(line) or '收益率' in compact(line):continue
             candidates=[]
+            # The value often precedes the second line of a wrapped label. Prefer that
+            # adjacent row before looking across a page boundary or at the next metric.
+            prior=[(j,v) for j,v in enumerate(lines[:n]) if compact(v)]
+            if prior and len(cells(line))<3 and compact(line).startswith(('扣除','股东的','除非经常')):
+                j,v=prior[-1]
+                if (compact(v).startswith('归属于上市公司') or compact(line).startswith('除非经常')) and len(cells(v))>=3:
+                    candidates.append((index,j,v))
             if compact(line).startswith('除非经常') and n>0 and len(cells(lines[n-1]))>=3:
-                candidates=[(index,n-1,lines[n-1])]
+                candidates.append((index,n-1,lines[n-1]))
             for j in range(n,min(n+3,len(lines))):
+                if j>n and any(word in compact(lines[j]) for word in ('收益率','每股','净资产','营业收入','非经常性损益项目')):break
                 if len(cells(lines[j]))>=3:candidates.append((index,j,lines[j]))
             if not candidates and index>0 and compact(line).startswith('股东的扣除非'):
                 previous=pages[index-1].splitlines()
@@ -107,10 +125,7 @@ def extract(pages,report_period):
             facts['core_profit']=dict(proof(values[column],u,pi+1,row,'current_ytd'),label_page=index+1,label_quote=line)
             break
         if 'core_profit' in facts:break
-    if 'core_profit' not in facts:issues.append('扣非利润单元格需要核对')
-    for name in ('assets','revenue','parent_profit','operating_cashflow'):
-        if name not in facts:issues.append(name+' 未提取')
-    return facts,issues
+    return facts.get('core_profit')
 
 
 def reviewed_cells(pages, specifications):
@@ -121,4 +136,8 @@ def reviewed_cells(pages, specifications):
         if quote not in pages[page-1] or raw not in quote:
             raise DataError('复核单元格未匹配原文：'+name)
         result[name]=proof(raw,item['unit'],page,quote,item['column'])
+        if 'label_quote' in item:
+            if item['label_quote'] not in pages[item['label_page']-1]:
+                raise DataError('复核字段名称未匹配原文：'+name)
+            result[name].update(label_quote=item['label_quote'],label_page=item['label_page'])
     return result

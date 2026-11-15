@@ -8,7 +8,7 @@ import requests
 from .schema import DataError, SH
 
 HEADERS={'User-Agent':'Mozilla/5.0','Referer':'https://www.cninfo.com.cn/'}
-REPORT = re.compile(r'(?P<year>20\d{2})年(?P<kind>年度|半年度|第一季度|第三季度|一季度|三季度)报告')
+REPORT = re.compile(r'(?P<year>20\d{2})(?:年)?(?P<kind>年度|半年度|中期|第一季度|第三季度|一季度|三季度)报告')
 
 class Source:
     def __init__(self, min_interval=.25):
@@ -55,10 +55,15 @@ class Source:
 
 
 def report_period(title):
-    if '摘要' in title or '英文' in title or '取消' in title:return None
-    m=REPORT.search(re.sub(r'\s+','',title))
+    title=re.sub(r'\s+','',title)
+    if any(word in title for word in ('摘要','英文','H股','取消','问询','回复','审计','独立意见','议案')):return None
+    m=REPORT.search(title)
     if not m:return None
-    return m['year']+'-'+{'年度':'12-31','半年度':'06-30','第一季度':'03-31','第三季度':'09-30','一季度':'03-31','三季度':'09-30'}[m['kind']]
+    suffix=title[m.end():]
+    if '更正公告' not in title:
+        if '关于' in title[:m.start()]:return None
+        if not re.fullmatch(r'(?:全文|正文)?(?:[（(](?:A股|中文|中文版|[^）)]*(?:更正|修订|更新)[^）)]*)[）)])?',suffix):return None
+    return m['year']+'-'+{'年度':'12-31','半年度':'06-30','中期':'06-30','第一季度':'03-31','第三季度':'09-30','一季度':'03-31','三季度':'09-30'}[m['kind']]
 
 
 def metadata(company, symbol, announcement, url, captured_at):

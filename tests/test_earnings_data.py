@@ -155,6 +155,12 @@ class PdfContractTests(unittest.TestCase):
     def test_reviewed_cell_and_title_filter(self):
         with self.assertRaises(DataError):reviewed_cells(['hello'],{'assets':dict(page=1,quote='missing 100',raw_value='100',unit='元',column='current')})
         self.assertEqual(report_period('测试2025年年度报告'),'2025-12-31');self.assertIsNone(report_period('测试2025年年度报告摘要'))
+        self.assertIsNone(report_period('关于2025年年度报告问询函的回复公告'))
+        self.assertIsNone(report_period('2025年年度报告审计报告'))
+        self.assertEqual(report_period('2025年年度报告（2026年4月修订）'),'2025-12-31')
+        self.assertEqual(report_period('招商银行2025年度报告（A股）'),'2025-12-31')
+        self.assertEqual(report_period('中国神华2025年中期报告'),'2025-06-30')
+        self.assertIsNone(report_period('2025年年度报告（H股）'))
 
 
 class UniverseTests(unittest.TestCase):
@@ -172,6 +178,19 @@ class UniverseTests(unittest.TestCase):
 
 
 class LayoutRegressionTests(unittest.TestCase):
+    def test_unbalanced_money_is_a_data_error(self):
+        for raw in ('100)', '(100', '1.2.3'):
+            with self.assertRaises(DataError):money(raw,'元')
+    def test_complete_core_row_not_previous_parent_profit(self):
+        pages=['单位：元\n归属于上市公司股东的净利润 100 90 10\n归属于上市公司股东的扣除非经常性损益的净利润 80 70 14']
+        facts,_=extract(pages,'2025-03-31');self.assertEqual(facts['core_profit']['raw_value'],'80')
+    def test_wrapped_profit_value_precedes_label_not_following_roe(self):
+        pages=['单位：千元 币种：人民币\n归属于上市公司股东的 5,251,933 1,947,977 1,947,977 169.61\n扣除非经常性损益的净\n利润\n加权平均净资产收益率 9.32 4.67 4.83 4.65']
+        facts,_=extract(pages,'2021-03-31');self.assertEqual(facts['core_profit']['raw_value'],'5,251,933')
+    def test_local_wrapped_profit_preferred_over_previous_page_equity(self):
+        pages=['单位：百万元\n归属于上市公司 372,178 360,189 360,189 3.3',
+               '归属于上市公司 11,583 9,542 9,542 21.4\n股东的扣除非经\n常性损益的净利润\n加权平均净资产收益率 3.17 2.75 2.75 0.42']
+        facts,_=extract(pages,'2021-03-31');self.assertEqual(facts['core_profit']['raw_value'],'11,583')
     def test_annual_value_not_first_quarter(self):
         pages=['主要会计数据\n营业收入（元） 1000 800 25 700\n归属于上市公司股东的扣除非经常性\n 300 200 50 100\n损益的净利润（元）',
             '分季度主要财务指标\n单位：元\n第一季度 第二季度 第三季度 第四季度\n归属于上市公司股东的扣除非经常性损益的净利润\n 10 20 30 40']

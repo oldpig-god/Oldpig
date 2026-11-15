@@ -63,6 +63,8 @@ def period(value):
 def money(raw, unit):
     text=str(raw).replace(',', '').replace('，', '').replace('−', '-').replace('－','-').strip()
     if text.startswith(('(', '（')) and text.endswith((')', '）')):text='-'+text[1:-1]
+    if not re.fullmatch(r'[+-]?\d+(?:\.\d+)?',text):
+        raise DataError('金额格式不符：'+str(raw))
     value = Decimal(text)
     if not value.is_finite():
         raise DataError('金额需要是有限数值')

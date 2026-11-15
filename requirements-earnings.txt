@@ -1,2 +1,3 @@
-# Offline original-report extraction; base application dependencies remain in requirements.txt.
+# Standalone public-report collection and extraction.
+requests==2.34.2
 PyMuPDF==1.27.2.3

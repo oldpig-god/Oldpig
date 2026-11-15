@@ -10,6 +10,7 @@ from .repository import PREFIX, Repository
 from .schema import SCHEMA, SH, DataError, available_time, digest, make_event
 from .pit import select
 
+COLLECTOR_VERSION='original-financial-reports-v3'
 
 def accounting_checks(event):
     facts=event['facts'];issues=[]
@@ -24,11 +25,12 @@ def accounting_checks(event):
     return issues
 
 
-def collect(repository, symbol, start, end, *, source=None, reviews=None, max_reports=24):
+def collect(repository, symbol, start, end, *, source=None, reviews=None, max_reports=24,reuse_events=False):
     source=source or Source();reviews=reviews or {}
     company,announcements=source.announcements(symbol.split('.')[0],start,end)
     selected=[a for a in announcements if report_period(a['announcementTitle'])]
     selected.sort(key=lambda a:(a['announcementTime'],a['announcementId']))
+    archived={e['document_id']:e for e in repository.events('cninfo_'+company['orgId'])} if reuse_events else {}
     outcomes=[]
     for announcement in selected[:max_reports]:
         item=dict(announcement_id=announcement['announcementId'],title=announcement['announcementTitle'],
@@ -39,6 +41,12 @@ def collect(repository, symbol, start, end, *, source=None, reviews=None, max_re
             doc=repository.save_document(metadata(company,symbol,announcement,url,datetime.now(SH).isoformat()),content)
             if '更正公告' in announcement['announcementTitle']:
                 item.update(status='announcement_only',document_id=doc['id'],related_years=re.findall(r'20\d{2}',announcement['announcementTitle']))
+                outcomes.append(item)
+                continue
+            if doc['id'] in archived:
+                event=archived[doc['id']]
+                item.update(status='existing',document_id=doc['id'],event_id=event['id'],fields=len(event['facts']),
+                    core_profit=event['facts'].get('core_profit',{}).get('value'),available_at=event['available_at'])
                 outcomes.append(item)
                 continue
             pages=pages_from_pdf(content)
@@ -79,7 +87,7 @@ def collect(repository, symbol, start, end, *, source=None, reviews=None, max_re
         except requests.RequestException as exc:
             item.update(status='source_error',error=type(exc).__name__)
         outcomes.append(item)
-    result=dict(schema=SCHEMA,entity_id='cninfo_'+company['orgId'],symbol=symbol,name=company['zwjc'],
+    result=dict(schema=SCHEMA,collector_version=COLLECTOR_VERSION,entity_id='cninfo_'+company['orgId'],symbol=symbol,name=company['zwjc'],
         start=start,end=end,discovered=len(selected),processed=len(outcomes),remaining=max(0,len(selected)-max_reports),
         outcomes=outcomes)
     result['id']=digest(result)

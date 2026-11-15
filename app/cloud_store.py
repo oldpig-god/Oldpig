@@ -6,10 +6,11 @@ from urllib.parse import quote
 import requests
 
 class CloudStore:
-    def __init__(self,env=None,key=None,bucket=None):
+    def __init__(self,env=None,key=None,bucket=None,upload_timeout=8):
         self.base='https://'+(env or os.environ['CLOUDBASE_ENV_ID'])+'.api.tcloudbasegateway.com'
         self.key=key or os.environ['CLOUDBASE_APIKEY']
         self.timeout=float(os.environ.get('FINANCE_CLOUD_TIMEOUT','90'))
+        self.upload_timeout=upload_timeout
         self.bucket=bucket or os.environ.get('FINANCE_CLOUD_BUCKET','oldpig-finance')
     def _request(self,method,path,**kwargs):
         r=requests.request(method,self.base+path,headers={'Authorization':'Bearer '+self.key,**kwargs.pop('headers',{})},timeout=(8,self.timeout),**kwargs)
@@ -26,7 +27,7 @@ class CloudStore:
         """Atomic immutable request creation; duplicate submissions reuse the same ID."""
         content=gzip.compress(json.dumps(value,ensure_ascii=False,allow_nan=False,separators=(',',':')).encode(),mtime=0)
         path='/v1/storages/object/'+quote(self.bucket,safe='')+'/'+quote(key,safe='/')
-        r=requests.post(self.base+path,headers={'Authorization':'Bearer '+self.key,'Content-Type':'application/octet-stream','x-upsert':'false'},data=content,timeout=(8,self.timeout))
+        r=requests.post(self.base+path,headers={'Authorization':'Bearer '+self.key,'Content-Type':'application/octet-stream','x-upsert':'false'},data=content,timeout=(self.upload_timeout,self.timeout))
         if r.ok:return True
         if r.status_code in (400,409):
             if self.get_json(key,optional=True) is not None:return False
