@@ -43,6 +43,35 @@ def panel():
 
 
 class QuarterCellTests(unittest.TestCase):
+    def test_wrapped_label_does_not_overwrite_profit_with_cashflow(self):
+        pages=['分季度主要财务指标\n单位：元\n归属于上市公司股东的扣除非\n1 2 3 4\n'
+               '经常性损益的净利润\n经营活动产生的现金流量净额 10 20 30 40']
+        values=extract_quarters(pages,'2025-12-31',{})
+        self.assertEqual(values['2025-12-31']['core_profit']['raw_value'],'4')
+        self.assertEqual(values['2025-12-31']['operating_cashflow']['raw_value'],'40')
+
+    def test_missing_profit_row_does_not_borrow_cashflow(self):
+        pages=['分季度主要财务指标\n单位：元\n归属于上市公司股东的扣除非\n'
+               '经常性损益的净利润\n经营活动产生的现金流量净额 10 20 30 40']
+        self.assertNotIn('core_profit',extract_quarters(pages,'2025-12-31',{})['2025-12-31'])
+
+    def test_quarter_sum_mismatch_is_recorded_and_excluded(self):
+        pages=['分季度主要财务指标\n单位：元\n扣除非经常性损益的净利润 1 2 3 40']
+        fact=dict(value='10',proof=dict(raw_value='10',unit='元'))
+        issues=[]
+        self.assertEqual(extract_quarters(pages,'2025-12-31',{'core_profit':fact},issues),{})
+        self.assertEqual(issues[0]['check'],'quarter_sum_equals_annual')
+        fact['value']='46'
+        self.assertIn('2025-12-31',extract_quarters(pages,'2025-12-31',{'core_profit':fact}))
+
+    def test_extraction_revision_supersedes_old_cells_without_rewriting(self):
+        es=events(begin=2024,end=2024);e=es[-1]
+        old=dict(id='old',entity_id='sample',source_event_id=e['id'],document_id=e['document_id'],
+                 available_at=e['available_at'],values={'2024-12-31':{'core_profit':{'value':'999'}}})
+        new=dict(old,id='new',supersedes=['old'],values={'2024-12-31':{'core_profit':{'value':'123'}}})
+        self.assertEqual(target(es,[old,new],'2024-12-31')['value'],'123')
+        self.assertEqual(target(es,[old],'2024-12-31')['value'],'999')
+
     def test_q3_direct_value_differs_from_ytd(self):
         pages=['扣除非经常性损益的净利润 30 20% 90 10%']
         facts={'core_profit':{'proof':dict(raw_value='90',unit='元',page=1,quote=pages[0],column='current_ytd')}}
@@ -56,7 +85,7 @@ class QuarterCellTests(unittest.TestCase):
         values=extract_quarters(pages,'2025-12-31',{})
         self.assertEqual(values['2025-12-31']['core_profit']['raw_value'],'4')
         self.assertEqual(values['2025-09-30']['core_profit']['raw_value'],'-3')
-        self.assertEqual(values['2025-06-30']['revenue']['unit'],'千元')
+        self.assertEqual(values['2025-06-30']['operating_revenue']['unit'],'千元')
 
     def test_later_annual_table_does_not_backdate_quarter_label(self):
         es=events(begin=2024,end=2025)

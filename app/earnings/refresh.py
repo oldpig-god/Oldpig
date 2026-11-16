@@ -1,7 +1,7 @@
 """Re-extract archived originals without downloading or changing old dataset manifests."""
 from collections import defaultdict
 from copy import deepcopy
-from .pdf_extract import extract_core, pages_from_pdf,reviewed_cells
+from .pdf_extract import pages_from_pdf,reviewed_cells
 from .quarters import save_cells
 from .schema import digest, money
 from .cninfo import report_period
@@ -21,11 +21,13 @@ def refresh(repository,entities=None,reviews=None):
             if report_period(document['title'])!=old['report_period']:
                 repository.withdraw(entity,old['id'],'标题核验：非正式季度/年度财务报告；保留原文')
                 continue
-            pages=pages_from_pdf(repository.content(document))
+            content=repository.content(document)
+            pages=pages_from_pdf(content)
             originals[old['document_id']]=document
-            core=extract_core(pages,old['report_period'])
+            from .summary_tables import extract_core_pdf
+            core=extract_core_pdf(content,pages,old['report_period'])
             cells=reviews.get(document['announcement_id'],{}).get('cells',{})
-            if 'core_profit' in cells:core=reviewed_cells(pages,{'core_profit':cells['core_profit']})['core_profit']
+            if 'core_profit' in cells:core=reviewed_cells(pages,{'core_profit':cells['core_profit']},content)['core_profit']
             event=deepcopy(old)
             if core:
                 p=core
@@ -39,7 +41,7 @@ def refresh(repository,entities=None,reviews=None):
                 repository.withdraw(entity,old['id'],'原文重新提取，替代事件：'+event['id'])
                 replacements[old['id']]=event['id']
                 revised+=1
-            direct+=bool(save_cells(repository,event,pages))
+            direct+=bool(save_cells(repository,event,pages,content))
         by_period=defaultdict(list)
         for event in repository.events(entity):
             if event['revision_kind']=='initial':by_period[event['report_period']].append(event)

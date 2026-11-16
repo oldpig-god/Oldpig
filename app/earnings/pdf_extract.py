@@ -90,12 +90,18 @@ def extract_core(pages,report_period):
     summary_unit=None
     for index,text in enumerate(pages[:10]):
         lines=text.splitlines()
-        if '分季度主要财务指标' in compact(text) or all(x in compact(text) for x in ['第一季度','第四季度']):continue
         for n,line in enumerate(lines):
+            if ('分季度' in compact(line) and ('财务指标' in compact(line) or '财务数据' in compact(line))) or all(x in line for x in ('第一季度','第四季度')):
+                return facts.get('core_profit')
             summary_unit=unit_in(line) or summary_unit
-            if re.search(r'(?:营业收入|净利润)[（(]元[）)]',compact(line)):summary_unit='元'
+            inline=re.search(r'(?:营业收入|净利润|资产总额)[（(](百万元|千元|万元|亿元|元)[）)]',compact(line))
+            if inline:summary_unit=inline[1]
             if '扣除' not in compact(line) and not ('除非经常' in compact(line) and '归属于上市公司股东的扣' in compact(''.join(lines[max(0,n-3):n]))):continue
-            u='元' if re.search(r'净利润[（(]元[）)]',compact(''.join(lines[max(0,n-2):n+4]))) else summary_unit
+            if any(word in compact(line) for word in ('主营业务','加权平均','净资产收','每股')):continue
+            label_context=compact(NUMBER.sub('', '\n'.join(lines[max(0,n-3):n+5])))
+            if '扣除非经常' not in label_context or '净利润' not in label_context:continue
+            local_unit=re.search(r'净利润[（(](百万元|千元|万元|亿元|元)[）)]',compact(''.join(lines[n:n+4])))
+            u=local_unit[1] if local_unit else summary_unit
             if not u:continue
             context=compact('\n'.join(lines[max(0,n-1):n+4]))
             if '每股' in compact(line) or '收益率' in compact(line):continue
@@ -110,7 +116,7 @@ def extract_core(pages,report_period):
             if compact(line).startswith('除非经常') and n>0 and len(cells(lines[n-1]))>=3:
                 candidates.append((index,n-1,lines[n-1]))
             for j in range(n,min(n+3,len(lines))):
-                if j>n and any(word in compact(lines[j]) for word in ('收益率','每股','净资产','营业收入','非经常性损益项目')):break
+                if j>n and any(word in compact(lines[j]) for word in ('收益率','每股','净资产','营业收入','经营活动产生','非经常性损益项目')):break
                 if len(cells(lines[j]))>=3:candidates.append((index,j,lines[j]))
             if not candidates and index>0 and compact(line).startswith('股东的扣除非'):
                 previous=pages[index-1].splitlines()
@@ -128,10 +134,15 @@ def extract_core(pages,report_period):
     return facts.get('core_profit')
 
 
-def reviewed_cells(pages, specifications):
+def reviewed_cells(pages, specifications, content=None):
     """Explicit page/row/column overrides for layouts reviewed against the PDF."""
     result={}
     for name,item in specifications.items():
+        if item.get('extraction')=='pdf_cell':
+            from .summary_tables import verify_cell
+            verify_cell(content,item)
+            result[name]=dict(item)
+            continue
         page=item['page'];quote=item['quote'];raw=item['raw_value']
         if quote not in pages[page-1] or raw not in quote:
             raise DataError('复核单元格未匹配原文：'+name)

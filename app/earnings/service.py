@@ -55,8 +55,12 @@ def collect(repository, symbol, start, end, *, source=None, reviews=None, max_re
                 raise DataError('原文证券代码需要核对')
             if '人民币' not in compact(''.join(pages)):raise DataError('原文人民币口径需要核对')
             facts,issues=extract(pages,item['report_period'])
+            from .summary_tables import extract_core_pdf
+            core=extract_core_pdf(content,pages,item['report_period'])
+            facts.pop('core_profit',None)
+            if core:facts['core_profit']=core
             review=reviews.get(announcement['announcementId'],{})
-            facts.update(reviewed_cells(pages,review.get('cells',{})))
+            facts.update(reviewed_cells(pages,review.get('cells',{}),content))
             # Unreviewed report perimeters have separate identities until a comparison review links them.
             scope=review.get('scope_version','unreviewed-'+doc['id'])
             corrected=any(word in announcement['announcementTitle'] for word in ['更正','修订','更新'])

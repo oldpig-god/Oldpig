@@ -152,6 +152,10 @@ class Repository:
             raise DataError('事件原文哈希不符')
         for item in event['facts'].values():
             proof = item['proof']
+            if proof.get('extraction')=='pdf_cell':
+                from .summary_tables import verify_cell
+                verify_cell(self.content(document),proof)
+                continue
             text = pages[proof['page']-1]
             quote = proof['quote']
             if proof.get('label_quote') and proof['label_quote'] not in pages[proof['label_page']-1]:

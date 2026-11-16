@@ -7,7 +7,7 @@ from .repository import PREFIX, Repository,logical_store
 from .schema import SCHEMA, canonical, digest
 
 
-FINANCIAL_INPUT_GROUPS={'documents','publications','events','quality','registry','universe','quarter_cells','runs','panels'}
+FINANCIAL_INPUT_GROUPS={'documents','publications','events','quality','registry','universe','quarter_cells','guidance','runs','panels'}
 
 
 def make_manifest(source,groups=None):
@@ -34,7 +34,7 @@ def publish(source, destination, workers=4,manifest_id=None,checkpoint_scope=Non
     objects=manifest['objects']
     keys=[o['key'] for o in objects]
     order=['raw','documents','publications','events','quality','registry','universe','features',
-           'quarter_cells','samples','datasets','exclusions','experiments','predictions','panels','runs']
+           'quarter_cells','guidance','samples','datasets','exclusions','experiments','predictions','panels','runs']
     unknown={k.split('/')[1] for k in keys}-set(order)
     if unknown:raise ValueError('未登记的数据类型：'+','.join(sorted(unknown)))
     counts=dict(created=0,existing=0)

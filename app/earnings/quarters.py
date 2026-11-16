@@ -1,12 +1,13 @@
 """Single-quarter cells explicitly printed in original reports, with publication lineage."""
 from .pdf_extract import cells, compact, proof, unit_in
 from .pit import availability, first_disclosed_target, previous_period, quarter, select
-from .schema import SCHEMA, digest, money, stamp
+from decimal import Decimal
+from .schema import SCHEMA, UNITS, digest, money, stamp
 
-PARSER = 'direct-quarter-v1'
+PARSER = 'direct-quarter-v3'
 
 
-def extract_quarters(pages, report_period, cumulative_facts):
+def extract_quarters(pages, report_period, cumulative_facts, issues=None, table_values=None):
     """Q3 summary prints the current quarter; annual tables print all four quarters.
 
     Annual Q1–Q3 cells become historical inputs only on the annual publication date.
@@ -16,6 +17,8 @@ def extract_quarters(pages, report_period, cumulative_facts):
     core = cumulative_facts.get('core_profit')
     if report_period.endswith('-09-30') and core:
         p = core['proof']
+        if 'quarter_proof' in p:
+            return {report_period:{'core_profit':p['quarter_proof']}}
         values = cells(p['quote'])
         if len(values) in (4, 8) and p['column'] == 'current_ytd':
             result[report_period] = {'core_profit': dict(p, raw_value=values[0], column='current_quarter')}
@@ -23,10 +26,12 @@ def extract_quarters(pages, report_period, cumulative_facts):
         return result
     active = False
     unit = None
+    extracted = set()
     labels = {
-        'core_profit': lambda s: '扣除非经常' in s or '经常性损益的净利润' in s,
+        'core_profit': lambda s: '扣除非' in s or '经常性损益的净利润' in s,
         'parent_profit': lambda s: '归属于上市公司股东的净利润' in s and '扣除' not in s,
-        'revenue': lambda s: s.startswith('营业收入'),
+        'operating_revenue': lambda s: s.startswith('营业收入'),
+        'revenue': lambda s: s.startswith('营业总收入'),
         'operating_cashflow': lambda s: '经营活动产生的现金流量净额' in s,
     }
     for index, text in enumerate(pages[:20]):
@@ -37,39 +42,88 @@ def extract_quarters(pages, report_period, cumulative_facts):
                 active = True
             if active and '非经常性损益项目' in s:
                 active = False
+            if active and '上述财务指标' in s:
+                active = False
             if not active:
                 continue
             unit = unit_in(line) or unit
             if not unit:
                 continue
             for metric, matches in labels.items():
-                if not matches(s):
+                if metric in extracted or not matches(s):
                     continue
-                candidates = [(j, v) for j, v in enumerate(lines[n:min(n+3, len(lines))], n)
-                              if len(cells(v)) == 4]
+                candidates=[]
+                for j in range(n,min(n+4,len(lines))):
+                    row=lines[j]
+                    # Wrapped label continuations must never consume the next metric's row.
+                    if j>n and any(test(compact(row)) for name,test in labels.items() if name!=metric):break
+                    if len(cells(row))==4:
+                        candidates.append((j,row));break
                 if not candidates:
                     continue
                 j, row = candidates[0]
                 values = cells(row)
+                extracted.add(metric)
                 for suffix, raw in zip(('03-31', '06-30', '09-30', '12-31'), values):
                     result.setdefault(report_period[:4]+'-'+suffix, {})[metric] = dict(
                         proof(raw, unit, index+1, row, 'quarter_'+suffix),
                         label_page=index+1, label_quote=line)
+    if table_values is not None:
+        result=table_values
+        extracted={metric for facts in result.values() for metric in facts}
+    # Check each four-quarter series against the same publication's annual amount.
+    # The allowance is the sum of half a displayed unit for each rounded cell.
+    for metric in extracted:
+        fact=cumulative_facts.get(metric)
+        if not fact:continue
+        proofs=[facts[metric] for facts in result.values() if metric in facts]
+        annual=fact['proof']
+        def quantum(p):
+            raw=p['raw_value'].replace(',','').strip('()（）')
+            places=len(raw.split('.')[1]) if '.' in raw else 0
+            return UNITS[p['unit']]*Decimal(10)**(-places)
+        residual=sum(Decimal(money(p['raw_value'],p['unit'])) for p in proofs)-Decimal(fact['value'])
+        tolerance=sum(quantum(p) for p in proofs+[annual])/2
+        if abs(residual)>tolerance:
+            if issues is not None:issues.append(dict(metric=metric,check='quarter_sum_equals_annual',
+                                                     residual=str(residual),tolerance=str(tolerance)))
+            for facts in result.values():facts.pop(metric,None)
+    result={p:facts for p,facts in result.items() if facts}
     return result
 
 
-def save_cells(repository, event, pages):
-    values = extract_quarters(pages, event['report_period'], event['facts'])
-    if not values:
+def save_cells(repository, event, pages, content=None):
+    issues=[]
+    tables=None
+    if event['report_period'].endswith('-12-31'):
+        from .quarter_tables import extract_tables
+        if content is None:
+            document=repository.store.get_json('earnings/documents/'+event['entity_id']+'/'+event['document_id']+'.json.gz')
+            content=repository.content(document)
+        tables=extract_tables(content,pages,event['report_period'])
+    values = extract_quarters(pages, event['report_period'], event['facts'],issues,tables)
+    prior=[r for r in load_cells(repository,event['entity_id']) if r['source_event_id']==event['id']]
+    if not values and not prior and not issues:
         return None
     for facts in values.values():
         for metric, p in list(facts.items()):
-            if p['quote'] not in pages[p['page']-1] or p['raw_value'] not in p['quote']:
+            if p.get('extraction')=='pdf_cell':
+                from .summary_tables import verify_cell
+                if content is None:
+                    doc=repository.store.get_json('earnings/documents/'+event['entity_id']+'/'+event['document_id']+'.json.gz')
+                    content=repository.content(doc)
+                verify_cell(content,p)
+            elif p['quote'] not in pages[p['page']-1] or p['raw_value'] not in p['quote']:
                 raise ValueError('单季单元格未匹配原文')
             facts[metric] = dict(value=money(p['raw_value'], p['unit']), basis='quarter', unit='CNY', proof=p)
+    replaced={key for r in prior for key in r.get('supersedes',[])}
+    tips=[r for r in prior if r['id'] not in replaced]
+    if len(tips)==1 and tips[0]['parser']==PARSER and tips[0]['values']==values and tips[0].get('checks',[])==issues:
+        return tips[0]
     record = dict(schema=SCHEMA, parser=PARSER, entity_id=event['entity_id'],
                   source_event_id=event['id'], document_id=event['document_id'],
-                  available_at=event['available_at'], values=values)
+                  available_at=event['available_at'], values=values,checks=issues,
+                  supersedes=sorted(r['id'] for r in tips))
     record['id'] = digest(record)
     repository.append('earnings/quarter_cells/'+event['entity_id']+'/'+record['id']+'.json.gz', record)
     return record
@@ -82,7 +136,11 @@ def load_cells(repository, entity_id):
 def _by_event(events, records):
     events = {e['id']: e for e in events}
     result = {}
+    ids={r['id'] for r in records}
+    superseded={key for r in records for key in r.get('supersedes',[])}
+    if not superseded<=ids:raise ValueError('单季提取修订链缺少前序记录')
     for record in records:
+        if record['id'] in superseded:continue
         if record['source_event_id'] not in events:
             continue  # A withdrawn extraction cannot supply a single-quarter cell.
         event = events[record['source_event_id']]

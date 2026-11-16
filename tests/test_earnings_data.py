@@ -199,6 +199,20 @@ class UniverseTests(unittest.TestCase):
 
 
 class LayoutRegressionTests(unittest.TestCase):
+    def test_other_deductions_and_roe_are_not_core_profit(self):
+        pages=['单位：元\n扣除与主营业务无关的营业收入 1000 900 11\n'
+               '扣除非经常性损益后的加权平均 30 29 1\n净资产收益率\n'
+               '归属于上市公司股东的扣除非经常性损益的净利润 80 70 14']
+        facts,_=extract(pages,'2025-12-31')
+        self.assertEqual(facts['core_profit']['raw_value'],'80')
+    def test_annual_summary_on_same_page_as_quarter_table(self):
+        pages=['营业收入（千元） 1000 800 25\n归属于上市公司股东的扣除非经常性损\n'
+               '300 200 50\n益的净利润（千元）\n分季度主要财务指标\n单位：千元\n'
+               '扣除非经常性损益的净利润 10 20 30 240']
+        facts,_=extract(pages,'2025-12-31')
+        self.assertEqual(facts['core_profit']['raw_value'],'300')
+        self.assertEqual(facts['core_profit']['unit'],'千元')
+
     def test_unbalanced_money_is_a_data_error(self):
         for raw in ('100)', '(100', '1.2.3'):
             with self.assertRaises(DataError):money(raw,'元')
@@ -249,7 +263,7 @@ class IngestionTests(unittest.TestCase):
         pages=['证券代码：600031\n单位：元 币种：人民币\n合并资产负债表\n单位：元 币种：人民币\n资产总计 1000 900\n合并利润表\n单位：元 币种：人民币\n一、营业总收入 100 90\n归属于上市公司股东的扣除非经常性损益的净利润 20 18 10']
         with tempfile.TemporaryDirectory() as temp:
             r=Repository(LocalStore(temp))
-            with patch('app.earnings.service.pages_from_pdf',return_value=pages):
+            with patch('app.earnings.service.pages_from_pdf',return_value=pages),patch('app.earnings.summary_tables.extract_core_pdf',return_value=extract(pages,'2025-03-31')[0]['core_profit']):
                 first=collect(r,'600031.SH','2025-01-01','2026-01-01',source=Source())
                 again=collect(r,'600031.SH','2025-01-01','2026-01-01',source=Source())
             self.assertEqual([i['status'] for i in first['outcomes']],['created','created'])
