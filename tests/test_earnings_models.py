@@ -9,6 +9,20 @@ from test_earnings_evaluation import panel
 
 
 class QuantileTests(unittest.TestCase):
+    def test_residual_restores_each_company_baseline_and_scale(self):
+        rows=copy.deepcopy([r for r in panel() if r['status']=='ready'][:30])
+        for i,row in enumerate(rows):
+            row['baselines']['seasonal_naive']=(-1 if i%2 else 1)*(i+1)*100
+            row['scale']=1000+i*50
+            row['label']['value']=str(row['baselines']['seasonal_naive']+row['scale']*.02)
+        predict=tree_factory(TreeConfig(iterations=3,min_samples_leaf=3),seasonal_residual=True)(rows)
+        for row in rows[::7]:
+            result=predict(row)['seasonal_residual_quantile_tree_financials']
+            expected=row['baselines']['seasonal_naive']+row['scale']*.02
+            self.assertAlmostEqual(result['point'],expected)
+            self.assertAlmostEqual(result['raw_lower'],expected/row['scale'])
+            self.assertAlmostEqual(result['raw_upper'],expected/row['scale'])
+
     def test_history_ablation_excludes_financials(self):
         fields=feature_names(TreeConfig(feature_set='profit_history'))
         self.assertFalse(any(f.endswith('_latest_to_scale') for f in fields))

@@ -19,7 +19,9 @@ def extract_core_pdf(content,pages,report_period):
                         rect=table.rows[n].cells[j]
                         if '年初至' in label and '期末' in label and not any(v in label for v in ('比上年','增减')):
                             centers['ytd']=(rect[0]+rect[2])/2
-                        if label in ('本报告期','本期','本年度','本年',year+'年',year+'年度'):
+                        half_year_header=(report_period.endswith('-06-30') and
+                            re.fullmatch(r'(?:本报告期|报告期)(?:[（(]1[—－–−至~～-]6月[）)])?',label))
+                        if label in ('本报告期','本期','本年度','本年',year+'年',year+'年度') or half_year_header:
                             centers['current']=(rect[0]+rect[2])/2
                 center=centers.get('ytd' if q3 else 'current')
                 if center is None:continue

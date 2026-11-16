@@ -26,7 +26,7 @@ def feature_names(config):
     return [f for f in fields if not f.endswith('_latest_to_scale')] if config.feature_set=='profit_history' else fields
 
 
-def tree_factory(config=TreeConfig()):
+def tree_factory(config=TreeConfig(), *, seasonal_residual=False):
     """Imports are confined to offline training, never the deployed HTTP runtime."""
     import numpy as np
     from sklearn.ensemble import HistGradientBoostingRegressor
@@ -37,7 +37,7 @@ def tree_factory(config=TreeConfig()):
                          for r in rows], dtype=float)
     def fit(rows):
         x=matrix(rows)
-        y=np.array([float(r['label']['value'])/r['scale'] for r in rows])
+        y=np.array([(float(r['label']['value'])-(r['baselines']['seasonal_naive'] if seasonal_residual else 0))/r['scale'] for r in rows])
         models=[]
         with threadpool_limits(limits=1):
             for q in (.1,.5,.9):
@@ -51,6 +51,10 @@ def tree_factory(config=TreeConfig()):
             with threadpool_limits(limits=1):
                 values=sorted(float(m.predict(matrix([row]))[0]) for m in models)
             name='quantile_tree_'+config.feature_set
+            if seasonal_residual:
+                offset=row['baselines']['seasonal_naive']/row['scale']
+                values=[value+offset for value in values]
+                name='seasonal_residual_'+name
             return {name:dict(point=values[1]*row['scale'],raw_lower=values[0],raw_upper=values[2])}
         return predict
     return fit
