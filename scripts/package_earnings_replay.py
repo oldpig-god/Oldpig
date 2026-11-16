@@ -31,11 +31,13 @@ def main():
     files=['app/cloud_store.py','requirements-earnings.txt','requirements-earnings-models.txt',
            'scripts/earnings_data.py','scripts/earnings_benchmark.py','docs-earnings-evaluation.md',
            'app/earnings_diagnostics.py','scripts/earnings_diagnose.py',
-           'scripts/earnings_guidance_benchmark.py',
+           'scripts/earnings_guidance_benchmark.py','scripts/check_earnings_replay.py',
            'research/earnings/benchmark-validation-v2.json','research/earnings/code-version-map.json',
            'research/earnings/error-diagnosis-v2.json','research/earnings/experiment-invalidation.json',
            'research/earnings/guidance-benchmark.json','research/earnings/guidance-evidence.json',
-           'research/earnings/guidance-evidence.md','research/earnings/github-csv-audit.json']
+           'research/earnings/guidance-evidence.md','research/earnings/github-csv-audit.json',
+           'research/earnings/replay-validation-v2.json','research/earnings/half-year-gaps.json',
+           'research/earnings/error-diagnosis-v2.md','research/earnings/cloud-validation-v2.json']
     files += [str(p.relative_to(root)).replace('\\','/') for p in sorted((root/'app/earnings').glob('*.py'))]
     readme=f'''# 盈利研究专项重放包
 
@@ -53,6 +55,9 @@ py -3.11 -m venv .venv
 ```
 
 Linux/macOS 使用 `python3 -m venv .venv`，将解释器路径换为 `.venv/bin/python`。
+
+只核对财务增强模型的完整报告：`python scripts/check_earnings_replay.py`。
+输出 `replay-check.json`，`exact_report_match` 为 true 表示逐项一致；不一致时命令退出码为1。
 
 数据版本：`{summary['data_version']}`。
 算法源码见仓库提交 `{registration['code_version']}`；精确模块哈希记录于每份实验。依赖版本锁定。

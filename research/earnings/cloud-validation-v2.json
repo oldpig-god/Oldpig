@@ -1,0 +1,28 @@
+{
+  "data_version": "c5ca10acdfcb066a47528e6ca358b2f351347ae0b359dec2e548534648c1e0c7",
+  "inputs": {
+    "manifest_id": "c5ca10acdfcb066a47528e6ca358b2f351347ae0b359dec2e548534648c1e0c7",
+    "objects": 11218,
+    "created": 4903,
+    "existing": 6315
+  },
+  "experiments": {
+    "manifest_id": "9ceb132b56e6412cf36b716d81f8223a56b5b6028991700bffcbbb781b9ff337",
+    "objects": 80,
+    "created": 21,
+    "existing": 59
+  },
+  "verified": [
+    {
+      "key": "earnings/datasets/927ba905f61731c89f1802e7edb9b6cf142666f13421514313adc9b773b0d51b.json.gz",
+      "sha256": "b95ea7149ab73e18f2af1b647f36a94e635cf375af1795e5c86b2c2d29014d0a",
+      "matches": true
+    },
+    {
+      "key": "earnings/experiments/results/34d5436f2da87fccdf7c122c958c2adb40869ff071b179d6997545f2beecb120.json.gz",
+      "sha256": "89f881519e60e4c40644dfc9a3fee07412b001d11e2c6b87731d87880b09209d",
+      "matches": true
+    }
+  ],
+  "raw_pdf_archive": "local"
+}

@@ -41,7 +41,9 @@
 ## 复现资料
 
 - [当前固定配置与结果](research/earnings/benchmark-summary.json)
-- [误差归因](research/earnings/error-diagnosis-v2.json)
+- [误差归因与下一轮检验方向](research/earnings/error-diagnosis-v2.md)
+- [半年报缺口清单](research/earnings/half-year-gaps.json)
+- [独立ZIP运行核查](research/earnings/replay-validation-v2.json)
 - [修正后精确重放核查](research/earnings/benchmark-validation-v2.json)
 - [旧实验撤回记录](research/earnings/experiment-invalidation.json)
 - [GitHub数据核对](research/earnings/github-csv-audit.json)
@@ -65,3 +67,9 @@ py -3.11 -m venv .venv
 ```
 
 本轮验收环境Linux/Python3.10；Windows命令尚未原生运行验证。下一步补齐半年报首次单季标签，并扩大有原文证据的扣非预告覆盖，然后重复同一套固定验证。
+
+## 本轮云端交付
+
+11,218个结构化输入对象和80个数据集/实验对象已同步至现有私有存储，分别新增4,903和21个对象。云端回读冻结样本集及财务增强模型报告，与本地逐项一致，见[校验回执](research/earnings/cloud-validation-v2.json)。原始PDF保留在本地归档。
+
+独立包可执行`python scripts/check_earnings_replay.py`，核对一个固定模型的完整报告；结果写入replay-check.json，完全一致时返回`exact_report_match: true`。
