@@ -1,0 +1,1212 @@
+{
+  "suite_id": "88b38b3467d8e153fbe330c766a2055767bdb85171f975758d7104c0f0156eca",
+  "data_version": "3b6024ecb153ef3f0617e5f8d645d4cfab5e23ef8fbccba49e225956b4e68d5e",
+  "sample_dataset_id": "71ec4cc5fd32082398513e700c09e9fcc394ec9d5858420664d004efe83fbdb9",
+  "policy": {
+    "evaluation_start": "2021-11-14",
+    "alpha": 0.2,
+    "min_calibration_samples": 40,
+    "min_calibration_periods": 4,
+    "calibration_window_quarters": 8,
+    "min_training_samples": 80,
+    "min_training_periods": 8,
+    "bootstrap_repeats": 1000,
+    "bootstrap_block_quarters": 4,
+    "min_comparison_periods": 8,
+    "seed": 1729,
+    "holdout_start": "2026-06-30",
+    "include_holdout": false
+  },
+  "trials": [
+    {
+      "name": "baselines",
+      "experiment_id": "eed2abad0e6b2c1333c4580e5e2bb32108d1d7e2165d1d55fc3f0694d9dc5b57",
+      "models": {
+        "seasonal_delta": {
+          "n": 242,
+          "scaled_mae": 0.009825271290773341,
+          "amount_mae": 2546725568.772314,
+          "direction_accuracy": 0.6446280991735537,
+          "direction_n": 242,
+          "coverage_80": 0.8677248677248677,
+          "interval_n": 189,
+          "mean_interval_width": 0.038093179856710874,
+          "interval_score": 0.05830503082452572,
+          "pinball_10": 0.003091809489565189,
+          "pinball_50": 0.004912635645386671,
+          "pinball_90": 0.002738693592887383
+        },
+        "seasonal_naive": {
+          "n": 242,
+          "scaled_mae": 0.008514562103172054,
+          "amount_mae": 2104041120.0116942,
+          "direction_accuracy": 0.4462809917355372,
+          "direction_n": 242,
+          "coverage_80": 0.8677248677248677,
+          "interval_n": 189,
+          "mean_interval_width": 0.030590226244674446,
+          "interval_score": 0.052615557805169924,
+          "pinball_10": 0.002734407447707316,
+          "pinball_50": 0.004257281051586027,
+          "pinball_90": 0.0025271483328096764
+        },
+        "selected_baseline": {
+          "n": 242,
+          "scaled_mae": 0.00908940280078262,
+          "amount_mae": 2307270522.110868,
+          "direction_accuracy": 0.44214876033057854,
+          "direction_n": 242,
+          "coverage_80": 0.8835978835978836,
+          "interval_n": 189,
+          "mean_interval_width": 0.03512275074392869,
+          "interval_score": 0.05492117595300725,
+          "pinball_10": 0.0028593421974491386,
+          "pinball_50": 0.00454470140039131,
+          "pinball_90": 0.0026327753978515867
+        },
+        "yoy_trend": {
+          "n": 242,
+          "scaled_mae": 0.010832829853652302,
+          "amount_mae": 2792861826.1213017,
+          "direction_accuracy": 0.49586776859504134,
+          "direction_n": 242,
+          "coverage_80": 0.8624338624338624,
+          "interval_n": 189,
+          "mean_interval_width": 0.03811987460718579,
+          "interval_score": 0.06765374823210558,
+          "pinball_10": 0.0036777198592907578,
+          "pinball_50": 0.005416414926826151,
+          "pinball_90": 0.0030876549639198003
+        }
+      },
+      "benchmark_comparisons": []
+    },
+    {
+      "name": "tree_profit_history",
+      "experiment_id": "9441605702203afa44f6d3eccca3cb0fc34a372b02846bb281cdc4cc1594ffe2",
+      "models": {
+        "quantile_tree_profit_history": {
+          "n": 179,
+          "scaled_mae": 0.007628684326487411,
+          "amount_mae": 2049074564.405459,
+          "direction_accuracy": 0.6033519553072626,
+          "direction_n": 179,
+          "coverage_80": 0.7628865979381443,
+          "interval_n": 97,
+          "mean_interval_width": 0.02357635182357456,
+          "interval_score": 0.04459679417005675,
+          "pinball_10": 0.0014393794915142791,
+          "pinball_50": 0.0038143421632437055,
+          "pinball_90": 0.0030202999254913955
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_profit_history",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007628684326487411,
+            "amount_mae": 2049074564.405459,
+            "direction_accuracy": 0.6033519553072626,
+            "direction_n": 179,
+            "coverage_80": 0.7628865979381443,
+            "interval_n": 97,
+            "mean_interval_width": 0.02357635182357456,
+            "interval_score": 0.04459679417005675,
+            "pinball_10": 0.0014393794915142791,
+            "pinball_50": 0.0038143421632437055,
+            "pinball_90": 0.0030202999254913955
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.00028496283145913514,
+          "interval_95": [
+            -0.0019341055988565414,
+            0.0023993091369095085
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_profit_history",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007628684326487411,
+            "amount_mae": 2049074564.405459,
+            "direction_accuracy": 0.6033519553072626,
+            "direction_n": 179,
+            "coverage_80": 0.7628865979381443,
+            "interval_n": 97,
+            "mean_interval_width": 0.02357635182357456,
+            "interval_score": 0.04459679417005675,
+            "pinball_10": 0.0014393794915142791,
+            "pinball_50": 0.0038143421632437055,
+            "pinball_90": 0.0030202999254913955
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": -0.0006434749081697218,
+          "interval_95": [
+            -0.0031293588024408764,
+            0.0022159825807424975
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_profit_history",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007628684326487411,
+            "amount_mae": 2049074564.405459,
+            "direction_accuracy": 0.6033519553072626,
+            "direction_n": 179,
+            "coverage_80": 0.7628865979381443,
+            "interval_n": 97,
+            "mean_interval_width": 0.02357635182357456,
+            "interval_score": 0.04459679417005675,
+            "pinball_10": 0.0014393794915142791,
+            "pinball_50": 0.0038143421632437055,
+            "pinball_90": 0.0030202999254913955
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": -0.002044905932125303,
+          "interval_95": [
+            -0.0054080568796100945,
+            0.0012548376026946836
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    },
+    {
+      "name": "tree_financials",
+      "experiment_id": "55da5d1d6276d777d0ade5788011669f41b60cb1404437ae26541b7b3aa463a2",
+      "models": {
+        "quantile_tree_financials": {
+          "n": 179,
+          "scaled_mae": 0.0070196137626189975,
+          "amount_mae": 1936037651.6362915,
+          "direction_accuracy": 0.5977653631284916,
+          "direction_n": 179,
+          "coverage_80": 0.7628865979381443,
+          "interval_n": 97,
+          "mean_interval_width": 0.02299111685818594,
+          "interval_score": 0.04249411272084632,
+          "pinball_10": 0.0014745272947997083,
+          "pinball_50": 0.0035098068813094988,
+          "pinball_90": 0.0027748839772849237
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.0070196137626189975,
+            "amount_mae": 1936037651.6362915,
+            "direction_accuracy": 0.5977653631284916,
+            "direction_n": 179,
+            "coverage_80": 0.7628865979381443,
+            "interval_n": 97,
+            "mean_interval_width": 0.02299111685818594,
+            "interval_score": 0.04249411272084632,
+            "pinball_10": 0.0014745272947997083,
+            "pinball_50": 0.0035098068813094988,
+            "pinball_90": 0.0027748839772849237
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": -0.00032410773240927837,
+          "interval_95": [
+            -0.0030442259972565055,
+            0.0022596660407590767
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.0070196137626189975,
+            "amount_mae": 1936037651.6362915,
+            "direction_accuracy": 0.5977653631284916,
+            "direction_n": 179,
+            "coverage_80": 0.7628865979381443,
+            "interval_n": 97,
+            "mean_interval_width": 0.02299111685818594,
+            "interval_score": 0.04249411272084632,
+            "pinball_10": 0.0014745272947997083,
+            "pinball_50": 0.0035098068813094988,
+            "pinball_90": 0.0027748839772849237
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": -0.0012525454720381352,
+          "interval_95": [
+            -0.004612374714849605,
+            0.002008184198975789
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.0070196137626189975,
+            "amount_mae": 1936037651.6362915,
+            "direction_accuracy": 0.5977653631284916,
+            "direction_n": 179,
+            "coverage_80": 0.7628865979381443,
+            "interval_n": 97,
+            "mean_interval_width": 0.02299111685818594,
+            "interval_score": 0.04249411272084632,
+            "pinball_10": 0.0014745272947997083,
+            "pinball_50": 0.0035098068813094988,
+            "pinball_90": 0.0027748839772849237
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": -0.0026539764959937163,
+          "interval_95": [
+            -0.0068531619874709435,
+            0.0012530570180554013
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    },
+    {
+      "name": "permuted_1729",
+      "experiment_id": "49f744a966b048569a019750146906bc5ae5862c24f5d89211f9177a68eb0ee3",
+      "models": {
+        "quantile_tree_financials": {
+          "n": 179,
+          "scaled_mae": 0.013962921191643175,
+          "amount_mae": 4288841046.4657044,
+          "direction_accuracy": 0.5418994413407822,
+          "direction_n": 179,
+          "coverage_80": 0.9278350515463918,
+          "interval_n": 97,
+          "mean_interval_width": 0.053376333344469264,
+          "interval_score": 0.07189788964069035,
+          "pinball_10": 0.002665723787911665,
+          "pinball_50": 0.0069814605958215875,
+          "pinball_90": 0.004524065176157369
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013962921191643175,
+            "amount_mae": 4288841046.4657044,
+            "direction_accuracy": 0.5418994413407822,
+            "direction_n": 179,
+            "coverage_80": 0.9278350515463918,
+            "interval_n": 97,
+            "mean_interval_width": 0.053376333344469264,
+            "interval_score": 0.07189788964069035,
+            "pinball_10": 0.002665723787911665,
+            "pinball_50": 0.0069814605958215875,
+            "pinball_90": 0.004524065176157369
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.006619199696614899,
+          "interval_95": [
+            0.0029782823467262563,
+            0.010904606200912197
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013962921191643175,
+            "amount_mae": 4288841046.4657044,
+            "direction_accuracy": 0.5418994413407822,
+            "direction_n": 179,
+            "coverage_80": 0.9278350515463918,
+            "interval_n": 97,
+            "mean_interval_width": 0.053376333344469264,
+            "interval_score": 0.07189788964069035,
+            "pinball_10": 0.002665723787911665,
+            "pinball_50": 0.0069814605958215875,
+            "pinball_90": 0.004524065176157369
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.005690761956986042,
+          "interval_95": [
+            0.001755920778590139,
+            0.010491914616399596
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013962921191643175,
+            "amount_mae": 4288841046.4657044,
+            "direction_accuracy": 0.5418994413407822,
+            "direction_n": 179,
+            "coverage_80": 0.9278350515463918,
+            "interval_n": 97,
+            "mean_interval_width": 0.053376333344469264,
+            "interval_score": 0.07189788964069035,
+            "pinball_10": 0.002665723787911665,
+            "pinball_50": 0.0069814605958215875,
+            "pinball_90": 0.004524065176157369
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.004289330933030461,
+          "interval_95": [
+            -0.0006394874693897354,
+            0.009731376923046991
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    },
+    {
+      "name": "permuted_1730",
+      "experiment_id": "819649b891c8cb306030c6c4aa83696b2f6fe48dddc4601818f53c30dc8680eb",
+      "models": {
+        "quantile_tree_financials": {
+          "n": 179,
+          "scaled_mae": 0.013704784959117474,
+          "amount_mae": 4619635656.983228,
+          "direction_accuracy": 0.5363128491620112,
+          "direction_n": 179,
+          "coverage_80": 0.8556701030927835,
+          "interval_n": 97,
+          "mean_interval_width": 0.04670757137226184,
+          "interval_score": 0.07985832784595005,
+          "pinball_10": 0.002635205292991318,
+          "pinball_50": 0.006852392479558737,
+          "pinball_90": 0.005350627491603687
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013704784959117474,
+            "amount_mae": 4619635656.983228,
+            "direction_accuracy": 0.5363128491620112,
+            "direction_n": 179,
+            "coverage_80": 0.8556701030927835,
+            "interval_n": 97,
+            "mean_interval_width": 0.04670757137226184,
+            "interval_score": 0.07985832784595005,
+            "pinball_10": 0.002635205292991318,
+            "pinball_50": 0.006852392479558737,
+            "pinball_90": 0.005350627491603687
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.006361063464089198,
+          "interval_95": [
+            0.0024184500257106913,
+            0.011006219057010005
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013704784959117474,
+            "amount_mae": 4619635656.983228,
+            "direction_accuracy": 0.5363128491620112,
+            "direction_n": 179,
+            "coverage_80": 0.8556701030927835,
+            "interval_n": 97,
+            "mean_interval_width": 0.04670757137226184,
+            "interval_score": 0.07985832784595005,
+            "pinball_10": 0.002635205292991318,
+            "pinball_50": 0.006852392479558737,
+            "pinball_90": 0.005350627491603687
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.0054326257244603415,
+          "interval_95": [
+            0.0013613143417025243,
+            0.01041269496823597
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013704784959117474,
+            "amount_mae": 4619635656.983228,
+            "direction_accuracy": 0.5363128491620112,
+            "direction_n": 179,
+            "coverage_80": 0.8556701030927835,
+            "interval_n": 97,
+            "mean_interval_width": 0.04670757137226184,
+            "interval_score": 0.07985832784595005,
+            "pinball_10": 0.002635205292991318,
+            "pinball_50": 0.006852392479558737,
+            "pinball_90": 0.005350627491603687
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.00403119470050476,
+          "interval_95": [
+            -0.0010548700312060458,
+            0.009678499941791084
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    },
+    {
+      "name": "permuted_1731",
+      "experiment_id": "573c4292a9300097b0bd342ce60ff1caeb55076e26f15fbea4bbb9ca9d9b93e1",
+      "models": {
+        "quantile_tree_financials": {
+          "n": 179,
+          "scaled_mae": 0.01360625650130195,
+          "amount_mae": 4747946580.968328,
+          "direction_accuracy": 0.5195530726256983,
+          "direction_n": 179,
+          "coverage_80": 0.865979381443299,
+          "interval_n": 97,
+          "mean_interval_width": 0.04744838910996012,
+          "interval_score": 0.0692775534322207,
+          "pinball_10": 0.002539840233187647,
+          "pinball_50": 0.006803128250650975,
+          "pinball_90": 0.004387915110034423
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.01360625650130195,
+            "amount_mae": 4747946580.968328,
+            "direction_accuracy": 0.5195530726256983,
+            "direction_n": 179,
+            "coverage_80": 0.865979381443299,
+            "interval_n": 97,
+            "mean_interval_width": 0.04744838910996012,
+            "interval_score": 0.0692775534322207,
+            "pinball_10": 0.002539840233187647,
+            "pinball_50": 0.006803128250650975,
+            "pinball_90": 0.004387915110034423
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.006262535006273675,
+          "interval_95": [
+            0.002531261670424936,
+            0.01019099390780011
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.01360625650130195,
+            "amount_mae": 4747946580.968328,
+            "direction_accuracy": 0.5195530726256983,
+            "direction_n": 179,
+            "coverage_80": 0.865979381443299,
+            "interval_n": 97,
+            "mean_interval_width": 0.04744838910996012,
+            "interval_score": 0.0692775534322207,
+            "pinball_10": 0.002539840233187647,
+            "pinball_50": 0.006803128250650975,
+            "pinball_90": 0.004387915110034423
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.005334097266644818,
+          "interval_95": [
+            0.0013060760053944227,
+            0.009605233533824514
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.01360625650130195,
+            "amount_mae": 4747946580.968328,
+            "direction_accuracy": 0.5195530726256983,
+            "direction_n": 179,
+            "coverage_80": 0.865979381443299,
+            "interval_n": 97,
+            "mean_interval_width": 0.04744838910996012,
+            "interval_score": 0.0692775534322207,
+            "pinball_10": 0.002539840233187647,
+            "pinball_50": 0.006803128250650975,
+            "pinball_90": 0.004387915110034423
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.003932666242689236,
+          "interval_95": [
+            -0.0006718587372802198,
+            0.008921129432656119
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    },
+    {
+      "name": "permuted_1732",
+      "experiment_id": "e4f2b3c78adb4e7438c7ef869747cb3e19a1849c95df481e086a1c1c635ab8a9",
+      "models": {
+        "quantile_tree_financials": {
+          "n": 179,
+          "scaled_mae": 0.013596949622934826,
+          "amount_mae": 5148697034.833238,
+          "direction_accuracy": 0.4860335195530726,
+          "direction_n": 179,
+          "coverage_80": 0.8350515463917526,
+          "interval_n": 97,
+          "mean_interval_width": 0.045447473989044224,
+          "interval_score": 0.07472470538396889,
+          "pinball_10": 0.0024269426961557954,
+          "pinball_50": 0.006798474811467413,
+          "pinball_90": 0.005045527842241093
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013596949622934826,
+            "amount_mae": 5148697034.833238,
+            "direction_accuracy": 0.4860335195530726,
+            "direction_n": 179,
+            "coverage_80": 0.8350515463917526,
+            "interval_n": 97,
+            "mean_interval_width": 0.045447473989044224,
+            "interval_score": 0.07472470538396889,
+            "pinball_10": 0.0024269426961557954,
+            "pinball_50": 0.006798474811467413,
+            "pinball_90": 0.005045527842241093
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.00625322812790655,
+          "interval_95": [
+            0.00244306716165469,
+            0.010441741665250628
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013596949622934826,
+            "amount_mae": 5148697034.833238,
+            "direction_accuracy": 0.4860335195530726,
+            "direction_n": 179,
+            "coverage_80": 0.8350515463917526,
+            "interval_n": 97,
+            "mean_interval_width": 0.045447473989044224,
+            "interval_score": 0.07472470538396889,
+            "pinball_10": 0.0024269426961557954,
+            "pinball_50": 0.006798474811467413,
+            "pinball_90": 0.005045527842241093
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.005324790388277693,
+          "interval_95": [
+            0.0013778479674678348,
+            0.009744597436847267
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.013596949622934826,
+            "amount_mae": 5148697034.833238,
+            "direction_accuracy": 0.4860335195530726,
+            "direction_n": 179,
+            "coverage_80": 0.8350515463917526,
+            "interval_n": 97,
+            "mean_interval_width": 0.045447473989044224,
+            "interval_score": 0.07472470538396889,
+            "pinball_10": 0.0024269426961557954,
+            "pinball_50": 0.006798474811467413,
+            "pinball_90": 0.005045527842241093
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.003923359364322113,
+          "interval_95": [
+            -0.0009472695679257598,
+            0.009000237730367506
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    },
+    {
+      "name": "permuted_1733",
+      "experiment_id": "f70edd106f2df1cec3d2003c6d96363b327c318322dcbab214b4b83122c53350",
+      "models": {
+        "quantile_tree_financials": {
+          "n": 179,
+          "scaled_mae": 0.01456700554879763,
+          "amount_mae": 5044283339.413914,
+          "direction_accuracy": 0.5251396648044693,
+          "direction_n": 179,
+          "coverage_80": 0.8144329896907216,
+          "interval_n": 97,
+          "mean_interval_width": 0.04430008172118748,
+          "interval_score": 0.06867540285887168,
+          "pinball_10": 0.0023881216274175394,
+          "pinball_50": 0.007283502774398815,
+          "pinball_90": 0.004479418658469628
+        }
+      },
+      "benchmark_comparisons": [
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_naive",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.01456700554879763,
+            "amount_mae": 5044283339.413914,
+            "direction_accuracy": 0.5251396648044693,
+            "direction_n": 179,
+            "coverage_80": 0.8144329896907216,
+            "interval_n": 97,
+            "mean_interval_width": 0.04430008172118748,
+            "interval_score": 0.06867540285887168,
+            "pinball_10": 0.0023881216274175394,
+            "pinball_50": 0.007283502774398815,
+            "pinball_90": 0.004479418658469628
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.007343721495028275,
+            "amount_mae": 1706298438.51162,
+            "direction_accuracy": 0.43575418994413406,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.028883353503585795,
+            "interval_score": 0.05294570994828895,
+            "pinball_10": 0.0027347667006288752,
+            "pinball_50": 0.0036718607475141377,
+            "pinball_90": 0.0025598042942000195
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.0072232840537693535,
+          "interval_95": [
+            0.003580733333924597,
+            0.011567462907752913
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "seasonal_delta",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.01456700554879763,
+            "amount_mae": 5044283339.413914,
+            "direction_accuracy": 0.5251396648044693,
+            "direction_n": 179,
+            "coverage_80": 0.8144329896907216,
+            "interval_n": 97,
+            "mean_interval_width": 0.04430008172118748,
+            "interval_score": 0.06867540285887168,
+            "pinball_10": 0.0023881216274175394,
+            "pinball_50": 0.007283502774398815,
+            "pinball_90": 0.004479418658469628
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.008272159234657133,
+            "amount_mae": 2004196895.992123,
+            "direction_accuracy": 0.664804469273743,
+            "direction_n": 179,
+            "coverage_80": 0.8786127167630058,
+            "interval_n": 173,
+            "mean_interval_width": 0.03716202020256161,
+            "interval_score": 0.058211571567946784,
+            "pinball_10": 0.003125196785519654,
+            "pinball_50": 0.004136079617328567,
+            "pinball_90": 0.0026959603712750245
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.006294846314140496,
+          "interval_95": [
+            0.0024213224900125167,
+            0.010898746510221305
+          ],
+          "conclusion": "未打败基准"
+        },
+        {
+          "candidate": "quantile_tree_financials",
+          "reference": "yoy_trend",
+          "n": 179,
+          "quarters": 9,
+          "candidate_metrics": {
+            "n": 179,
+            "scaled_mae": 0.01456700554879763,
+            "amount_mae": 5044283339.413914,
+            "direction_accuracy": 0.5251396648044693,
+            "direction_n": 179,
+            "coverage_80": 0.8144329896907216,
+            "interval_n": 97,
+            "mean_interval_width": 0.04430008172118748,
+            "interval_score": 0.06867540285887168,
+            "pinball_10": 0.0023881216274175394,
+            "pinball_50": 0.007283502774398815,
+            "pinball_90": 0.004479418658469628
+          },
+          "reference_metrics": {
+            "n": 179,
+            "scaled_mae": 0.009673590258612714,
+            "amount_mae": 2198494036.392579,
+            "direction_accuracy": 0.49162011173184356,
+            "direction_n": 179,
+            "coverage_80": 0.8554913294797688,
+            "interval_n": 173,
+            "mean_interval_width": 0.03700231312168506,
+            "interval_score": 0.06799610474744094,
+            "pinball_10": 0.003725200821462966,
+            "pinball_50": 0.004836795129306357,
+            "pinball_90": 0.0030744096532811277
+          },
+          "companies": 36,
+          "bootstrap_block_quarters": 4,
+          "scaled_mae_difference": 0.004893415290184915,
+          "interval_95": [
+            0.00020896903413565406,
+            0.010195781147996467
+          ],
+          "conclusion": "未打败基准"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "samples": 1457,
+    "warmup_samples": 517,
+    "evaluated_samples": 846,
+    "heldout_samples": 94,
+    "research_population": 802,
+    "business_inapplicable": 44,
+    "membership_unresolved": 0,
+    "samples_with_quality_issues": 54,
+    "companies_with_quality_issues": 3,
+    "abstained": 424,
+    "abstention_rate": 0.5286783042394015,
+    "abstention_reasons": {
+      "历史单季样本不足": 213,
+      "缺少上年同季利润": 347,
+      "缺少正总资产及正TTM营收": 72,
+      "无已公开财报": 36,
+      "单季利润过期": 24,
+      "财报过期": 31
+    },
+    "label_missing": 446,
+    "label_missing_by_quarter": {
+      "4": 124,
+      "1": 107,
+      "2": 178,
+      "3": 37
+    },
+    "missing_membership": 0,
+    "data_exclusions": []
+  },
+  "financial_feature_ablation": {
+    "candidate": "quantile_tree_financials",
+    "reference": "quantile_tree_profit_history",
+    "n": 179,
+    "quarters": 9,
+    "candidate_metrics": {
+      "n": 179,
+      "scaled_mae": 0.0070196137626189975,
+      "amount_mae": 1936037651.6362915,
+      "direction_accuracy": 0.5977653631284916,
+      "direction_n": 179,
+      "coverage_80": 0.7628865979381443,
+      "interval_n": 97,
+      "mean_interval_width": 0.02299111685818594,
+      "interval_score": 0.04249411272084632,
+      "pinball_10": 0.0014745272947997083,
+      "pinball_50": 0.0035098068813094988,
+      "pinball_90": 0.0027748839772849237
+    },
+    "reference_metrics": {
+      "n": 179,
+      "scaled_mae": 0.007628684326487411,
+      "amount_mae": 2049074564.405459,
+      "direction_accuracy": 0.6033519553072626,
+      "direction_n": 179,
+      "coverage_80": 0.7628865979381443,
+      "interval_n": 97,
+      "mean_interval_width": 0.02357635182357456,
+      "interval_score": 0.04459679417005675,
+      "pinball_10": 0.0014393794915142791,
+      "pinball_50": 0.0038143421632437055,
+      "pinball_90": 0.0030202999254913955
+    },
+    "companies": 36,
+    "bootstrap_block_quarters": 4,
+    "scaled_mae_difference": -0.0006090705638684134,
+    "interval_95": [
+      -0.0019424893035390597,
+      0.0005330705589257438
+    ],
+    "conclusion": "未打败基准"
+  },
+  "label_permutation": {
+    "controls": [
+      0.013962921191643175,
+      0.013704784959117474,
+      0.01360625650130195,
+      0.013596949622934826,
+      0.01456700554879763
+    ],
+    "real_mae": 0.0070196137626189975,
+    "controls_at_least_as_good": 0,
+    "description": "5组固定种子对照；不用于挑选模型参数，也不据此宣称统计显著"
+  },
+  "registry_counts": {
+    "experiments": 26,
+    "configurations": 9,
+    "failures": 3
+  },
+  "status": "invalidated_data_extraction",
+  "reason": "年报单季扣非利润错读为经营现金流，部分累计扣非字段错位。旧战绩撤回，保留审计记录。"
+}

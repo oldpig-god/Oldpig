@@ -1,0 +1,4052 @@
+[
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900003701",
+    "symbol": "601088.SH",
+    "name": "中国神华",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208611307",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "e0cb85fc08a0221b66ca7845e4a578793e140bc2fcc07c0a6a590356cdf63b71",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "b78a56dba80a8d53249a9ffc6f80b4142032494eaad02858a7dbddc3b8c432d3"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900002961",
+    "symbol": "000338.SZ",
+    "name": "潍柴动力",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206118965",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207047536",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207680976",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208664376",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209870157",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "595c54c30415f3f208531ffde78e2fbc582e8f56e4431add81112ed42c9ddd66"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900003825",
+    "symbol": "601857.SH",
+    "name": "中国石油",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 6,
+    "processed": 6,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1205924084",
+        "title": "2018年年度报告",
+        "report_period": "2018-12-31",
+        "status": "created",
+        "document_id": "1bd8d0eff58069695a0afd3545a88093aa7acf51b4c1316febefe901c6a01520",
+        "event_id": "6535e7d4009f1793ea8a262ef97d79d7df1cfef8a04fca81c05b169d3e9ac044",
+        "fields": 1,
+        "core_profit": "66195000000",
+        "available_at": "2019-03-23T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "66,195",
+            "unit": "百万元",
+            "page": 8,
+            "quote": "归属于母公司股东的扣除非经常性损益的净利润         66,195         26,778            147.2        2,634",
+            "column": "current_ytd",
+            "label_page": 8,
+            "label_quote": "归属于母公司股东的扣除非经常性损益的净利润         66,195         26,778            147.2        2,634"
+          }
+        }
+      },
+      {
+        "announcement_id": "1207045626",
+        "title": "2019年第三季度报告",
+        "report_period": "2019-09-30",
+        "status": "needs_extraction",
+        "document_id": "94ac80f60f0b4bb7af98cfa38850c291f9160bea915660e1427be11b2455f69c",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1207410601",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "created",
+        "document_id": "574cafa14c21f9da3fc33174ac9d7c23cb9db8d5742e62ad0deaeddb6d42441c",
+        "event_id": "57e58b9cb7fade4d72fee4677b69f538b311a0c520441528faf3cfd3a1c536dd",
+        "fields": 1,
+        "core_profit": "53485000000",
+        "available_at": "2020-03-28T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "53,485",
+            "unit": "百万元",
+            "page": 8,
+            "quote": "归属于母公司股东的扣除非经常性损益的净利润         53,485         66,645             (19.7)       27,529",
+            "column": "current_ytd",
+            "label_page": 8,
+            "label_quote": "归属于母公司股东的扣除非经常性损益的净利润         53,485         66,645             (19.7)       27,529"
+          }
+        }
+      },
+      {
+        "announcement_id": "1211420064",
+        "title": "中国石油天然气股份有限公司2021年第三季度报告",
+        "report_period": "2021-09-30",
+        "status": "needs_extraction",
+        "document_id": "601556dca0f70749024ef39c02bcc9587e595c9bcb656c087be3ab74fc51d505",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1214939190",
+        "title": "中国石油天然气股份有限公司2022年第三季度报告",
+        "report_period": "2022-09-30",
+        "status": "needs_extraction",
+        "document_id": "4ba5c5005b76402671e2f7c0505d4ea1ae28fb24b708b05672d03063e3a70970",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1221560578",
+        "title": "中国石油天然气股份有限公司2024年第三季度报告",
+        "report_period": "2024-09-30",
+        "status": "needs_extraction",
+        "document_id": "3191e1455f86489564b6265d04a65e804b1fbc74c17d474191eb8304b1feee4b",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "666101f7f9ba4503ba1d1aa9777f2bca5cf7cce14cb82d8c1535450dbe51099e"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900003904",
+    "symbol": "601390.SH",
+    "name": "中国中铁",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 3,
+    "processed": 3,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1224624135",
+        "title": "中国中铁2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225056528",
+        "title": "中国中铁2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225531653",
+        "title": "中国中铁2026年半年度报告全文",
+        "report_period": "2026-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "7c83b3e3aad92547a001e536f2c51d8edcb67d4bdffead5fed865c4e890ed990"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900011647",
+    "symbol": "002384.SZ",
+    "name": "东山精密",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206078845",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207028161",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207604920",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208626466",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209788730",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "c50a32e4e1ef53cf3f245678248c8ab4bfb99c2ea1febe88b2e368792d12dcbe"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900012688",
+    "symbol": "002415.SZ",
+    "name": "海康威视",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206061027",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206994392",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207602636",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208606518",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209712176",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "64114c4a30c3282fedb2e517cf04905c822d9c1f51edfe376d6ddd4ac8b18193"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900013929",
+    "symbol": "002463.SZ",
+    "name": "沪电股份",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 6,
+    "processed": 6,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206067485",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207027207",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207403918",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "created",
+        "document_id": "d5765660828670b57943b991e04129e0ecd64f9fdbad7cb69801a239ea0bce89",
+        "event_id": "f1998c8670ed51839c703bf13856c6b25e5a9e8b3e38da1f8a50e4e5ce805b1b",
+        "fields": 1,
+        "core_profit": "1148033634",
+        "available_at": "2020-03-27T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "1,148,033,634",
+            "unit": "元",
+            "page": 6,
+            "quote": "                                             1,148,033,634      517,055,987            122.03%           144,991,218",
+            "column": "current_ytd",
+            "label_page": 6,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1207548419",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208626522",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209770591",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "2b5f77f1a4234f88e2794291904d169ea3a3a36a15e3f2b56902a3135aa1ed7d"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900014448",
+    "symbol": "002475.SZ",
+    "name": "立讯精密",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206067665",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206998418",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207634683",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209831342",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225500221",
+        "title": "2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "5056cefa9c4800a2d123a015197dc7a2806436c3c880130450ee0decb3617929"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900014777",
+    "symbol": "002484.SZ",
+    "name": "江海股份",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206096961",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207034646",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207582762",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208614276",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209770008",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "d56def3e9bff3008c7bff6ee7053233942240ff045d2da2608b95353c0589263"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900022338",
+    "symbol": "601012.SH",
+    "name": "隆基绿能",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208663505",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "a01c909553c2ef04ccf9039e42049a6a82fa2579fdbb937280b492e8fb1ec384",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "c5d507d4d0423954681c65db55b044cd8c172cf2a44efec1e41a641b5aa0c067"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900022995",
+    "symbol": "002714.SZ",
+    "name": "牧原股份",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 9,
+    "processed": 9,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206976375",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207325910",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207607981",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208044798",
+        "title": "2020年半年度报告",
+        "report_period": "2020-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208585427",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209868192",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1210874453",
+        "title": "2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225042507",
+        "title": "2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225485220",
+        "title": "2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "814a8d738417670a3692ca1c5bc9df475aba2e7b6e324c734093ac20f884ef33"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900035335",
+    "symbol": "603256.SH",
+    "name": "宏和科技",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208634743",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "9a6b8a50e062fa405f99cffdf614a16146db05fb6644239dd49fc8323750ff2b",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "71bb7b35146e719ea26bf5f8af03a181049b0192b434f996d5bccad9290d49bc"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900036236",
+    "symbol": "002938.SZ",
+    "name": "鹏鼎控股",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 4,
+    "processed": 4,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1207044986",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207679454",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208663604",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209866687",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "780bb3fa37474e3a77d6a16bf6c73dc69b7a41c05a6ce87d8e55b53d44edfb7b"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gshk0001211",
+    "symbol": "002594.SZ",
+    "name": "比亚迪",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 9,
+    "processed": 9,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206118377",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207038393",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207660749",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208652623",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209849760",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216246589",
+        "title": "2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "created",
+        "document_id": "a43c10eee180ccd5a4e2ca113ed1eee9a47297b5d269b51278204a7a27fdf84f",
+        "event_id": "adb75834f2df96187ec8bc026deff0f8909aee159e5ccc8438c9273df310210f",
+        "fields": 1,
+        "core_profit": "15637792000.00",
+        "available_at": "2023-03-30T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "15,637,792,000.00",
+            "unit": "元",
+            "page": 8,
+            "quote": "                                  15,637,792,000.00  1,254,619,000.00         1,146.42%    2,953,923,000.00",
+            "column": "current_ytd",
+            "label_page": 8,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1219412018",
+        "title": "2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "needs_extraction",
+        "document_id": "05109f3fd76b489507843ba761e6633cf55abf3b5539480e7b586839e6871127",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1222881496",
+        "title": "2024年年度报告",
+        "report_period": "2024-12-31",
+        "status": "needs_extraction",
+        "document_id": "7501d26de44b14773973cdab55980df3423f4ca40d21f4138aad7a7902d44841",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1225045351",
+        "title": "2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "needs_extraction",
+        "document_id": "8836b9b07b522dca81d9111c509152ca4c5508a24e60557f64a36fbfb2281a4c",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "647334084dfb77946a668934807380810bc8d28b83f3932066366fd210727b0f"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600011",
+    "symbol": "600011.SH",
+    "name": "华能国际",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208627480",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "d296fec9fdc99f2c5d89868933249125ab7941d9e7c3ae03c6631953a61b6561",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "a8d1cda8b074de3727d6a1d938dbbb8ae6d1aaba0c4247054e5697ec240123b2"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900005970",
+    "symbol": "601668.SH",
+    "name": "中国建筑",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 12,
+    "processed": 12,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206011420",
+        "title": "2018年年度报告",
+        "report_period": "2018-12-31",
+        "status": "needs_accounting_review",
+        "document_id": "ed068b0a2634832e86cf26b2479ef0b7fa8ef900f0f743f94b8addb7ab6dfe02",
+        "checks": [
+          {
+            "check": "net_profit=parent+minority",
+            "residual": "-50538450000"
+          }
+        ]
+      },
+      {
+        "announcement_id": "1207611180",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "needs_extraction",
+        "document_id": "d9570e15f969f1861b52acaa29f4794b6bf78d735941da6e1f59173cba7141ec",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208636855",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "fa6202838cf4b237336ff60eac56708286a2586edf40e02c67cd158967608849",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1209713469",
+        "title": "中国建筑股份有限公司2020年年度报告",
+        "report_period": "2020-12-31",
+        "status": "data_error",
+        "error": "金额格式不符：410,674)"
+      },
+      {
+        "announcement_id": "1212944652",
+        "title": "中国建筑股份有限公司2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "needs_extraction",
+        "document_id": "dcb923ff4a541c0ea8588b0c36ae55ef31c12aeed9a149819d6cbbc9cf55a1dc",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1216444055",
+        "title": "中国建筑股份有限公司2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "needs_extraction",
+        "document_id": "4984ff3a0e95e6efa038d8422c8b1822a9980e2668d3c68b1eb0971580bf610f",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1219674825",
+        "title": "中国建筑股份有限公司2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "needs_extraction",
+        "document_id": "323d29578be0252381475061ebfd2ccf06cd857d9022c94af21e03efe17fbf56",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1221058985",
+        "title": "中国建筑2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "needs_extraction",
+        "document_id": "b3714839d49004d97498bf4278fe246549bd48c816e9116c11654e058ecf1e5e",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1223102350",
+        "title": "中国建筑股份有限公司2024年年度报告",
+        "report_period": "2024-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1224610866",
+        "title": "中国建筑股份有限公司2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225123321",
+        "title": "中国建筑股份有限公司2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "needs_extraction",
+        "document_id": "a397ade31ae2308fb49c6587242d5c28c791dbbbc648c3ad9e1aaf7399c7a2f6",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1225529574",
+        "title": "中国建筑股份有限公司2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "4d74b3255c27b73806198ee247b70c02d30db0bbc3164fd332bec595cb6f3d04"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600031",
+    "symbol": "600031.SH",
+    "name": "三一重工",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 2,
+    "processed": 2,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208650776",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "71665005e7dbdabecc6aeb896ce9cb385a2d88d0a32e9dae5b64356aff334944",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1210913393",
+        "title": "三一重工股份有限公司2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "needs_accounting_review",
+        "document_id": "9c71c15add6c4fd7c2c91fd028c5580c1044dc1df700cbc2af71b1199733b185",
+        "checks": [
+          {
+            "check": "assets=liabilities+equity",
+            "residual": "5325165000"
+          }
+        ]
+      }
+    ],
+    "id": "22a16fcdb2336b465f1587f43d4468e0b49248b38cd97b6acc1d834ba4d28105"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900005965",
+    "symbol": "000333.SZ",
+    "name": "美的集团",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 37,
+    "processed": 37,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206062041",
+        "title": "2018年年度报告",
+        "report_period": "2018-12-31",
+        "status": "created",
+        "document_id": "33da287a0fc76b342eeb5ba871d13ae418c8677f97097dd94285cc298aa621ee",
+        "event_id": "9d4b3b44b7be3086408ba57f3b60d8d7b5dbef6bd557ef4d31af722628fc6108",
+        "fields": 1,
+        "core_profit": "20058155000",
+        "available_at": "2019-04-21T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "20,058,155",
+            "unit": "千元",
+            "page": 8,
+            "quote": "                                                 20,058,155         15,614,103            28.46%        13,492,866",
+            "column": "current_ytd",
+            "label_page": 8,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1206163682",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206163683",
+        "title": "2019年第一季度报告正文",
+        "report_period": "2019-03-31",
+        "status": "created",
+        "document_id": "bbf0092a3913170b68f87fc9f402434769bf6128959231d33c123133e84aed01",
+        "event_id": "130484450e4deda8e2abfafe444b53e8a2f5b0d4311fbbf8237d14dd80ceb10e",
+        "fields": 1,
+        "core_profit": "6084881000",
+        "available_at": "2019-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "6,084,881",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                                         6,084,881                5,077,715                  19.84%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1206868292",
+        "title": "2019年半年度报告",
+        "report_period": "2019-06-30",
+        "status": "created",
+        "document_id": "da1c8a4c21339791aaae8c528fa68a65528480655f0bbd24449653b8fad5f26b",
+        "event_id": "b4cb9606c3828c2817f1be4f22b258882a1ce709233f50dcba20dcbf12a4cb8d",
+        "fields": 1,
+        "core_profit": "14555674000",
+        "available_at": "2019-09-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "14,555,674",
+            "unit": "千元",
+            "page": 6,
+            "quote": "                                                       14,555,674               12,500,253                  16.44%",
+            "column": "current_ytd",
+            "label_page": 6,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1207047782",
+        "title": "2019年第三季度报告正文",
+        "report_period": "2019-09-30",
+        "status": "created",
+        "document_id": "a3903bd5f542076f4452ad0420fc757f15abcbd974215eca665aec3ad90e0f96",
+        "event_id": "28036c9d889d9471cf5e715d6d61948873ea2aae1f8bdb1cb8a7864562ffa47f",
+        "fields": 1,
+        "core_profit": "20597948000",
+        "available_at": "2019-11-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "20,597,948",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                               6,042,274           27.16%         20,597,948               19.39%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1207047784",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207684806",
+        "title": "2020年第一季度报告正文",
+        "report_period": "2020-03-31",
+        "status": "created",
+        "document_id": "fbf59d97384d3e01321d74d2abcdcec82bf776594353c1a6912e614fac49d928",
+        "event_id": "c69db2db9d867823f6430066fc515d22dd64abd05ca4deaeafe724c53032340b",
+        "fields": 1,
+        "core_profit": "4816912000",
+        "available_at": "2020-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "4,816,912",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                                        4,816,912                6,084,881                    -20.84%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1207684809",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207684829",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "created",
+        "document_id": "802185adcfb5efcd513229634bd8ee038d0617963959629fa187777d06b227be",
+        "event_id": "e0f24e1fb3eac9b22fddf64cdfd04d4c47835db9b28d1dd61805f45ece72fd3b",
+        "fields": 1,
+        "core_profit": "22724392000",
+        "available_at": "2020-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "22,724,392",
+            "unit": "千元",
+            "page": 8,
+            "quote": "                                                 22,724,392         20,058,155            13.29%        15,614,103",
+            "column": "current_ytd",
+            "label_page": 8,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1208324538",
+        "title": "2020年半年度报告",
+        "report_period": "2020-06-30",
+        "status": "created",
+        "document_id": "1d8eb0829dda8cff49b31a761002840bb447fbe9cf64fe3b63ca2b57df90f98f",
+        "event_id": "4d5dd5d4535a8652e10b491a1eb9b8dcbdb564b1c92d31551dd613780c37a850",
+        "fields": 1,
+        "core_profit": "13457044000",
+        "available_at": "2020-09-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "13,457,044",
+            "unit": "千元",
+            "page": 6,
+            "quote": "                                                        13,457,044               14,555,674                   -7.55%",
+            "column": "current_ytd",
+            "label_page": 6,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1208664348",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "created",
+        "document_id": "358f54d99d4bf5b7eaef83603630872523c5001b5f7065cf6a4b7ca45dc6cea4",
+        "event_id": "917feb04b5f6df9246dc060739b58566fd1bb31bf7ebf41a143764dcdc91e446",
+        "fields": 1,
+        "core_profit": "20615588000",
+        "available_at": "2020-11-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "20,615,588",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                                7,158,544           18.47%          20,615,588                0.09%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1208664350",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209870319",
+        "title": "2021年第一季度报告正文",
+        "report_period": "2021-03-31",
+        "status": "created",
+        "document_id": "cb4ef311fa2cfb359e07b41ba5a5ed15d34480615bf1540b0c2881e63506666f",
+        "event_id": "4070b46e2a6e4841a6b5ab0566094fa6be6fdeebd6639486ade88d7178aecd6b",
+        "fields": 1,
+        "core_profit": "6649368000",
+        "available_at": "2021-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "6,649,368",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                                         6,649,368                4,816,912                  38.04%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1209870320",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209870336",
+        "title": "2020年年度报告",
+        "report_period": "2020-12-31",
+        "status": "created",
+        "document_id": "f7aecc61e53d280533d552906fbeed3e76c37f9d89a14fc2a50c9eeb40bd5df3",
+        "event_id": "3172dfc62181f25b096f19711606f3f1f17db652c0e38031c806cab6b965d3c2",
+        "fields": 1,
+        "core_profit": "24614653000",
+        "available_at": "2021-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "24,614,653",
+            "unit": "千元",
+            "page": 9,
+            "quote": "                                                 24,614,653         22,724,392             8.32%        20,058,155",
+            "column": "current_ytd",
+            "label_page": 9,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1210925570",
+        "title": "2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "created",
+        "document_id": "447ac6acab5bcc0871951d8999cb4dfe7a1d70ec4962a98c78d04010d6d94bb5",
+        "event_id": "f5c7c8962e8b3f825c2881a28ff4898610220a6d1568491762cf7450166fa8ed",
+        "fields": 1,
+        "core_profit": "14636511000",
+        "available_at": "2021-09-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "14,636,511",
+            "unit": "千元",
+            "page": 7,
+            "quote": "                                                        14,636,511               13,457,044                   8.76%",
+            "column": "current_ytd",
+            "label_page": 7,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1211437326",
+        "title": "2021年第三季度报告",
+        "report_period": "2021-09-30",
+        "status": "created",
+        "document_id": "3665b55c1f4b9ad492b874225fed6c7698a374a4fd1eee0b4e69b84d7c3efc6a",
+        "event_id": "73a5b1f38071d59b24782f4f8412a1eea93af25356e566bbd72fe2485f6c2e59",
+        "fields": 1,
+        "core_profit": "22564537000",
+        "available_at": "2021-10-31T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "22,564,537",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                               7,928,026           10.75%         22,564,537                9.45%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1213264786",
+        "title": "2022年一季度报告",
+        "report_period": "2022-03-31",
+        "status": "created",
+        "document_id": "65b0460dc230afc956f3b3462b568b03315e307650419cba569b5afe9acce88d",
+        "event_id": "29e3130acc7fc6daad182d40bfd8944bacb49b8a9626e5d935b89dffb0068f29",
+        "fields": 1,
+        "core_profit": "6993023000",
+        "available_at": "2022-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "6,993,023",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                                        6,993,023        6,649,368        6,649,368            5.17%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": "归属于上市公司股东的扣除非经常性损益"
+          }
+        }
+      },
+      {
+        "announcement_id": "1213264815",
+        "title": "2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "created",
+        "document_id": "c9f817798628e2f31a7aa643c7329c7f384acbd227cebefd8556f524e5889b73",
+        "event_id": "3d156d9cadfd5966fd2383093841071de7c6a5ea7862640f648fcfbcf7f617a4",
+        "fields": 1,
+        "core_profit": "25929086000",
+        "available_at": "2022-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "25,929,086",
+            "unit": "千元",
+            "page": 9,
+            "quote": "非经常性损益的净利润（千      25,929,086     24,614,653     24,614,653        5.34%     22,724,392     22,724,392",
+            "column": "current_ytd",
+            "label_page": 9,
+            "label_quote": "归属于上市公司股东的扣除"
+          }
+        }
+      },
+      {
+        "announcement_id": "1214472467",
+        "title": "2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "created",
+        "document_id": "9f190df9fc4f0bf7e27288d424d760873b4c42464f1b6fe251a98a5bc3dce039",
+        "event_id": "1c8a038d2d9b2875d8d9cc235306e164f983e0ea0aebbb0de66b4c90d430c5e1",
+        "fields": 1,
+        "core_profit": "15691512000",
+        "available_at": "2022-09-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "15,691,512",
+            "unit": "千元",
+            "page": 7,
+            "quote": "                                                        15,691,512               14,636,511                   7.21%",
+            "column": "current_ytd",
+            "label_page": 7,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1214960102",
+        "title": "2022年三季度报告",
+        "report_period": "2022-09-30",
+        "status": "created",
+        "document_id": "41796340ed1860a44d3b80ac99f22d4c3c5f9358fd2113c0875748e949b8eb45",
+        "event_id": "e851e377b2376dae7a7dc35ea431a446e62193638ef87967b2b120fc61a9e155",
+        "fields": 1,
+        "core_profit": "24065619000",
+        "available_at": "2022-10-30T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "24,065,619",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                                8,374,107            5.63%         24,065,619                6.65%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1216695016",
+        "title": "2023年一季度报告",
+        "report_period": "2023-03-31",
+        "status": "created",
+        "document_id": "7a4571f06139e10b06d59460695e35cd1afe35047afc5c3268018c88fbdbf172",
+        "event_id": "c577ca1f4feb0b9d42372d92efd3a228248aed88dbf2a277937051a1f246e800",
+        "fields": 1,
+        "core_profit": "7672681000",
+        "available_at": "2023-04-30T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "7,672,681",
+            "unit": "千元",
+            "page": 1,
+            "quote": "                                                             7,672,681                6,993,023                9.72%",
+            "column": "current_ytd",
+            "label_page": 1,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1216695045",
+        "title": "2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "created",
+        "document_id": "7f15a3d801a5040cfed8be3ac032c102bd5274986c35e13544d8d62ead609932",
+        "event_id": "f9bbdbe9475a6ec8439fa2276f1997a9dd680f50ff19ca3f55ae638144587b07",
+        "fields": 1,
+        "core_profit": "28607973000",
+        "available_at": "2023-04-30T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "28,607,973",
+            "unit": "千元",
+            "page": 9,
+            "quote": "                                                  28,607,973         25,929,086            10.33%        24,614,653",
+            "column": "current_ytd",
+            "label_page": 9,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1217718574",
+        "title": "2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "created",
+        "document_id": "ea133bc52643cb45731cc07b956ed1de9b93e57c655fe73b8df111ce25f225ff",
+        "event_id": "6c98fcb8b27def0df2a68a176b1254737155d475d2170be3e1a2ea64ee1a6cf2",
+        "fields": 1,
+        "core_profit": "17651853000",
+        "available_at": "2023-09-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "17,651,853",
+            "unit": "千元",
+            "page": 7,
+            "quote": "                                                           17,651,853              15,691,512               12.49%",
+            "column": "current_ytd",
+            "label_page": 7,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1218202543",
+        "title": "2023年三季度报告",
+        "report_period": "2023-09-30",
+        "status": "created",
+        "document_id": "168cff1b29613995e19a68904573494de1dd5ce4b5bd53e9a1c979412cc17d5e",
+        "event_id": "1699ced7a56f0d121fe9deba8ec667449882594661ea3d96bdb4ce38a132e902",
+        "fields": 1,
+        "core_profit": "26840589000",
+        "available_at": "2023-11-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "26,840,589",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                               9,188,736            9.73%         26,840,589               11.53%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1219429374",
+        "title": "2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "created",
+        "document_id": "71d259fb1798b2a9a837032a21b5d2eb8ad9b75db53d71ed1df8fb01fcf66e5c",
+        "event_id": "8cf7de24c539384e2b1e3bf2b2e63f28fe66139a48e90014a4a8673762f87249",
+        "fields": 1,
+        "core_profit": "32974908000",
+        "available_at": "2024-03-29T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "32,974,908",
+            "unit": "千元",
+            "page": 10,
+            "quote": "                                                 32,974,908         28,607,973           15.26%         25,929,086",
+            "column": "current_ytd",
+            "label_page": 10,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1219910111",
+        "title": "2024年一季度报告",
+        "report_period": "2024-03-31",
+        "status": "created",
+        "document_id": "7c01f7584ed90e6aa997e266e94c7c7aff61ae52221e9f9197c5c57782f3bea5",
+        "event_id": "6e85bf529b69185a73007eaecb3289fe65ea3dc8757b4b3089ee5b9de63e9a47",
+        "fields": 1,
+        "core_profit": "9236971000",
+        "available_at": "2024-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "9,236,971",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                                                  9,236,971                  7,672,681                20.39%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1220909926",
+        "title": "2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "created",
+        "document_id": "812d88640ea169d9d95deff623be2b1adb958ff75420ab0215e7ed8f7bb8670c",
+        "event_id": "6925b2303e097e317e0bca5bae7c7fabfc86df42562018fa7a5e3facd7837dcc",
+        "fields": 1,
+        "core_profit": "20180878000",
+        "available_at": "2024-08-21T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "20,180,878",
+            "unit": "千元",
+            "page": 7,
+            "quote": "                                                           20,180,878              17,651,853               14.33%",
+            "column": "current_ytd",
+            "label_page": 7,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1221570980",
+        "title": "2024年三季度报告",
+        "report_period": "2024-09-30",
+        "status": "created",
+        "document_id": "db23e2774e4560fe7559b2576958bf01bbe331f217b9e9bdbcb88554ffcf8197",
+        "event_id": "d7cfaafa2aef0ce03c39a3bd131733098d937b386dc6f33b56c29c84df6d5369",
+        "fields": 1,
+        "core_profit": "30376736000",
+        "available_at": "2024-11-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "30,376,736",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                              10,195,858           10.96%         30,376,736               13.17%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1222951181",
+        "title": "2024年年度报告",
+        "report_period": "2024-12-31",
+        "status": "created",
+        "document_id": "f7fa5b51b7edcb91bcd761369fa3622fefb5267f437f8a3287989ae3d905a58c",
+        "event_id": "ec78fc514d6726e20eca2bd29f1f6d6f93ebd1e19db446b482e2952e6ded925c",
+        "fields": 1,
+        "core_profit": "35741418000",
+        "available_at": "2025-03-30T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "35,741,418",
+            "unit": "千元",
+            "page": 9,
+            "quote": "                                                35,741,418         32,974,908            8.39%         28,607,973",
+            "column": "current_ytd",
+            "label_page": 9,
+            "label_quote": "归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1223412432",
+        "title": "2025年一季度报告",
+        "report_period": "2025-03-31",
+        "status": "created",
+        "document_id": "f046c2f549804460723a8206b1acc7a39cf7dec10e579c78ca84d5365d74b062",
+        "event_id": "897c21443c3dda76569a8b9005855869133901ab25d743a7f91e0e308076cc22",
+        "fields": 1,
+        "core_profit": "12749867000",
+        "available_at": "2025-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "12,749,867",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                                           12,749,867                9,236,971               38.03%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1224626720",
+        "title": "2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "created",
+        "document_id": "1e61bc76178a8b688657fac9180cf5b2500362e77e112d0e56fd7244f401a63e",
+        "event_id": "37d4567dabbe7a13925071997ea89a1d5810530ddaea132841fd0f2b0d48350c",
+        "fields": 1,
+        "core_profit": "26235399000",
+        "available_at": "2025-08-31T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "26,235,399",
+            "unit": "千元",
+            "page": 7,
+            "quote": "                                                           26,235,399              20,180,878               30.00%",
+            "column": "current_ytd",
+            "label_page": 7,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1224767336",
+        "title": "2025年三季度报告",
+        "report_period": "2025-09-30",
+        "status": "created",
+        "document_id": "48c0a45cc50de07c1b1d1b62936cd27574f6fedee1cd5b9e57dab8b1fde04c49",
+        "event_id": "bf014aef6d21bebf7966b8c38e9c052c878974056ea9a300a42809d441cd66a5",
+        "fields": 1,
+        "core_profit": "37140080000",
+        "available_at": "2025-10-31T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "37,140,080",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                              10,904,681            6.95%         37,140,080               22.26%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      },
+      {
+        "announcement_id": "1225065145",
+        "title": "2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "created",
+        "document_id": "c1c51f8852d4fe6e58b85beff90f2f3dbaf26ec45653b9f3617e2e28024ea54a",
+        "event_id": "59736bbd607d6c241bbe095f46a6e89286757a8d0207e4d12f6d37b7631dea63",
+        "fields": 1,
+        "core_profit": "41267233000",
+        "available_at": "2026-04-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "41,267,233",
+            "unit": "千元",
+            "page": 9,
+            "quote": "                                                 41,267,233         35,741,418           15.46%         32,974,908",
+            "column": "current_ytd",
+            "label_page": 9,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损"
+          }
+        }
+      },
+      {
+        "announcement_id": "1225259066",
+        "title": "2026年一季度报告",
+        "report_period": "2026-03-31",
+        "status": "created",
+        "document_id": "8a67a1eb29d846430f55e3f22bae9948baac423b8598f0a9bf693956f1603248",
+        "event_id": "045eb908f0306bb59285479212888b7ac89cfa6be3a840360b3473c5794fa8bd",
+        "fields": 1,
+        "core_profit": "10961722000",
+        "available_at": "2026-05-01T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "10,961,722",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                                           10,961,722              12,749,867                -14.02%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1225531404",
+        "title": "2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "created",
+        "document_id": "d1dabcf0d028d302e67dd9eb447430e2b23e1ba4d8f4d154a2c75807fc1c6b03",
+        "event_id": "bf3fb51c961102e8fc6c407489cd5ff84bc1fff5b5eb8295e68da7cd7ef30f8d",
+        "fields": 1,
+        "core_profit": "19595179000",
+        "available_at": "2026-08-30T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "19,595,179",
+            "unit": "千元",
+            "page": 7,
+            "quote": "                                                           19,595,179              26,235,399                -25.31%",
+            "column": "current_ytd",
+            "label_page": 7,
+            "label_quote": " 归属于上市公司股东的扣除非经常性损益的"
+          }
+        }
+      },
+      {
+        "announcement_id": "1225645132",
+        "title": "2026年三季度报告",
+        "report_period": "2026-09-30",
+        "status": "created",
+        "document_id": "ebfd77480e5f4281093174d00d8f8d49657e47d451544f8d4108fe59df1a8fd9",
+        "event_id": "daf66e00f8b862ce1e83606980a62d8fd4644988d306f378734e407e5e546457",
+        "fields": 1,
+        "core_profit": "28787970000",
+        "available_at": "2026-10-31T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "28,787,970",
+            "unit": "千元",
+            "page": 2,
+            "quote": "                                                9,192,791           -15.70%         28,787,970               -22.49%",
+            "column": "current_ytd",
+            "label_page": 2,
+            "label_quote": "归属于上市公司股东的扣除非经常性"
+          }
+        }
+      }
+    ],
+    "id": "517549766cf84437dfb14fd05be28d018223dcae4d848f2ab1dca2488694644d"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600050",
+    "symbol": "600050.SH",
+    "name": "中国联通",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208597017",
+        "title": "中国联合网络通信股份有限公司2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "5c92cd49cec3d39139d71e898bb3d1d80d124a48c8a214a4af32eec8e1ea48ae",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "9b74a32f924396f7243dd5dd768ba22b4cd938737c536b6eb088cee94a816250"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600066",
+    "symbol": "600066.SH",
+    "name": "宇通客车",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 2,
+    "processed": 2,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208625015",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "5aba8103d0594c519178a2b8e9c7775c1c3287fb380ac2a14c2e2d758bdfc611",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1209841022",
+        "title": "2021年第一季度报告正文",
+        "report_period": "2021-03-31",
+        "status": "needs_extraction",
+        "document_id": "762b543cb224b95702b7798762f7e2dd198c3672c0197142b3d9e4998cbe3286",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "376948269c4571b51b7e44337131c6a6ece2500ef2272fe3ca0148dccf5357e7"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600104",
+    "symbol": "600104.SH",
+    "name": "上汽集团",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 2,
+    "processed": 2,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208662101",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "3a39d26bf740a96fa789f043a63396e4016f4fa520b148741dd899dc988d8e87",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1223418981",
+        "title": "上汽集团2025年第一季度报告",
+        "report_period": "2025-03-31",
+        "status": "needs_accounting_review",
+        "document_id": "0ffadf50a2b3a9d3657660a688b942d19772f9ab301180f83968f31ade4dcee2",
+        "checks": [
+          {
+            "check": "net_profit=parent+minority",
+            "residual": "309408031.73"
+          }
+        ]
+      }
+    ],
+    "id": "11423c7a21e1fce79deb8c7dbd0955340d9a441020c41a5462d68402c9c79431"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600276",
+    "symbol": "600276.SH",
+    "name": "恒瑞医药",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208584797",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "0dbf1c7c3dba4f9cf9ec6b4855f7f2ecbb1326065204516b2ac5e90b53b311a9",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "9488df532f957a6b85e69aeae27498416c888013a83a602c7d6e49110c65af4c"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600309",
+    "symbol": "600309.SH",
+    "name": "万华化学",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1216168735",
+        "title": "万华化学2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "created",
+        "document_id": "ecf2bb769e0f6565f45907a932f20962f8604d05d8cbb957e39d2a5c4d8c56ea",
+        "event_id": "1fc4b9a4893741c05033ca5e5db43ecbcc44e76bf77c98e7a1115cc9e021ee47",
+        "fields": 1,
+        "core_profit": "15797326614.07",
+        "available_at": "2023-03-22T00:00:00+08:00",
+        "scope_reviewed": false,
+        "issues": [
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ],
+        "proofs": {
+          "core_profit": {
+            "raw_value": "15,797,326,614.07",
+            "unit": "元",
+            "page": 4,
+            "quote": "                     15,797,326,614.07  24,356,144,091.02        -35.14   9,543,943,787.70",
+            "column": "current_ytd",
+            "label_page": 4,
+            "label_quote": "  股东的扣除非经"
+          }
+        }
+      }
+    ],
+    "id": "4309b405a9673b9aa284a3c133620d39ac7aa733cd571523e04d485bfe7f4b09"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600346",
+    "symbol": "600346.SH",
+    "name": "恒力石化",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 2,
+    "processed": 2,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1207585227",
+        "title": "2020年第一季度报告正文",
+        "report_period": "2020-03-31",
+        "status": "needs_extraction",
+        "document_id": "c64777ed78d1fccc88dd11f65cd1131163e35599b77cc34e0098fbfe37236e39",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208636421",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "68245e83dd74f0f8349a110b1b84f02766f0d0599e9c97cc12a2a89948688d9e",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "acaf1c8fd1dc661a62efbf3d608f53789f802f90da136337cf8639482713f314"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600438",
+    "symbol": "600438.SH",
+    "name": "通威股份",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 2,
+    "processed": 2,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208601098",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "13e7c99f071b52d15663ffe821e76a7db61150fbf33a190ab23dc9388482c961",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1223425890",
+        "title": "通威股份有限公司2025年第一季度报告",
+        "report_period": "2025-03-31",
+        "status": "needs_accounting_review",
+        "document_id": "b5e6f87c6b7d01f2a2f29d668cee2b1ad91232345943e7918d048e67b264297f",
+        "checks": [
+          {
+            "check": "net_profit=parent+minority",
+            "residual": "589912467.65"
+          }
+        ]
+      }
+    ],
+    "id": "5fe7c4531e23b35acfa72c2dbc8e6e2010b9aa5346b28ca4aca4e37dc3154b84"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600519",
+    "symbol": "600519.SH",
+    "name": "贵州茅台",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 2,
+    "processed": 2,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208611043",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "86ec05b8a5b492418d4f27a4d22f8f34bc437a4bf4dc0f1e8b853211bbf7c12f",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1212755849",
+        "title": "贵州茅台2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "needs_accounting_review",
+        "document_id": "7cd01fe634651acc1702973c3ee170ec243c66bb870afc35c4f9494a377b6f80",
+        "checks": [
+          {
+            "check": "assets=liabilities+equity",
+            "residual": "29236823604.06"
+          }
+        ]
+      }
+    ],
+    "id": "31240ae49ec3e2fc59fba6a97298696a84b0839c819754a5b1f8f77966aedd31"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600585",
+    "symbol": "600585.SH",
+    "name": "海螺水泥",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 9,
+    "processed": 9,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206554466",
+        "title": "2019年半年度报告",
+        "report_period": "2019-06-30",
+        "status": "needs_extraction",
+        "document_id": "ca9e6ff4748550a2d234315d1df46668eee6ed940649f5939574cdb165461719",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208226643",
+        "title": "2020年半年度报告",
+        "report_period": "2020-06-30",
+        "status": "needs_extraction",
+        "document_id": "d991515589f6abe9efe895d2edd3cef3aa48d5dcd0a268e0c572bdb636c56d33",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208624364",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "0136922603fc9a9b6b8ff7a1e45403356611060373c9ec29c065adc1c9b67bef",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1210900192",
+        "title": "2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "needs_extraction",
+        "document_id": "74c4dbaa0f00b9d497fc3ae070376c2da0cc11d63c8b659cf6b71ef268df2cf3",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1214405546",
+        "title": "2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "needs_extraction",
+        "document_id": "f7abf071ce0a5582e6c3daa91f2f66364a482b634fdfdac390abb973e788008f",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1217597028",
+        "title": "2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "needs_extraction",
+        "document_id": "aea12a328a44433052e8747d12230378135e88c2a6cba9e50ec5de2d0c559d24",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1221007367",
+        "title": "2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "needs_extraction",
+        "document_id": "2bd09f751525d93cef71688324d04cdab640f20b83227dda0e5a6703b6b175ed",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1224578825",
+        "title": "2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "needs_extraction",
+        "document_id": "c1726e09509c5f1422c1e97d12adce496829e56b06ceec7ad437b2e697cc4be0",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1225511652",
+        "title": "2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "needs_extraction",
+        "document_id": "5f072476d9a4b6f2f6b2ac249bce914053ef074c748cb740b83d9d06c73cd453",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "20ca7d5bfd39508c1d2fa9e918ac69ec694a3e0a119cf91c9645bea514fd8f57"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600809",
+    "symbol": "600809.SH",
+    "name": "山西汾酒",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1209818977",
+        "title": "2021年第一季度报告正文",
+        "report_period": "2021-03-31",
+        "status": "needs_extraction",
+        "document_id": "302a290b01c85512b9d5b886d97da8ac3765bc2805d00b5e6e85b3901df564eb",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "51c12f9e3c02d0d480fc782d6673bce52cffbe338cc8f4fc9151380cbbb9596f"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600887",
+    "symbol": "600887.SH",
+    "name": "伊利股份",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208649115",
+        "title": "内蒙古伊利实业集团股份有限公司2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "0893ab652d3e1579e71f3ea445a3fe727ebfd786c5ef0d5569647039d09f1fee",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "0ce4951ac249d2310f1fa229e0ba756bfe95fc73bb9e5021818b61544b662919"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600900",
+    "symbol": "600900.SH",
+    "name": "长江电力",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1208663445",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "9b740c9f5c6c0cd7383ce4500c90a46e3c0b5d72443be33503a335279037f7a1",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "00a9cbafac9da995015c4a9efb7c16985f505d8d44fab725bdf2172be0f379f3"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000002",
+    "symbol": "000002.SZ",
+    "name": "万科A",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 1,
+    "processed": 1,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1225067794",
+        "title": "2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "needs_extraction",
+        "document_id": "919084c0a767739dd00fcb65124a1612bf29d436dbb2113d08dbc10f83a09518",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      }
+    ],
+    "id": "fb31ed4fd7401206c1f3aa1ba1c482a557eff03e99ddc24e8bab17d23efda6c1"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000005",
+    "symbol": "000005.SZ",
+    "name": "ST星源",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 7,
+    "processed": 7,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206090872",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207034768",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207677875",
+        "title": "2020年第一季度报告正文",
+        "report_period": "2020-03-31",
+        "status": "needs_extraction",
+        "document_id": "d5f87b4976a148b3389aa0d7fc298f38d7d125451b6292e6415d11a87302d525",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1207677878",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208634195",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209866902",
+        "title": "2021年第一季度报告正文",
+        "report_period": "2021-03-31",
+        "status": "needs_extraction",
+        "document_id": "ec9c0ddacef3e8957b1883088239330fcd04c8925e24a6db181a592323a165b3",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1209866903",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "cdbe152164fb3fe57639dc4acd5f390cb399e629ecaa0346d997eeec8ab5d247"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000023",
+    "symbol": "000023.SZ",
+    "name": "*ST深天",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206097028",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207028717",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207659071",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208626841",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209867118",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "8eaa5138a8753bcf2a697bd745b7e6b6e15149b1b7c3061829a43c86e83a3489"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000046",
+    "symbol": "000046.SZ",
+    "name": "*ST泛海",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206159885",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207045100",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207681888",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208662026",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209868937",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "84d88e6d72e0e1c6ed9d00fb966e14a87e467bfbc34de8e34932b76e9d1864ae"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000150",
+    "symbol": "000150.SZ",
+    "name": "*ST宜康",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206161482",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207037084",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207687631",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208651718",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209826529",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "5c4542d5b73e8eeb0bf677acd00d2a8c3c80e13e17d1bdd29776731b85115576"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000416",
+    "symbol": "000416.SZ",
+    "name": "*ST民控",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206159511",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207045588",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207680850",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208661932",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209866618",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "f11ff54d8ada5bdc43dd6fb3ea514216aecdf568e50420e196d1acb2b0253ed3"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000538",
+    "symbol": "000538.SZ",
+    "name": "云南白药",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 4,
+    "processed": 4,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1207027451",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207660275",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208647811",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209827011",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "abe70ccc7fca56ea163eaa1a41be10e4534b2d4136b6bc100fb58af925c4858b"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_9900004143",
+    "symbol": "601899.SH",
+    "name": "紫金矿业",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 22,
+    "processed": 22,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206165112",
+        "title": "2019年第一季度报告",
+        "report_period": "2019-03-31",
+        "status": "needs_accounting_review",
+        "document_id": "89ca3fcf91af630c9d5732bd4d544bd4c32385be313643af9ed131814ac31318",
+        "checks": [
+          {
+            "check": "net_profit=parent+minority",
+            "residual": "-210880523"
+          }
+        ]
+      },
+      {
+        "announcement_id": "1207390966",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208585141",
+        "title": "集团股份有限公司2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "7083ff330da968d93f64f4edc8d351872e6ddf2d3805f127cd86dceca9183b9a",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1209419217",
+        "title": "紫金矿业集团股份有限公司2020年年度报告",
+        "report_period": "2020-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1210614120",
+        "title": "紫金矿业集团股份有限公司2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550228",
+        "title": "紫金矿业集团股份有限公司2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1212627878",
+        "title": "紫金矿业集团股份有限公司2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550236",
+        "title": "紫金矿业集团股份有限公司2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1214288837",
+        "title": "紫金矿业集团股份有限公司2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550232",
+        "title": "紫金矿业集团股份有限公司2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216222070",
+        "title": "紫金矿业集团股份有限公司2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550230",
+        "title": "紫金矿业集团股份有限公司2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1217655514",
+        "title": "紫金矿业集团股份有限公司2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550231",
+        "title": "紫金矿业集团股份有限公司2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1219390064",
+        "title": "紫金矿业集团股份有限公司2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550239",
+        "title": "紫金矿业集团股份有限公司2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1220964708",
+        "title": "紫金矿业集团股份有限公司2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550237",
+        "title": "紫金矿业集团股份有限公司2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1224583059",
+        "title": "紫金矿业集团股份有限公司2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550245",
+        "title": "紫金矿业集团股份有限公司2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550242",
+        "title": "紫金矿业集团股份有限公司2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225550244",
+        "title": "紫金矿业集团股份有限公司2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "d7f177bf90dbed3c2c8c9075cc19679204ca51233a709d8f6bb7d92cc1c6e449"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000651",
+    "symbol": "000651.SZ",
+    "name": "格力电器",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 5,
+    "processed": 5,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206163349",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207048136",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207685071",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208665143",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209855806",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "bc08cfaf2df0ffe11bb46d2fe6a97b4da871581a4948df1efde6a2bed420cbbd"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000858",
+    "symbol": "000858.SZ",
+    "name": "五粮液",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 10,
+    "processed": 10,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206117757",
+        "title": "2019年第一季度报告正文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206117759",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207045609",
+        "title": "2019年第三季度报告正文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207045611",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207640797",
+        "title": "2020年第一季度报告正文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207640799",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208647841",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208647843",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209837814",
+        "title": "2021年第一季度报告正文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209837816",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "650874ce220b3ca4c52b059a948336f8c06636263ab15c9620677bba2e6a6bef"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600028",
+    "symbol": "600028.SH",
+    "name": "中国石化",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 34,
+    "processed": 34,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1205932972",
+        "title": "2018年年度报告",
+        "report_period": "2018-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206167573",
+        "title": "2019年第一季度报告",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206572765",
+        "title": "2019年半年度报告",
+        "report_period": "2019-06-30",
+        "status": "needs_extraction",
+        "document_id": "1140cc1a6ab562b728abe2adae4342e1a0a2fe66def2ebc787f71b674baf5d28",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1207046095",
+        "title": "2019年第三季度报告",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207423623",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207688323",
+        "title": "2020年第一季度报告正文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207688324",
+        "title": "2020年第一季度报告",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208345210",
+        "title": "2020年半年度报告",
+        "report_period": "2020-06-30",
+        "status": "needs_extraction",
+        "document_id": "b2df8c3a0d573766971e9d4bfcbac76a1ece9ac45b1de3659e654314931bfd26",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208635883",
+        "title": "2020年第三季度报告",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208635884",
+        "title": "2020年第三季度报告",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209468064",
+        "title": "2020年年度报告",
+        "report_period": "2020-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209857047",
+        "title": "中国石化2021年第一季度报告",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209857048",
+        "title": "中国石化2021年第一季度报告",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1211419341",
+        "title": "中国石化2021年第三季度报告",
+        "report_period": "2021-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1212698707",
+        "title": "中国石化2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1213161507",
+        "title": "中国石化2022年第一季度报告",
+        "report_period": "2022-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1214435725",
+        "title": "2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "needs_extraction",
+        "document_id": "e89a165936ee293fbfc3f2f05f33c681887332b16f9ddabb2694a2eb76d5ace9",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1214960791",
+        "title": "中国石化2022年第三季度报告",
+        "report_period": "2022-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216226068",
+        "title": "中国石化2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216648721",
+        "title": "中国石化2023年第一季度报告",
+        "report_period": "2023-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1217663833",
+        "title": "中国石化2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "needs_extraction",
+        "document_id": "0b68ec6a21207659da44b2457fe9ed77f906ba0bb0636ea898ffa32d8f32009c",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1218168449",
+        "title": "中国石化2023年第三季度报告",
+        "report_period": "2023-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1219392152",
+        "title": "中国石化2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1219893080",
+        "title": "中国石化2024年第一季度报告",
+        "report_period": "2024-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1220975724",
+        "title": "中国石化2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "needs_extraction",
+        "document_id": "3da3a11b01fc5871b9403ce6246111fa52d61c49780910ea67a67bcd46beafbb",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1221540627",
+        "title": "中国石化2024年第三季度报告",
+        "report_period": "2024-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1222873281",
+        "title": "中国石化2024年年度报告",
+        "report_period": "2024-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1223373847",
+        "title": "中国石化2025年第一季度报告",
+        "report_period": "2025-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1224532889",
+        "title": "中国石化2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "needs_extraction",
+        "document_id": "889adc301eb0f3c424191fbbeaadcdfa19c574277e4de12b1194b959f1c2e173",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1224767154",
+        "title": "中国石化2025年第三季度报告",
+        "report_period": "2025-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225024063",
+        "title": "中国石化2025年度报告",
+        "report_period": "2025-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225235941",
+        "title": "中国石化2026年第一季度报告",
+        "report_period": "2026-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225493867",
+        "title": "中国石化2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "needs_extraction",
+        "document_id": "c4158f3b949af3a0ccc8c56638ed1e35f21019a3baec60667e3fcc432250455d",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1225641973",
+        "title": "中国石化2026年第三季度报告",
+        "report_period": "2026-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "62988e752bf3ecbc7281d1eea8aed5229fe1b170976bd47a72930a107391073f"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssh0600036",
+    "symbol": "600036.SH",
+    "name": "招商银行",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 33,
+    "processed": 33,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1206166136",
+        "title": "2019年第一季度报告",
+        "report_period": "2019-03-31",
+        "status": "needs_extraction",
+        "document_id": "48e5fa623961e1ad67feccac57c744acfccbaedc10101e298bc36f76f8319bd2",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1206569919",
+        "title": "2019年半年度报告",
+        "report_period": "2019-06-30",
+        "status": "needs_extraction",
+        "document_id": "e63c5c8b805bccfdbeaf656ceaa7be17795e60121b71e4443d68b86c2fec0d35",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1207047652",
+        "title": "2019年第三季度报告",
+        "report_period": "2019-09-30",
+        "status": "needs_extraction",
+        "document_id": "4fb778f02784e475b68cc64707479e6e4db16dd818be01a26e367aa7376cc375",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1207688336",
+        "title": "2020年第一季度报告正文",
+        "report_period": "2020-03-31",
+        "status": "needs_extraction",
+        "document_id": "1c96b4a7c83402d659f1945e4b1f89b60cceba389029ef49285db5d64b5d6b81",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1207688337",
+        "title": "2020年第一季度报告",
+        "report_period": "2020-03-31",
+        "status": "needs_extraction",
+        "document_id": "563cd65fe529d2c786d23dab1a6f8fb9cf2c54df6ab3ff86a4abb7154446ad94",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208325296",
+        "title": "2020年半年度报告",
+        "report_period": "2020-06-30",
+        "status": "needs_extraction",
+        "document_id": "ee814d104f9f78aaaecd2e621292f8b6771c3a538ce562f4a26071daa34fca67",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208662780",
+        "title": "2020年第三季度报告正文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "7ff0331e0ca86c541242b57cc067868d9e39b5e0baa0115bce05d05eef6a9cac",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1208662781",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "needs_extraction",
+        "document_id": "d1c5c4aab8dbea5506ba03e9c4e651119c39f12395362a387dbf36cd003ad068",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1209418141",
+        "title": "招商银行股份有限公司2020年度报告",
+        "report_period": "2020-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209788443",
+        "title": "招商银行股份有限公司2021年第一季度报告正文",
+        "report_period": "2021-03-31",
+        "status": "needs_extraction",
+        "document_id": "0789753294229dc0e468facbbe20dac762177d9e316cd574f89afd6f92c4867c",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1209788444",
+        "title": "招商银行股份有限公司2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "needs_extraction",
+        "document_id": "602cd64fb7595cbe309385dc8673622b1e5a29293ec0d3a7442d70a5d673e109",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1210747886",
+        "title": "招商银行股份有限公司2021年半年度报告",
+        "report_period": "2021-06-30",
+        "status": "needs_extraction",
+        "document_id": "ebb6bd83f3bfb608a58e67dd32785b0218adf5928ac7de8587f5ca68f74aadbe",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1211361859",
+        "title": "招商银行股份有限公司2021年第三季度报告",
+        "report_period": "2021-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1212626208",
+        "title": "招商银行股份有限公司2021年度报告",
+        "report_period": "2021-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1213048729",
+        "title": "招商银行股份有限公司2022年第一季度报告",
+        "report_period": "2022-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1214343458",
+        "title": "招商银行股份有限公司2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "needs_extraction",
+        "document_id": "f3e63aae2056e128fa4f7dbdd9cd6c53d617769bf2815b3c5677458d0f7d48f1",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1214960794",
+        "title": "招商银行股份有限公司2022年第三季度报告",
+        "report_period": "2022-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216221326",
+        "title": "招商银行股份有限公司2022年度报告",
+        "report_period": "2022-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216614878",
+        "title": "招商银行股份有限公司2023年第一季度报告",
+        "report_period": "2023-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1217652272",
+        "title": "招商银行股份有限公司2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "needs_extraction",
+        "document_id": "c1162eae5409250b1f21d95b7b4c18cb1ca01000ef20b9120dac0d5ed54e237f",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1218188128",
+        "title": "招商银行股份有限公司2023年第三季度报告",
+        "report_period": "2023-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1219403503",
+        "title": "招商银行股份有限公司2023年度报告",
+        "report_period": "2023-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1219910214",
+        "title": "招商银行股份有限公司2024年第一季度报告",
+        "report_period": "2024-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1221051750",
+        "title": "招商银行股份有限公司2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "needs_extraction",
+        "document_id": "491fcd13164235911c98732ea5d7049e8ceeb30af33f6293725d4706269ad8ef",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1221556764",
+        "title": "招商银行股份有限公司2024年第三季度报告",
+        "report_period": "2024-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1222895154",
+        "title": "招商银行股份有限公司2024年度报告",
+        "report_period": "2024-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1223412232",
+        "title": "招商银行股份有限公司2025年第一季度报告",
+        "report_period": "2025-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1224624358",
+        "title": "招商银行股份有限公司2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "needs_extraction",
+        "document_id": "82e82c010624bfd45a3eb5ac59824bf2ab50587a3170e00d7e9047f5a7f519e1",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1224763992",
+        "title": "招商银行股份有限公司2025年第三季度报告",
+        "report_period": "2025-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225047590",
+        "title": "招商银行股份有限公司2025年度报告",
+        "report_period": "2025-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225231394",
+        "title": "招商银行股份有限公司2026年第一季度报告",
+        "report_period": "2026-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225530237",
+        "title": "招商银行股份有限公司2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "needs_extraction",
+        "document_id": "a72f4bffc88e3eb6af24f769ff570c4d102618787722c54f0e68e8cd98cc5d2d",
+        "issues": [
+          "扣非利润单元格需要核对",
+          "assets 未提取",
+          "revenue 未提取",
+          "parent_profit 未提取",
+          "operating_cashflow 未提取"
+        ]
+      },
+      {
+        "announcement_id": "1225649239",
+        "title": "招商银行股份有限公司2026年第三季度报告",
+        "report_period": "2026-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "c05d1a33be306c47cc9a47bde0ded3ddfa5a22bfc6cc152a80766a6001933a10"
+  },
+  {
+    "schema": "earnings-data-v1",
+    "collector_version": "original-financial-reports-v3",
+    "entity_id": "cninfo_gssz0000876",
+    "symbol": "000876.SZ",
+    "name": "新希望",
+    "start": "2019-01-01",
+    "end": "2026-11-14",
+    "discovered": 20,
+    "processed": 20,
+    "remaining": 0,
+    "outcomes": [
+      {
+        "announcement_id": "1205992587",
+        "title": "2018年年度报告",
+        "report_period": "2018-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206159269",
+        "title": "2019年第一季度报告全文",
+        "report_period": "2019-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1206867712",
+        "title": "2019年半年度报告",
+        "report_period": "2019-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207046214",
+        "title": "2019年第三季度报告全文",
+        "report_period": "2019-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207441536",
+        "title": "2019年年度报告",
+        "report_period": "2019-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1207679513",
+        "title": "2020年第一季度报告全文",
+        "report_period": "2020-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208322340",
+        "title": "2020年半年度报告",
+        "report_period": "2020-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1208664280",
+        "title": "2020年第三季度报告全文",
+        "report_period": "2020-09-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209869152",
+        "title": "2020年年度报告",
+        "report_period": "2020-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1209869292",
+        "title": "2021年第一季度报告全文",
+        "report_period": "2021-03-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1213172601",
+        "title": "2021年年度报告",
+        "report_period": "2021-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1214474535",
+        "title": "2022年半年度报告",
+        "report_period": "2022-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1216700123",
+        "title": "2022年年度报告",
+        "report_period": "2022-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1217711987",
+        "title": "2023年半年度报告",
+        "report_period": "2023-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1219915578",
+        "title": "2023年年度报告",
+        "report_period": "2023-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1221088376",
+        "title": "2024年半年度报告",
+        "report_period": "2024-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1223314071",
+        "title": "2024年年度报告",
+        "report_period": "2024-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1224619817",
+        "title": "2025年半年度报告",
+        "report_period": "2025-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225251161",
+        "title": "2025年年度报告",
+        "report_period": "2025-12-31",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      },
+      {
+        "announcement_id": "1225527497",
+        "title": "2026年半年度报告",
+        "report_period": "2026-06-30",
+        "status": "data_error",
+        "error": "原文证券代码需要核对"
+      }
+    ],
+    "id": "5cb001c5b2566ee2da79796dc834d9df1f846521577e1cf4c64356aabefd5fbc"
+  }
+]

@@ -1,0 +1,2656 @@
+[
+  {
+    "repo": "henrywuu91/quant-data",
+    "commit": "2c72a016f2fec3909494655a2f2d52ecb21f3428",
+    "license": null,
+    "stars": 1,
+    "truncated": false,
+    "files": [
+      {
+        "path": "README.md",
+        "size": 12719
+      },
+      {
+        "path": "stock/cn/000021/000021_finance_ext.csv",
+        "size": 6999
+      },
+      {
+        "path": "stock/cn/000021/000021_finance_raw.csv",
+        "size": 17106
+      },
+      {
+        "path": "stock/cn/000021/000021_kline_daily_ext.csv",
+        "size": 392062
+      },
+      {
+        "path": "stock/cn/000021/000021_kline_daily_raw.csv",
+        "size": 442916
+      },
+      {
+        "path": "stock/cn/000032/000032_finance_ext.csv",
+        "size": 7066
+      },
+      {
+        "path": "stock/cn/000032/000032_finance_raw.csv",
+        "size": 16755
+      },
+      {
+        "path": "stock/cn/000032/000032_kline_daily_ext.csv",
+        "size": 369826
+      },
+      {
+        "path": "stock/cn/000032/000032_kline_daily_raw.csv",
+        "size": 409743
+      },
+      {
+        "path": "stock/cn/000063/000063_finance_ext.csv",
+        "size": 6983
+      },
+      {
+        "path": "stock/cn/000063/000063_finance_raw.csv",
+        "size": 15819
+      },
+      {
+        "path": "stock/cn/000063/000063_kline_daily_ext.csv",
+        "size": 389092
+      },
+      {
+        "path": "stock/cn/000063/000063_kline_daily_raw.csv",
+        "size": 437154
+      },
+      {
+        "path": "stock/cn/000066/000066_finance_ext.csv",
+        "size": 7113
+      },
+      {
+        "path": "stock/cn/000066/000066_finance_raw.csv",
+        "size": 17367
+      },
+      {
+        "path": "stock/cn/000066/000066_kline_daily_ext.csv",
+        "size": 387871
+      },
+      {
+        "path": "stock/cn/000066/000066_kline_daily_raw.csv",
+        "size": 440193
+      },
+      {
+        "path": "stock/cn/000100/000100_finance_ext.csv",
+        "size": 7023
+      },
+      {
+        "path": "stock/cn/000100/000100_finance_raw.csv",
+        "size": 15834
+      },
+      {
+        "path": "stock/cn/000100/000100_kline_daily_ext.csv",
+        "size": 354531
+      },
+      {
+        "path": "stock/cn/000100/000100_kline_daily_raw.csv",
+        "size": 419046
+      },
+      {
+        "path": "stock/cn/000333/000333_finance_ext.csv",
+        "size": 6931
+      },
+      {
+        "path": "stock/cn/000333/000333_finance_raw.csv",
+        "size": 16157
+      },
+      {
+        "path": "stock/cn/000333/000333_kline_daily_ext.csv",
+        "size": 390442
+      },
+      {
+        "path": "stock/cn/000333/000333_kline_daily_raw.csv",
+        "size": 443237
+      },
+      {
+        "path": "stock/cn/000338/000338_finance_ext.csv",
+        "size": 6981
+      },
+      {
+        "path": "stock/cn/000338/000338_finance_raw.csv",
+        "size": 17921
+      },
+      {
+        "path": "stock/cn/000338/000338_kline_daily_ext.csv",
+        "size": 389805
+      },
+      {
+        "path": "stock/cn/000338/000338_kline_daily_raw.csv",
+        "size": 444316
+      },
+      {
+        "path": "stock/cn/000426/000426_finance_ext.csv",
+        "size": 7001
+      },
+      {
+        "path": "stock/cn/000426/000426_finance_raw.csv",
+        "size": 16816
+      },
+      {
+        "path": "stock/cn/000426/000426_kline_daily_ext.csv",
+        "size": 374733
+      },
+      {
+        "path": "stock/cn/000426/000426_kline_daily_raw.csv",
+        "size": 423101
+      },
+      {
+        "path": "stock/cn/000630/000630_finance_ext.csv",
+        "size": 6997
+      },
+      {
+        "path": "stock/cn/000630/000630_finance_raw.csv",
+        "size": 17639
+      },
+      {
+        "path": "stock/cn/000630/000630_kline_daily_ext.csv",
+        "size": 377978
+      },
+      {
+        "path": "stock/cn/000630/000630_kline_daily_raw.csv",
+        "size": 451143
+      },
+      {
+        "path": "stock/cn/000636/000636_finance_ext.csv",
+        "size": 6987
+      },
+      {
+        "path": "stock/cn/000636/000636_finance_raw.csv",
+        "size": 17046
+      },
+      {
+        "path": "stock/cn/000636/000636_kline_daily_ext.csv",
+        "size": 391721
+      },
+      {
+        "path": "stock/cn/000636/000636_kline_daily_raw.csv",
+        "size": 435132
+      },
+      {
+        "path": "stock/cn/000657/000657_finance_ext.csv",
+        "size": 6997
+      },
+      {
+        "path": "stock/cn/000657/000657_finance_raw.csv",
+        "size": 16863
+      },
+      {
+        "path": "stock/cn/000657/000657_kline_daily_ext.csv",
+        "size": 379312
+      },
+      {
+        "path": "stock/cn/000657/000657_kline_daily_raw.csv",
+        "size": 430303
+      },
+      {
+        "path": "stock/cn/000725/000725_finance_ext.csv",
+        "size": 6975
+      },
+      {
+        "path": "stock/cn/000725/000725_finance_raw.csv",
+        "size": 16147
+      },
+      {
+        "path": "stock/cn/000725/000725_kline_daily_ext.csv",
+        "size": 380938
+      },
+      {
+        "path": "stock/cn/000725/000725_kline_daily_raw.csv",
+        "size": 454276
+      },
+      {
+        "path": "stock/cn/000733/000733_finance_ext.csv",
+        "size": 7001
+      },
+      {
+        "path": "stock/cn/000733/000733_finance_raw.csv",
+        "size": 16976
+      },
+      {
+        "path": "stock/cn/000733/000733_kline_daily_ext.csv",
+        "size": 394614
+      },
+      {
+        "path": "stock/cn/000733/000733_kline_daily_raw.csv",
+        "size": 436848
+      },
+      {
+        "path": "stock/cn/000792/000792_finance_ext.csv",
+        "size": 7048
+      },
+      {
+        "path": "stock/cn/000792/000792_finance_raw.csv",
+        "size": 17342
+      },
+      {
+        "path": "stock/cn/000792/000792_kline_daily_ext.csv",
+        "size": 330842
+      },
+      {
+        "path": "stock/cn/000792/000792_kline_daily_raw.csv",
+        "size": 347086
+      },
+      {
+        "path": "stock/cn/000807/000807_finance_ext.csv",
+        "size": 6972
+      },
+      {
+        "path": "stock/cn/000807/000807_finance_raw.csv",
+        "size": 17400
+      },
+      {
+        "path": "stock/cn/000807/000807_kline_daily_ext.csv",
+        "size": 384278
+      },
+      {
+        "path": "stock/cn/000807/000807_kline_daily_raw.csv",
+        "size": 439388
+      },
+      {
+        "path": "stock/cn/000831/000831_finance_ext.csv",
+        "size": 7036
+      },
+      {
+        "path": "stock/cn/000831/000831_finance_raw.csv",
+        "size": 16354
+      },
+      {
+        "path": "stock/cn/000831/000831_kline_daily_ext.csv",
+        "size": 393988
+      },
+      {
+        "path": "stock/cn/000831/000831_kline_daily_raw.csv",
+        "size": 431804
+      },
+      {
+        "path": "stock/cn/000938/000938_finance_ext.csv",
+        "size": 7010
+      },
+      {
+        "path": "stock/cn/000938/000938_finance_raw.csv",
+        "size": 17320
+      },
+      {
+        "path": "stock/cn/000938/000938_kline_daily_ext.csv",
+        "size": 392457
+      },
+      {
+        "path": "stock/cn/000938/000938_kline_daily_raw.csv",
+        "size": 440681
+      },
+      {
+        "path": "stock/cn/000960/000960_finance_ext.csv",
+        "size": 6968
+      },
+      {
+        "path": "stock/cn/000960/000960_finance_raw.csv",
+        "size": 17462
+      },
+      {
+        "path": "stock/cn/000960/000960_kline_daily_ext.csv",
+        "size": 394575
+      },
+      {
+        "path": "stock/cn/000960/000960_kline_daily_raw.csv",
+        "size": 459010
+      },
+      {
+        "path": "stock/cn/000977/000977_finance_ext.csv",
+        "size": 7044
+      },
+      {
+        "path": "stock/cn/000977/000977_finance_raw.csv",
+        "size": 17214
+      },
+      {
+        "path": "stock/cn/000977/000977_kline_daily_ext.csv",
+        "size": 396431
+      },
+      {
+        "path": "stock/cn/000977/000977_kline_daily_raw.csv",
+        "size": 446138
+      },
+      {
+        "path": "stock/cn/000988/000988_finance_ext.csv",
+        "size": 6999
+      },
+      {
+        "path": "stock/cn/000988/000988_finance_raw.csv",
+        "size": 17021
+      },
+      {
+        "path": "stock/cn/000988/000988_kline_daily_ext.csv",
+        "size": 398385
+      },
+      {
+        "path": "stock/cn/000988/000988_kline_daily_raw.csv",
+        "size": 447553
+      },
+      {
+        "path": "stock/cn/001696/001696_finance_ext.csv",
+        "size": 6995
+      },
+      {
+        "path": "stock/cn/001696/001696_finance_raw.csv",
+        "size": 17066
+      },
+      {
+        "path": "stock/cn/001696/001696_kline_daily_ext.csv",
+        "size": 370457
+      },
+      {
+        "path": "stock/cn/001696/001696_kline_daily_raw.csv",
+        "size": 415609
+      },
+      {
+        "path": "stock/cn/001896/001896_finance_ext.csv",
+        "size": 7100
+      },
+      {
+        "path": "stock/cn/001896/001896_finance_raw.csv",
+        "size": 17268
+      },
+      {
+        "path": "stock/cn/001896/001896_kline_daily_ext.csv",
+        "size": 372009
+      },
+      {
+        "path": "stock/cn/001896/001896_kline_daily_raw.csv",
+        "size": 422946
+      },
+      {
+        "path": "stock/cn/002008/002008_finance_ext.csv",
+        "size": 7004
+      },
+      {
+        "path": "stock/cn/002008/002008_finance_raw.csv",
+        "size": 17220
+      },
+      {
+        "path": "stock/cn/002008/002008_kline_daily_ext.csv",
+        "size": 398292
+      },
+      {
+        "path": "stock/cn/002008/002008_kline_daily_raw.csv",
+        "size": 444222
+      },
+      {
+        "path": "stock/cn/002028/002028_finance_ext.csv",
+        "size": 6971
+      },
+      {
+        "path": "stock/cn/002028/002028_finance_raw.csv",
+        "size": 16906
+      },
+      {
+        "path": "stock/cn/002028/002028_kline_daily_ext.csv",
+        "size": 395531
+      },
+      {
+        "path": "stock/cn/002028/002028_kline_daily_raw.csv",
+        "size": 435703
+      },
+      {
+        "path": "stock/cn/002049/002049_finance_ext.csv",
+        "size": 6988
+      },
+      {
+        "path": "stock/cn/002049/002049_finance_raw.csv",
+        "size": 16873
+      },
+      {
+        "path": "stock/cn/002049/002049_kline_daily_ext.csv",
+        "size": 379543
+      },
+      {
+        "path": "stock/cn/002049/002049_kline_daily_raw.csv",
+        "size": 418597
+      },
+      {
+        "path": "stock/cn/002050/002050_finance_ext.csv",
+        "size": 6932
+      },
+      {
+        "path": "stock/cn/002050/002050_finance_raw.csv",
+        "size": 17151
+      },
+      {
+        "path": "stock/cn/002050/002050_kline_daily_ext.csv",
+        "size": 385802
+      },
+      {
+        "path": "stock/cn/002050/002050_kline_daily_raw.csv",
+        "size": 437245
+      },
+      {
+        "path": "stock/cn/002056/002056_finance_ext.csv",
+        "size": 6953
+      },
+      {
+        "path": "stock/cn/002056/002056_finance_raw.csv",
+        "size": 17053
+      },
+      {
+        "path": "stock/cn/002056/002056_kline_daily_ext.csv",
+        "size": 390611
+      },
+      {
+        "path": "stock/cn/002056/002056_kline_daily_raw.csv",
+        "size": 436070
+      },
+      {
+        "path": "stock/cn/002080/002080_finance_ext.csv",
+        "size": 6993
+      },
+      {
+        "path": "stock/cn/002080/002080_finance_raw.csv",
+        "size": 17358
+      },
+      {
+        "path": "stock/cn/002080/002080_kline_daily_ext.csv",
+        "size": 388442
+      },
+      {
+        "path": "stock/cn/002080/002080_kline_daily_raw.csv",
+        "size": 436477
+      },
+      {
+        "path": "stock/cn/002119/002119_finance_ext.csv",
+        "size": 6988
+      },
+      {
+        "path": "stock/cn/002119/002119_finance_raw.csv",
+        "size": 16482
+      },
+      {
+        "path": "stock/cn/002119/002119_kline_daily_ext.csv",
+        "size": 392807
+      },
+      {
+        "path": "stock/cn/002119/002119_kline_daily_raw.csv",
+        "size": 424826
+      },
+      {
+        "path": "stock/cn/002129/002129_finance_ext.csv",
+        "size": 7031
+      },
+      {
+        "path": "stock/cn/002129/002129_finance_raw.csv",
+        "size": 17523
+      },
+      {
+        "path": "stock/cn/002129/002129_kline_daily_ext.csv",
+        "size": 327983
+      },
+      {
+        "path": "stock/cn/002129/002129_kline_daily_raw.csv",
+        "size": 366438
+      },
+      {
+        "path": "stock/cn/002138/002138_finance_ext.csv",
+        "size": 6951
+      },
+      {
+        "path": "stock/cn/002138/002138_finance_raw.csv",
+        "size": 17031
+      },
+      {
+        "path": "stock/cn/002138/002138_kline_daily_ext.csv",
+        "size": 396846
+      },
+      {
+        "path": "stock/cn/002138/002138_kline_daily_raw.csv",
+        "size": 441197
+      },
+      {
+        "path": "stock/cn/002149/002149_finance_ext.csv",
+        "size": 7024
+      },
+      {
+        "path": "stock/cn/002149/002149_finance_raw.csv",
+        "size": 16695
+      },
+      {
+        "path": "stock/cn/002149/002149_kline_daily_ext.csv",
+        "size": 389985
+      },
+      {
+        "path": "stock/cn/002149/002149_kline_daily_raw.csv",
+        "size": 427067
+      },
+      {
+        "path": "stock/cn/002156/002156_finance_ext.csv",
+        "size": 7007
+      },
+      {
+        "path": "stock/cn/002156/002156_finance_raw.csv",
+        "size": 17261
+      },
+      {
+        "path": "stock/cn/002156/002156_kline_daily_ext.csv",
+        "size": 386378
+      },
+      {
+        "path": "stock/cn/002156/002156_kline_daily_raw.csv",
+        "size": 434286
+      },
+      {
+        "path": "stock/cn/002171/002171_finance_ext.csv",
+        "size": 7013
+      },
+      {
+        "path": "stock/cn/002171/002171_finance_raw.csv",
+        "size": 17018
+      },
+      {
+        "path": "stock/cn/002171/002171_kline_daily_ext.csv",
+        "size": 370696
+      },
+      {
+        "path": "stock/cn/002171/002171_kline_daily_raw.csv",
+        "size": 422606
+      },
+      {
+        "path": "stock/cn/002179/002179_finance_ext.csv",
+        "size": 6975
+      },
+      {
+        "path": "stock/cn/002179/002179_finance_raw.csv",
+        "size": 17197
+      },
+      {
+        "path": "stock/cn/002179/002179_kline_daily_ext.csv",
+        "size": 396772
+      },
+      {
+        "path": "stock/cn/002179/002179_kline_daily_raw.csv",
+        "size": 446048
+      },
+      {
+        "path": "stock/cn/002185/002185_finance_ext.csv",
+        "size": 6984
+      },
+      {
+        "path": "stock/cn/002185/002185_finance_raw.csv",
+        "size": 17195
+      },
+      {
+        "path": "stock/cn/002185/002185_kline_daily_ext.csv",
+        "size": 383975
+      },
+      {
+        "path": "stock/cn/002185/002185_kline_daily_raw.csv",
+        "size": 437706
+      },
+      {
+        "path": "stock/cn/002192/002192_finance_ext.csv",
+        "size": 7054
+      },
+      {
+        "path": "stock/cn/002192/002192_finance_raw.csv",
+        "size": 16168
+      },
+      {
+        "path": "stock/cn/002192/002192_kline_daily_ext.csv",
+        "size": 396780
+      },
+      {
+        "path": "stock/cn/002192/002192_kline_daily_raw.csv",
+        "size": 435741
+      },
+      {
+        "path": "stock/cn/002202/002202_finance_ext.csv",
+        "size": 7018
+      },
+      {
+        "path": "stock/cn/002202/002202_finance_raw.csv",
+        "size": 17760
+      },
+      {
+        "path": "stock/cn/002202/002202_kline_daily_ext.csv",
+        "size": 389927
+      },
+      {
+        "path": "stock/cn/002202/002202_kline_daily_raw.csv",
+        "size": 438487
+      },
+      {
+        "path": "stock/cn/002222/002222_finance_ext.csv",
+        "size": 6952
+      },
+      {
+        "path": "stock/cn/002222/002222_finance_raw.csv",
+        "size": 16390
+      },
+      {
+        "path": "stock/cn/002222/002222_kline_daily_ext.csv",
+        "size": 394728
+      },
+      {
+        "path": "stock/cn/002222/002222_kline_daily_raw.csv",
+        "size": 419110
+      },
+      {
+        "path": "stock/cn/002230/002230_finance_ext.csv",
+        "size": 7017
+      },
+      {
+        "path": "stock/cn/002230/002230_finance_raw.csv",
+        "size": 17105
+      },
+      {
+        "path": "stock/cn/002230/002230_kline_daily_ext.csv",
+        "size": 396524
+      },
+      {
+        "path": "stock/cn/002230/002230_kline_daily_raw.csv",
+        "size": 443427
+      },
+      {
+        "path": "stock/cn/002240/002240_finance_ext.csv",
+        "size": 7083
+      },
+      {
+        "path": "stock/cn/002240/002240_finance_raw.csv",
+        "size": 16851
+      },
+      {
+        "path": "stock/cn/002240/002240_kline_daily_ext.csv",
+        "size": 392860
+      },
+      {
+        "path": "stock/cn/002240/002240_kline_daily_raw.csv",
+        "size": 434568
+      },
+      {
+        "path": "stock/cn/002245/002245_finance_ext.csv",
+        "size": 7007
+      },
+      {
+        "path": "stock/cn/002245/002245_finance_raw.csv",
+        "size": 16841
+      },
+      {
+        "path": "stock/cn/002245/002245_kline_daily_ext.csv",
+        "size": 382552
+      },
+      {
+        "path": "stock/cn/002245/002245_kline_daily_raw.csv",
+        "size": 433672
+      },
+      {
+        "path": "stock/cn/002273/002273_finance_ext.csv",
+        "size": 6943
+      },
+      {
+        "path": "stock/cn/002273/002273_finance_raw.csv",
+        "size": 16859
+      },
+      {
+        "path": "stock/cn/002273/002273_kline_daily_ext.csv",
+        "size": 394967
+      },
+      {
+        "path": "stock/cn/002273/002273_kline_daily_raw.csv",
+        "size": 445068
+      },
+      {
+        "path": "stock/cn/002297/002297_finance_ext.csv",
+        "size": 7084
+      },
+      {
+        "path": "stock/cn/002297/002297_finance_raw.csv",
+        "size": 16498
+      },
+      {
+        "path": "stock/cn/002297/002297_kline_daily_ext.csv",
+        "size": 333068
+      },
+      {
+        "path": "stock/cn/002297/002297_kline_daily_raw.csv",
+        "size": 342517
+      },
+      {
+        "path": "stock/cn/002353/002353_finance_ext.csv",
+        "size": 6984
+      },
+      {
+        "path": "stock/cn/002353/002353_finance_raw.csv",
+        "size": 17041
+      },
+      {
+        "path": "stock/cn/002353/002353_kline_daily_ext.csv",
+        "size": 397260
+      },
+      {
+        "path": "stock/cn/002353/002353_kline_daily_raw.csv",
+        "size": 443751
+      },
+      {
+        "path": "stock/cn/002354/002354_finance_ext.csv",
+        "size": 7079
+      },
+      {
+        "path": "stock/cn/002354/002354_finance_raw.csv",
+        "size": 16750
+      },
+      {
+        "path": "stock/cn/002354/002354_kline_daily_ext.csv",
+        "size": 368930
+      },
+      {
+        "path": "stock/cn/002354/002354_kline_daily_raw.csv",
+        "size": 393928
+      },
+      {
+        "path": "stock/cn/002585/002585_finance_ext.csv",
+        "size": 7041
+      },
+      {
+        "path": "stock/cn/002585/002585_finance_raw.csv",
+        "size": 16705
+      },
+      {
+        "path": "stock/cn/002585/002585_kline_daily_ext.csv",
+        "size": 382202
+      },
+      {
+        "path": "stock/cn/002585/002585_kline_daily_raw.csv",
+        "size": 431249
+      },
+      {
+        "path": "stock/cn/002625/002625_finance_ext.csv",
+        "size": 7034
+      },
+      {
+        "path": "stock/cn/002625/002625_finance_raw.csv",
+        "size": 16724
+      },
+      {
+        "path": "stock/cn/002625/002625_kline_daily_ext.csv",
+        "size": 365850
+      },
+      {
+        "path": "stock/cn/002625/002625_kline_daily_raw.csv",
+        "size": 403890
+      },
+      {
+        "path": "stock/cn/002741/002741_finance_ext.csv",
+        "size": 7051
+      },
+      {
+        "path": "stock/cn/002741/002741_finance_raw.csv",
+        "size": 16696
+      },
+      {
+        "path": "stock/cn/002741/002741_kline_daily_ext.csv",
+        "size": 396284
+      },
+      {
+        "path": "stock/cn/002741/002741_kline_daily_raw.csv",
+        "size": 432452
+      },
+      {
+        "path": "stock/cn/002747/002747_finance_ext.csv",
+        "size": 7022
+      },
+      {
+        "path": "stock/cn/002747/002747_finance_raw.csv",
+        "size": 16591
+      },
+      {
+        "path": "stock/cn/002747/002747_kline_daily_ext.csv",
+        "size": 384165
+      },
+      {
+        "path": "stock/cn/002747/002747_kline_daily_raw.csv",
+        "size": 415443
+      },
+      {
+        "path": "stock/hk/00001/00001_finance_ext.csv",
+        "size": 3582
+      },
+      {
+        "path": "stock/hk/00001/00001_finance_raw.csv",
+        "size": 8176
+      },
+      {
+        "path": "stock/hk/00001/00001_kline_daily_ext.csv",
+        "size": 399128
+      },
+      {
+        "path": "stock/hk/00001/00001_kline_daily_raw.csv",
+        "size": 436092
+      },
+      {
+        "path": "stock/hk/00002/00002_finance_ext.csv",
+        "size": 3570
+      },
+      {
+        "path": "stock/hk/00002/00002_finance_raw.csv",
+        "size": 8015
+      },
+      {
+        "path": "stock/hk/00002/00002_kline_daily_ext.csv",
+        "size": 398074
+      },
+      {
+        "path": "stock/hk/00002/00002_kline_daily_raw.csv",
+        "size": 434074
+      },
+      {
+        "path": "stock/hk/00003/00003_finance_ext.csv",
+        "size": 3582
+      },
+      {
+        "path": "stock/hk/00003/00003_finance_raw.csv",
+        "size": 8042
+      },
+      {
+        "path": "stock/hk/00003/00003_kline_daily_ext.csv",
+        "size": 383152
+      },
+      {
+        "path": "stock/hk/00003/00003_kline_daily_raw.csv",
+        "size": 437656
+      },
+      {
+        "path": "stock/hk/00005/00005_finance_ext.csv",
+        "size": 6332
+      },
+      {
+        "path": "stock/hk/00005/00005_finance_raw.csv",
+        "size": 14695
+      },
+      {
+        "path": "stock/hk/00005/00005_kline_daily_ext.csv",
+        "size": 401677
+      },
+      {
+        "path": "stock/hk/00005/00005_kline_daily_raw.csv",
+        "size": 459375
+      },
+      {
+        "path": "stock/hk/00006/00006_finance_ext.csv",
+        "size": 3410
+      },
+      {
+        "path": "stock/hk/00006/00006_finance_raw.csv",
+        "size": 7206
+      },
+      {
+        "path": "stock/hk/00006/00006_kline_daily_ext.csv",
+        "size": 397876
+      },
+      {
+        "path": "stock/hk/00006/00006_kline_daily_raw.csv",
+        "size": 432405
+      },
+      {
+        "path": "stock/hk/00148/00148_finance_ext.csv",
+        "size": 3496
+      },
+      {
+        "path": "stock/hk/00148/00148_finance_raw.csv",
+        "size": 8390
+      },
+      {
+        "path": "stock/hk/00148/00148_kline_daily_ext.csv",
+        "size": 397229
+      },
+      {
+        "path": "stock/hk/00148/00148_kline_daily_raw.csv",
+        "size": 429693
+      },
+      {
+        "path": "stock/hk/00168/00168_finance_ext.csv",
+        "size": 6875
+      },
+      {
+        "path": "stock/hk/00168/00168_finance_raw.csv",
+        "size": 20228
+      },
+      {
+        "path": "stock/hk/00168/00168_kline_daily_ext.csv",
+        "size": 396073
+      },
+      {
+        "path": "stock/hk/00168/00168_kline_daily_raw.csv",
+        "size": 421002
+      },
+      {
+        "path": "stock/hk/00175/00175_finance_ext.csv",
+        "size": 4443
+      },
+      {
+        "path": "stock/hk/00175/00175_finance_raw.csv",
+        "size": 9832
+      },
+      {
+        "path": "stock/hk/00175/00175_kline_daily_ext.csv",
+        "size": 396093
+      },
+      {
+        "path": "stock/hk/00175/00175_kline_daily_raw.csv",
+        "size": 438188
+      },
+      {
+        "path": "stock/hk/00179/00179_finance_ext.csv",
+        "size": 6577
+      },
+      {
+        "path": "stock/hk/00179/00179_finance_raw.csv",
+        "size": 19308
+      },
+      {
+        "path": "stock/hk/00179/00179_kline_daily_ext.csv",
+        "size": 391733
+      },
+      {
+        "path": "stock/hk/00179/00179_kline_daily_raw.csv",
+        "size": 418127
+      },
+      {
+        "path": "stock/hk/00189/00189_finance_ext.csv",
+        "size": 3588
+      },
+      {
+        "path": "stock/hk/00189/00189_finance_raw.csv",
+        "size": 7619
+      },
+      {
+        "path": "stock/hk/00189/00189_kline_daily_ext.csv",
+        "size": 346469
+      },
+      {
+        "path": "stock/hk/00189/00189_kline_daily_raw.csv",
+        "size": 386188
+      },
+      {
+        "path": "stock/hk/00241/00241_finance_ext.csv",
+        "size": 4067
+      },
+      {
+        "path": "stock/hk/00241/00241_finance_raw.csv",
+        "size": 11770
+      },
+      {
+        "path": "stock/hk/00241/00241_kline_daily_ext.csv",
+        "size": 368963
+      },
+      {
+        "path": "stock/hk/00241/00241_kline_daily_raw.csv",
+        "size": 377830
+      },
+      {
+        "path": "stock/hk/00267/00267_finance_ext.csv",
+        "size": 3335
+      },
+      {
+        "path": "stock/hk/00267/00267_finance_raw.csv",
+        "size": 6855
+      },
+      {
+        "path": "stock/hk/00267/00267_kline_daily_ext.csv",
+        "size": 381036
+      },
+      {
+        "path": "stock/hk/00267/00267_kline_daily_raw.csv",
+        "size": 429760
+      },
+      {
+        "path": "stock/hk/00268/00268_finance_ext.csv",
+        "size": 3631
+      },
+      {
+        "path": "stock/hk/00268/00268_finance_raw.csv",
+        "size": 7435
+      },
+      {
+        "path": "stock/hk/00268/00268_kline_daily_ext.csv",
+        "size": 380262
+      },
+      {
+        "path": "stock/hk/00268/00268_kline_daily_raw.csv",
+        "size": 395006
+      },
+      {
+        "path": "stock/hk/00285/00285_finance_ext.csv",
+        "size": 3711
+      },
+      {
+        "path": "stock/hk/00285/00285_finance_raw.csv",
+        "size": 8132
+      },
+      {
+        "path": "stock/hk/00285/00285_kline_daily_ext.csv",
+        "size": 396872
+      },
+      {
+        "path": "stock/hk/00285/00285_kline_daily_raw.csv",
+        "size": 430381
+      },
+      {
+        "path": "stock/hk/00288/00288_finance_ext.csv",
+        "size": 3640
+      },
+      {
+        "path": "stock/hk/00288/00288_finance_raw.csv",
+        "size": 8073
+      },
+      {
+        "path": "stock/hk/00288/00288_kline_daily_ext.csv",
+        "size": 380979
+      },
+      {
+        "path": "stock/hk/00288/00288_kline_daily_raw.csv",
+        "size": 432844
+      },
+      {
+        "path": "stock/hk/00291/00291_finance_ext.csv",
+        "size": 3618
+      },
+      {
+        "path": "stock/hk/00291/00291_finance_raw.csv",
+        "size": 7863
+      },
+      {
+        "path": "stock/hk/00291/00291_kline_daily_ext.csv",
+        "size": 399360
+      },
+      {
+        "path": "stock/hk/00291/00291_kline_daily_raw.csv",
+        "size": 433662
+      },
+      {
+        "path": "stock/hk/00293/00293_finance_ext.csv",
+        "size": 3549
+      },
+      {
+        "path": "stock/hk/00293/00293_finance_raw.csv",
+        "size": 8005
+      },
+      {
+        "path": "stock/hk/00293/00293_kline_daily_ext.csv",
+        "size": 380582
+      },
+      {
+        "path": "stock/hk/00293/00293_kline_daily_raw.csv",
+        "size": 423351
+      },
+      {
+        "path": "stock/hk/00300/00300_finance_ext.csv",
+        "size": 6881
+      },
+      {
+        "path": "stock/hk/00300/00300_finance_raw.csv",
+        "size": 20234
+      },
+      {
+        "path": "stock/hk/00300/00300_kline_daily_ext.csv",
+        "size": 68648
+      },
+      {
+        "path": "stock/hk/00300/00300_kline_daily_raw.csv",
+        "size": 74488
+      },
+      {
+        "path": "stock/hk/00316/00316_finance_ext.csv",
+        "size": 3589
+      },
+      {
+        "path": "stock/hk/00316/00316_finance_raw.csv",
+        "size": 8252
+      },
+      {
+        "path": "stock/hk/00316/00316_kline_daily_ext.csv",
+        "size": 380016
+      },
+      {
+        "path": "stock/hk/00316/00316_kline_daily_raw.csv",
+        "size": 419907
+      },
+      {
+        "path": "stock/hk/00322/00322_finance_ext.csv",
+        "size": 4746
+      },
+      {
+        "path": "stock/hk/00322/00322_finance_raw.csv",
+        "size": 13934
+      },
+      {
+        "path": "stock/hk/00322/00322_kline_daily_ext.csv",
+        "size": 385011
+      },
+      {
+        "path": "stock/hk/00322/00322_kline_daily_raw.csv",
+        "size": 429759
+      },
+      {
+        "path": "stock/hk/00358/00358_finance_ext.csv",
+        "size": 6928
+      },
+      {
+        "path": "stock/hk/00358/00358_finance_raw.csv",
+        "size": 20424
+      },
+      {
+        "path": "stock/hk/00358/00358_kline_daily_ext.csv",
+        "size": 388991
+      },
+      {
+        "path": "stock/hk/00358/00358_kline_daily_raw.csv",
+        "size": 430059
+      },
+      {
+        "path": "stock/hk/00386/00386_finance_ext.csv",
+        "size": 6787
+      },
+      {
+        "path": "stock/hk/00386/00386_finance_raw.csv",
+        "size": 20323
+      },
+      {
+        "path": "stock/hk/00386/00386_kline_daily_ext.csv",
+        "size": 382462
+      },
+      {
+        "path": "stock/hk/00386/00386_kline_daily_raw.csv",
+        "size": 442711
+      },
+      {
+        "path": "stock/hk/00388/00388_finance_ext.csv",
+        "size": 6583
+      },
+      {
+        "path": "stock/hk/00388/00388_finance_raw.csv",
+        "size": 15257
+      },
+      {
+        "path": "stock/hk/00388/00388_kline_daily_ext.csv",
+        "size": 419125
+      },
+      {
+        "path": "stock/hk/00388/00388_kline_daily_raw.csv",
+        "size": 450804
+      },
+      {
+        "path": "stock/hk/00390/00390_finance_ext.csv",
+        "size": 6938
+      },
+      {
+        "path": "stock/hk/00390/00390_finance_raw.csv",
+        "size": 20161
+      },
+      {
+        "path": "stock/hk/00390/00390_kline_daily_ext.csv",
+        "size": 380293
+      },
+      {
+        "path": "stock/hk/00390/00390_kline_daily_raw.csv",
+        "size": 428878
+      },
+      {
+        "path": "stock/hk/00425/00425_finance_ext.csv",
+        "size": 3582
+      },
+      {
+        "path": "stock/hk/00425/00425_finance_raw.csv",
+        "size": 7678
+      },
+      {
+        "path": "stock/hk/00425/00425_kline_daily_ext.csv",
+        "size": 396535
+      },
+      {
+        "path": "stock/hk/00425/00425_kline_daily_raw.csv",
+        "size": 426371
+      },
+      {
+        "path": "stock/hk/00522/00522_finance_ext.csv",
+        "size": 5695
+      },
+      {
+        "path": "stock/hk/00522/00522_finance_raw.csv",
+        "size": 12602
+      },
+      {
+        "path": "stock/hk/00522/00522_kline_daily_ext.csv",
+        "size": 398997
+      },
+      {
+        "path": "stock/hk/00522/00522_kline_daily_raw.csv",
+        "size": 427186
+      },
+      {
+        "path": "stock/hk/00585/00585_finance_ext.csv",
+        "size": 3654
+      },
+      {
+        "path": "stock/hk/00585/00585_finance_raw.csv",
+        "size": 7351
+      },
+      {
+        "path": "stock/hk/00585/00585_kline_daily_ext.csv",
+        "size": 265227
+      },
+      {
+        "path": "stock/hk/00585/00585_kline_daily_raw.csv",
+        "size": 269028
+      },
+      {
+        "path": "stock/hk/00669/00669_finance_ext.csv",
+        "size": 3571
+      },
+      {
+        "path": "stock/hk/00669/00669_finance_raw.csv",
+        "size": 8192
+      },
+      {
+        "path": "stock/hk/00669/00669_kline_daily_ext.csv",
+        "size": 402822
+      },
+      {
+        "path": "stock/hk/00669/00669_kline_daily_raw.csv",
+        "size": 438890
+      },
+      {
+        "path": "stock/hk/00780/00780_finance_ext.csv",
+        "size": 5775
+      },
+      {
+        "path": "stock/hk/00780/00780_finance_raw.csv",
+        "size": 16808
+      },
+      {
+        "path": "stock/hk/00780/00780_kline_daily_ext.csv",
+        "size": 299433
+      },
+      {
+        "path": "stock/hk/00780/00780_kline_daily_raw.csv",
+        "size": 324089
+      },
+      {
+        "path": "stock/hk/00788/00788_finance_ext.csv",
+        "size": 5742
+      },
+      {
+        "path": "stock/hk/00788/00788_finance_raw.csv",
+        "size": 16554
+      },
+      {
+        "path": "stock/hk/00788/00788_kline_daily_ext.csv",
+        "size": 304401
+      },
+      {
+        "path": "stock/hk/00788/00788_kline_daily_raw.csv",
+        "size": 343240
+      },
+      {
+        "path": "stock/hk/00883/00883_finance_ext.csv",
+        "size": 5139
+      },
+      {
+        "path": "stock/hk/00883/00883_finance_raw.csv",
+        "size": 15188
+      },
+      {
+        "path": "stock/hk/00883/00883_kline_daily_ext.csv",
+        "size": 387527
+      },
+      {
+        "path": "stock/hk/00883/00883_kline_daily_raw.csv",
+        "size": 435549
+      },
+      {
+        "path": "stock/hk/00902/00902_finance_ext.csv",
+        "size": 7012
+      },
+      {
+        "path": "stock/hk/00902/00902_finance_raw.csv",
+        "size": 20773
+      },
+      {
+        "path": "stock/hk/00902/00902_kline_daily_ext.csv",
+        "size": 379360
+      },
+      {
+        "path": "stock/hk/00902/00902_kline_daily_raw.csv",
+        "size": 428058
+      },
+      {
+        "path": "stock/hk/01093/01093_finance_ext.csv",
+        "size": 5314
+      },
+      {
+        "path": "stock/hk/01093/01093_finance_raw.csv",
+        "size": 11178
+      },
+      {
+        "path": "stock/hk/01093/01093_kline_daily_ext.csv",
+        "size": 381164
+      },
+      {
+        "path": "stock/hk/01093/01093_kline_daily_raw.csv",
+        "size": 429290
+      },
+      {
+        "path": "stock/hk/01108/01108_finance_ext.csv",
+        "size": 7047
+      },
+      {
+        "path": "stock/hk/01108/01108_finance_raw.csv",
+        "size": 20179
+      },
+      {
+        "path": "stock/hk/01108/01108_kline_daily_ext.csv",
+        "size": 362614
+      },
+      {
+        "path": "stock/hk/01108/01108_kline_daily_raw.csv",
+        "size": 353235
+      },
+      {
+        "path": "stock/hk/01109/01109_finance_ext.csv",
+        "size": 3589
+      },
+      {
+        "path": "stock/hk/01109/01109_finance_raw.csv",
+        "size": 8340
+      },
+      {
+        "path": "stock/hk/01109/01109_kline_daily_ext.csv",
+        "size": 400141
+      },
+      {
+        "path": "stock/hk/01109/01109_kline_daily_raw.csv",
+        "size": 437950
+      },
+      {
+        "path": "stock/hk/01113/01113_finance_ext.csv",
+        "size": 3475
+      },
+      {
+        "path": "stock/hk/01113/01113_finance_raw.csv",
+        "size": 7798
+      },
+      {
+        "path": "stock/hk/01113/01113_kline_daily_ext.csv",
+        "size": 398672
+      },
+      {
+        "path": "stock/hk/01113/01113_kline_daily_raw.csv",
+        "size": 435713
+      },
+      {
+        "path": "stock/hk/01114/01114_finance_ext.csv",
+        "size": 3567
+      },
+      {
+        "path": "stock/hk/01114/01114_finance_raw.csv",
+        "size": 7512
+      },
+      {
+        "path": "stock/hk/01114/01114_kline_daily_ext.csv",
+        "size": 321143
+      },
+      {
+        "path": "stock/hk/01114/01114_kline_daily_raw.csv",
+        "size": 360726
+      },
+      {
+        "path": "stock/hk/01138/01138_finance_ext.csv",
+        "size": 6955
+      },
+      {
+        "path": "stock/hk/01138/01138_finance_raw.csv",
+        "size": 20194
+      },
+      {
+        "path": "stock/hk/01138/01138_kline_daily_ext.csv",
+        "size": 378422
+      },
+      {
+        "path": "stock/hk/01138/01138_kline_daily_raw.csv",
+        "size": 405406
+      },
+      {
+        "path": "stock/hk/01208/01208_finance_ext.csv",
+        "size": 3535
+      },
+      {
+        "path": "stock/hk/01208/01208_finance_raw.csv",
+        "size": 7847
+      },
+      {
+        "path": "stock/hk/01208/01208_kline_daily_ext.csv",
+        "size": 377532
+      },
+      {
+        "path": "stock/hk/01208/01208_kline_daily_raw.csv",
+        "size": 426132
+      },
+      {
+        "path": "stock/hk/01209/01209_finance_ext.csv",
+        "size": 3033
+      },
+      {
+        "path": "stock/hk/01209/01209_finance_raw.csv",
+        "size": 8948
+      },
+      {
+        "path": "stock/hk/01209/01209_kline_daily_ext.csv",
+        "size": 219122
+      },
+      {
+        "path": "stock/hk/01209/01209_kline_daily_raw.csv",
+        "size": 235917
+      },
+      {
+        "path": "stock/hk/01211/01211_finance_ext.csv",
+        "size": 6945
+      },
+      {
+        "path": "stock/hk/01211/01211_finance_raw.csv",
+        "size": 20297
+      },
+      {
+        "path": "stock/hk/01211/01211_kline_daily_ext.csv",
+        "size": 401543
+      },
+      {
+        "path": "stock/hk/01211/01211_kline_daily_raw.csv",
+        "size": 431468
+      },
+      {
+        "path": "stock/hk/01357/01357_finance_ext.csv",
+        "size": 3642
+      },
+      {
+        "path": "stock/hk/01357/01357_finance_raw.csv",
+        "size": 10362
+      },
+      {
+        "path": "stock/hk/01357/01357_kline_daily_ext.csv",
+        "size": 363704
+      },
+      {
+        "path": "stock/hk/01357/01357_kline_daily_raw.csv",
+        "size": 413545
+      },
+      {
+        "path": "stock/hk/01359/01359_finance_ext.csv",
+        "size": 3507
+      },
+      {
+        "path": "stock/hk/01359/01359_finance_raw.csv",
+        "size": 10405
+      },
+      {
+        "path": "stock/hk/01359/01359_kline_daily_ext.csv",
+        "size": 378832
+      },
+      {
+        "path": "stock/hk/01359/01359_kline_daily_raw.csv",
+        "size": 436223
+      },
+      {
+        "path": "stock/hk/01378/01378_finance_ext.csv",
+        "size": 3587
+      },
+      {
+        "path": "stock/hk/01378/01378_finance_raw.csv",
+        "size": 10363
+      },
+      {
+        "path": "stock/hk/01378/01378_kline_daily_ext.csv",
+        "size": 360156
+      },
+      {
+        "path": "stock/hk/01378/01378_kline_daily_raw.csv",
+        "size": 404104
+      },
+      {
+        "path": "stock/hk/01384/01384_finance_ext.csv",
+        "size": 1166
+      },
+      {
+        "path": "stock/hk/01384/01384_finance_raw.csv",
+        "size": 2264
+      },
+      {
+        "path": "stock/hk/01384/01384_kline_daily_ext.csv",
+        "size": 23282
+      },
+      {
+        "path": "stock/hk/01384/01384_kline_daily_raw.csv",
+        "size": 22926
+      },
+      {
+        "path": "stock/hk/01385/01385_finance_ext.csv",
+        "size": 5956
+      },
+      {
+        "path": "stock/hk/01385/01385_finance_raw.csv",
+        "size": 17196
+      },
+      {
+        "path": "stock/hk/01385/01385_kline_daily_ext.csv",
+        "size": 384550
+      },
+      {
+        "path": "stock/hk/01385/01385_kline_daily_raw.csv",
+        "size": 419699
+      },
+      {
+        "path": "stock/hk/01658/01658_finance_ext.csv",
+        "size": 6463
+      },
+      {
+        "path": "stock/hk/01658/01658_finance_raw.csv",
+        "size": 15998
+      },
+      {
+        "path": "stock/hk/01658/01658_kline_daily_ext.csv",
+        "size": 369291
+      },
+      {
+        "path": "stock/hk/01658/01658_kline_daily_raw.csv",
+        "size": 421046
+      },
+      {
+        "path": "stock/hk/01729/01729_finance_ext.csv",
+        "size": 3049
+      },
+      {
+        "path": "stock/hk/01729/01729_finance_raw.csv",
+        "size": 6975
+      },
+      {
+        "path": "stock/hk/01729/01729_kline_daily_ext.csv",
+        "size": 314996
+      },
+      {
+        "path": "stock/hk/01729/01729_kline_daily_raw.csv",
+        "size": 346048
+      },
+      {
+        "path": "stock/hk/01766/01766_finance_ext.csv",
+        "size": 6941
+      },
+      {
+        "path": "stock/hk/01766/01766_finance_raw.csv",
+        "size": 20192
+      },
+      {
+        "path": "stock/hk/01766/01766_kline_daily_ext.csv",
+        "size": 379836
+      },
+      {
+        "path": "stock/hk/01766/01766_kline_daily_raw.csv",
+        "size": 425642
+      },
+      {
+        "path": "stock/hk/01772/01772_finance_ext.csv",
+        "size": 7116
+      },
+      {
+        "path": "stock/hk/01772/01772_finance_raw.csv",
+        "size": 20675
+      },
+      {
+        "path": "stock/hk/01772/01772_kline_daily_ext.csv",
+        "size": 304407
+      },
+      {
+        "path": "stock/hk/01772/01772_kline_daily_raw.csv",
+        "size": 328226
+      },
+      {
+        "path": "stock/us/AAPL/AAPL_finance_ext.csv",
+        "size": 6863
+      },
+      {
+        "path": "stock/us/AAPL/AAPL_finance_raw.csv",
+        "size": 16107
+      },
+      {
+        "path": "stock/us/AAPL/AAPL_kline_daily_ext.csv",
+        "size": 402342
+      },
+      {
+        "path": "stock/us/AAPL/AAPL_kline_daily_raw.csv",
+        "size": 456807
+      },
+      {
+        "path": "stock/us/ACN/ACN_finance_ext.csv",
+        "size": 6812
+      },
+      {
+        "path": "stock/us/ACN/ACN_finance_raw.csv",
+        "size": 15314
+      },
+      {
+        "path": "stock/us/ACN/ACN_kline_daily_ext.csv",
+        "size": 405158
+      },
+      {
+        "path": "stock/us/ACN/ACN_kline_daily_raw.csv",
+        "size": 455263
+      },
+      {
+        "path": "stock/us/ADI/ADI_finance_ext.csv",
+        "size": 6809
+      },
+      {
+        "path": "stock/us/ADI/ADI_finance_raw.csv",
+        "size": 14850
+      },
+      {
+        "path": "stock/us/ADI/ADI_kline_daily_ext.csv",
+        "size": 398810
+      },
+      {
+        "path": "stock/us/ADI/ADI_kline_daily_raw.csv",
+        "size": 435244
+      },
+      {
+        "path": "stock/us/ALAB/ALAB_finance_ext.csv",
+        "size": 2589
+      },
+      {
+        "path": "stock/us/ALAB/ALAB_finance_raw.csv",
+        "size": 5178
+      },
+      {
+        "path": "stock/us/ALAB/ALAB_kline_daily_ext.csv",
+        "size": 89496
+      },
+      {
+        "path": "stock/us/ALAB/ALAB_kline_daily_raw.csv",
+        "size": 93693
+      },
+      {
+        "path": "stock/us/AMAT/AMAT_finance_ext.csv",
+        "size": 6864
+      },
+      {
+        "path": "stock/us/AMAT/AMAT_finance_raw.csv",
+        "size": 15238
+      },
+      {
+        "path": "stock/us/AMAT/AMAT_kline_daily_ext.csv",
+        "size": 398747
+      },
+      {
+        "path": "stock/us/AMAT/AMAT_kline_daily_raw.csv",
+        "size": 411553
+      },
+      {
+        "path": "stock/us/AMD/AMD_finance_ext.csv",
+        "size": 6851
+      },
+      {
+        "path": "stock/us/AMD/AMD_finance_raw.csv",
+        "size": 14968
+      },
+      {
+        "path": "stock/us/AMD/AMD_kline_daily_ext.csv",
+        "size": 395479
+      },
+      {
+        "path": "stock/us/AMD/AMD_kline_daily_raw.csv",
+        "size": 368623
+      },
+      {
+        "path": "stock/us/AMZN/AMZN_finance_ext.csv",
+        "size": 6882
+      },
+      {
+        "path": "stock/us/AMZN/AMZN_finance_raw.csv",
+        "size": 16088
+      },
+      {
+        "path": "stock/us/AMZN/AMZN_kline_daily_ext.csv",
+        "size": 400975
+      },
+      {
+        "path": "stock/us/AMZN/AMZN_kline_daily_raw.csv",
+        "size": 393359
+      },
+      {
+        "path": "stock/us/APP/APP_finance_ext.csv",
+        "size": 4499
+      },
+      {
+        "path": "stock/us/APP/APP_finance_raw.csv",
+        "size": 9459
+      },
+      {
+        "path": "stock/us/APP/APP_kline_daily_ext.csv",
+        "size": 204255
+      },
+      {
+        "path": "stock/us/APP/APP_kline_daily_raw.csv",
+        "size": 208870
+      },
+      {
+        "path": "stock/us/AVGO/AVGO_finance_ext.csv",
+        "size": 6858
+      },
+      {
+        "path": "stock/us/AVGO/AVGO_finance_raw.csv",
+        "size": 15231
+      },
+      {
+        "path": "stock/us/AVGO/AVGO_kline_daily_ext.csv",
+        "size": 393576
+      },
+      {
+        "path": "stock/us/AVGO/AVGO_kline_daily_raw.csv",
+        "size": 411809
+      },
+      {
+        "path": "stock/us/BE/BE_finance_ext.csv",
+        "size": 6998
+      },
+      {
+        "path": "stock/us/BE/BE_finance_raw.csv",
+        "size": 14403
+      },
+      {
+        "path": "stock/us/BE/BE_kline_daily_ext.csv",
+        "size": 302906
+      },
+      {
+        "path": "stock/us/BE/BE_kline_daily_raw.csv",
+        "size": 299972
+      },
+      {
+        "path": "stock/us/BRK_B/BRK_B_kline_daily_ext.csv",
+        "size": 410762
+      },
+      {
+        "path": "stock/us/BRK_B/BRK_B_kline_daily_raw.csv",
+        "size": 426354
+      },
+      {
+        "path": "stock/us/C/C_finance_ext.csv",
+        "size": 6852
+      },
+      {
+        "path": "stock/us/C/C_finance_raw.csv",
+        "size": 16050
+      },
+      {
+        "path": "stock/us/C/C_kline_daily_ext.csv",
+        "size": 384002
+      },
+      {
+        "path": "stock/us/C/C_kline_daily_raw.csv",
+        "size": 410933
+      },
+      {
+        "path": "stock/us/CAT/CAT_finance_ext.csv",
+        "size": 6831
+      },
+      {
+        "path": "stock/us/CAT/CAT_finance_raw.csv",
+        "size": 15471
+      },
+      {
+        "path": "stock/us/CAT/CAT_kline_daily_ext.csv",
+        "size": 403439
+      },
+      {
+        "path": "stock/us/CAT/CAT_kline_daily_raw.csv",
+        "size": 424088
+      },
+      {
+        "path": "stock/us/CRM/CRM_finance_ext.csv",
+        "size": 6852
+      },
+      {
+        "path": "stock/us/CRM/CRM_finance_raw.csv",
+        "size": 14949
+      },
+      {
+        "path": "stock/us/CRM/CRM_kline_daily_ext.csv",
+        "size": 403755
+      },
+      {
+        "path": "stock/us/CRM/CRM_kline_daily_raw.csv",
+        "size": 412252
+      },
+      {
+        "path": "stock/us/CRWV/CRWV_finance_ext.csv",
+        "size": 1805
+      },
+      {
+        "path": "stock/us/CRWV/CRWV_finance_raw.csv",
+        "size": 3936
+      },
+      {
+        "path": "stock/us/CRWV/CRWV_kline_daily_ext.csv",
+        "size": 48735
+      },
+      {
+        "path": "stock/us/CRWV/CRWV_kline_daily_raw.csv",
+        "size": 48958
+      },
+      {
+        "path": "stock/us/CSCO/CSCO_finance_ext.csv",
+        "size": 6862
+      },
+      {
+        "path": "stock/us/CSCO/CSCO_finance_raw.csv",
+        "size": 15364
+      },
+      {
+        "path": "stock/us/CSCO/CSCO_kline_daily_ext.csv",
+        "size": 390719
+      },
+      {
+        "path": "stock/us/CSCO/CSCO_kline_daily_raw.csv",
+        "size": 406288
+      },
+      {
+        "path": "stock/us/DELL/DELL_finance_ext.csv",
+        "size": 7046
+      },
+      {
+        "path": "stock/us/DELL/DELL_finance_raw.csv",
+        "size": 15597
+      },
+      {
+        "path": "stock/us/DELL/DELL_kline_daily_ext.csv",
+        "size": 388388
+      },
+      {
+        "path": "stock/us/DELL/DELL_kline_daily_raw.csv",
+        "size": 416771
+      },
+      {
+        "path": "stock/us/FLEX/FLEX_finance_ext.csv",
+        "size": 6914
+      },
+      {
+        "path": "stock/us/FLEX/FLEX_finance_raw.csv",
+        "size": 14798
+      },
+      {
+        "path": "stock/us/FLEX/FLEX_kline_daily_ext.csv",
+        "size": 386660
+      },
+      {
+        "path": "stock/us/FLEX/FLEX_kline_daily_raw.csv",
+        "size": 360316
+      },
+      {
+        "path": "stock/us/GEV/GEV_finance_ext.csv",
+        "size": 2184
+      },
+      {
+        "path": "stock/us/GEV/GEV_finance_raw.csv",
+        "size": 4870
+      },
+      {
+        "path": "stock/us/GEV/GEV_kline_daily_ext.csv",
+        "size": 90770
+      },
+      {
+        "path": "stock/us/GEV/GEV_kline_daily_raw.csv",
+        "size": 96407
+      },
+      {
+        "path": "stock/us/GLW/GLW_finance_ext.csv",
+        "size": 6829
+      },
+      {
+        "path": "stock/us/GLW/GLW_finance_raw.csv",
+        "size": 14911
+      },
+      {
+        "path": "stock/us/GLW/GLW_kline_daily_ext.csv",
+        "size": 386665
+      },
+      {
+        "path": "stock/us/GLW/GLW_kline_daily_raw.csv",
+        "size": 396230
+      },
+      {
+        "path": "stock/us/GOOG/GOOG_finance_ext.csv",
+        "size": 6847
+      },
+      {
+        "path": "stock/us/GOOG/GOOG_finance_raw.csv",
+        "size": 16075
+      },
+      {
+        "path": "stock/us/GOOG/GOOG_kline_daily_ext.csv",
+        "size": 398718
+      },
+      {
+        "path": "stock/us/GOOG/GOOG_kline_daily_raw.csv",
+        "size": 459938
+      },
+      {
+        "path": "stock/us/GOOGL/GOOGL_finance_ext.csv",
+        "size": 6887
+      },
+      {
+        "path": "stock/us/GOOGL/GOOGL_finance_raw.csv",
+        "size": 16115
+      },
+      {
+        "path": "stock/us/GOOGL/GOOGL_kline_daily_ext.csv",
+        "size": 401317
+      },
+      {
+        "path": "stock/us/GOOGL/GOOGL_kline_daily_raw.csv",
+        "size": 449190
+      },
+      {
+        "path": "stock/us/GS/GS_finance_ext.csv",
+        "size": 6921
+      },
+      {
+        "path": "stock/us/GS/GS_finance_raw.csv",
+        "size": 15937
+      },
+      {
+        "path": "stock/us/GS/GS_kline_daily_ext.csv",
+        "size": 404578
+      },
+      {
+        "path": "stock/us/GS/GS_kline_daily_raw.csv",
+        "size": 436355
+      },
+      {
+        "path": "stock/us/HOOD/HOOD_finance_ext.csv",
+        "size": 4610
+      },
+      {
+        "path": "stock/us/HOOD/HOOD_finance_raw.csv",
+        "size": 9977
+      },
+      {
+        "path": "stock/us/HOOD/HOOD_kline_daily_ext.csv",
+        "size": 189447
+      },
+      {
+        "path": "stock/us/HOOD/HOOD_kline_daily_raw.csv",
+        "size": 192948
+      },
+      {
+        "path": "stock/us/INTC/INTC_finance_ext.csv",
+        "size": 6936
+      },
+      {
+        "path": "stock/us/INTC/INTC_finance_raw.csv",
+        "size": 15719
+      },
+      {
+        "path": "stock/us/INTC/INTC_kline_daily_ext.csv",
+        "size": 391562
+      },
+      {
+        "path": "stock/us/INTC/INTC_kline_daily_raw.csv",
+        "size": 401408
+      },
+      {
+        "path": "stock/us/JNJ/JNJ_finance_ext.csv",
+        "size": 6843
+      },
+      {
+        "path": "stock/us/JNJ/JNJ_finance_raw.csv",
+        "size": 15604
+      },
+      {
+        "path": "stock/us/JNJ/JNJ_kline_daily_ext.csv",
+        "size": 403764
+      },
+      {
+        "path": "stock/us/JNJ/JNJ_kline_daily_raw.csv",
+        "size": 444935
+      },
+      {
+        "path": "stock/us/JPM/JPM_finance_ext.csv",
+        "size": 6943
+      },
+      {
+        "path": "stock/us/JPM/JPM_finance_raw.csv",
+        "size": 16166
+      },
+      {
+        "path": "stock/us/JPM/JPM_kline_daily_ext.csv",
+        "size": 398894
+      },
+      {
+        "path": "stock/us/JPM/JPM_kline_daily_raw.csv",
+        "size": 430904
+      },
+      {
+        "path": "stock/us/KLAC/KLAC_finance_ext.csv",
+        "size": 6852
+      },
+      {
+        "path": "stock/us/KLAC/KLAC_finance_raw.csv",
+        "size": 14578
+      },
+      {
+        "path": "stock/us/KLAC/KLAC_kline_daily_ext.csv",
+        "size": 406609
+      },
+      {
+        "path": "stock/us/KLAC/KLAC_kline_daily_raw.csv",
+        "size": 449806
+      },
+      {
+        "path": "stock/us/LITE/LITE_finance_ext.csv",
+        "size": 6914
+      },
+      {
+        "path": "stock/us/LITE/LITE_finance_raw.csv",
+        "size": 14647
+      },
+      {
+        "path": "stock/us/LITE/LITE_kline_daily_ext.csv",
+        "size": 389558
+      },
+      {
+        "path": "stock/us/LITE/LITE_kline_daily_raw.csv",
+        "size": 359545
+      },
+      {
+        "path": "stock/us/LLY/LLY_finance_ext.csv",
+        "size": 6850
+      },
+      {
+        "path": "stock/us/LLY/LLY_finance_raw.csv",
+        "size": 15214
+      },
+      {
+        "path": "stock/us/LLY/LLY_kline_daily_ext.csv",
+        "size": 403352
+      },
+      {
+        "path": "stock/us/LLY/LLY_kline_daily_raw.csv",
+        "size": 427947
+      },
+      {
+        "path": "stock/us/LRCX/LRCX_finance_ext.csv",
+        "size": 6857
+      },
+      {
+        "path": "stock/us/LRCX/LRCX_finance_raw.csv",
+        "size": 15057
+      },
+      {
+        "path": "stock/us/LRCX/LRCX_kline_daily_ext.csv",
+        "size": 388638
+      },
+      {
+        "path": "stock/us/LRCX/LRCX_kline_daily_raw.csv",
+        "size": 434050
+      },
+      {
+        "path": "stock/us/META/META_finance_ext.csv",
+        "size": 6859
+      },
+      {
+        "path": "stock/us/META/META_finance_raw.csv",
+        "size": 16244
+      },
+      {
+        "path": "stock/us/META/META_kline_daily_ext.csv",
+        "size": 412144
+      },
+      {
+        "path": "stock/us/META/META_kline_daily_raw.csv",
+        "size": 440583
+      },
+      {
+        "path": "stock/us/MRVL/MRVL_finance_ext.csv",
+        "size": 6974
+      },
+      {
+        "path": "stock/us/MRVL/MRVL_finance_raw.csv",
+        "size": 14857
+      },
+      {
+        "path": "stock/us/MRVL/MRVL_kline_daily_ext.csv",
+        "size": 390327
+      },
+      {
+        "path": "stock/us/MRVL/MRVL_kline_daily_raw.csv",
+        "size": 414553
+      },
+      {
+        "path": "stock/us/MSFT/MSFT_finance_ext.csv",
+        "size": 6856
+      },
+      {
+        "path": "stock/us/MSFT/MSFT_finance_raw.csv",
+        "size": 16071
+      },
+      {
+        "path": "stock/us/MSFT/MSFT_kline_daily_ext.csv",
+        "size": 405689
+      },
+      {
+        "path": "stock/us/MSFT/MSFT_kline_daily_raw.csv",
+        "size": 428049
+      },
+      {
+        "path": "stock/us/MU/MU_finance_ext.csv",
+        "size": 6628
+      },
+      {
+        "path": "stock/us/MU/MU_finance_raw.csv",
+        "size": 15042
+      },
+      {
+        "path": "stock/us/MU/MU_kline_daily_ext.csv",
+        "size": 389489
+      },
+      {
+        "path": "stock/us/MU/MU_kline_daily_raw.csv",
+        "size": 398808
+      },
+      {
+        "path": "stock/us/NBIS/NBIS_finance_ext.csv",
+        "size": 6888
+      },
+      {
+        "path": "stock/us/NBIS/NBIS_finance_raw.csv",
+        "size": 14547
+      },
+      {
+        "path": "stock/us/NBIS/NBIS_kline_daily_ext.csv",
+        "size": 65072
+      },
+      {
+        "path": "stock/us/NBIS/NBIS_kline_daily_raw.csv",
+        "size": 61124
+      },
+      {
+        "path": "stock/us/NFLX/NFLX_finance_ext.csv",
+        "size": 6895
+      },
+      {
+        "path": "stock/us/NFLX/NFLX_finance_raw.csv",
+        "size": 14813
+      },
+      {
+        "path": "stock/us/NFLX/NFLX_kline_daily_ext.csv",
+        "size": 389572
+      },
+      {
+        "path": "stock/us/NFLX/NFLX_kline_daily_raw.csv",
+        "size": 404072
+      },
+      {
+        "path": "stock/us/NVDA/NVDA_finance_ext.csv",
+        "size": 6866
+      },
+      {
+        "path": "stock/us/NVDA/NVDA_finance_raw.csv",
+        "size": 15333
+      },
+      {
+        "path": "stock/us/NVDA/NVDA_kline_daily_ext.csv",
+        "size": 385916
+      },
+      {
+        "path": "stock/us/NVDA/NVDA_kline_daily_raw.csv",
+        "size": 407069
+      },
+      {
+        "path": "stock/us/ORCL/ORCL_finance_ext.csv",
+        "size": 6918
+      },
+      {
+        "path": "stock/us/ORCL/ORCL_finance_raw.csv",
+        "size": 15604
+      },
+      {
+        "path": "stock/us/ORCL/ORCL_kline_daily_ext.csv",
+        "size": 395629
+      },
+      {
+        "path": "stock/us/ORCL/ORCL_kline_daily_raw.csv",
+        "size": 413907
+      },
+      {
+        "path": "stock/us/PLTR/PLTR_finance_ext.csv",
+        "size": 4753
+      },
+      {
+        "path": "stock/us/PLTR/PLTR_finance_raw.csv",
+        "size": 10261
+      },
+      {
+        "path": "stock/us/PLTR/PLTR_kline_daily_ext.csv",
+        "size": 223824
+      },
+      {
+        "path": "stock/us/PLTR/PLTR_kline_daily_raw.csv",
+        "size": 225035
+      },
+      {
+        "path": "stock/us/QCOM/QCOM_finance_ext.csv",
+        "size": 6872
+      },
+      {
+        "path": "stock/us/QCOM/QCOM_finance_raw.csv",
+        "size": 15197
+      },
+      {
+        "path": "stock/us/QCOM/QCOM_kline_daily_ext.csv",
+        "size": 401076
+      },
+      {
+        "path": "stock/us/QCOM/QCOM_kline_daily_raw.csv",
+        "size": 412617
+      },
+      {
+        "path": "stock/us/RKLB/RKLB_finance_ext.csv",
+        "size": 4339
+      },
+      {
+        "path": "stock/us/RKLB/RKLB_finance_raw.csv",
+        "size": 8587
+      },
+      {
+        "path": "stock/us/RKLB/RKLB_kline_daily_ext.csv",
+        "size": 210543
+      },
+      {
+        "path": "stock/us/RKLB/RKLB_kline_daily_raw.csv",
+        "size": 218055
+      },
+      {
+        "path": "stock/us/SNDK/SNDK_finance_ext.csv",
+        "size": 1862
+      },
+      {
+        "path": "stock/us/SNDK/SNDK_finance_raw.csv",
+        "size": 3960
+      },
+      {
+        "path": "stock/us/SNDK/SNDK_kline_daily_ext.csv",
+        "size": 53983
+      },
+      {
+        "path": "stock/us/SNDK/SNDK_kline_daily_raw.csv",
+        "size": 49600
+      },
+      {
+        "path": "stock/us/SPCX/SPCX_finance_ext.csv",
+        "size": 516
+      },
+      {
+        "path": "stock/us/SPCX/SPCX_finance_raw.csv",
+        "size": 1089
+      },
+      {
+        "path": "stock/us/SPCX/SPCX_kline_daily_ext.csv",
+        "size": 207086
+      },
+      {
+        "path": "stock/us/SPCX/SPCX_kline_daily_raw.csv",
+        "size": 220717
+      },
+      {
+        "path": "stock/us/STX/STX_finance_ext.csv",
+        "size": 6823
+      },
+      {
+        "path": "stock/us/STX/STX_finance_raw.csv",
+        "size": 14764
+      },
+      {
+        "path": "stock/us/STX/STX_kline_daily_ext.csv",
+        "size": 388656
+      },
+      {
+        "path": "stock/us/STX/STX_kline_daily_raw.csv",
+        "size": 393472
+      },
+      {
+        "path": "stock/us/TER/TER_finance_ext.csv",
+        "size": 6831
+      },
+      {
+        "path": "stock/us/TER/TER_finance_raw.csv",
+        "size": 14291
+      },
+      {
+        "path": "stock/us/TER/TER_kline_daily_ext.csv",
+        "size": 393833
+      },
+      {
+        "path": "stock/us/TER/TER_kline_daily_raw.csv",
+        "size": 428802
+      },
+      {
+        "path": "stock/us/TSLA/TSLA_finance_ext.csv",
+        "size": 6888
+      },
+      {
+        "path": "stock/us/TSLA/TSLA_finance_raw.csv",
+        "size": 15388
+      },
+      {
+        "path": "stock/us/TSLA/TSLA_kline_daily_ext.csv",
+        "size": 404840
+      },
+      {
+        "path": "stock/us/TSLA/TSLA_kline_daily_raw.csv",
+        "size": 416905
+      },
+      {
+        "path": "stock/us/TXN/TXN_finance_ext.csv",
+        "size": 6818
+      },
+      {
+        "path": "stock/us/TXN/TXN_finance_raw.csv",
+        "size": 15265
+      },
+      {
+        "path": "stock/us/TXN/TXN_kline_daily_ext.csv",
+        "size": 398785
+      },
+      {
+        "path": "stock/us/TXN/TXN_kline_daily_raw.csv",
+        "size": 412142
+      },
+      {
+        "path": "stock/us/UNH/UNH_finance_ext.csv",
+        "size": 6822
+      },
+      {
+        "path": "stock/us/UNH/UNH_finance_raw.csv",
+        "size": 15835
+      },
+      {
+        "path": "stock/us/UNH/UNH_kline_daily_ext.csv",
+        "size": 406997
+      },
+      {
+        "path": "stock/us/UNH/UNH_kline_daily_raw.csv",
+        "size": 414983
+      },
+      {
+        "path": "stock/us/V/V_finance_ext.csv",
+        "size": 6731
+      },
+      {
+        "path": "stock/us/V/V_finance_raw.csv",
+        "size": 15124
+      },
+      {
+        "path": "stock/us/V/V_kline_daily_ext.csv",
+        "size": 398270
+      },
+      {
+        "path": "stock/us/V/V_kline_daily_raw.csv",
+        "size": 426141
+      }
+    ]
+  },
+  {
+    "repo": "rootSunc/CNEquity",
+    "commit": "05370ab722acaaf1cf4cebc8b4489aaa81d5083b",
+    "license": "Apache-2.0",
+    "stars": 1037,
+    "truncated": false,
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 11358
+      },
+      {
+        "path": "README.md",
+        "size": 8869
+      },
+      {
+        "path": "src/cnequity/adapters/calendar/seeds/trading_calendar.csv",
+        "size": 75999
+      },
+      {
+        "path": "tests/fixtures/futures/cffex_20100416.csv",
+        "size": 650
+      },
+      {
+        "path": "tests/fixtures/futures/cffex_20150105.csv",
+        "size": 1082
+      },
+      {
+        "path": "tests/fixtures/futures/cffex_20260924.csv",
+        "size": 1283
+      }
+    ]
+  },
+  {
+    "repo": "kingchen24/cn-info-disclosure-tracker",
+    "commit": "bb3513cf19025d0aacd53d58d8f7afc5add8e5cf",
+    "license": "MIT",
+    "stars": 0,
+    "truncated": false,
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 1063
+      },
+      {
+        "path": "README.md",
+        "size": 7815
+      }
+    ]
+  },
+  {
+    "repo": "que3sui/A_stock",
+    "commit": "68976b0cbc830d8abd0338c0771ba77e1ca69937",
+    "license": null,
+    "stars": 2,
+    "truncated": false,
+    "files": [
+      {
+        "path": "README.md",
+        "size": 8821
+      },
+      {
+        "path": "output/reports/backtest_ensemble_ideal_nav.csv",
+        "size": 15669
+      },
+      {
+        "path": "output/reports/backtest_ensemble_nav.csv",
+        "size": 15654
+      },
+      {
+        "path": "output/reports/backtest_ensemble_real_nav.csv",
+        "size": 15969
+      },
+      {
+        "path": "output/reports/backtest_gru_ideal_nav.csv",
+        "size": 15703
+      },
+      {
+        "path": "output/reports/backtest_gru_nav.csv",
+        "size": 15703
+      },
+      {
+        "path": "output/reports/backtest_gru_real_nav.csv",
+        "size": 15963
+      },
+      {
+        "path": "output/reports/backtest_lgbm_ideal_nav.csv",
+        "size": 15660
+      },
+      {
+        "path": "output/reports/backtest_lgbm_nav.csv",
+        "size": 15638
+      },
+      {
+        "path": "output/reports/backtest_lgbm_real_nav.csv",
+        "size": 15959
+      },
+      {
+        "path": "output/reports/backtest_master_ideal_nav.csv",
+        "size": 15652
+      },
+      {
+        "path": "output/reports/backtest_master_nav.csv",
+        "size": 15632
+      },
+      {
+        "path": "output/reports/backtest_master_real_nav.csv",
+        "size": 16069
+      },
+      {
+        "path": "output/reports/backtest_master_v1raw_nav.csv",
+        "size": 15662
+      },
+      {
+        "path": "output/reports/backtest_master_v2_ideal_nav.csv",
+        "size": 15684
+      },
+      {
+        "path": "output/reports/backtest_master_v2_nav.csv",
+        "size": 15704
+      },
+      {
+        "path": "output/reports/backtest_master_v2_real_nav.csv",
+        "size": 15695
+      },
+      {
+        "path": "output/reports/backtest_master_v3_ideal_nav.csv",
+        "size": 15680
+      },
+      {
+        "path": "output/reports/backtest_master_v3_nav.csv",
+        "size": 15687
+      },
+      {
+        "path": "output/reports/backtest_master_v3_real_nav.csv",
+        "size": 16052
+      },
+      {
+        "path": "output/reports/backtest_master_v7_real_nav.csv",
+        "size": 16050
+      },
+      {
+        "path": "output/reports/backtest_mlp_ideal_nav.csv",
+        "size": 15685
+      },
+      {
+        "path": "output/reports/backtest_mlp_real_nav.csv",
+        "size": 15955
+      },
+      {
+        "path": "output/sensitivity_nk.csv",
+        "size": 4956
+      },
+      {
+        "path": "output/v1_20f/signals/master_test.parquet",
+        "size": 5891967
+      },
+      {
+        "path": "output/v1_20f/signals/master_v3_test.parquet",
+        "size": 4441887
+      },
+      {
+        "path": "output/v2_weight/signals/ensemble_test.parquet",
+        "size": 6834690
+      },
+      {
+        "path": "output/v2_weight/signals/gru_test.parquet",
+        "size": 4811596
+      },
+      {
+        "path": "output/v2_weight/signals/lgbm_test.parquet",
+        "size": 6363047
+      },
+      {
+        "path": "output/v2_weight/signals/master_seed1337_test.parquet",
+        "size": 5860345
+      },
+      {
+        "path": "output/v2_weight/signals/master_seed2024_test.parquet",
+        "size": 5909065
+      },
+      {
+        "path": "output/v2_weight/signals/master_test.parquet",
+        "size": 5872392
+      },
+      {
+        "path": "output/v2_weight/signals/master_v3_test.parquet",
+        "size": 4441887
+      },
+      {
+        "path": "output/v2_weight/signals/mlp_test.parquet",
+        "size": 4814024
+      },
+      {
+        "path": "output/v3_search/signals/master_test.parquet",
+        "size": 5820797
+      }
+    ]
+  },
+  {
+    "repo": "tycallen/TushareDB",
+    "commit": "b7cd84f7d23c9fee1eb928106612955cd790a793",
+    "license": "Apache-2.0",
+    "stars": 42,
+    "truncated": false,
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 11357
+      },
+      {
+        "path": "README.md",
+        "size": 8622
+      }
+    ]
+  },
+  {
+    "repo": "gityuanbao/share",
+    "commit": "c7bcfb3e130492c2a49f2b89419f610bb54bcf4d",
+    "license": null,
+    "stars": 1210,
+    "truncated": false,
+    "files": []
+  },
+  {
+    "repo": "Z-Shuming/financial_data_pools_z",
+    "commit": "9e8101d88f74f53cf0312b720fc01f4f57e39f2f",
+    "license": "Apache-2.0",
+    "stars": 0,
+    "truncated": false,
+    "files": []
+  },
+  {
+    "repo": "kibovrwa/china-a-share-report-extractor",
+    "commit": "a4bff1828220203297194c9a991dc660b54fc0aa",
+    "license": "MIT",
+    "stars": 1,
+    "truncated": false,
+    "files": [
+      {
+        "path": "company_mapping.csv",
+        "size": 164
+      },
+      {
+        "path": "product_taxonomy.csv",
+        "size": 417
+      }
+    ]
+  }
+]

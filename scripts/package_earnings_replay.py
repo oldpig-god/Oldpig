@@ -30,13 +30,18 @@ def main():
         keys.update(item['key'] for item in manifest['objects'])
     files=['app/cloud_store.py','requirements-earnings.txt','requirements-earnings-models.txt',
            'scripts/earnings_data.py','scripts/earnings_benchmark.py','docs-earnings-evaluation.md',
-           'research/earnings/benchmark-validation.json','research/earnings/code-version-map.json']
+           'app/earnings_diagnostics.py','scripts/earnings_diagnose.py',
+           'scripts/earnings_guidance_benchmark.py',
+           'research/earnings/benchmark-validation-v2.json','research/earnings/code-version-map.json',
+           'research/earnings/error-diagnosis-v2.json','research/earnings/experiment-invalidation.json',
+           'research/earnings/guidance-benchmark.json','research/earnings/guidance-evidence.json',
+           'research/earnings/guidance-evidence.md','research/earnings/github-csv-audit.json']
     files += [str(p.relative_to(root)).replace('\\','/') for p in sorted((root/'app/earnings').glob('*.py'))]
     readme=f'''# 盈利研究专项重放包
 
 研究数据与固定配置已装入本包。无需账户配置即可本地重放。原始PDF通过输入记录中的来源URL与SHA256追溯，二进制原件独立归档。
 
-当前结论：分位树尚未显著胜过季节基准。最近两个季度保留作独立检验。
+当前结论：修正数据后，财务增强树缩放误差0.749%，去年同期基准0.686%。旧实验已标记失效，最近两个季度保留作独立检验。
 
 ## Windows PowerShell
 

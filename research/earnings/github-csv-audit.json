@@ -1,0 +1,648 @@
+{
+  "repo": "henrywuu91/quant-data",
+  "commit": "2c72a016f2fec3909494655a2f2d52ecb21f3428",
+  "retrieved_at": "2026-11-15T23:01:21.552338+08:00",
+  "access": "public_csv",
+  "usage": "external_crosscheck_only",
+  "provenance": "latest_only",
+  "license_note": "README限非商业学习研究；未向模型数据或公开复现包复制第三方原始CSV",
+  "files": [
+    {
+      "path": "stock/cn/000021/000021_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000021/000021_finance_raw.csv",
+      "sha256": "9291c4594202c2b5f393e993620ed1fd3d32fcf72e0f8cec14dc486b496bf841"
+    },
+    {
+      "path": "stock/cn/000032/000032_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000032/000032_finance_raw.csv",
+      "sha256": "dcdd486ed08ab42d853dcb1d71aa9287d4b806eef6d275021596ff68f4949057"
+    },
+    {
+      "path": "stock/cn/000063/000063_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000063/000063_finance_raw.csv",
+      "sha256": "db7586f4878d0d10990a8df70ea0b9b503cdf4850d21cc49cac5d7bcad0dfda1"
+    },
+    {
+      "path": "stock/cn/000066/000066_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000066/000066_finance_raw.csv",
+      "sha256": "c9c447da0c877d42cd867c40765d59be523851aeba1f305067a120a7c1257ef8"
+    },
+    {
+      "path": "stock/cn/000100/000100_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000100/000100_finance_raw.csv",
+      "sha256": "47b49814662a66e03fe7a7951efdce0722d53ea7fa4a13333cd8dc15de442c2a"
+    },
+    {
+      "path": "stock/cn/000333/000333_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000333/000333_finance_raw.csv",
+      "sha256": "e788ca4a9589121f14b0cbcd38fb0505454cff167a9012d38864487b23d4e7cf"
+    },
+    {
+      "path": "stock/cn/000338/000338_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000338/000338_finance_raw.csv",
+      "sha256": "67ae685a065a7f8caf8275768ab5e5f42b583a38d7558e4fb78d665f1fa8fb31"
+    },
+    {
+      "path": "stock/cn/000426/000426_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000426/000426_finance_raw.csv",
+      "sha256": "36a876a103513c9019c5362d92911e20ed2be70d477b53d4656e5ed67192613c"
+    },
+    {
+      "path": "stock/cn/000630/000630_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000630/000630_finance_raw.csv",
+      "sha256": "e340587421fa2115f2f0b529ce0bb06098576c59ad0832940722e1a3c60c6f2a"
+    },
+    {
+      "path": "stock/cn/000636/000636_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000636/000636_finance_raw.csv",
+      "sha256": "2cafaa2b090a050da47cd9529897f0bd6a69144a1059198b562e4436b2f9ddbc"
+    },
+    {
+      "path": "stock/cn/000657/000657_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000657/000657_finance_raw.csv",
+      "sha256": "8297928da78d719f5ad8782a8284b5485d1c30e068f99c52e5d8ab9836f6ed89"
+    },
+    {
+      "path": "stock/cn/000725/000725_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000725/000725_finance_raw.csv",
+      "sha256": "439b0fe22b8dda77586b2477c692ab45fccd036ddda390520a9779c79daa0762"
+    },
+    {
+      "path": "stock/cn/000733/000733_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000733/000733_finance_raw.csv",
+      "sha256": "c693915239def868e845a2d953af87ec99fcbe2fb096a190d4bcbdb64f2adb6a"
+    },
+    {
+      "path": "stock/cn/000792/000792_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000792/000792_finance_raw.csv",
+      "sha256": "58c6caef468b5a7f3d11a5e207a50535332817a112524a32e89ef91a07f6b0ff"
+    },
+    {
+      "path": "stock/cn/000807/000807_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000807/000807_finance_raw.csv",
+      "sha256": "e736bb2ac362e9bfca5d56af63d72b3f5bc15b7d299bc8aab9f506a7c23b50ad"
+    },
+    {
+      "path": "stock/cn/000831/000831_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000831/000831_finance_raw.csv",
+      "sha256": "4b6081dd518d8a913a87ce0ec7277f727d3ce83cea2b9f2c72d239233c9dcf49"
+    },
+    {
+      "path": "stock/cn/000938/000938_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000938/000938_finance_raw.csv",
+      "sha256": "1541f666d95403d9837e139e009cb0bf2a214eedd7ce07f1e7205faba98286e0"
+    },
+    {
+      "path": "stock/cn/000960/000960_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000960/000960_finance_raw.csv",
+      "sha256": "d4f158276c61326d984f90b1f022fb383abc51329b793b24532c5c344b5f7db9"
+    },
+    {
+      "path": "stock/cn/000977/000977_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000977/000977_finance_raw.csv",
+      "sha256": "df2520b9a87a3bbcab68c58bf6db800836163fe671a1caf03efa4c5f5bc690ad"
+    },
+    {
+      "path": "stock/cn/000988/000988_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/000988/000988_finance_raw.csv",
+      "sha256": "fff393c98761ab5501609ef4dc42fd931f4c37f1ba56f85289afe1e0aa42483c"
+    },
+    {
+      "path": "stock/cn/001696/001696_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/001696/001696_finance_raw.csv",
+      "sha256": "14f21c943b720e4118dd7ef8ba35b0270aaf0616eb92bf1e6164db569bcdadcc"
+    },
+    {
+      "path": "stock/cn/001896/001896_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/001896/001896_finance_raw.csv",
+      "sha256": "0421f3d080f34db102a2a78b32b67ac58e40b1e7dfaacd9c4dce86e1ae187e80"
+    },
+    {
+      "path": "stock/cn/002008/002008_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002008/002008_finance_raw.csv",
+      "sha256": "92c8fc10968e6d6ae772cd71a8f5fff3375e83f6a7b8ebd40008f80a7d5802a6"
+    },
+    {
+      "path": "stock/cn/002028/002028_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002028/002028_finance_raw.csv",
+      "sha256": "7d7826d114ccda03e7ffaf3746f5d4fb0818c5041be982dd458ad5e3ba995f10"
+    },
+    {
+      "path": "stock/cn/002049/002049_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002049/002049_finance_raw.csv",
+      "sha256": "0342cdfb8713ae54b57c29af59648a262cb53c0a693d6495daa1f4f17cb35f07"
+    },
+    {
+      "path": "stock/cn/002050/002050_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002050/002050_finance_raw.csv",
+      "sha256": "4b879ac1c330add3541a94dc83e953b4a706068d57f208c71013c4a721c5ed95"
+    },
+    {
+      "path": "stock/cn/002056/002056_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002056/002056_finance_raw.csv",
+      "sha256": "ed51d1ee53951d6bec497dda7142047b6d63104fab5dbb8901cd45d5832cdcb2"
+    },
+    {
+      "path": "stock/cn/002080/002080_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002080/002080_finance_raw.csv",
+      "sha256": "2407a2e9bbb5bd4e21c20c0898c734376de4cc7a3d70c540db016fff2ecbe6ad"
+    },
+    {
+      "path": "stock/cn/002119/002119_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002119/002119_finance_raw.csv",
+      "sha256": "136951c8ea8fca16301778515f842ca6591d29bc2de03e9b7e9da8ff7d7bb8e0"
+    },
+    {
+      "path": "stock/cn/002129/002129_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002129/002129_finance_raw.csv",
+      "sha256": "e1858c1c242da0031f1bafd3b93556a4ad4182efb894b7bb72fa65c8032d0c5f"
+    },
+    {
+      "path": "stock/cn/002138/002138_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002138/002138_finance_raw.csv",
+      "sha256": "5d5d2bf8305acc8560539a64fbb35cd0ed268ec7b721a2fc881cc72669fedfbc"
+    },
+    {
+      "path": "stock/cn/002149/002149_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002149/002149_finance_raw.csv",
+      "sha256": "6514cc1b68a5bb291ee478bb26ec2f74912f2283af9f9654a8aac73250c3297c"
+    },
+    {
+      "path": "stock/cn/002156/002156_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002156/002156_finance_raw.csv",
+      "sha256": "689dc7894edd1dadeb2b95e1f2a5cb89ae2979d69ca3a5706c1c340c9db46377"
+    },
+    {
+      "path": "stock/cn/002171/002171_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002171/002171_finance_raw.csv",
+      "sha256": "fc2ffbe76d1f497a5ddabd332f267bff9d8cb6719df7bdc2301117b8644456ca"
+    },
+    {
+      "path": "stock/cn/002179/002179_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002179/002179_finance_raw.csv",
+      "sha256": "5aaadfa2cad253577891164d7701355d7b67df6420d20bb91822ad98fbc339c3"
+    },
+    {
+      "path": "stock/cn/002185/002185_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002185/002185_finance_raw.csv",
+      "sha256": "fa67300923805778c2a9c4fbc1992fe9e6511eeb3bcad2b9878015e8dbe869b1"
+    },
+    {
+      "path": "stock/cn/002192/002192_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002192/002192_finance_raw.csv",
+      "sha256": "b3a3e72b13a2dad85781771a733e3ef057034c47407cee6e663c30cb8db924e7"
+    },
+    {
+      "path": "stock/cn/002202/002202_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002202/002202_finance_raw.csv",
+      "sha256": "4fbaeafbe9923199fe4efa02ecc98c60a92bd80e11fecb2ba497ecd971654955"
+    },
+    {
+      "path": "stock/cn/002222/002222_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002222/002222_finance_raw.csv",
+      "sha256": "cb9b772328527d09dffb5b9d4b5df165b67f9edd8290a34b1d35f9a4607601ae"
+    },
+    {
+      "path": "stock/cn/002230/002230_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002230/002230_finance_raw.csv",
+      "sha256": "e5e062a5e719466b40ca5e04d30e96e58f5027339c0082cb6eadcd7f6cadc075"
+    },
+    {
+      "path": "stock/cn/002240/002240_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002240/002240_finance_raw.csv",
+      "sha256": "78c5ce7749f2684c4aa69a33abf7134e0be1f71837a2bf4bf323d670be4da2d8"
+    },
+    {
+      "path": "stock/cn/002245/002245_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002245/002245_finance_raw.csv",
+      "sha256": "a9915df7820a82659863bc00e4d5d4a1328e9b33087ef595dca56fe428b1bb0d"
+    },
+    {
+      "path": "stock/cn/002273/002273_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002273/002273_finance_raw.csv",
+      "sha256": "c05cceb8e86c6b23965e65883375d09cb7707daabc553082dbdead3cadf11d70"
+    },
+    {
+      "path": "stock/cn/002297/002297_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002297/002297_finance_raw.csv",
+      "sha256": "09f07d396765f28614c3bff6ad97a3539058ac622115c83f271402bb3a5b2532"
+    },
+    {
+      "path": "stock/cn/002353/002353_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002353/002353_finance_raw.csv",
+      "sha256": "54b9b03d0e93734ad425fbf5a1dbf03fe08a34ce7300a03535483ca099f3a91a"
+    },
+    {
+      "path": "stock/cn/002354/002354_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002354/002354_finance_raw.csv",
+      "sha256": "11982459e37198b12510a851be731283f8eb86dceb743243f580010b5f98eef9"
+    },
+    {
+      "path": "stock/cn/002585/002585_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002585/002585_finance_raw.csv",
+      "sha256": "bbf84622681ddca22717629d8ba849a23279957767ba7857f6c6c454ffe8214c"
+    },
+    {
+      "path": "stock/cn/002625/002625_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002625/002625_finance_raw.csv",
+      "sha256": "0d9458a765d5e22485e5fdc34e4db308b3cbcca1689af23f4808137836e23c75"
+    },
+    {
+      "path": "stock/cn/002741/002741_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002741/002741_finance_raw.csv",
+      "sha256": "10ed0db9887634e0a633b22f314f35575bd3212201fbeabb057595cd5fc9e977"
+    },
+    {
+      "path": "stock/cn/002747/002747_finance_raw.csv",
+      "url": "https://raw.githubusercontent.com/henrywuu91/quant-data/2c72a016f2fec3909494655a2f2d52ecb21f3428/stock/cn/002747/002747_finance_raw.csv",
+      "sha256": "332d802ca1f5f3cc3afd069bb77e243c4ea544bb3140694d36e8f5856f6b0def"
+    }
+  ],
+  "companies": 50,
+  "rows": 2000,
+  "recent_rows": 900,
+  "first_period": "2016-06-30",
+  "last_period": "2026-03-31",
+  "columns": [
+    "code",
+    "name",
+    "country",
+    "currency",
+    "report_type",
+    "report_date",
+    "filing_date",
+    "revenue",
+    "gross_profit",
+    "operating_profit",
+    "income_before_tax",
+    "income_tax_expense",
+    "net_income",
+    "net_income_parent",
+    "basic_eps",
+    "assets_total",
+    "assets_current",
+    "assets_non_current",
+    "cash_and_cash_equivalents",
+    "accounts_receivable",
+    "property_plant_equipment_net",
+    "liabilities_total",
+    "liabilities_current",
+    "liabilities_non_current",
+    "accounts_payable",
+    "equity_total",
+    "equity_parent",
+    "operating_cash_flow",
+    "investing_cash_flow",
+    "capital_expenditure",
+    "financing_cash_flow"
+  ],
+  "missing_filing_dates": 0,
+  "duplicated_company_periods": 0,
+  "has_core_profit": false,
+  "has_revision_columns": false,
+  "disclosure_matches": 18,
+  "disclosure_compared": 18,
+  "numerical_matches": 20,
+  "numerical_compared": 20,
+  "comparisons": [
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2021-12-31",
+      "csv_filing_date": "2022-03-31",
+      "original_publication_date": "2022-03-31",
+      "same_disclosure_day": true,
+      "original_event_id": "7a84195143789c3fd65aa84ab0f2e0ec75266498323e4ffbe759e2abcbacc509",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "277044424907.95996",
+          "original_value": "277044424907.96",
+          "difference": "-0.00004",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2022-03-31",
+      "csv_filing_date": "2022-04-30",
+      "original_publication_date": "2022-04-30",
+      "same_disclosure_day": true,
+      "original_event_id": "c6e0a595e5f444eff32a03dd222ec344311832b0b80875041ba0b176ddc0f9cf",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "277691542368.64",
+          "original_value": "277691542368.64",
+          "difference": "0.00",
+          "equal": true
+        },
+        {
+          "csv_field": "net_income_parent",
+          "original_field": "parent_profit",
+          "csv_value": "1051220678.69",
+          "original_value": "1051220678.69",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2022-06-30",
+      "csv_filing_date": "2022-08-31",
+      "original_publication_date": "2022-08-31",
+      "same_disclosure_day": true,
+      "original_event_id": "5ad6df03a96618ad778b5b5c6e08ae1b7a7154e72e6c381c3b31c01ece8ef689",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "290050389603.77",
+          "original_value": "290050389603.77",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2022-09-30",
+      "csv_filing_date": "2022-10-31",
+      "original_publication_date": "2022-10-31",
+      "same_disclosure_day": true,
+      "original_event_id": "ff23f9ae20c1d475926bf561528086482ffd9cee7c6d5113fb0cac429c106076",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "294791979402.85",
+          "original_value": "294791979402.85",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2022-12-31",
+      "csv_filing_date": "2023-03-31",
+      "original_publication_date": "2023-03-31",
+      "same_disclosure_day": true,
+      "original_event_id": "9f5bce8fe9c3ce526565fe626d99c572db849a5af23bc71186fd94d368b0777b",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "293666087852.49",
+          "original_value": "293666087852.49",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2023-03-31",
+      "csv_filing_date": "2023-04-29",
+      "original_publication_date": "2023-04-29",
+      "same_disclosure_day": true,
+      "original_event_id": "b23f052635610edd2d70e856facf06dfaff0c9936f6a935c03987de09519a260",
+      "fields": []
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2023-06-30",
+      "csv_filing_date": "2023-08-31",
+      "original_publication_date": "2023-08-31",
+      "same_disclosure_day": true,
+      "original_event_id": "0051f2693391d88a838f669b2b018497045805711619bed378dededc02c44f5e",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "322609842220.53",
+          "original_value": "322609842220.53",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2023-09-30",
+      "csv_filing_date": "2023-10-31",
+      "original_publication_date": "2023-10-31",
+      "same_disclosure_day": true,
+      "original_event_id": "2bbae097f57343e92e170a8e92079a06b806a40989756f026f284a2f5eb61cb9",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "325221278958.0",
+          "original_value": "325221278958.00",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2023-12-31",
+      "csv_filing_date": "2024-03-26",
+      "original_publication_date": "2024-03-26",
+      "same_disclosure_day": true,
+      "original_event_id": "0d44e2ed1935e34cc7e9a913f9bd6a7a95a2c3b1fe2e588e9ac6abd3fb9c67cd",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "334247213024.91",
+          "original_value": "334247213024.91",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2024-03-31",
+      "csv_filing_date": "2024-04-30",
+      "original_publication_date": "2024-04-30",
+      "same_disclosure_day": true,
+      "original_event_id": "8b50e27ea98864ece217453f2d366f7a944452bf1fdb37c2a423c52c9b81b311",
+      "fields": [
+        {
+          "csv_field": "net_income_parent",
+          "original_field": "parent_profit",
+          "csv_value": "2599658963.24",
+          "original_value": "2599658963.24",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2024-06-30",
+      "csv_filing_date": "2024-08-23",
+      "original_publication_date": "2024-08-23",
+      "same_disclosure_day": true,
+      "original_event_id": "3c139266759ce6e6507b31eaedc4d63ac8404c5bde0efa689c9669a3da54923d",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "343596495189.48",
+          "original_value": "343596495189.48",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2024-09-30",
+      "csv_filing_date": "2024-10-31",
+      "original_publication_date": "2024-10-31",
+      "same_disclosure_day": true,
+      "original_event_id": "8c87428033864d63d60424437cb23289ae31287db7dd5011f2a6c486a5363ab8",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "343809855108.69",
+          "original_value": "343809855108.69",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2024-12-31",
+      "csv_filing_date": "2025-03-28",
+      "original_publication_date": "2025-03-28",
+      "same_disclosure_day": true,
+      "original_event_id": "91b16ad4cddb20e2fc3f66f9e0164f6077b464364d65176d47e0f01be57c1bea",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "343879412547.54004",
+          "original_value": "343879412547.54",
+          "difference": "0.00004",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2025-03-31",
+      "csv_filing_date": "2025-04-30",
+      "original_publication_date": "2025-04-30",
+      "same_disclosure_day": true,
+      "original_event_id": "026c444536dcbcbaa8aab6778cc2301d8c9a33a0ded493854e19a2bb3db763a1",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "353458570197.46",
+          "original_value": "353458570197.46",
+          "difference": "0.00",
+          "equal": true
+        },
+        {
+          "csv_field": "net_income_parent",
+          "original_field": "parent_profit",
+          "csv_value": "2710563216.84",
+          "original_value": "2710563216.84",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2025-06-30",
+      "csv_filing_date": "2025-08-30",
+      "original_publication_date": "2025-08-30",
+      "same_disclosure_day": true,
+      "original_event_id": "56f0137d2795233c89dcb8dd39cf38e84453902d189b0318f3e733f77999e657",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "365319167791.53",
+          "original_value": "365319167791.53",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2025-09-30",
+      "csv_filing_date": "2025-10-31",
+      "original_publication_date": "2025-10-31",
+      "same_disclosure_day": true,
+      "original_event_id": "6c7b1e248c5a5949c8a35ee2e26942468551e098f09d6b1688884ba7577360ac",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "364324870642.28",
+          "original_value": "364324870642.28",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2025-12-31",
+      "csv_filing_date": "2026-03-27",
+      "original_publication_date": "2026-03-27",
+      "same_disclosure_day": true,
+      "original_event_id": "6224cf0ed518bc311fd955f7d3c45cf4b91fae107a6aac85d4372f64da046761",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "367475596673.66003",
+          "original_value": "367475596673.66",
+          "difference": "0.00003",
+          "equal": true
+        }
+      ]
+    },
+    {
+      "symbol": "000338.SZ",
+      "report_period": "2026-03-31",
+      "csv_filing_date": "2026-04-30",
+      "original_publication_date": "2026-04-30",
+      "same_disclosure_day": true,
+      "original_event_id": "06d52557e84b583b6fc491496df51c9953e5f89aab4cec206b0678d57b3e45e8",
+      "fields": [
+        {
+          "csv_field": "assets_total",
+          "original_field": "assets",
+          "csv_value": "372795976835.51",
+          "original_value": "372795976835.51",
+          "difference": "0.00",
+          "equal": true
+        },
+        {
+          "csv_field": "net_income_parent",
+          "original_field": "parent_profit",
+          "csv_value": "3085463968.2",
+          "original_value": "3085463968.20",
+          "difference": "0.00",
+          "equal": true
+        }
+      ]
+    }
+  ]
+}

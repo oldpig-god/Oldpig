@@ -1,0 +1,2718 @@
+[
+  {
+    "kind": "guidance_collection",
+    "symbol": "002384.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1210442703",
+        "title": "2021年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "dfa544706b8224a57322e9690e8fcb832258bb633b94fdb96e85c16c021ac741",
+        "record_id": "94f2ecef0c7a6632ad3d3ec4fe8ce42d5ce1a5f70d81617531ae0b7d0e4cb914",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214756609",
+        "title": "2022年第三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "6efa2e9d75405111c79385a163c3d8fe540c816a57dbe2b9bb06f26c9322aa96",
+        "record_id": "31de85da687685a5395bb0ab4f1af03380f5dd5c336343428218d2aff93c1549",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215482074",
+        "title": "2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "dda1141f330e34c74b2f4614bcafcd6b8a48a84616b6cac373ee3764ea50609c",
+        "record_id": "18259a2aef6c1f996fa93630de8eab2900bf4978b1c7ccbc38e0be004012592f",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1223094046",
+        "title": "2024年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "3c7930d9502714211e7c986f39991fb4580f9d2766626ed3b1df167f3dd3aa6a",
+        "record_id": "e2ce6c8d8f1ed8d51c2762953c48824cb0135e510e248b9decab0e2d863d8104",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1223094047",
+        "title": "2025年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "037c00196a4da68735b2f4bf11e660f55df122c0830902b315b64c28f91b9ed6",
+        "record_id": "680867de67764ad6541be80a893f5e203edb4411ce408978212910ece5b8c3ca",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1225082259",
+        "title": "2025年度业绩快报",
+        "status": "parsed",
+        "document_id": "4c85244fe7197a3ee0a3f93aba20f963fd1d852f3abde3298c48c81d37195667",
+        "record_id": "bb1438c8cd5831f528a596e20dd14fcfa5dc8834a0312f90085cac73aaa8a5c3",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1225082260",
+        "title": "2026年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "d15cab2d935d95aaf9a1c652ca9e1b5767009aa64dccd2f93868c0b64d8e62b6",
+        "record_id": "e51492186c7064270f94e62c783876fcc56ec1491b58fd8e6a3602f695d53f0f",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "5c3e39dfbac9be115c8edf1a27fdbc2eeb52139ff7b9219de0e2f910841f5830"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "603256.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1214041738",
+        "title": "宏和科技2022年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "cbf1e518ba4dd68ba1df9cf77a0ce692644160469077146a3613adec9ad1c934",
+        "record_id": "b6e9e299f219ee904a9a5e1267719b7b5edbf102fc982906050184eab803db4c",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215683866",
+        "title": "宏和科技2022年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "840c4f112581574ccb2eb71ab8c4b5fcbb81927b5f9fd147793098e67d0f4185",
+        "record_id": "4884a1b035b0330b43100a81b9d50bece364ea645e85a802e162688d578e8b85",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217299387",
+        "title": "宏和科技2023年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "ca6e22ab254903b9f16018235f5cd68f24df5b2cf2bc82f76823713e56073e2b",
+        "record_id": "261ba75712bcd3564953ccf49100a967e5c17b671618b7ef8f38f8c0e86c8aa8",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219011744",
+        "title": "宏和科技2023年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "ca7b689bf2d493884a45bcc0e42fcf27a1dd510b06cb0f6b5e3911ab8b7e659f",
+        "record_id": "4ae2d57c11b544b46755ca6dc6ba013316493c6b451b96af318837f80518211a",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1220600750",
+        "title": "宏和科技2024年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "483181214e497a05c707084fd277f40566083e21beaee3ff0ea919252d591d9c",
+        "record_id": "747c99c40fc27bc257aeddaf2a43850a05095da8310a4fec38f629b3cfb2ec25",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222939537",
+        "title": "宏和科技2024年年度业绩预告更正公告",
+        "status": "needs_cell_review",
+        "document_id": "700358531a3de639426aa08ca65ce730ed9d4c47594e010165cf52ebe5cf4f8c",
+        "record_id": "3c6230ec0b1d56abee110128e4637de8fd826f14ba55c2807c1be99a6db909f0",
+        "metrics": []
+      }
+    ],
+    "id": "1402eb01f1cc07a1adc8de57b5bb0b364db455ba39655a0a3dd0cf8297ed77d4"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002938.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209252757",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "0f1d20682650550ff6030a94b7fddc95d5d35c00d66479e42b0bd0c225e22f6f",
+        "record_id": "5847edd58bdd01019a285c22fe7cab0278042bef00ebd1808d4d788ff35bdcb7",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214046921",
+        "title": "鹏鼎控股（深圳）股份有限公司2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "3b5ce9f932c24b6f887844a0c44068df7a8d109edd3b79e7e59bff03bfba4c3e",
+        "record_id": "fe3423f090fc3b1dd83d03b5386fd2d57eaae8e51d0b8a78a813cfcd2ee2210f",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215663900",
+        "title": "鹏鼎控股（深圳）股份有限公司2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "9fe709da62d255dd3695f1e1e0ab33e9c5da2206a78622014526060478025d60",
+        "record_id": "e54b2e6d7e1f95d88b93964bdb42b9a4ac48173cef62fe6d713601ac6bfbecef",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1216109135",
+        "title": "鹏鼎控股（深圳）股份有限公司2022年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "f5132611d09454ea9a883e4a6213b8d89564206adc7144e0c37877a6184ba7ca",
+        "record_id": "01bbd16c84abf0573994367124b3ac103fb846522db99d1dc6f1222c23ab26ba",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219296402",
+        "title": "鹏鼎控股（深圳）股份有限公司2023年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "59638c755cd87bb3a4730a24a1c672f9f01923cd1a89d523250e91682c60898f",
+        "record_id": "589013f46fa20cbe20b29e6e5e8039bd42addd512a60acd56ddb2d599bff304c",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222769382",
+        "title": "鹏鼎控股（深圳）股份有限公司2024年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "06913994e4f4846141aaefd49736bb987bfc1be8646b505c1bc9fafcfebf7383",
+        "record_id": "aa5758206edf2f4f65cd9e1f6de8b7950df76175b13686abae1d3e6a83cc9891",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1225006083",
+        "title": "鹏鼎控股（深圳）股份有限公司2025年度业绩快报",
+        "status": "parsed",
+        "document_id": "212ab0d98b6d45340da1060e64c81ccc27651ada1c6b6bae8b69efb46ebed270",
+        "record_id": "b004d252b27901394e979fa661e3d03e3405b73fd287e9798747160b322aa45f",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "3b0c6f566c0df00856d43d43e3c31f293f286223da8ef9f4fcb6c66611620845"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002484.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209215359",
+        "title": "2020年度业绩预告",
+        "status": "parsed",
+        "document_id": "caae8c85adff36f436502570aebee29e8ed97b17ee33edae360574d489d22377",
+        "record_id": "239738442f0b2b5bf901afb5674f92dedb7869ce120024a5c0ba9f9a51ef64a8",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1209451843",
+        "title": "南通江海电容器股份有限公司2021年一季度业绩预告",
+        "status": "parsed",
+        "document_id": "f479fe4f2da969f01c16bb20b5469a3becfcbaa636a71d1c635a19dddfb4b59b",
+        "record_id": "f7b3f1c401751ae02910e919d5d9eb0484593e38ddd066c6e6ca643a30f89593",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212705779",
+        "title": "南通江海电容器股份有限公司2022年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "4421cfdaa5896e996130ba118300feb7057ad7765b217c1168eb3ba218fd55fd",
+        "record_id": "c09c0d7a78101317bc218828a8023202d7ed0ad95240d5c377e0239d21d91eee",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215722071",
+        "title": "南通江海电容器股份有限公司2022年业绩预告",
+        "status": "parsed",
+        "document_id": "a53f7bea43b9ac6a3ff4238d2327fabd7932414b76e9384f4b0d9841057152f2",
+        "record_id": "439af2bd8666ba274d205a00b41786409eddd59615730eaad36e4508abe0c260",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "e1b8dc847b25b27d06d99786d3a7f7fd521d7b563b1aeedfbd3d7ed3d5b463c4"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600519.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "b78b044a5b1a0eb2fe6ae43bddbcd497c0d143b857e6f3ec9a691daa21bed3eb"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "601088.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209217722",
+        "title": "2020年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "26a5e738c7b83e3cf375f562edafb5690c8909460e9ea59abdbff5c25caf373d",
+        "record_id": "15c0df368d9bf02bcdd285bc4d5d3e324b77a43a802499f8847a41341e6da0be",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212297222",
+        "title": "中国神华2021年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "9723cd43b4a8eaa59b7b70a64e8bed01989a37f973b0cc432d06995ae0e25ba8",
+        "record_id": "dcc43ea87168356b102473742b046d5b2868212f60dd0adf4c84f53dd09c909c",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215723932",
+        "title": "中国神华2022年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "3f8daef1b3e5c66fa007b871afda2f953dac665e2e6d95aff2cbcfd5a8fa97b9",
+        "record_id": "ad9d24150144c3a56ed71f9115b040f33d08765afdb7d84ab0ef5e6fa851512b",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219044012",
+        "title": "中国神华2023年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "8ff4b57a4299fe8e59648aebadff4e39ddf191f681a127608bde8a52ac0f9a09",
+        "record_id": "88581e6c0e6da1dfabf2d3ba44b7a1d7d5c3edd8308e61539d59411401c59547",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222419599",
+        "title": "中国神华2024年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "79fd801f14fa1293ab57948075322ad373b0a2cf7114b008b41f9dc0aa4a4a03",
+        "record_id": "1be2cf3c192eaf7d5820adfd3ab71d9356615ab851657467978d55ad0acf78a4",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224960737",
+        "title": "中国神华2025年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "f3faf5eec8284e9e776155d895b1ef529ea2c42ac4a5c9f37b8610246b69e313",
+        "record_id": "aa6092d0b677fe249fb702dfaf24f950f4452e4304562fcfacbe65fc8924a133",
+        "metrics": []
+      }
+    ],
+    "id": "81259141e5bc2344dc2cd0aea75a551fdaf442e312a9e1213777888862792a85"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000858.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "c569b7c95e02fa01b152043870133cc54b023e75b4dc86d053a729bb8b736938"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600036.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209106000",
+        "title": "2020年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "3d3a01da1a92f945d9464b2fc110ef9fbfb547a4466ffa1c5ebe3338d8745dcd",
+        "record_id": "b0dfe324c0946d9e23cd1269eb6f67f3f73c2cdf1c6910c5dbac44fa955c9c8c",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212190027",
+        "title": "招商银行股份有限公司2021年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "cf62a068c7768b3c2b7ed8e272e5d5f0a857d6b0d352f6f550665d9617251c88",
+        "record_id": "30ff25d3fd48d9384eb08d3360ff5342f922db67ca3a2c24f5cd830eb4f34894",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215604525",
+        "title": "招商银行股份有限公司2022年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "044ee8b12f91f1f0e081f0be94f4fefb3d80adf187c9fcb8a238c52f611f1c2f",
+        "record_id": "c59133455b58262ac3179a9803385d3b14b166bcdad2d811015563c08359f994",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218955727",
+        "title": "招商银行股份有限公司2023年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "1cf53bce8cf6801699d4893296dfdfc2622f0262995563a887ccb5b78ed51675",
+        "record_id": "65848b2d972703d76d9a579adfb065d02f6384dc2e9b918d9124dee6e075ad10",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222332310",
+        "title": "招商银行股份有限公司2024年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "0167a27905c3d2de67e05f83185dcf8191d80b92459ab7d227eeca411ef9178c",
+        "record_id": "2c2614cdaaffa3e3a315fbe060b8d2f6728ba20e7820214e3d972ac4bbbd73f9",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224947770",
+        "title": "招商银行股份有限公司2025年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "6017de3aed7944d8d0a1fe51b135bda4dcb38b4a2a7877a5d94963865e375b5f",
+        "record_id": "131731bbfd4c77d4ae3c9820bfef7cdc03c5d52f609287476db8ccb7a28b33d4",
+        "metrics": []
+      }
+    ],
+    "id": "c88d3c902309a430c7aa09a5eee63646687d0fdcf02399c4126b971769d9f42c"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000002.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1220589503",
+        "title": "2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "9de57eaf4a409ae605323d369a6a0708e3c3298f8ac99feb24207847475b444f",
+        "record_id": "97c4096f36ceb0d616b5aada8382b51533f6aafae326c7022f79444258b717ec",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1222447732",
+        "title": "2024年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "144136c6a242f9589da50c89a4270318a517c56cf988f0fcf92733e0f41c2d5a",
+        "record_id": "68a464143ff63d9ffddc127dbfb39b7b19c0ad8bb96b4e43e295216f77f314c0",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224165034",
+        "title": "2025年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "802d6c7d78cf00e927d692a165e0f5b89d08dc4182293499746abb2f3ba3c6c8",
+        "record_id": "9d82f771b4329a3319ffd512ac890817fa97b5b78a22ef18dcecc4207c9da398",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224960456",
+        "title": "2025年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "21b75b429d372cbb7eca3b52f92551edb78b52dd3f7f19a18a50af6e10111dac",
+        "record_id": "9ab65e79090d3be885458537f33e7f6fbcb487434284adefef60e255a51f2894",
+        "metrics": []
+      }
+    ],
+    "id": "6b25ea624b1e24f301359985f1ac1d054416af99eb85eeb7773c571686414d3b"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600031.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1214044806",
+        "title": "三一重工股份有限公司2022年半年度业绩预告公告",
+        "status": "needs_cell_review",
+        "document_id": "a72186fab24b0aba8cdce7f6f3f20a47ff232251e336795eea419a5a185b27c1",
+        "record_id": "446f41527ac2eeba0063f01eea00b4e04890945d7ab186e4c4182367fac6baeb",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215725787",
+        "title": "三一重工股份有限公司2022年度业绩预告公告",
+        "status": "needs_cell_review",
+        "document_id": "040068fd5bbaf7d241f214d294ec36757227d9cee7e29fd4366d3e633c179f77",
+        "record_id": "78f3eec59951fd90a841d7cc2e6b6c131322bad624e10629f5ad2c03811fa87d",
+        "metrics": []
+      }
+    ],
+    "id": "5ad7d24c073bdc22237adfcfa64087f4cb8ba5a94d254b5e3d896e83f74e90c5"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002463.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209223830",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "7431556585c80e9641994f501be460578567faea342f5ee86e951e523835b194",
+        "record_id": "20913fc47f0565881e7f862aebc84cd680efdd018a0e261e9f3b322e303c0b58",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212456536",
+        "title": "2021年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "95a1bf27e8a3938d8cf67fa4461c711204fd0d6d8648d67d9d8ea172b7614493",
+        "record_id": "353a9cfc42b446f2c810afeea3df45807542ffee879d68350e58e4dbd725499a",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215731852",
+        "title": "2022年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "8545cc35f9d57e78f455e7e9191d33524f2783a5b932bbc95fb33127aa5ba901",
+        "record_id": "41cecb62c7010cbd1542918ca194d7db1bc0b64e44815251c79dd423da0f59de",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219066755",
+        "title": "2023年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "a044aaba2ee685c493f486551dde27a7affea74ce24beec06b25f45c98bb2a94",
+        "record_id": "38fc715e62b856c71e6bbfa911e3765a781cb5dc6c912f8864efab0e5bdf4122",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219405270",
+        "title": "2024年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "a7af93198babc6cef3701e042c4a05cad953585afdc316a0ad85bcdc759667ce",
+        "record_id": "3eb854385f3d730bc55ef1b22da8df26320305bbdf2a963f96edb28f286372d5",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1220625250",
+        "title": "2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "736d875e14b2ae2554d49c26fe88ed1f3577646327297e4359d6d31284b1eb10",
+        "record_id": "ce375ca16184336bc8bf3107be4ed7877424b296e9efbec295721cc20e880139",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1221341114",
+        "title": "2024年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "6ec7e1e468ab31b2615a08144bd52e71004efe7a009b6971aa80de79bdf990ab",
+        "record_id": "7ac373a4ae81818b289dcc596c3238164aa2ea5b9e6b8e40d53f72b5452f17f3",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222418121",
+        "title": "2024年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "16f97c67ee135c1c13a96212c7a86f7e896598b848ddf9d06672df198e7cdf0d",
+        "record_id": "a8ed3db61f230be23cd1005284051b110ea54ff2e4fac5d96a359afdb7f37855",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1223032564",
+        "title": "2025年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "b76ff694310d57afbe24a99dbb1a648019c754e9de47fb6069e4df167aa7f7c2",
+        "record_id": "fc85aa8b4f707fb608cb843d0486857fd7b86ae781fb02cb1d1e88f1ddd60aca",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224130055",
+        "title": "2025年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "d1d7c1ff2fc3d00d298621a23798650a1ea650ba1db19ff413cbd9412b6f3640",
+        "record_id": "04b0f0e97f82c46477d722fc2ab07c2beeef949f8061dc5ca62d0ebaebe1e2d7",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224952489",
+        "title": "2025年度业绩快报",
+        "status": "parsed",
+        "document_id": "40ff7e16de6e60a5bd8948a2450456e3bbd9adb62d01c956594cde1687eb5547",
+        "record_id": "79d1691aca9a68716aee7e9583f6e65a92c7ab2aabc44c9e1ecd92ceb74b8fbc",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1225097796",
+        "title": "2026年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "e1b2aec371228eb4949f1a94bfe389d7fe6015be098132e5b6a350b5b57abc12",
+        "record_id": "9421d4e8e481b584c30bc341b33b9dff797ac39e64b5ec1e1a0af43b6c57cc13",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "e1029ae8ce9be5e64ec814373df65e8bea55555f2c381830f243d53b08c40569"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000005.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209214770",
+        "title": "2020年度业绩预告公告",
+        "status": "parsed",
+        "document_id": "2c6cdec9945f3522709156776ecf45249e61627f0fe375b36ac0b60e07d61782",
+        "record_id": "aa8dadf30d96d4813c90bac25b1dcf8e95c79329c179ac49eabe021fff7d86cb",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1209687860",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "1daf2f2792dfcc10ac8f4a8b2827f70422f7e921b22adb7c27ea941d65daccd8",
+        "record_id": "9615a9a8a3a877de0465bc6ac3407a562cabe6b9853920f8eefa17a120fffeeb",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210465638",
+        "title": "2021年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "92a23abe18ffbc43d47ba5bfaf147f9c5277dd105bb22d512ca524d333653ee0",
+        "record_id": "026236b601931f92647d16351acc18b44a9638276b40c29665abd68e511a4ff0",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212288017",
+        "title": "世纪星源2021年度业绩预告",
+        "status": "parsed",
+        "document_id": "061737648897e689467a506e63125b22d4ab6085ce7dfa871595986d264b3ab6",
+        "record_id": "60730031dfb612c5eddaea1e8d32d7a34cc0e9ded5b1329a9e7fb2f39d3a4830",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214041500",
+        "title": "2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "ebfb95098c1d8230d95fcae91c3e5194c1180a9263b8ec053083999f3e4a852c",
+        "record_id": "e91e5c85a589db74d5b6e866242e6ad50144e51c72f4be0ec76218d393f6cd7a",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215682863",
+        "title": "2022年年度业绩预告",
+        "status": "parsed",
+        "document_id": "90899abda7321d2c750a34df040ab0122bc693d5f113d3230d0e9c885cc19764",
+        "record_id": "cb20887f6a517b45899045cd0c05263ed6f2770e0bc6c2341292e3991e191871",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217293218",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "feb915e1369895327605a752a2f64365a0fb1866f35e183b54b313d7557974ee",
+        "record_id": "c3f290674f082d02baaa29257db466b4768b6c4c80886e8bbd1deaccbd65d5d8",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219010750",
+        "title": "2023年年度业绩预告",
+        "status": "parsed",
+        "document_id": "d4fd79273363586284cc088e8072d3e0473261a91b369155f8dc2f0bffbc419a",
+        "record_id": "8ca3a4f43f436c7d7940590e148845cef73bfe256687351a676db8a22d69786e",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "175136b4304073ea0d267c42c234eb2d5711ebecabca24d0d8ad944b957d3deb"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600066.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209215672",
+        "title": "2020年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "fe8629e98822885856ea1531182add6e5a14d2440a51e09f395bd560a73fc58c",
+        "record_id": "6cc919a576b73e99761e6227faeb62d321051f2f2ab81b81d8e147b3414d5d3c",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212121598",
+        "title": "2021年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "761e6242881e93b4d39c4bd5a3b5530333372e75f63b9bd0d7df88eda247d14c",
+        "record_id": "e4b1176882b523effddb786202849297cce346b35a2ade42a7d6ea222f1df2af",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214041616",
+        "title": "2022年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "e29cf43bd642cbdfe5fa5a4f840d4309d40b52f2cc447aa33feeac570bc22309",
+        "record_id": "d75cf74e9e92582fe2e3aafaaaa8f61026013a490dc28caf7481dc75057b1053",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217301418",
+        "title": "2023年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "555818f1bc053302e5438fceef9d164b01e605d80226fba814f96447108e7142",
+        "record_id": "ca7b9c7deab54821f09e0597f4baa33474c321cbb00f1b4f88ceb7daaefa975e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217452312",
+        "title": "2023年半年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "bd16f08747c0f731324368c0b8cf43653e7fee277253f8197c057e53d4389e5d",
+        "record_id": "af75f4259da0a22571268028c85dd6a0e651f7b62abf2893b998bf1eff150c91",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218817586",
+        "title": "2023年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "54c27e8ecec89938e991437252c56f28f3808b1e47572f008edba13bc5f22191",
+        "record_id": "47089650525895ab4d50f0b39e700e47374bdbcc021acdd9c53a1e3f901cb24e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1220586838",
+        "title": "2024年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "ae0ee7c6183cdf5dd9ada432ec272993f3f37006dcb6218a6a91730cf640a907",
+        "record_id": "6f25134d2d30f81ae615135720e9db793f22dc01cf63507ceebf6807f11574fd",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222379121",
+        "title": "2024年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "14b96f50e6de707f1a0d164ff407e305aebc86232673b99b280ea3fc6bc5c700",
+        "record_id": "d92cfcd219bcb8dc4864f4abab7f33f2acbccb9ef5de04dc19658e5ee60f0a7d",
+        "metrics": []
+      }
+    ],
+    "id": "ea614e54791d756fc9c8ea4428e5668d59ce367ba8dfac8a041491c1a71fa2e2"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000338.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209491275",
+        "title": "潍柴动力股份有限公司2021年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "ac5acb3a74cc80c4a01b5ab5953d8bb447f3bb7876e5a234338e116092054d50",
+        "record_id": "83ed5084f957658271ed5f2c278ac74518d35630e174e61a1cc2d567d3eba1a8",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214044504",
+        "title": "潍柴动力股份有限公司2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "89355786a5f889bcffeb8bf504c3f40ec875e345b4069bf67064719214cba250",
+        "record_id": "8c1a44d5e9bfcd7e31890060a1f1c7251d6e6ddc3526d5cec912a1e8dfc71fba",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217194851",
+        "title": "潍柴动力股份有限公司2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "efb06aea45da7f3c6bd745625fb6efc030af55b9ab3951505e8e25191478a45e",
+        "record_id": "eec3beab41a0127b0c3e4e93fb103e0e3bf27ac70c9d628a71df116105c85cb3",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1218032652",
+        "title": "潍柴动力股份有限公司2023年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "ad2bbff154e67845a7388ba9879abcb72404b145875ae6354227a5c6da20068e",
+        "record_id": "e5a13261c59dc862dd4401c4b857f9196a45915e503f2f0e1b0f951ab5c99b01",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218978016",
+        "title": "潍柴动力股份有限公司2023年度业绩预告",
+        "status": "parsed",
+        "document_id": "0eaa6679f9a73ee684b38e24b32cbec3e6b3d3d5403063ddf25f030b5adfec9c",
+        "record_id": "b40825154e604fe28a02eb174f72aecce2e8fbaad95cdbeea7239fb99578c126",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1220626695",
+        "title": "潍柴动力股份有限公司2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "02dbca6dd6e83b073c062fed198ffdec59250b8e019e90a77cedea1f762c2e60",
+        "record_id": "a1ab9571bde69f3f6397543631ad176263206d7077b9367299e15afcf0207f8c",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "673589d4b1d0bdf160d421180369df25d4f927f1545f828dfeadc821886b7099"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600585.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209345430",
+        "title": "2020年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "9f89b462dac0f2a94d8fcfa389d936acdac60aa175709f51266502360ca50593",
+        "record_id": "513f19d84133eb6bce6ac2e475d42013042c3de19c3fa3163c2a8342cad069f9",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215723501",
+        "title": "2022年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "136a413923e2bcfba7b3ae44cbbfb1aab8fb4d824683a5f0a17634886eee9350",
+        "record_id": "3b592141fc87e02d318bd951a6000f3660985eb4b80cc92357efd21b78d3d0c7",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1223029865",
+        "title": "2025年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "87ada4288d10a4f37f4c7793be41af6ad74983bd5a1703f0fe1691fe9a304543",
+        "record_id": "380413e6b9e0a9e325c964a3653a4e11a2114a4be500932f3adf1cb824e5d3bf",
+        "metrics": []
+      }
+    ],
+    "id": "f4babd65619aa3b2b10845203b7fcd0bd363b7880b8893cba7e47734453217cc"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002594.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209476374",
+        "title": "2021年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "f93cb7053ac928df6923a9e0c6e210da4ed45c0f0db3f35abcca2b35e690f8a9",
+        "record_id": "b0318a97811796e4540fcafe2998c249b693c84b744ee18ee7e70ea11752415e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212961837",
+        "title": "2022年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "7e54f09962284a0be6aacb484c9c26548cc9798d7f3002c37053e4a82d4a096a",
+        "record_id": "d3ed3992852547b43f74e7dc6f601465a890e4ff13676edf5a35fbc30ef06ec0",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214041385",
+        "title": "2022年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "bf2d8a62c55431370d65d9d28384617b85d2bab4bcb6a7ee76cb9c53d17f1d08",
+        "record_id": "7f97e2a133d6268e11e5a9bfb1cd2242375e1f3100a7bc9365b929b92c7ba13d",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214818261",
+        "title": "2022年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "22f85da6b892e791e67a410ed5b2e89f02adc148e01887a4439b82d500ed9b49",
+        "record_id": "7dd75930ef839e1917af76ef553b87b9aaec488ee08c70caaf829c8c1b0a7c00",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215724534",
+        "title": "2022年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "b295a821176f6b0ab4625a2bae3af3f25ff0292fa4d3ece28e04b9df474f6683",
+        "record_id": "fcf94bf19cd5fb5f710c7b2ce8b8ba4950398585c2ed03795fdaadd7e4b6f1de",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217303431",
+        "title": "2023年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "f5784e580777cba005eadc25ac236167cd08ba69d0340087e203fe8fb389686f",
+        "record_id": "2ecf79618eb3d19158ba75dff8b9553769ec125dbaa37ce834f0f12d05382ca1",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218061152",
+        "title": "2023年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "b686f68a751ba2085a67cf96694cefc6fc4a6c4560d94d3dc81b1bb8aac2ff49",
+        "record_id": "3630a4717906ac533873ada9ed63677ab65325e6dc273a0fae207b9115c52f39",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219028933",
+        "title": "2023年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "199ade46058e57b7243e7779327b43cf4820c3f976b73a698c7aca07f2d497a3",
+        "record_id": "bc895e149d268ae363b26bdc491c32f8c071264d8bff1df3d5bcbb19f0bebc83",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1223026997",
+        "title": "2025年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "049d96e9aeb7711ef4b46b0c8416157d2f6f6d2544b2197fd112c4afa83810d3",
+        "record_id": "345574b25441e958f1374647f3064e41381ec28c24f150aa9b89747c9465bf3f",
+        "metrics": []
+      }
+    ],
+    "id": "0f33a92906f7ddf90b108768b4df90abcfbe3a6dded31ab666c1836c4e87d1ff"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000333.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "8e50340fabe67f8ba3c1d1da07ee283debf290c0e54d26d568c763187c498578"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000651.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209688492",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "ee3c11b73ab74d408152dc153d554376495e7500c17bcf2e6e27b9201e1fd664",
+        "record_id": "49a14b3bf94f50eafee3b8cb2ff0311b2289ffac19954e4d9309b19a9ab085fe",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209688494",
+        "title": "2021年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "5ca4fb686fe1bb56fc5b57b2ebfe334078ae7da9e69d7b67ddca168942a24c9b",
+        "record_id": "df5d24f1143ab2baf18faa829b2181c7428eaaafed6a21d9bf8616845682836f",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218675956",
+        "title": "珠海格力电器股份有限公司2023年度业绩预告",
+        "status": "parsed",
+        "document_id": "0293c2432422549b7916949e0aea1564e9f60c85179a98f9febce2d058615f9d",
+        "record_id": "3fed26a092635cbfedc9ceb0818d0b5a03194ff140988ee1b2cabab6c4bad47a",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "fb06dc4c0072f40f174cd15c71274e04f170669f25ba45c49edb6186069cdfc3"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600690.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "aac7939be97272f1c583eb7c9be2c66e129771f4c27d1569dfc57139e15bafd9"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002475.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209426321",
+        "title": "2021年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "983dd8516ce838985e0698106ef399bd438197819f9d5ae75ec90019ec275562",
+        "record_id": "ee3ffdf8c2f7ee8902a7eafaf794327ff4e19ea43cca7c2a3f9fd83d581e13f3",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209426322",
+        "title": "2020年度业绩快报",
+        "status": "parsed",
+        "document_id": "919ec11994e6996436def13ad61896e683ff0b02d83fb87d24345d67e59cb9d8",
+        "record_id": "5edbb5183124c129e0754a76c72b0343ccfb6df73323a37923fa527d11803306",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212567870",
+        "title": "2021年度业绩快报",
+        "status": "parsed",
+        "document_id": "0a3f98090bdc8ff0a9759fc10b8e9f2445963cf3b5c6ab96d4a5014974b2901a",
+        "record_id": "f562c56c3975a55b46c163c090a084f76e770f564e9ddcb08c73d3b1585ad38b",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212567871",
+        "title": "2022年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "cc50a730c3adbe807bcc81ce783280f437f2ceeced4384dca772f41656c13ccb",
+        "record_id": "6570fc121c3e4a31199c35df756ecc24490537a0017166794ffc9f293549f590",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214408548",
+        "title": "2022年第三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "9c58cd24b0433b7f9404e130d2491503f34e6a3b852c179ae9dfd5299ca24c39",
+        "record_id": "19aa2c290d5a01af6d3876d369718b1f2e0c7e9649cd680cc98157106303e8f6",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214961298",
+        "title": "2022年年度业绩预告",
+        "status": "parsed",
+        "document_id": "a58a06431e583e11467d0ad828b6cd0cda1422f69151eaab2a3b10e3416864c1",
+        "record_id": "1b864586a695d7b355a8e2443cfebe1471bf33f9947191323d4e16257d981621",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1216646583",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "762a06a64bcf8484e6c721851c53f29d1a0891b51e3a732a9516ccd8143b66fc",
+        "record_id": "561186f51c4ae655a5aa28e50d6235a3f171e61a2cad34415736b59939a26e70",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217674541",
+        "title": "2023年第三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "a8f4e8372e3e9d10a52f46539c7c08aa7177ec3cb9eaa8e82a88cde2eef650a4",
+        "record_id": "750c3993718ed46d114f5ce010ebf57869b47095f465387ddd68b434c2fef08b",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218107507",
+        "title": "2023年年度业绩预告",
+        "status": "parsed",
+        "document_id": "2602b2b629e30794d99c63644bae35a3c32c1bafe998e2cb65cbdeb69a998572",
+        "record_id": "7739dda4fcb5690aa8219107a9f137a3bb917a227d0fbd1f36aa4352d2b9e09b",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219799506",
+        "title": "2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "1cbdfe6d5eaf6da38dc94b4a1ae6dd798569f8d251e6b03b3287eb5b6170e44c",
+        "record_id": "1b6a0ae2adc18819d8c4e03ec836bc4ad06ed67db4e402a956e173bd19a60d29",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1220960532",
+        "title": "2024年第三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "8966a1bac18a2d73ba52ea81cb87a6cc4c6f31acc0d177323eef59e57ef88ab8",
+        "record_id": "b83b745d21bb7275fe196fbce46453a43774f28195f7b475abfcb720cb75e7bf",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1221522034",
+        "title": "2024年年度业绩预告",
+        "status": "parsed",
+        "document_id": "08e5c6ee0c41ce5b8db5bf36dcf5e6b7fdb1122341c42f3c343416a9306fb719",
+        "record_id": "5e24face070621a35e880da2d4d56dea62ac600bb22c4d02eaa7ad834dfc9a23",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1223326842",
+        "title": "2025年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "30142074e0a9100f7cb4a7a878a462570652b7899b35c7c7bc9193018de557b3",
+        "record_id": "7d82f6455422a5604c17158d3a4a4766c475711c55682dec6087ecfd4c86ad4b",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224571103",
+        "title": "2025年第三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "0c9ed814cb167cecbd919222506a6c0e0d4898f17d3c22de72ed2385084c10a8",
+        "record_id": "8909a64e95bbfe7d285de5a2a3dd29e63a86301b644d059ebc459565f06e800e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224777622",
+        "title": "2025年年度业绩预告",
+        "status": "parsed",
+        "document_id": "d079155881984a286fe289b76daf50e8a7832f58a2318758b612e2f39db1c501",
+        "record_id": "f1b73f005de18e2f0a66cea4ba38ff32f770634227c5a07953162e53b24b0f36",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1225104915",
+        "title": "2026年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "ad42f0ae7cdb3371b7bb83fed7fa31a3794b4fa0e7e2b983d016beea6a2a5d52",
+        "record_id": "0aa0fa1058ecd9064b216bb524f6d958301c04896fa24f729e176760ec5aab78",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1225250030",
+        "title": "2026年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "95fce02f797b7aecaf05cd45623e9b104fb8a19ca052a1bf0fadff345ccab20c",
+        "record_id": "58794509650f8a68062ab68a254f799a16d1f5a945eca4203ee449a314929fa4",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "1eadc1f2c48c0ea835cab374d896013ba496f728615a845a775561c43899b83b"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002415.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209309976",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "719604d1dff597792048871e5cbe946f7eb2d976df4a1dfc1a864f9c17980b4c",
+        "record_id": "2a84555d6b836cc213a9a172e41ce73767eee987bdfef98ab65026579587fe59",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209309977",
+        "title": "2020年度业绩快报（英文版）",
+        "status": "needs_cell_review",
+        "document_id": "0687f1ae68ecc41f1f6cdde6d0704c44885b716f8d0680080a644f837d219f16",
+        "record_id": "2b98e46db5d2b998c47982f6306fe3039d998a28210fb42e2b209a5480c72d78",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212429218",
+        "title": "2021年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "57359b39e01c8b1dffe62f8c1e07fc279efccf19e639e58595c0509005697f50",
+        "record_id": "1f45dabadc0fea696a0335ca4d9c664aa5ee63aefcf279970f94d46178109e79",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212429219",
+        "title": "2021年度业绩快报（英文版）",
+        "status": "needs_cell_review",
+        "document_id": "0f87dad973860246b83b489ae7f09c2e8c839b9e79a7d1400a608d9141b91220",
+        "record_id": "4efca05876aa8001213a98e12e99cb564089a2237899c9a7f2633cd1cea68d03",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215888039",
+        "title": "2022年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "6aa99af6c2a6a29ca1dd81b0c6d69dc6eacaba341b0a74bc411a653532f4406c",
+        "record_id": "32a47da8cc45f302a6103166e0508aedcf895f675c28cb12f903ca03937b632f",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215888040",
+        "title": "2022年度业绩快报（英文版）",
+        "status": "needs_cell_review",
+        "document_id": "a117102e8c2a41db8a758fff418bdc0b1d042b8d75fc1e2bb343f43dc47a76d3",
+        "record_id": "d49d9e2c5f7ac0e1020f8ff7330c09f6a3aaae8690b93d14d4bbe78d3d6bcd03",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219026939",
+        "title": "2023年度业绩快报（英文版）",
+        "status": "needs_cell_review",
+        "document_id": "50a5088a600ad4338fb2a30ebcbc6d1fd9f58cdb67aa49c18a1c3c7ef2b144d1",
+        "record_id": "484dc830e60999b1c1fcaa4ed48e6afada057ac0f2a4aa8c0d550ce66e16ae91",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219026941",
+        "title": "2023年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "b0970b9998fcfb95eb702c415a3ee41cea4ae9e702d90d96906d248e1a84b9d2",
+        "record_id": "eeaa8c9aa36fd5c9e5df2f1a33acc1ef3a0fb2c55734171519d879e0998c1fbc",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222606263",
+        "title": "2024年度业绩快报（英文版）",
+        "status": "needs_cell_review",
+        "document_id": "a8102b1ace9d5c8f6c4d86734d6e4637cfaabcad3e73e4e36ffc667e7d4f55e6",
+        "record_id": "00aa4f09769fb055cd99a8af35c430585cf0e62e628457844ed2a88fc4d609d8",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222606264",
+        "title": "2024年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "c428471fb28f95363844901905084958be4f41ad760fe0fadafdc733b194f001",
+        "record_id": "068f182ae98557911d0a72fceda5e887461184239f0617c5b5587776b91b666a",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224941153",
+        "title": "2025年度业绩快报",
+        "status": "parsed",
+        "document_id": "3cb63796dad7d50c709545cd82d111e0bf81b70910d06da66cf0c1304f475adc",
+        "record_id": "1586ec8225c27f5599bcbc441ec32a93128083b7fc24b2fea9b3998a90c767d7",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224941154",
+        "title": "2025年度业绩快报（英文版）",
+        "status": "needs_cell_review",
+        "document_id": "2b17bc86b8557355b5f4898da30877b65dccb9c6ff1ae30196a6ec43764f3543",
+        "record_id": "3a713545d506be9843036cfc0e58105227f077f5c8fb0c6539e73aef9676edb7",
+        "metrics": []
+      }
+    ],
+    "id": "1de9b4f0d1a6d83def19e85c2ba23be5035650a29f056c910481f58ff39e43e7"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "300750.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1212296273",
+        "title": "2021年年度业绩预告",
+        "status": "parsed",
+        "document_id": "1613f62c39af8c3cd2f15dad32f474530f8dd634dfc7ac95a521b6d987f4214f",
+        "record_id": "e17d79a19c1e84b63b5a8e8d70b2a9c852bbc992d160b85e9d1813209ffc6275",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214742638",
+        "title": "2022年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "fe874196b6f2dce605756e7d90a48ad993c0369cd98d3da0e50b9473b96ce3f7",
+        "record_id": "af7d8b67bdb713b56caf17acdf36494539337d9c6bf6a605648e18a40b62b2bc",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215591370",
+        "title": "2022年年度业绩预告",
+        "status": "parsed",
+        "document_id": "235f685d392c865dcc6e936729a80da1781f499963b28ebe4a1a7af9f592cfb9",
+        "record_id": "441eae211de371c12ee97b1ad2ba270ffdc5bd09508f2f4a480fc9ee92be25fd",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219044007",
+        "title": "2023年年度业绩预告",
+        "status": "parsed",
+        "document_id": "4c5ed7a73cd566f5c4d9bb306672804d6ee8c5e36e2b525ad7f6fb8eb7c2f83e",
+        "record_id": "8640e135bdabcb23334cc938911837a88fdd8c22bc9246ddd6bfd8ecdd6ecfbd",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1222389705",
+        "title": "2024年年度业绩预告",
+        "status": "parsed",
+        "document_id": "7a1df1a802bf869c5735bfa7b4201d4771751ab4cf59028d57596feec9b37e96",
+        "record_id": "db895a0c699a792d8fe29138366437109a3c1c19437aca60da6add4ab28aeb77",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "75662fd060dc8dbd5f74f65159fc95266a1dcda7a367990cbdd24099ae93d0c3"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "601899.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1217239154",
+        "title": "紫金矿业集团股份有限公司2023年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "de496dada10a257bef4f7056f6cb319ecb9c183ef2289af184de76ff1adcdc8d",
+        "record_id": "0486c38bd0748b008455b50bc5509115f0082c612ef13474b672d8bbad8d7709",
+        "metrics": []
+      }
+    ],
+    "id": "f3cf3f7762749e5bcf8c766def21f39fa8ac94f52cd1c897be3fcf53503d7814"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600028.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "31f723f6a04c4b9cfd5f742ffda81af60f3105010f15c203e8faf686851c114a"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "601857.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209215963",
+        "title": "2020年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "1ce9978e00d1be8d6a7beed697fe95f66443093be3a3b145cc6ed1ff0074f82e",
+        "record_id": "3a7ed32b7147894474117afe3bbb953b547b3fe7a2d2b3eaa3bc5f600d33eab5",
+        "metrics": []
+      }
+    ],
+    "id": "2cb0e7503c01b3d6055566c6c086ef9381cfc29cc4c5e646e368825d291cf913"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600309.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209057510",
+        "title": "2020年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "e2ad6ce255b1f3daefa01cc33482de5a50698b6f4b03587203eb16b6331919ec",
+        "record_id": "ef5ce83dcb48c2ce510e5c5b1bb446c638a7a98d5049080573114e3201222c96",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212527977",
+        "title": "万华化学2021年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "56d5b1f6a33cf4cdca147e0e44b69af185ba2e8b5b79131004076d4105982cb5",
+        "record_id": "638872115236dbf3db081449bc9e2428fde614f98ba2e1d20de648de9c49c956",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215855002",
+        "title": "万华化学2022年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "455beadc0622623eace1f59279d5af0edb0dedc6def13e78491b8ec97bdd417e",
+        "record_id": "1a9a80084b89b56f9f9b2166068b4c6a85bbe0e82e99be94added8e32c41a962",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219081830",
+        "title": "万华化学关于推动公司“提质增效重回报”及2023年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "14c712e3118a6c2b41a8fd4408c1524a88bd8303271c660e87c77485dfa39a98",
+        "record_id": "35d002c816f6c84c31c1f4a692771cd18793885b34db669711e3e5272f08aac7",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222819917",
+        "title": "万华化学2024年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "076cd779fbdae7466cbf921c560c7654a68cb49d82fec7dcbf2933ecabfea658",
+        "record_id": "7e543b0ee127bf8b436dbab6fd449d21529e510350eeaa9c6f42d0c69d40bd70",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1225010793",
+        "title": "万华化学2025年度业绩快报公告",
+        "status": "parsed",
+        "document_id": "d122b696d1033e51bdbd363e8d2aeb14f0415e9310b0daea8838b54cd34b9d71",
+        "record_id": "887499eadd2e06b9b4718c025bc4d3cbd15036dcd989bb03e3eca8e882a5502c",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "0eb24ed3e82beb889ecffbec1e83055c543a6e914354b5648875c1c49c77d6f8"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600346.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209639019",
+        "title": "恒力石化2020年度业绩快报公告",
+        "status": "parsed",
+        "document_id": "0d229ca615a460a9e5283892f0857e486a46932074ad5703792995f7f4734e40",
+        "record_id": "7c12a2d8749d0bf35f0e8ee83a9e0ec281ce878df55cfb41314ae097d92a8785",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224505662",
+        "title": "恒力石化2025年半年度业绩预告的自愿性披露公告",
+        "status": "needs_cell_review",
+        "document_id": "de1fa3e1fe8ddf6d4f4537784ea8aa23bf1487a02de93d66d973dd4b003cee17",
+        "record_id": "64376850dfe2fb499fa140092591503844fef6c216830bef657a1156f1a7ba34",
+        "metrics": []
+      }
+    ],
+    "id": "502ba65895a2bea48380bb41634428ab3cea3341d862629424fd254d934a79cf"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600436.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209141958",
+        "title": "关于2020年年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "c5b0d97ddd5ab3d89892968ceb3afe920f8e7009c6dc47296cc6d43fd655d3dd",
+        "record_id": "856e4da48b50d445f7d84deea6e1f2c301b68a0e6ffd1e65d101ff4675ce1831",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210501428",
+        "title": "漳州片仔癀药业股份有限公司关于2021年半年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "89c414b4b3318be373318c618e0f1f2f3a3bccbcdaa625c6b4efac6e2545e1b7",
+        "record_id": "f263d027b553895dfd5fc8048eb66321ae7a9c636167bc307d2781664500f531",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212219419",
+        "title": "漳州片仔癀药业股份有限公司关于2021年年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "5449ea592d63669ba26ee20da365141f67bd16378534f71258b6aa194579bc19",
+        "record_id": "3f984cf901019ccbb0a7d2a2944208528a996252d3ef6081d129a3a539fc9eb7",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214067099",
+        "title": "漳州片仔癀药业股份有限公司关于2022年半年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "9814978ac2a02cb1e69e4989d56670ca68967d7c4f09c0f2b962d394d99be2ea",
+        "record_id": "8a597ca234c66942eb78401e2d27f7b262c546c124cf7dd8b91d5853dbdc8e39",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215724572",
+        "title": "漳州片仔癀药业股份有限公司关于2022年年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "03112cb9e53bda621c3bcd497517f73b300bc40ddb2165cc66adbc5ca2699b55",
+        "record_id": "b94bbba79dd54de3389303b64189b63c806709a19e040ac079b3a50a137a5308",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217293333",
+        "title": "漳州片仔癀药业股份有限公司关于2023年半年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "921983f6620eb7145c537c3e0020fcdb1b404f72b8d71f9a95b645c64b48f4b8",
+        "record_id": "8ab32a647b6dba14a00708f6b7d38778bbd23d24517bbece791cdad789db3fc6",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219043763",
+        "title": "漳州片仔癀药业股份有限公司关于2023年年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "ec4d47d44db08aaac6d8c6b7de93bfd7e0a7de393c367683ecea3789517df835",
+        "record_id": "7ce03e27c42aa3dc310b05a77ba96c21ae732bd03eb7a1dc9d77b56c7e4a70c0",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1220720229",
+        "title": "漳州片仔癀药业股份有限公司关于2024年半年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "3e8c66992c4a5dc79882e603f341e89340b37e2afdb9044e2fbcb593e932bd34",
+        "record_id": "58eb9e1300de77cbcb54c7e1278d7288925e3b74b7495724d593e2a0d009d7ac",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222417490",
+        "title": "漳州片仔癀药业股份有限公司关于2024年年度业绩快报的公告",
+        "status": "needs_cell_review",
+        "document_id": "95a797b8c650931ea3264651d35d2e282bcc06af6c6c06778c876964f6479dc3",
+        "record_id": "c8788b5c9af86ce79929762fdfc3d51c6e785562c7c931866529a5415b5fecde",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224559445",
+        "title": "漳州片仔癀药业股份有限公司关于2025年半年度业绩快报的公告",
+        "status": "parsed",
+        "document_id": "21a6dbeae2eb6d1ecc3021a48fd9edf58dd924642b1934b0c0414176cb73aceb",
+        "record_id": "11a6f8b41ab8deb48d56dff83f4a1a6b4f29a52102f3bcc7dc6adea66f3188d3",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "511da37156bdd6cff4ce7708bc8da4586ce43ea79e03f2ffb675c28c55fb45ad"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600276.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "d6369eb338d7ee9506f0dabd99e981131d8627df23a7e1252472e1482f2078ee"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000538.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1217285912",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "4f0b785b5167fd6eeabe2bade3e68799cfad3cef1d37334dda17d961d1b356c0",
+        "record_id": "fc05f09a5a8616565e74700ca89ba25a70b0dede7c559d02b2400fa26e6cfc1f",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "cc0bfb516ceeb48a52b2ca8b005655a53550ef5285c90e5748e2d7e9a4dc56b5"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600900.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209202061",
+        "title": "2020年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "d1aa1b58bc59f740ae6b16edfca138a66d29a17ad373592b10ae2a96d0f998e7",
+        "record_id": "b03272581f3cbad8e0241ed6dd2c05c85c4f36bd9a7837e3b373a4652dfef774",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210495823",
+        "title": "长江电力2021年半年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "e357b6413332a49e4b38b60c8d3c9e42aff238f0747e5b80dcc7d30452ee1f27",
+        "record_id": "08804048630e26968f803bb981a0c018322c7325bbad51ef78d1e0cf6f13c14f",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212285452",
+        "title": "长江电力2021年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "0054ca2c7d110a935f13150ec399fec83a203229eed07eacd42df677628ebd3b",
+        "record_id": "1632536b9821c8b587e562d22528490d72b27031a484a836fda13e3070d7367d",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215723005",
+        "title": "长江电力2022年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "43842d2498435bb6f302b6e6012b7950807d88479aed44501d4a54eef1814b2f",
+        "record_id": "12a3b01fad81decff53c55e9b024cd62f5ab75a5a7bf4e7fb90c89548d587632",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218955814",
+        "title": "长江电力2023年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "122c3a84be5b3a716360a1337ec73b99bfb001b695f28d55a9aea033fd679e31",
+        "record_id": "aa6d6bb6af91d18a2607378ab788125df56e15bab92ce73d63ab4260c48ef9cf",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222379255",
+        "title": "长江电力2024年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "ba902cd2dd6b5e0bfac24e48dc528e6c5e0204ea08ba5a9a8a45e15ad236f376",
+        "record_id": "8db702f5e452d1bdf8d0774a647eb72cb3d91887f1407a3c3ab70767b46bdb60",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224342028",
+        "title": "长江电力2025年半年度业绩快报公告",
+        "status": "parsed",
+        "document_id": "8f30865a5c110be4fd08596acd77aa0040c16923cb4459ea4478510028fad15a",
+        "record_id": "26b82386d19699c36f91744580c84837899bce7bc73d565e515a128610199eda",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224931391",
+        "title": "长江电力2025年度业绩快报公告",
+        "status": "parsed",
+        "document_id": "ad04ca886c65befb252bcc6cffefbc17f50cda8897c053a6d1e649cd97a53ba2",
+        "record_id": "986889fb3d57cd220de7fc0930696ce9d40cfe3dcab4858531c1b96f8a919c19",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "8ec56f7968f6d2d9146a0f566b7a7441f7e63de3d967f054c3277c6623491341"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600011.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "f252003ac0deddf16f1903b02c764fc280cb3909c7d0272edea9768c4832bf20"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "601668.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "faa5ca01d2ac5284822c103073202a81bea13ede5fce6fb69e25424da18b40d9"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "601390.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "5064cb779ea9ea490d4866a9beb8e0f8c0a5ff8cf5c11b6854b1c9aaf3c118aa"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600048.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209134198",
+        "title": "保利发展控股集团股份有限公司2020年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "19ca658fdb22bf07f4bb64ecda0eb8ab58fd362e7f82d1c06cd486b320e7fa49",
+        "record_id": "0fcdbaad337433f85670fffb38a820e41390676a5472a6bdfa2ccabbb856cc06",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210501731",
+        "title": "保利发展控股集团股份有限公司2021年半年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "5919f2c7b8d1306685a69359a8ff62bbaf2f0b5565edee77de07a0ba6a5b5494",
+        "record_id": "97799b964c087ae6e0cef6032c9295ca9eef3e44b59330382d2d940cd9463617",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212126998",
+        "title": "保利发展控股集团股份有限公司2021年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "fcb399e20827349706a216d86db184e043caa0e051a5d34bd341d0d7f2bcbf4e",
+        "record_id": "77e6f828731733514557512b292ae969bb4c188b006407a62df4fe09f02a77ab",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214043187",
+        "title": "保利发展控股集团股份有限公司2022年半年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "0bdc54012b182cff124b9830ade5acbdeaaf1d059d6d74a911b72ee7ae595fa7",
+        "record_id": "0aa4b9c85e752c3725bb42996fc92d6323d99bee59150e405e9f16635ac65ce6",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215533538",
+        "title": "保利发展控股集团股份有限公司2022年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "fce54d13d049ca6cd7d5b7ac776e9e35f3349dd2937ba11c99b40f1399fbeeac",
+        "record_id": "259edd7cbeff61e61ae0340459bda38d45892ffb58e8c50a203e62024da5a1da",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217229122",
+        "title": "保利发展控股集团股份有限公司2023年半年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "f9629b65be06a76d106e250d7a9ef241ea01b325445d31fabac4147ed63aa626",
+        "record_id": "1d7058ef6656b32507d64bccc90d03eacd47ae8077fd618e00b3f9e3bfcdb3cb",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1218956720",
+        "title": "保利发展控股集团股份有限公司2023年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "0dfe0d5328796ff5375d31094b67c91a89eb8826b8302ac4499f980b4c4ed199",
+        "record_id": "2643a834a5efcbbe4a42b5080d456e1dedd04ff8cf3e5a0a61f415aa543c06a4",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1220616002",
+        "title": "保利发展控股集团股份有限公司2024年半年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "b2b834b4931c5593d27dfa95b42695cfe8a5f5538c699c34f2b664c690d959c3",
+        "record_id": "b8e5d030cc0d5372b6244bda2f57b3a51d6fb4ff8f307295d37520f401c089db",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222363254",
+        "title": "保利发展控股集团股份有限公司2024年度业绩预告暨业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "4f81d5b613b5ac326332b9ef3c851ccbaaa4cbe1e64008f5a1c1068ca254d24f",
+        "record_id": "a4eaa8a51664ee2f8b39c57839fb852e9e8585af2da24ca051e970b7825ca1f0",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224163675",
+        "title": "保利发展控股集团股份有限公司2025年半年度业绩预告暨业绩快报公告",
+        "status": "parsed",
+        "document_id": "dc3309b4288969546a8e533bf2a3c0e1de56d6ef149442f68d9065b8a1971cd3",
+        "record_id": "5ad267dacbeb8a7b0b6900de1d51ce89938278a02d5570ddf159eb63ec432935",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224940376",
+        "title": "保利发展控股集团股份有限公司2025年度业绩预告暨业绩快报公告",
+        "status": "parsed",
+        "document_id": "498882b8f6329d8305e4eeb4abd397fda942abd1b42eecf6672ca7c687e6897b",
+        "record_id": "7042c7670351d8091d447f2319467198250876708ba38b3c8bbbb33b43df3e3e",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "84db8d708b22ff536cc14c0ba79dfca8db3ffdcd78374c1e18d342e08495401a"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600104.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209082364",
+        "title": "2020年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "9f88fcc5102337df9e710bbef8acb21c28d25c54276695ea105706cddfa999b0",
+        "record_id": "4563cc3247f60612f14f132280e721739e44df477aa5dae87f4fe3298f9b4177",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222429749",
+        "title": "上汽集团2024年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "0c9f73cb318fdfcfc7b6d874c1d59741a83509579f8519453f97866d438146d1",
+        "record_id": "f87ff5b68368e6821351e4b244ddccc2c8f25a65649e15eacef60d2ad483b86e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224935009",
+        "title": "上汽集团2025年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "5573740c5adfc57ecb3e5e0d2936679266c3e6cb17468ce92dbd75004bd9abd0",
+        "record_id": "80c6aa5c59d866152fd8f2bee58d1065e31119fcbe2bb7e920b78bf4c34c1b33",
+        "metrics": []
+      }
+    ],
+    "id": "266be5180ac651b02c24e1efb2b6fbae12e20f6d76d423ed138e838e3502dd6e"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600050.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1219231280",
+        "title": "中国联合网络通信股份有限公司关于积极推动提质增效重回报及2023年度业绩快报公告",
+        "status": "parsed",
+        "document_id": "f1d6aff68a9e4fc9d017686adb9d26a4cc0a2a862106c68f51b5e3077969e13a",
+        "record_id": "ba02016de5447136fbe212ba1273f249a8506fe3be363f502c2e296057145916",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "7ddacd853d528d7f2eedd68d952114d3d1f937db3287f1d45ed077fd3bf2b182"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600887.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [],
+    "id": "d4cac0c91f0f3771f535428a7fd0c258f137506570ba51fd5a02ce7927d040ca"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600809.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209357948",
+        "title": "2020年度业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "a4d4a89fbfc11f3a7e471d3990830fe49b1ea75ad4c1fceb14f5df848fac25f8",
+        "record_id": "fe1eb577aa6a214ef8a5005f7bc640e4db3f43c1be1955e9f1e39f7be29fb3be",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215664024",
+        "title": "2022年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "20067b10968699d00b7636d6b1327b387100b3e57943a0af02fe9a8e0b4f0ebb",
+        "record_id": "1f814fb9db521ce2daaf6cf599ce621fca9567e946d7386f1386f4d0c68ce39f",
+        "metrics": []
+      }
+    ],
+    "id": "909e0bc97944a232810976ae6efdedbdb33cd92380603f63748a5fc1fe81bce7"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "002714.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209188140",
+        "title": "2020年度业绩预告",
+        "status": "parsed",
+        "document_id": "2ce0bfb671eca04266cbdc61415fc5784aee84ce35ac5855466b1a082dceb270",
+        "record_id": "6bec38b2e1adfb031cffc1243c9ae96e3be405b53dd89d6b32a4b6d9bebbaf55",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1209691201",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "84baf439d5ee52278387bc7dae903b96ab57a3a8f93257b3a50e5df1ecc79856",
+        "record_id": "94105d669825e526e6fc758ab7273fb46f7cc0287fcfd6e2e32f2316e279102d",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209699581",
+        "title": "2020年度业绩快报更正公告",
+        "status": "needs_cell_review",
+        "document_id": "42142b3d69e09da18b4c436536fd41081cc917236d68f9964cd72bc97762b1eb",
+        "record_id": "f6389b1ebc26a017c237b922b26727267d2e25d342942f5d48f410a59e73405f",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210485055",
+        "title": "2021年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "bf2c2b5ae0d080cd856d4e0df7e87261ff0f67ae2c4ee1939bf75b895574b669",
+        "record_id": "ef1ca0246224363f9a2077d80eba26333c8c93ba8eeff80f30e971f7c77732f5",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212209847",
+        "title": "2021年度业绩预告",
+        "status": "parsed",
+        "document_id": "23168a2340b5350aadacdd3cb8735a09db79ed0477b78591f0b44a7214c87eca",
+        "record_id": "ad34ee06f99320f633aecb32acdc22af1d3d9fc0804fc65c0ff052a68311b1b0",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214043424",
+        "title": "2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "a03c28efb089eb31e1e9d745a3793522534a1642648421733793ab48aab1b7c9",
+        "record_id": "77227e8446e91309ad85475952309ea876c12d72ea0339d88e0da500c9880a2c",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215725517",
+        "title": "2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "0b14dc949c42404f920a3f24c6bf10f60a1940216a6a765b1e9559426b305d1c",
+        "record_id": "bd134ad5661295d9a13e0413d25cf18dd642066f1dac66097382f97df3442d58",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217298901",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "1e4ee248fdd56e9697eafcaf63e6124fffbee0bfd43c7be98411939bf856cfa2",
+        "record_id": "16ccea6e52dc345a7bfdadbaab1aa590a9f7e9b917089cac5beb87e315548c3e",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219042957",
+        "title": "2023年度业绩预告",
+        "status": "parsed",
+        "document_id": "eafa34a437639b27d05f39b3c94dee87e7a4c65c33c55c57b79f583e2d731430",
+        "record_id": "340a2211628a345dcabb1a2711d301278fc2e997f9f2915ce0c21213497871cf",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1220602782",
+        "title": "2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "9b091c9e6283d56d816da893d61deb717afec7d653d64957e7c51b9bd92c9940",
+        "record_id": "f8f6bf35f41a48dc5b15859eddd2bdbeb85f7cfee544abad2570f680793e8200",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1221355795",
+        "title": "2024年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "c20e69125a56356aa57b5f3bb6a3a595968ab626fb492c774e0d25c630c97875",
+        "record_id": "3e8fc1b0d7e8794d83275fd9073a029838a3a6a738394b1dc5ad93f3a2669a87",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222271118",
+        "title": "2024年度业绩预告",
+        "status": "parsed",
+        "document_id": "eda800e2eb8655141ca7c72cade2c4cbc42215a752cc024af54d1929b0cd5a89",
+        "record_id": "89fc01880cab29b8775d9b75bb91ad9feed78a80171d27f9988ebe6979a8f643",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1223030262",
+        "title": "2025年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "c2b32d2ee659fc93ce84c48d43f4d1d3957df12b25441c6a2bcd7c6fc2779413",
+        "record_id": "bc7418a84ed1a6dbb5289a892127dc6cca5221346ffe5d1a5191deee2c5cf61c",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224119580",
+        "title": "2025年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "d03aff89f93caada0db32fbe5d3c0d3e2752a34f69593a692afc88b26a07f7c1",
+        "record_id": "e5049643e1464a93119088df20f20e4c79a7c77823dfd669efa2716ff0aa50c5",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224936121",
+        "title": "2025年度业绩预告",
+        "status": "parsed",
+        "document_id": "70691b4a4b8c0a14ca53f261e97ed087e3c2fa1e2377df5e5ac960a53e192bc3",
+        "record_id": "a09fe911d57efac506f774d2585aff837dd45948faeac0aec986023fbc05cb4d",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "6e0e12b124ff7c001ac935db3b378eca1bd9c49f11b9394ff5f6306e6b22c0f3"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000876.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209337357",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "fe1166f41a353edfc0af0a90740e42df9c278a6a80b799b6a27bb6eb9902454e",
+        "record_id": "ef2e31e6e049a0e82e41b216f4d8e88ef173c6c4e130fba99efbf017c6832352",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209690802",
+        "title": "2021年一季度业绩预告",
+        "status": "parsed",
+        "document_id": "98bdd520b5fc6d6e459ced9f5b777fa1f2ab5dfaa0ca9f26817c4629b40cecd6",
+        "record_id": "a6285a286d5256e3413e3b2bc4426f31685aac1aba7881075fda709695f1abf4",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1210493284",
+        "title": "2021年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "4816575cfd8cd643e85b4f6630a3241a260c246162a3a01b7ecabcf0106f6950",
+        "record_id": "1b0d45292cfc1f9c3d7f0fe23ac784870a74257bd41e8e3a9ecffca94c0d5132",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1211272305",
+        "title": "2021年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "c34bc72b93b7c8c7bdffe6f0f8688346ef317fee64063b58badd115af9246970",
+        "record_id": "30e6a47f11f35f36fae03aa4555d3155256c8c106aa85aa3d49d02d2d534ab00",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212308672",
+        "title": "2021年度业绩预告",
+        "status": "parsed",
+        "document_id": "aa19ed7497a4a344ac37cf3bf235754529c5a942954283ba09a76b9636335685",
+        "record_id": "1ebd637be109f221e64e9398a612cd0043f006d132e3f02bebfd10bff8219cd6",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212337461",
+        "title": "联合资信评估股份有限公司关于新希望六和股份有限公司2021年度业绩预告的关注公告",
+        "status": "needs_cell_review",
+        "document_id": "98614a00affa4000124dd1e961f77c4790a7ed007cfdae0e5cfcfd5eee1a9926",
+        "record_id": "43894ae1730aca97b904a5dafb83b873b8c92b67e93255f2c38083372e014264",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212351685",
+        "title": "联合资信评估股份有限公司关于公司2021年度业绩预告的关注公告",
+        "status": "needs_cell_review",
+        "document_id": "a944015fd10096c2bf2947fd05a1b155ab3f55cee8df14c41b43c167716f2dab",
+        "record_id": "5fc4263c0a056e44fd0b7b18ba6a19e9dfc9e471b8806a83f79e33b52df2efb9",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214044413",
+        "title": "2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "738f9db72d31ccd80eaac659f837636d9fc57ce73be966ffa4bb8d21790c1c50",
+        "record_id": "2b4122d773bb90723b61b1836d7ee783e29f02dd9cee47717780d233d91fad02",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215724702",
+        "title": "2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "6cb45e595458f815f04599d75dd8821a2f9ed38615ecfd7a966d95fdf10d93bd",
+        "record_id": "e6407fc5520f1b325c2bd1e346ce0e780e35aaf2288aa4eb5f80385d900bbae2",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1216270898",
+        "title": "2022年度业绩预告修正公告",
+        "status": "parsed",
+        "document_id": "e63f1f8b6f1767fb7df2cc3f46186517bf626ee95d3b6d640c1be39c63423a12",
+        "record_id": "2b2c0eb977c8491a1a3b926ec11526d8eab56e31f892232894b19324fae4ae6a",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217302351",
+        "title": "2023半年度业绩预告",
+        "status": "parsed",
+        "document_id": "cd69317545ae6104ef5e64fa49228ef7ce04623711f334eb0d2ac38716a2f960",
+        "record_id": "a9a39de01261158a8f4ddc976a193c93490df941f7fc7d534a3a207c6b763543",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219042526",
+        "title": "2023年度业绩预告",
+        "status": "parsed",
+        "document_id": "56d6e8caa59f6536696f6c35bebf92c99bae7b29afa49186757cd996b60207c9",
+        "record_id": "bd862af120d94484c73577b78aeabcb058eeeb328dd0301306a8c3c11cebbbf6",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1220542545",
+        "title": "2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "06daece7b3c4d5bdbfa187666bc4128e0d2c08c2a8cac18aff901878a2923735",
+        "record_id": "71befbcc540defa46f6d2c84d43e26e1c54c58d7dc6da94efffc72a951395c8c",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1222417560",
+        "title": "2024年度业绩预告",
+        "status": "parsed",
+        "document_id": "44f71af98f05841a399ce004c845006f67a522d202d4bb97d8d4b4b1949ff033",
+        "record_id": "50939d50ef9d63acf899b2805d34816c5ca804cc78ae94aade8f987470f3fb30",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1222991793",
+        "title": "2025年一季度业绩预告",
+        "status": "parsed",
+        "document_id": "35725d0b3b21146d0c2279682cb20f495a54fd122ffc036392b1cc72d1d35cba",
+        "record_id": "7e65284aa8bad017acbd42ec1989f55fe8c81bb2a4c4fdefd80eac94fd85caab",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1222991794",
+        "title": "2024年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "fd3309e20029757300b1ed75ceb14cb2bb425e16f66d6475fe48e6e06d2c0eb4",
+        "record_id": "c9906112bf0b450860b72b6e8578d3b1728494e01f87fb454a92ef772d78fb9e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224165044",
+        "title": "2025年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "9bb4ce9e52a682de7dbd25af072ad8ad2da7f0a5b42c11fef9471b6a3cdf6fc6",
+        "record_id": "51c7571a9c3c43c04b9930b59986b33ca11df5f669b2efd169df0c659ab0b7de",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1224958210",
+        "title": "2025年度业绩预告",
+        "status": "parsed",
+        "document_id": "56d9e27a72ba2ad04485b043ed2c875718e331383c552a1ce35073ce51150ff9",
+        "record_id": "784cfa8fbfe998d15f9c8df11156b2cb59a5ef1ae67d31a0ff5b490483dae31e",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "dc633d3f0763126f6d0b2bbbe42b76ad859ab134ade9cdc2dc6a8e6fd8208bc7"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "600438.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209638712",
+        "title": "通威股份有限公司2020年业绩快报公告",
+        "status": "parsed",
+        "document_id": "e68fe880dae1ee7a13a090a91926c556eeee26a5f8f9496403b34374202df587",
+        "record_id": "6284fa5ff9710118f37a15d3e2be34d5bcd1f8b57980b52ced74004ef7a0f906",
+        "metrics": [
+          "core_profit",
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1212353108",
+        "title": "通威股份有限公司2021年业绩快报公告",
+        "status": "needs_cell_review",
+        "document_id": "8a347cf5b5e95e41855eb7f175f14910314354a26a9f06eac39b1768f071a5cc",
+        "record_id": "b0f3faa32fc21943527c8905926c33fef8501dc85b8907c56f8944abf372b6dc",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1220589577",
+        "title": "通威股份有限公司2024年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "b0f3c1c47a5991159ab8af355a252b26cc15513e7748c61ff9af146b9f5f70df",
+        "record_id": "8df94a02ed16ca94eb42c2e40364264e5162afe86c8a5e514c19b6db66b2bd13",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222366188",
+        "title": "通威股份有限公司2024年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "3a751e8dde94cd2508650dd3ddaf0c54100074fbc2022e6dcbc13ff519bc55c9",
+        "record_id": "0c3af75d2161196218eb1c1b9ca33bfbad54e46f2c9bff23783ad14a95a0b132",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224162465",
+        "title": "通威股份有限公司2025年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "0884d7aa02e9d88aef330fc3711300ae8d40cd8b6be7e75417840d892823d2cc",
+        "record_id": "8a8df622f7c5640d7a488081176e46723e1febd0ea703e433d1aa1b00bca6ea1",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224938937",
+        "title": "通威股份有限公司2025年年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "bdf7fcefb0436c6982b5d49ee3c595f36eceb8adc6fd212033e051704cccccb4",
+        "record_id": "9677fc8651c75f45da082c5141ebef93c2054207f3d32894d8f8df891eeb6e51",
+        "metrics": []
+      }
+    ],
+    "id": "7fdc873aafc721681f39813af789a2c343085c58d742525a2392ce9f1ecbea29"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "601012.SH",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209207183",
+        "title": "2020年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "2d9f59b4a1a0ed68a96bd53286015caa6c3f2f9a8ab7ef37923b5d14244bf4fe",
+        "record_id": "3a162bda07a91a166a0bae508d7e8f16c5947692c94aa91086f0e63e95a93ff6",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1216369075",
+        "title": "2022年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "27ce2b5d7e142566c304aa74475149b11063f0ce0824f4b0955b93866ad6e418",
+        "record_id": "c46c8008f6cf617496e3cc5857ee505a8df0c46541b65ea03301b3e45cd6f1a2",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1217453341",
+        "title": "2023年半年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "f15f6b8a66eb4fb018bfed63919b4f71caa35d71928d2e444d4ea6fa68c40a6a",
+        "record_id": "e9e7a10cdfe701da79a489f63a2bfea3c0f3b1cd2b34a135b625037d38d61714",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1220590600",
+        "title": "2024年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "3b7120d08e50e00a21cd0e270f7442f9eca50779de8e7df22b34c8ea5bd52702",
+        "record_id": "e663af5c75ce0dc90d6c3d5916d98dcf7430e095d9e4e34218befb328a13af2e",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1222354206",
+        "title": "2024年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "fbdc3874e045b6675ee83e85f10d32999ede927d67821452f5ff52cb54ccb83b",
+        "record_id": "057683cca40cc83c3ad621e7a80a643213bac913ac84542ce3b18bae83fcb642",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224163134",
+        "title": "2025年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "073d8b095c6c39faba87f7302791a1ab583e89749f338cbb494130ccc78890a9",
+        "record_id": "7b72da25410b82ead0d18cbe294f00657394c9570bcc64b6772d6353efd0b647",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1224938943",
+        "title": "2025年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "92206264f80f4928de48abf8e0dd93a520852eaf23375ef8759d9afe437996f1",
+        "record_id": "ff6e59edfc43c15e5efd748724f6f66e2449970235ac1edc7d4dae151deac249",
+        "metrics": []
+      }
+    ],
+    "id": "b378f8e6c39d00b9396bafa46808b24798609f896f466fe96506732c6e743cd6"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000023.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209215727",
+        "title": "2020年度业绩预告",
+        "status": "parsed",
+        "document_id": "1a382681902dfc5b51cf46d28b143ba27106779205af45b569c70be3ce504a73",
+        "record_id": "562acd295b16621b44accbb0f90790d5caccb192e58e40cbdfc774df94dca6a6",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1209689258",
+        "title": "2020年年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "cdb0feaf848a5dc9584ccc10d0aa7045e843c94bd7a66607398b87c87395736b",
+        "record_id": "f90a9ee9a6139537a10d191a43e27c7170cf95d610190ee6377cbb2eefd4ba09",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210484967",
+        "title": "2021年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "ca652702abafb9c74393ee667d1e802218ca278cb5500c876ac0055cc326a44c",
+        "record_id": "a63ec9258a0ff4f9349309d8f342c6864d4815a286dd15ad9a1b49e8b50d5981",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1211270433",
+        "title": "2021年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "43c98621a21f4f776d5e846cdaf629d54f158990fa2a27203437fa7ee5e0b47a",
+        "record_id": "df06e59e2ef02cc1c20fb892ffd3caa9207c58909854b8a4f43087aa0168ceef",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212307403",
+        "title": "2021年度业绩预告",
+        "status": "parsed",
+        "document_id": "a50c09ed366acef7e8a572533f1cfcbe9b1ce753195b9611a4732c878a16a743",
+        "record_id": "c60749f42a579113a15cb8ff15842922debf069a425b9fc08bf9b3eeaac076f9",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214042918",
+        "title": "2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "4f00e6d84c7ffe639d3e3c52a658d814bf3c9c7bb31750f61c033e186e4b4cf3",
+        "record_id": "9b735d362e9a2eb8b194eb30e54a7eecdd38ff54100f8d80a482d73a8fe2cc1e",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215638597",
+        "title": "2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "94616940112981fd0b52421b61affa3dc9e805e30f7e6213dd8bc1d84c2de702",
+        "record_id": "a9b37e915226827ceb9efe821cbfef6172c9f53c9926bd98cf07a69fdca4012f",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217291231",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "4aff87c409c333b4bd1494549748c872387c807af9b79c1a4bda680d45344dd5",
+        "record_id": "a2d351752a496394f15e4787779d6395d4f590230b749510e7147896ee50657d",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219002550",
+        "title": "2023年度业绩预告",
+        "status": "parsed",
+        "document_id": "b05e49b70ab7b4c441c86522713e301cb9b5edfdc0d8b1a6813d2d9f4ea7652c",
+        "record_id": "c71970bf0e084c52d897908e6f99328f85a35d90d059676410f3deb3165450b3",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1220601735",
+        "title": "2024年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "17c92ae0134ce4632d4a985473f8e6b383a9b3f5020e4e0671d2195ce8b9b053",
+        "record_id": "bba1e03c9cd75fc26941e6f0494c2df4a8d64fb05481c97231d697df8c5af417",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "d9b8e61b0d4c54790276112b3505e093242393811b7d74e81c90f8ffe2b50910"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000046.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209215890",
+        "title": "2020年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "b6276f713e329fb6834e6ca8b996c68d68a800fa5bad55b2f17540e5f79ba4ab",
+        "record_id": "26a524ded1418654d2adab4fe2888e0dd735a4bae56e99de601e142fd39c2fb5",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209689313",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "6b6604b66606175a9c05ebf37c04514412acaebe4f48ff0fa294fab75dbc8c79",
+        "record_id": "1b43f7188618d48f017685ba6bbb91d96c11410d1aba1cdbbbd516712ff11f4c",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209689314",
+        "title": "2021年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "96d5f9a250c8f4a3dbd3f69b877b23cf843dce41053757d38b734322f91936d7",
+        "record_id": "b15ee427a051f4e0f5cf93946c60e93297792232cc4d49139df1ceaa9641b7b7",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210484557",
+        "title": "2021年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "202186598fa56adc5fad0627d5029a770f65e64c47e808013490d35c4ccbc35d",
+        "record_id": "f2fbdb899ef60704763771a45c2f99e7ad328bf6cb651db826aab4adf5b5929f",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1211270652",
+        "title": "2021年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "672700128f7924fd9d66b11ec054b8c00d2d86b492cee3dac080dad3ba991320",
+        "record_id": "b2a0c222b7e7a6ceba02c96278a3b34194a3e3d44e68607348cb60b6b4eca672",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212307397",
+        "title": "2021年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "fe7288a76577885b8217918230926480f492feff2b2919514a7d403f0a28f5a8",
+        "record_id": "3e074b6dba9d91036200fca318063d24ed47b365b5aaed1967b67641e768ee18",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214042383",
+        "title": "2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "3a51872f6509a0d9b39f697a02044e6d096aaeebf007bacea155e3e925b06a4b",
+        "record_id": "2923d125c7a6fba1102df35f05c6262bddfe1dfdac18d9991b287bdba00ce997",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1215726276",
+        "title": "2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "01eee01b6dde00a5eaf45eb4db352b557c90889f5d0fac349d2e8be14eeee04d",
+        "record_id": "ad4595d27ae71d121121cb2be16c9ef43533215eae22283f234065acbee62ce7",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217302138",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "af07b2a82cf595ce57701489d8e41d202790a8c0bd9bf492c518c0b03790e433",
+        "record_id": "3a9d5c2ebfd5113d8922f6e644801d8465cbff8cabcf750006dab8081e33d0f3",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "fafb1fd44a316122d587bf88805a5e4c92cbcd4492258a4520c3c4da0ae00cab"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000150.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209217304",
+        "title": "2020年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "4a253450a0fc799a610943ff4879ae62f09917cc6a89293926f19415165dd013",
+        "record_id": "215cba1742d4531735310fd0a9ea36aceda7513aa8aeba5168669b5e26e6f7d4",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209687947",
+        "title": "2021年第一季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "0085488a86e98f2fa3c93dfb6ee125d7f4640accbdc377b7efcf68a7a9da256d",
+        "record_id": "b585a35911da248b781a2701248dfbd179423f445c31ce558107fa105adba18a",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1209687948",
+        "title": "2020年度业绩快报",
+        "status": "needs_cell_review",
+        "document_id": "c42ba17b43ba90e5e9db0ad133f3b1ef21efb9459eab3656b0e8a9fd362405f3",
+        "record_id": "1878ac51344793f890191d269f5443a91ebbaf7341862f7756d0223e6910bffc",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1210474798",
+        "title": "2021年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "1ceb6e83292b332f4fa1fb7b02f8adb6c5207130e40421fd96332d69f67377b8",
+        "record_id": "cd99f26a3412df5bb6e183e9a50329b2e451e3d679a56e52462faef25f1dcb77",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1211269522",
+        "title": "2021年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "c1c261dfcafe2591277c946bbee75f676495198a7295a843e5a025bb81c94f43",
+        "record_id": "87ee005b66b826128d5a9aa480b4d490e408552d9879cc2a822d75f9cd0a3b44",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212307541",
+        "title": "2021年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "c68d66ca62e23f47eb4279441523c43666ac2b74cefe801e429238aa5eefcce4",
+        "record_id": "7bd731278975c22fea0c644dfe6bb41f5b7da46ee8a91bca840c68b23a1f5654",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1214041502",
+        "title": "2022年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "7e14b811bad85c364386b38a0bf8ce81ea201770efc0074b755fa3a1526ff6ad",
+        "record_id": "806ca70eb57ec3581dbea2a4feecb988ff1b66e3a2c1d9b58281273625016faa",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1215725833",
+        "title": "2022年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "1ff57bddcc5bd0f3af5db2f7df82f61a1aa2520e4ecddfbf127762860f0bf5a6",
+        "record_id": "0d86607f5d9c44743ab738a5c505b0b939ba35e26256549f9fa5fd3f697ad999",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1216473672",
+        "title": "2022年度业绩预告修正公告",
+        "status": "parsed",
+        "document_id": "67a6904bc9550fc9736bde9ac9eb3af148d065c150ca327a7a7338e8d7ee9a05",
+        "record_id": "848a88334ac77b8c4c389e6fca474a83355c2710b935b3e21287aa8898a55273",
+        "metrics": [
+          "parent_profit"
+        ]
+      }
+    ],
+    "id": "8304455411d73663d36dd6f75de973c829a9c58fec8bc1769f12c2884f35203f"
+  },
+  {
+    "kind": "guidance_collection",
+    "symbol": "000416.SZ",
+    "start": "2021-01-01",
+    "end": "2026-05-31",
+    "parser": "guidance-table-v1",
+    "outcomes": [
+      {
+        "announcement_id": "1209714274",
+        "title": "2021年第一季度业绩预告",
+        "status": "parsed",
+        "document_id": "dd42e7d0440222e43f4173388a80d05e63c3df7213b4eac61ecb7ab372c55ae9",
+        "record_id": "5d70678a6eaefd91823f1a38d37567e8f010d8d0a08dee7b44ddeaddd29b32ab",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1210484574",
+        "title": "2021年半年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "e0eea2ff0a88a69e3401b7d65471a4dc464cd8a3f86d3b847f06c8ea8849207b",
+        "record_id": "16a506f5344c7a25556504b4d2f04adcb362c43f4821fec710c5f6e1c87ff0b9",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1211270779",
+        "title": "2021年前三季度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "3e4a1055e5279166ccc4802716fae6eed9c395d1d47846418ff5eb587cc2d514",
+        "record_id": "3cd3747f0bd532c22f2b34dd908e2f4e3237e67d526173cd0062062090b73c1d",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1212308322",
+        "title": "2021年度业绩预告",
+        "status": "parsed",
+        "document_id": "5c43e1681864136590d56009ef7edeb458c37a32d545e8b919fe21455f9c0a43",
+        "record_id": "acb814dd8bec8dbda72ef55712300d2942d211a8f0b6a6bf1c1f901df468eff1",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1214026049",
+        "title": "2022年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "554cadfd94a73f7b46ef28a436dc2ba4e756937dc87da64fbb313fa2f6f9b1ab",
+        "record_id": "f06153cc2f186428dafbd6e6944afa72bf72400a49443ace2a2e8859b79ab701",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1216413859",
+        "title": "2022年度业绩预告",
+        "status": "parsed",
+        "document_id": "933b57f11900f7f0d9908b644d05af16b9728ee6378bdefc397aff60c9db6465",
+        "record_id": "5d0a9fabfd214f1be3899202c3fb06bbfbb9098c36414ee62689444664d3cf0c",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1217299669",
+        "title": "2023年半年度业绩预告",
+        "status": "parsed",
+        "document_id": "8cf5dbdab8d45d37718c8d2ffaa5439bedadd08ed21f477529317fffc4f5c53a",
+        "record_id": "b1d32260ada73b711c4525958bf82aaeabca7feb0d205df68fb013523da64d43",
+        "metrics": [
+          "parent_profit"
+        ]
+      },
+      {
+        "announcement_id": "1219044334",
+        "title": "2023年度业绩预告",
+        "status": "needs_cell_review",
+        "document_id": "8d291108a0c78cc863602bc5d8b049c9606c09c945a9ac30915aa7ce82b0cea4",
+        "record_id": "6c8516bfb15c13f0ad07465d9f79fd9cbbd97dcf2767f6a2d65593b99fe7fa10",
+        "metrics": []
+      },
+      {
+        "announcement_id": "1219111762",
+        "title": "和信会计师事务所对《关于对民生控股股份有限公司2023年业绩预告的关注函》的回复",
+        "status": "needs_cell_review",
+        "document_id": "a617e485a8e3d660f4a33e6504cce4de17b14d03f3f3f6318528f89517f1de88",
+        "record_id": "08b6b9a1c43234f876d837ee139d46d1e6c67d54b6ee81cf3c30a89da6604032",
+        "metrics": []
+      }
+    ],
+    "id": "777402f5200cb11eb0b5d361f928581bbb0aa1e92317ccff9dbc1ef8d0fc729c"
+  }
+]

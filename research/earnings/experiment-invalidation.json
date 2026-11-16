@@ -1,0 +1,55 @@
+{
+  "status": "invalidated_data_extraction",
+  "detected_at": "2026-11-16T11:03:14.434814+08:00",
+  "experiment_ids": [
+    "08874801e55772d89a8656aab3229eb526dffdaa8dfd6db84da306be93fcfa9b",
+    "0943894ae316460bcf66c730acb4dfe6f0f1f4c7cbbc911404c1bef9e86268b2",
+    "1d31fe0924db04dd399329e9616058adb4a9449980b590f31efed26f97d4aed4",
+    "2ab58591e603f4d107b3f9ee76dc0d84b210fccc094c25f602a1be0df76abcbc",
+    "436a00b1dd9996ff4f40d16e5e40ff427b7ff83ffd439f8b8cae4198541eaac7",
+    "49f744a966b048569a019750146906bc5ae5862c24f5d89211f9177a68eb0ee3",
+    "55da5d1d6276d777d0ade5788011669f41b60cb1404437ae26541b7b3aa463a2",
+    "573c4292a9300097b0bd342ce60ff1caeb55076e26f15fbea4bbb9ca9d9b93e1",
+    "7ae455b6fbe65ff7b8f2fb2c4f6cfd412d231bf2ce35f2580f25edb14ab9fb00",
+    "7e93f0af69cf940b49997b1de73c231aacaecfa63997b862cd2a45e81de869d6",
+    "819649b891c8cb306030c6c4aa83696b2f6fe48dddc4601818f53c30dc8680eb",
+    "8caeb8e5ea5f6921963aff21b663659743e026a4d804fe5e225798a23d9852de",
+    "8d159f0a6173fa1c3e7c20d568f497c77f854b134382ec6589cef0b16f4bf8bc",
+    "9441605702203afa44f6d3eccca3cb0fc34a372b02846bb281cdc4cc1594ffe2",
+    "a268a2276b42e57d7e77ac4a982953cb2ad8b09ac7706c00ae240960216d9a3c",
+    "a959af53d8b67b1a39f00a14303eb40bedf6073e64572fbf405007e013e9b289",
+    "b10903aed41a946551d296ac716ec195f2d954d148f748aa531c400be39abcb0",
+    "c8ee75839b08abde5eaee895f135f0838e86d59532eac29c7cf94e9771f45586",
+    "d74bb83fa5e92bb5e6f3d979adae54e8f5a52d14566878e1c745ddc647b1a265",
+    "dc16bb1ed83a20ea28698b8a7b425851db791edac4310b1ed795819f7b152a3c",
+    "e4f2b3c78adb4e7438c7ef869747cb3e19a1849c95df481e086a1c1c635ab8a9",
+    "eed2abad0e6b2c1333c4580e5e2bb32108d1d7e2165d1d55fc3f0694d9dc5b57",
+    "f70edd106f2df1cec3d2003c6d96363b327c318322dcbab214b4b83122c53350",
+    "fb19c469166b5e580d80a276d3f51234fee94a59d74ae0d2b3e0e09697f4678e"
+  ],
+  "reason": "年报单季扣非利润错读为经营现金流，部分累计扣非字段错位。旧战绩撤回，保留审计记录。",
+  "examples": [
+    {
+      "symbol": "002475.SZ",
+      "period": "2024-12-31",
+      "wrong": "20441894952.86",
+      "correct": "3576869336.25",
+      "unit": "CNY"
+    },
+    {
+      "symbol": "000651.SZ",
+      "period": "2025-12-31",
+      "wrong": "654731068.82",
+      "correct": "7121443552.47",
+      "unit": "CNY"
+    },
+    {
+      "symbol": "300750.SZ",
+      "period": "2024-12-31",
+      "wrong": "29546744000",
+      "correct": "12816508000",
+      "unit": "CNY"
+    }
+  ],
+  "id": "e41cafd3d613e5fdd059dddb5156b1cae4088a21203ae81a6ea601e16339564b"
+}

@@ -1,0 +1,272 @@
+[
+  {
+    "entity_id": "cninfo_9900000161",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900002961",
+    "reextracted": 2,
+    "direct_quarter_reports": 16,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900003701",
+    "reextracted": 5,
+    "direct_quarter_reports": 4,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900003825",
+    "reextracted": 5,
+    "direct_quarter_reports": 8,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900003904",
+    "reextracted": 0,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900004143",
+    "reextracted": 0,
+    "direct_quarter_reports": 6,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900005970",
+    "reextracted": 0,
+    "direct_quarter_reports": 6,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900011647",
+    "reextracted": 0,
+    "direct_quarter_reports": 8,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900012688",
+    "reextracted": 0,
+    "direct_quarter_reports": 16,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900013929",
+    "reextracted": 0,
+    "direct_quarter_reports": 7,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900014448",
+    "reextracted": 0,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900014777",
+    "reextracted": 0,
+    "direct_quarter_reports": 16,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900022338",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900022995",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900035335",
+    "reextracted": 0,
+    "direct_quarter_reports": 9,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_9900036236",
+    "reextracted": 0,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_GD165627",
+    "reextracted": 19,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gshk0001211",
+    "reextracted": 0,
+    "direct_quarter_reports": 12,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600011",
+    "reextracted": 1,
+    "direct_quarter_reports": 11,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600031",
+    "reextracted": 0,
+    "direct_quarter_reports": 9,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600036",
+    "reextracted": 0,
+    "direct_quarter_reports": 0,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600050",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600066",
+    "reextracted": 0,
+    "direct_quarter_reports": 11,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600104",
+    "reextracted": 0,
+    "direct_quarter_reports": 13,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600276",
+    "reextracted": 2,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600309",
+    "reextracted": 0,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600346",
+    "reextracted": 0,
+    "direct_quarter_reports": 13,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600436",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600438",
+    "reextracted": 3,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600519",
+    "reextracted": 1,
+    "direct_quarter_reports": 10,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600585",
+    "reextracted": 1,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600690",
+    "reextracted": 0,
+    "direct_quarter_reports": 15,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600809",
+    "reextracted": 0,
+    "direct_quarter_reports": 16,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600887",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssh0600900",
+    "reextracted": 0,
+    "direct_quarter_reports": 14,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000002",
+    "reextracted": 2,
+    "direct_quarter_reports": 9,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000005",
+    "reextracted": 0,
+    "direct_quarter_reports": 8,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000023",
+    "reextracted": 0,
+    "direct_quarter_reports": 10,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000046",
+    "reextracted": 0,
+    "direct_quarter_reports": 10,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000150",
+    "reextracted": 2,
+    "direct_quarter_reports": 7,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000416",
+    "reextracted": 0,
+    "direct_quarter_reports": 11,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000538",
+    "reextracted": 0,
+    "direct_quarter_reports": 16,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000651",
+    "reextracted": 0,
+    "direct_quarter_reports": 16,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000858",
+    "reextracted": 2,
+    "direct_quarter_reports": 9,
+    "duplicate_reports": 0
+  },
+  {
+    "entity_id": "cninfo_gssz0000876",
+    "reextracted": 0,
+    "direct_quarter_reports": 8,
+    "duplicate_reports": 0
+  }
+]

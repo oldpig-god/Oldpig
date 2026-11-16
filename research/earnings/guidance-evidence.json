@@ -1,0 +1,296 @@
+[
+  {
+    "entity_id": "cninfo_9900002961",
+    "symbol": "000338.SZ",
+    "name": "潍柴动力",
+    "target_period": "2022-06-30",
+    "prediction_at": "2022-07-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 1611616885.17,
+    "baseline": 6431644827.88,
+    "point": 1791155000.0,
+    "lower": 1492630000.0,
+    "upper": 2089680000.0,
+    "guidance_absolute_error": 179538114.83,
+    "baseline_absolute_error": 4820027942.71,
+    "disclosed_range_hit": true,
+    "record_id": "8c1a44d5e9bfcd7e31890060a1f1c7251d6e6ddc3526d5cec912a1e8dfc71fba",
+    "guidance_available_at": "2022-07-16T00:00:00+08:00",
+    "label_available_at": "2022-09-01T00:00:00+08:00",
+    "label_event_id": "8cd1f2696acadcd302505293acd1eb601a797eba91df1bb05866cc95a71901e5",
+    "baseline_event_id": "5e2b13a17c5cac4ddfcb6f402b51c41a790eb215f1dd47bc175f514dcb3b02bf",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2022-07-15/1214044504.PDF",
+    "proof": {
+      "bbox": [
+        188.9000015258789,
+        380.9800109863281,
+        381.6800079345703,
+        418.1999969482422
+      ],
+      "label_bbox": [
+        77.13214220319476,
+        380.9800109863281,
+        188.9000015258789,
+        455.4299774169922
+      ],
+      "label_quote": "归属于上市公司股\n东的扣除非经常性\n损益的净利润 ",
+      "page": 1,
+      "quote": "盈利：149,263 万元–208,968 万元 ",
+      "table_text": "盈利：149,263 万元–208,968 万元"
+    },
+    "content_hash": "4fe34b63959a2a5fd987e5f62aba3e391325a7a8e4e9ba6da8fa31eae7a16a45"
+  },
+  {
+    "entity_id": "cninfo_9900002961",
+    "symbol": "000338.SZ",
+    "name": "潍柴动力",
+    "target_period": "2023-06-30",
+    "prediction_at": "2023-07-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 3610484422.89,
+    "baseline": 1611616885.17,
+    "point": 3585845000.0,
+    "lower": 3303810000.0,
+    "upper": 3867880000.0,
+    "guidance_absolute_error": 24639422.89,
+    "baseline_absolute_error": 1998867537.72,
+    "disclosed_range_hit": true,
+    "record_id": "eec3beab41a0127b0c3e4e93fb103e0e3bf27ac70c9d628a71df116105c85cb3",
+    "guidance_available_at": "2023-07-04T00:00:00+08:00",
+    "label_available_at": "2023-09-01T00:00:00+08:00",
+    "label_event_id": "d45c42fe7edb18c1c9ae5b68bef10dc2787e3948d3c6e3b109b5ff7d7c69561f",
+    "baseline_event_id": "8cd1f2696acadcd302505293acd1eb601a797eba91df1bb05866cc95a71901e5",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2023-07-03/1217194851.PDF",
+    "proof": {
+      "bbox": [
+        134.82999420166016,
+        380.9800109863281,
+        327.62998962402344,
+        418.1999969482422
+      ],
+      "label_bbox": [
+        23.082143783569336,
+        380.9800109863281,
+        134.82999420166016,
+        455.4299774169922
+      ],
+      "label_quote": "归属于上市公司股\n东的扣除非经常性\n损益的净利润 ",
+      "page": 1,
+      "quote": "盈利：330,381 万元–386,788 万元 ",
+      "table_text": "盈利：330,381 万元–386,788 万元"
+    },
+    "content_hash": "96258b9092a6b960f1fbd229ae136bf90d5466112a46fc41d017dc88cf79af31"
+  },
+  {
+    "entity_id": "cninfo_9900002961",
+    "symbol": "000338.SZ",
+    "name": "潍柴动力",
+    "target_period": "2023-12-31",
+    "prediction_at": "2024-01-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 8079911264.23,
+    "baseline": 3282799644.89,
+    "point": 7800000000.0,
+    "lower": 7390000000.0,
+    "upper": 8210000000.0,
+    "guidance_absolute_error": 279911264.23,
+    "baseline_absolute_error": 4797111619.34,
+    "disclosed_range_hit": true,
+    "record_id": "b40825154e604fe28a02eb174f72aecce2e8fbaad95cdbeea7239fb99578c126",
+    "guidance_available_at": "2024-01-25T00:00:00+08:00",
+    "label_available_at": "2024-03-27T00:00:00+08:00",
+    "label_event_id": "fcf8815ae71844a857e13d3dca03769d9ffd6ea5dbe4470e9870e9871e2c6ee3",
+    "baseline_event_id": "3f22eea078a9f53850873ad3e6a5d5c596871c78993734b31fd32c9aeb9c6a61",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2024-01-24/1218978016.PDF",
+    "proof": {
+      "bbox": [
+        197.9000015258789,
+        385.1799774169922,
+        392.50001525878906,
+        422.3999786376953
+      ],
+      "label_bbox": [
+        77.13214220319476,
+        385.1799774169922,
+        197.9000015258789,
+        459.62998962402344
+      ],
+      "label_quote": "归属于上市公司股东\n的扣除非经常性损益\n的净利润 ",
+      "page": 1,
+      "quote": "盈利：739,000 万元–821,000 万元 ",
+      "table_text": "盈利：739,000 万元–821,000 万元"
+    },
+    "content_hash": "86f676638229b913d37c8dc7418b40b4e05c1d0751e03352e4334f37a5bccd41"
+  },
+  {
+    "entity_id": "cninfo_9900002961",
+    "symbol": "000338.SZ",
+    "name": "潍柴动力",
+    "target_period": "2024-06-30",
+    "prediction_at": "2024-07-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 5478973561.64,
+    "baseline": 3610484422.89,
+    "point": 5420000000.0,
+    "lower": 5060000000.0,
+    "upper": 5780000000.0,
+    "guidance_absolute_error": 58973561.64,
+    "baseline_absolute_error": 1868489138.75,
+    "disclosed_range_hit": true,
+    "record_id": "a1ab9571bde69f3f6397543631ad176263206d7077b9367299e15afcf0207f8c",
+    "guidance_available_at": "2024-07-16T00:00:00+08:00",
+    "label_available_at": "2024-08-24T00:00:00+08:00",
+    "label_event_id": "08253b730ea060704304dd3df0dd606d7fa3b5a8dc9de92ac882c1aae75845d3",
+    "baseline_event_id": "d45c42fe7edb18c1c9ae5b68bef10dc2787e3948d3c6e3b109b5ff7d7c69561f",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2024-07-15/1220626695.PDF",
+    "proof": {
+      "bbox": [
+        197.09000396728516,
+        385.0099639892578,
+        396.3100128173828,
+        422.3299865722656
+      ],
+      "label_bbox": [
+        74.26971871512276,
+        385.0099639892578,
+        197.09000396728516,
+        459.54998779296875
+      ],
+      "label_quote": "归属于上市公司股东\n的扣除非经常性损益\n的净利润 ",
+      "page": 1,
+      "quote": "盈利：506,000 万元–578,000 万元 ",
+      "table_text": "盈利：506,000 万元–578,000 万元"
+    },
+    "content_hash": "8419d5a4831ace9da40379a86a8a0d1e2150735d6b1b1cae42c9d69c36c5674c"
+  },
+  {
+    "entity_id": "cninfo_9900014448",
+    "symbol": "002475.SZ",
+    "name": "立讯精密",
+    "target_period": "2024-06-30",
+    "prediction_at": "2024-07-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 4959558446.73,
+    "baseline": 4154373409.12,
+    "point": 4932878950.0,
+    "lower": 4788985800.0,
+    "upper": 5076772100.0,
+    "guidance_absolute_error": 26679496.73,
+    "baseline_absolute_error": 805185037.61,
+    "disclosed_range_hit": true,
+    "record_id": "1b6a0ae2adc18819d8c4e03ec836bc4ad06ed67db4e402a956e173bd19a60d29",
+    "guidance_available_at": "2024-04-26T00:00:00+08:00",
+    "label_available_at": "2024-08-25T00:00:00+08:00",
+    "label_event_id": "7072c7869bc1930b587f9503bc1d7e94bd129cb074e690ec5dca0597979efe8f",
+    "baseline_event_id": "5d144d619a4bfdd3f58149c75fae2b2e8e1ca3b46db6fac0e984da6eb63ea8c9",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-25/1219799506.PDF",
+    "proof": {
+      "bbox": [
+        199.69998931884766,
+        408.6000061035156,
+        418.3199920654297,
+        432.62998962402344
+      ],
+      "label_bbox": [
+        50.70714296613421,
+        408.6000061035156,
+        199.69998931884766,
+        456.62998962402344
+      ],
+      "label_quote": "归属于上市公司股东的 \n扣除非经常性损益后的净利润 ",
+      "page": 1,
+      "quote": "盈利：478,898.58 万元–507,677.21 万元 ",
+      "table_text": "盈利：478,898.58 万元–507,677.21 万元"
+    },
+    "content_hash": "b066d05fcc057300f81096f1ca0d1c186e4ca11867a2158bfae504455f979562"
+  },
+  {
+    "entity_id": "cninfo_9900014448",
+    "symbol": "002475.SZ",
+    "name": "立讯精密",
+    "target_period": "2025-06-30",
+    "prediction_at": "2025-07-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 5599433499.57,
+    "baseline": 4959558446.73,
+    "point": 5451138600.0,
+    "lower": 5191234500.0,
+    "upper": 5711042700.0,
+    "guidance_absolute_error": 148294899.57,
+    "baseline_absolute_error": 639875052.84,
+    "disclosed_range_hit": true,
+    "record_id": "7d82f6455422a5604c17158d3a4a4766c475711c55682dec6087ecfd4c86ad4b",
+    "guidance_available_at": "2025-04-27T00:00:00+08:00",
+    "label_available_at": "2025-08-27T00:00:00+08:00",
+    "label_event_id": "fc034006c79fb233a4d00e29ac02ce6a66593b41cf12d85af491b21aebc53d35",
+    "baseline_event_id": "7072c7869bc1930b587f9503bc1d7e94bd129cb074e690ec5dca0597979efe8f",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223326842.PDF",
+    "proof": {
+      "bbox": [
+        207.04999542236328,
+        408.5299835205078,
+        426.7899932861328,
+        432.5299835205078
+      ],
+      "label_bbox": [
+        51.08571515764509,
+        408.5299835205078,
+        207.04999542236328,
+        456.42999267578125
+      ],
+      "label_quote": "归属于上市公司股东的扣除非\n经常性损益后的净利润 ",
+      "page": 1,
+      "quote": "盈利：519,123.45 万元–571,104.27 万元 ",
+      "table_text": "盈利：519,123.45 万元–571,104.27 万元"
+    },
+    "content_hash": "771f20dd7da4c1b7457d3b26cf463a134060849c2e44244a9a3a8098876a9a09"
+  },
+  {
+    "entity_id": "cninfo_gssz0000651",
+    "symbol": "000651.SZ",
+    "name": "格力电器",
+    "target_period": "2023-12-31",
+    "prediction_at": "2024-01-30T08:30:00+08:00",
+    "offset_days": 30,
+    "kind": "guidance",
+    "actual": 27565461117.79,
+    "baseline": 23986248264.15,
+    "point": 26950000000.0,
+    "lower": 26100000000.0,
+    "upper": 27800000000.0,
+    "guidance_absolute_error": 615461117.79,
+    "baseline_absolute_error": 3579212853.64,
+    "disclosed_range_hit": true,
+    "record_id": "3fed26a092635cbfedc9ceb0818d0b5a03194ff140988ee1b2cabab6c4bad47a",
+    "guidance_available_at": "2023-12-22T00:00:00+08:00",
+    "label_available_at": "2024-05-01T00:00:00+08:00",
+    "label_event_id": "d0959ae895395c4c756ebccffdbe26efe5418bc963b3e4163e409c06f13c206b",
+    "baseline_event_id": "37ccbb07ef92cb4bad4b341ff4dd7e34be1c372aafbe22ed9467a45b1d245132",
+    "source_url": "https://static.cninfo.com.cn/finalpage/2023-12-21/1218675956.PDF",
+    "proof": {
+      "bbox": [
+        196.6999969482422,
+        421.8299865722656,
+        380.6499938964844,
+        446.2300109863281
+      ],
+      "label_bbox": [
+        84.36000061035156,
+        421.8299865722656,
+        196.6999969482422,
+        493.0299987792969
+      ],
+      "label_quote": "归属于上市公司股\n东的扣除非经常性\n损益的净利润",
+      "page": 1,
+      "quote": "盈利：261 亿元–278 亿元",
+      "table_text": "盈利：261 亿元–278 亿元"
+    },
+    "content_hash": "20bed0e1b52b3bb2d4ee19a6ab468b7ac994d3771ac4a9dba7ba6a4489a24d8b"
+  }
+]
