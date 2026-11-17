@@ -176,7 +176,7 @@ def html_page(path):
     value=path.read_text(encoding='utf-8').replace('</body>','<script defer src="/cloud-ui.js"></script></body>')
     if path.name=='index.html' and path.parent.name=='static':
         value=value.replace('本地金融研究工作台','云端金融研究工作台').replace('本地<br>研究台','云端<br>研究台')
-        value=value.replace('连接本地数据服务','连接云端数据服务').replace('本地数据','云端数据').replace('本地保存','云端保存').replace('继续补采日线','同步当前日线').replace('开启全市场轮询','开启当前证券轮询')
+        value=value.replace('连接本地数据服务','连接云端数据服务').replace('本地源数据','云端源数据').replace('本地数据','云端数据').replace('本地保存','云端保存').replace('继续补采日线','同步当前日线').replace('开启全市场轮询','开启当前证券轮询')
     return HTMLResponse(value)
 
 
@@ -272,15 +272,18 @@ def daily_sync_status(symbol:str|None=None):
 
 @app.get('/api/series/{symbol}')
 def series(symbol:str,interval:str='1d',limit:int=2000,source:str='primary'):
-    if not core.instrument(symbol):raise HTTPException(404,'证券不在当前名录中')
-    if interval not in ('1d','1m','5m'):raise HTTPException(400,'周期不支持')
-    if source=='github':return server.series(symbol,interval,limit,source)
-    if source!='primary':raise HTTPException(400,'来源不支持')
-    item=history(symbol,interval);rows=item['records'][-max(1,min(limit,10000)):]
-    with core.db() as c:q=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
-    return dict(instrument=core.instrument(symbol),interval=interval,chart_type='price_line' if interval=='1m' else 'candlestick',records=rows,
+    with core.db() as c:
+        inst=core.instrument(symbol,c=c)
+        if not inst:raise HTTPException(404,'证券不在当前名录中')
+        if interval not in ('1d','1m','5m'):raise HTTPException(400,'周期不支持')
+        if source=='github':return server.series(symbol,interval,limit,source)
+        if source!='primary':raise HTTPException(400,'来源不支持')
+        item=history(symbol,interval);rows=item['records'][-max(1,min(limit,10000)):]
+        q=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
+        fresh=core.freshness(rows[-1] if rows else None,interval,c=c)
+    return dict(instrument=inst,interval=interval,chart_type='price_line' if interval=='1m' else 'candlestick',records=rows,
         quote=json.loads(q['payload']) if q else None,range={'start':rows[0]['event_time'] if rows else None,'end':rows[-1]['event_time'] if rows else None,'count':len(item['records'])},
-        freshness=core.freshness(rows[-1] if rows else None,interval),source='云端行情归档（逐条保留东方财富 / 腾讯来源）',github_available=symbol in github_history.catalog(),
+        freshness=fresh,source='云端行情归档（逐条保留东方财富 / 腾讯来源）',github_available=symbol in github_history.catalog(),
         adjustment='不复权',volume_unit='未核验，仅保留原始量',last_batch=item.get('last_batch'),history_window=core.history_window(),limitations=['分钟历史仅覆盖原始接口可提供的窗口','数据日期以记录标注为准'])
 
 
@@ -314,8 +317,8 @@ def batch(batch_id:str,symbol:str|None=None):
         index=cache_get('system/batch-metadata.json.gz',ttl=3600) or {}
         data=index.get(batch_id)
         if not data:raise HTTPException(404,'批次不存在')
-        return dict(data,issue_examples=[],raw_sample=[],record_examples=[],cloud_note='此归档保存清洗后的行情和原始批次哈希，未复制该批次完整原始响应；新抓取和技术面分析会保存完整证据。')
-    raw=STORE.get_json(data['raw_path']);return dict(data,issue_examples=[],raw_sample=raw['rows'][:3])
+        return dict(data,parsed_issues=json.loads(data.get('issues') or '{}'),issue_examples=[],raw_sample=[],record_examples=[],cloud_note='此归档保存清洗后的行情和原始批次哈希，未复制该批次完整原始响应；新抓取和技术面分析会保存完整证据。')
+    raw=STORE.get_json(data['raw_path']);return dict(data,parsed_issues=json.loads(data.get('issues') or '{}'),issue_examples=[],raw_sample=raw['rows'][:3])
 
 
 @app.post('/api/auto-refresh')

@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime
-from . import core
+from . import core, spot_source
 
 ENDPOINTS={'stock':'stock_zh_a_spot_em','etf':'fund_etf_spot_em'}
 
@@ -25,7 +25,7 @@ def exchange(code,kind):
     raise ValueError(f'Unrecognized {kind} code: {code}')
 
 
-def fetch(endpoint):
+def fetch_sdk(endpoint):
     r=subprocess.run([sys.executable,'-m','app.provider'],cwd=core.ROOT,input=json.dumps({'endpoint':endpoint,'parameters':{}}),capture_output=True,text=True,encoding='utf-8',env=dict(core.os.environ,PYTHONIOENCODING='utf-8',PYTHONUTF8='1'),timeout=180)
     if r.returncode:raise RuntimeError(r.stderr[-700:])
     rows=json.loads(r.stdout)
@@ -33,10 +33,21 @@ def fetch(endpoint):
     return rows
 
 
-def ingest(rows,kind,endpoint,fetched_at=None,inventory_only=False):
+def fetch(endpoint):
+    """Returns (rows, adapter). Snapshots use the concurrent direct adapter (~10 s for the whole
+    market instead of >1 min); the AKShare SDK process remains the fallback and the inventory source."""
+    if endpoint in spot_source.SPECS:
+        try:return spot_source.fetch(endpoint),spot_source.VERSION
+        except spot_source.SourceBlocked:raise  # SDK hits the same host; don't prolong a rate-limit block
+        except Exception as exc:
+            print(json.dumps({'endpoint':endpoint,'direct_adapter_failed':str(exc)[:300]},ensure_ascii=False),flush=True)
+    return fetch_sdk(endpoint),'akshare-sdk'
+
+
+def ingest(rows,kind,endpoint,fetched_at=None,inventory_only=False,adapter=None):
     core.init();fetched_at=fetched_at or core.iso()
-    batch=core.begin_batch('__'+kind.upper()+'__','inventory' if inventory_only else 'spot',endpoint,{},importlib.metadata.version('akshare'))
-    raw={'batch_id':batch,'endpoint':endpoint,'fetched_at':fetched_at,'rows':rows}
+    batch=core.begin_batch('__'+kind.upper()+'__','inventory' if inventory_only else 'spot',endpoint,{'adapter':adapter} if adapter else {},importlib.metadata.version('akshare'))
+    raw={'batch_id':batch,'endpoint':endpoint,'adapter':adapter,'fetched_at':fetched_at,'rows':rows}
     data=core.dumps(raw).encode();rel=core.Path('raw')/fetched_at[:10]/(batch+'.json');path=core.DATA/rel;path.parent.mkdir(parents=True,exist_ok=True)
     with path.open('xb') as f:f.write(data);f.flush();os.fsync(f.fileno())
     items={};rejected=[];conflicts=set()
@@ -89,9 +100,14 @@ def ingest(rows,kind,endpoint,fetched_at=None,inventory_only=False):
 def refresh(inventory=False):
     results=[]
     endpoints=[('stock','stock_info_a_code_name',True)] if inventory else list((k,v,False) for k,v in ENDPOINTS.items())
+    blocked=None
     for kind,endpoint,master in endpoints:
-        try:results.append(ingest(fetch(endpoint),kind,endpoint,inventory_only=master))
+        try:
+            if blocked:raise spot_source.SourceBlocked('skipped after source block: '+blocked)
+            rows,adapter=fetch(endpoint)
+            results.append(ingest(rows,kind,endpoint,inventory_only=master,adapter=adapter))
         except Exception as exc:
+            if isinstance(exc,spot_source.SourceBlocked) and not blocked:blocked=str(exc)[:200]
             b=core.begin_batch('__'+kind.upper()+'__','inventory' if master else 'spot',endpoint,{})
             core.fail_batch(b,str(exc));results.append({'kind':kind,'status':'error','error':str(exc)})
     return results
@@ -102,11 +118,13 @@ def coverage():
         kinds=[dict(r) for r in c.execute('SELECT kind,exchange,count(*) count FROM instruments WHERE active=1 GROUP BY kind,exchange')]
         quotes=c.execute('SELECT count(*) n FROM market_quotes q JOIN instruments i USING(symbol) WHERE i.active=1').fetchone()['n']
         valid=c.execute("SELECT count(*) n FROM market_quotes q JOIN instruments i USING(symbol) WHERE i.active=1 AND json_extract(q.payload,'$.close') IS NOT NULL").fetchone()['n']
-        history=[dict(r) for r in c.execute('SELECT o.interval,count(DISTINCT o.symbol) symbols,count(*) rows FROM observations o JOIN instruments i USING(symbol) WHERE i.active=1 AND o.event_time>=? GROUP BY o.interval',(core.history_start(),))]
+        # series_stats is maintained by core.publish(); avoids scanning millions of observations.
+        # symbols = series with records inside the rolling window; rows = locally stored records.
+        history=[dict(r) for r in c.execute('SELECT s.interval,sum(s.last_time>=?) symbols,sum(s.rows) rows FROM series_stats s JOIN instruments i USING(symbol) WHERE i.active=1 GROUP BY s.interval HAVING symbols>0',(core.history_start(),))]
         tasks=[dict(r) for r in c.execute('SELECT interval,status,count(*) count FROM history_tasks GROUP BY interval,status')]
         sources={r['key']:json.loads(r['value']) for r in c.execute("SELECT * FROM metadata WHERE key LIKE 'market_%'")}
         missing_prices=[dict(r) for r in c.execute("SELECT i.symbol,i.name,i.kind FROM instruments i JOIN market_quotes q USING(symbol) WHERE i.active=1 AND json_extract(q.payload,'$.close') IS NULL ORDER BY i.symbol LIMIT 25")]
-        no_history=[dict(r) for r in c.execute("SELECT i.symbol,i.name,i.kind,t.status FROM instruments i LEFT JOIN history_tasks t ON t.symbol=i.symbol AND t.interval='1d' WHERE i.active=1 AND NOT EXISTS (SELECT 1 FROM observations o WHERE o.symbol=i.symbol AND o.interval='1d') ORDER BY i.symbol LIMIT 25")]
+        no_history=[dict(r) for r in c.execute("SELECT i.symbol,i.name,i.kind,t.status FROM instruments i LEFT JOIN history_tasks t ON t.symbol=i.symbol AND t.interval='1d' WHERE i.active=1 AND NOT EXISTS (SELECT 1 FROM series_stats s WHERE s.symbol=i.symbol AND s.interval='1d') ORDER BY i.symbol LIMIT 25")]
         inactive=c.execute('SELECT count(*) FROM instruments WHERE active=0').fetchone()[0]
         missing=[dict(r) for r in c.execute('SELECT i.symbol,i.name,i.kind FROM instruments i LEFT JOIN market_quotes q USING(symbol) WHERE i.active=1 AND q.symbol IS NULL ORDER BY i.symbol LIMIT 25')]
     return {'instruments':kinds,'total':sum(r['count'] for r in kinds),'quote_symbols':quotes,'valid_quote_prices':valid,'history':history,'tasks':tasks,'sources':sources,'missing_quote_examples':missing,'missing_price_examples':missing_prices,'missing_history_examples':no_history,'excluded_inactive':inactive,

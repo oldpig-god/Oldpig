@@ -7,12 +7,13 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from app import core
 
 start=core.history_start();end=core.calendar_state().get('expected_daily');days=[d for d in core.calendar_dates() if start<=d and (not end or d<=end)]
+start_ts=core.ts_of(start);DAY="date(o.ts,'unixepoch','+8 hours')"
 with core.db() as c:
-    spans=[dict(r) for r in c.execute("SELECT o.symbol,min(o.event_time) first,max(o.event_time) last,count(*) rows FROM observations o JOIN instruments i USING(symbol) WHERE i.active=1 AND o.interval='1d' AND o.event_time>=? GROUP BY o.symbol",(start,))]
+    spans=[dict(r) for r in c.execute(f"SELECT o.symbol,min({DAY}) first,max({DAY}) last,count(*) rows FROM bars o JOIN instruments i USING(symbol) WHERE i.active=1 AND o.interval='1d' AND o.ts>=? GROUP BY o.symbol",(start_ts,))]
     tasks=[dict(r) for r in c.execute('SELECT status,count(*) count FROM history_tasks WHERE interval=\'1d\' GROUP BY status')]
     c.execute('CREATE TEMP TABLE calendar_days(day TEXT PRIMARY KEY)')
     c.executemany('INSERT INTO calendar_days VALUES(?)',[(d,) for d in days])
-    outside=[dict(r) for r in c.execute("SELECT o.symbol,count(*) count FROM observations o JOIN instruments i USING(symbol) LEFT JOIN calendar_days c ON c.day=substr(o.event_time,1,10) WHERE i.active=1 AND o.interval='1d' AND o.event_time>=? AND c.day IS NULL GROUP BY o.symbol",(start,))]
+    outside=[dict(r) for r in c.execute(f"SELECT o.symbol,count(*) count FROM bars o JOIN instruments i USING(symbol) LEFT JOIN calendar_days c ON c.day={DAY} WHERE i.active=1 AND o.interval='1d' AND o.ts>=? AND c.day IS NULL GROUP BY o.symbol",(start_ts,))]
 results=[]
 for row in spans:
     first,last=row['first'][:10],row['last'][:10]

@@ -21,7 +21,15 @@ def enqueue(intervals=('1d',),retry=False):
         if retry:c.execute("UPDATE history_tasks SET status='pending',error=NULL WHERE status IN ('error','partial','empty')")
 
 
-def run(workers=4,limit=0):
+def needs_full(c,task):
+    """Incremental (watermark-14d) unless the series has no clean cursor or its last batch was not clean."""
+    if not c.execute('SELECT 1 FROM watermarks WHERE symbol=? AND interval=?',(task['symbol'],task['interval'])).fetchone():return True
+    if not task.get('batch_id'):return True
+    last=c.execute('SELECT status FROM batches WHERE id=?',(task['batch_id'],)).fetchone()
+    return not last or last['status']!='ok'
+
+
+def run(workers=4,limit=0,full=False):
     core.init()
     with (core.DATA/'backfill.lock').open('a+b') as lock:
         try:process_lock.acquire(lock)
@@ -36,10 +44,11 @@ def run(workers=4,limit=0):
             symbol,interval=task['symbol'],task['interval']
             with core.db() as c:
                 updated=c.execute("UPDATE history_tasks SET status='running',attempts=attempts+1,updated_at=? WHERE symbol=? AND interval=? AND status='pending'",(core.iso(),symbol,interval)).rowcount
+                whole=full or needs_full(c,task)
             if not updated:return
             batch=None
             try:
-                endpoint,params=collector.parameters(symbol,interval,full=True)
+                endpoint,params=collector.parameters(symbol,interval,full=whole)
                 batch=core.begin_batch(symbol,interval,endpoint+' / direct-kline-v1' if interval=='1d' else endpoint,params,version)
                 with core.db() as c:c.execute('UPDATE history_tasks SET batch_id=? WHERE symbol=? AND interval=?',(batch,symbol,interval))
                 rows=history_source.fetch(core.instrument(symbol),params) if interval=='1d' else collector.fetch(endpoint,params)
@@ -62,5 +71,6 @@ def run(workers=4,limit=0):
         print(json.dumps(result),flush=True);return result
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--workers',type=int,default=4);p.add_argument('--limit',type=int,default=0);p.add_argument('--intervals',nargs='+',default=['1d']);p.add_argument('--retry',action='store_true');a=p.parse_args()
-    enqueue(a.intervals,a.retry);run(a.workers,a.limit)
+    p=argparse.ArgumentParser();p.add_argument('--workers',type=int,default=4);p.add_argument('--limit',type=int,default=0);p.add_argument('--intervals',nargs='+',default=['1d']);p.add_argument('--retry',action='store_true')
+    p.add_argument('--full',action='store_true',help='re-request the whole rolling window for every task (default: incremental from watermark)');a=p.parse_args()
+    enqueue(a.intervals,a.retry);run(a.workers,a.limit,a.full)

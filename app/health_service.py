@@ -52,9 +52,13 @@ def bootstrap_local(store):
     """Explicit offline audit, never called by a page request. Only dates are read."""
     started=time.monotonic();index={};calendar=core.calendar_dates()
     with core.db() as conn:
+        tables={r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         instruments={r['symbol']:dict(r) for r in conn.execute('select * from instruments')}
         for symbol,item in instruments.items():
-            present=[r[0][:10] for r in conn.execute("select event_time from observations where symbol=? and interval='1d' and event_time>=? order by event_time",(symbol,core.history_start()))]
+            if 'bars' in tables:
+                present=[core.event_time(r[0])[:10] for r in conn.execute("select ts from bars where symbol=? and interval='1d' and ts>=? order by ts",(symbol,core.ts_of(core.history_start())))]
+            else:
+                present=[r[0][:10] for r in conn.execute("select event_time from observations where symbol=? and interval='1d' and event_time>=? order by event_time",(symbol,core.history_start()))]
             result=checks.gaps(present,calendar)
             index[symbol]=dict(name=item['name'],first_date=min(present,default=None),last_date=max(present,default=None),
                 missing_dates=result['missing'],history_rows=len(present),audit_at=core.iso(),audit_source='SQLite observations / primary archive')

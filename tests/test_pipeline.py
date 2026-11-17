@@ -42,8 +42,12 @@ class PipelineTests(unittest.TestCase):
         first=self.publish([row()]);again=self.publish([row(),row()]);changed=self.publish([row(收盘=4.25)])
         self.assertEqual((first['changed'],again['changed'],changed['changed']),(1,0,1))
         with core.db() as c:
-            self.assertEqual(c.execute('SELECT count(*) FROM observations').fetchone()[0],1)
-            self.assertEqual(c.execute('SELECT count(*) FROM revisions').fetchone()[0],2)
+            self.assertEqual(c.execute('SELECT count(*) FROM bars').fetchone()[0],1)
+            # revisions keeps only superseded versions: the original 4.2 close, not a copy of the current value.
+            old=c.execute('SELECT payload,batch_id FROM revisions').fetchall()
+            self.assertEqual(len(old),1);self.assertEqual(core.unpack_payload(old[0]['payload'])['close'],4.2);self.assertEqual(old[0]['batch_id'],again['batch_id'])
+            stats=c.execute('SELECT rows FROM series_stats WHERE symbol=? AND interval=?',(SYMBOL,'1d')).fetchone()
+            self.assertEqual(stats['rows'],1)
             batches=c.execute('SELECT * FROM batches').fetchall()
         for batch in batches:
             raw=(core.DATA/batch['raw_path']).read_bytes()

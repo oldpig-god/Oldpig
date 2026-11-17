@@ -117,7 +117,7 @@ def series(symbol,limit=10000):
             'source':'GitHub / tomuopc/a-stock-data / 通达信','adjustment':'源仓库未声明复权口径；独立展示',
             'freshness':{'state':'archive','label':'GitHub 历史归档'},'last_batch':None,'volume_unit':'源未核验',
             'provenance':{'repository':'https://github.com/'+REPO,'commit':COMMIT,'path':result['source_path'],'sha256':result['sha256']},
-            'history_window':core.history_window(),'audit':audit(records,symbol),'quality':result['quality'],'limitations':['归档截止2026-06-26，非最新行情','没有自动覆盖主行情库','重叠窗口核对不代表全部历史真实性或完整性已验证']}
+            'history_window':core.history_window(),'audit':result['audit'],'quality':result['quality'],'limitations':['归档截止2026-06-26，非最新行情','没有自动覆盖主行情库','重叠窗口核对不代表全部历史真实性或完整性已验证']}
 
 
 def summary():

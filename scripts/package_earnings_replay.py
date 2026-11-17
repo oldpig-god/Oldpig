@@ -18,12 +18,14 @@ def main():
     parser.add_argument('--data-dir',required=True)
     parser.add_argument('--summary',default='research/earnings/benchmark-summary.json')
     parser.add_argument('--output',required=True)
+    parser.add_argument('--extra-manifest',action='append',default=[])
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     repo=Repository(LocalStore(args.data_dir));summary=json.loads(Path(args.summary).read_text(encoding='utf-8'))
     registration=repo.store.get_json('earnings/experiments/registrations/'+summary['trials'][0]['experiment_id']+'.json.gz')
     keys=set(repo.store.list_keys('earnings/datasets/'))|set(repo.store.list_keys('earnings/experiments/'))
     versions={repo.store.get_json(k)['data_version'] for k in repo.store.list_keys('earnings/experiments/registrations/')}
+    versions.update(args.extra_manifest)
     for version in versions:
         manifest=ManifestStore(repo.store,version).manifest
         keys.add('earnings/manifests/'+version+'.json.gz')
@@ -37,13 +39,20 @@ def main():
            'research/earnings/guidance-benchmark.json','research/earnings/guidance-evidence.json',
            'research/earnings/guidance-evidence.md','research/earnings/github-csv-audit.json',
            'research/earnings/replay-validation-v2.json','research/earnings/half-year-gaps.json',
-           'research/earnings/error-diagnosis-v2.md','research/earnings/cloud-validation-v2.json']
+           'research/earnings/error-diagnosis-v2.md','research/earnings/cloud-validation-v2.json',
+           'scripts/earnings_residual_benchmark.py','docs-earnings-residual.md',
+           'research/earnings/benchmark-summary-v2.json',
+           'research/earnings/residual-summary.json','research/earnings/residual-diagnosis.json',
+           'research/earnings/residual-replay-validation.json','research/earnings/residual-cloud-validation.json']
     files += [str(p.relative_to(root)).replace('\\','/') for p in sorted((root/'app/earnings').glob('*.py'))]
     readme=f'''# 盈利研究专项重放包
 
 研究数据与固定配置已装入本包。无需账户配置即可本地重放。原始PDF通过输入记录中的来源URL与SHA256追溯，二进制原件独立归档。
 
 当前结论：修正数据后，财务增强树缩放误差0.749%，去年同期基准0.686%。旧实验已标记失效，最近两个季度保留作独立检验。
+
+新一轮季节残差模型误差0.711%，完整结果见 `docs-earnings-residual.md`。
+核对新模型：`python scripts/check_earnings_replay.py --summary research/earnings/residual-summary.json --trial seasonal_residual`。
 
 ## Windows PowerShell
 
@@ -60,7 +69,8 @@ Linux/macOS 使用 `python3 -m venv .venv`，将解释器路径换为 `.venv/bin
 输出 `replay-check.json`，`exact_report_match` 为 true 表示逐项一致；不一致时命令退出码为1。
 
 数据版本：`{summary['data_version']}`。
-算法源码见仓库提交 `{registration['code_version']}`；精确模块哈希记录于每份实验。依赖版本锁定。
+基准实验登记的源码提交为 `{registration['code_version']}`；新实验的提交和模块哈希见各自记录。
+包内源码包含后续研究工具，逐文件校验值见 `source-hashes.json`。依赖版本锁定。
 原验收环境为 Linux/Python3.10；Windows 命令按 Python3.11 提供。
 
 基准、两组树和五组训练标签置换共8套固定管线。重放会保存完整结果到 `data/earnings/experiments/`。
@@ -72,6 +82,8 @@ Linux/macOS 使用 `python3 -m venv .venv`，将解释器路径换为 `.venv/bin
         archive.writestr('app/__init__.py','')
         archive.writestr('foragent.md',readme)
         archive.writestr('benchmark-summary.json',Path(args.summary).read_bytes())
+        archive.writestr('source-hashes.json',json.dumps({name:hashlib.sha256((root/name).read_bytes()).hexdigest()
+                                                        for name in files},indent=2))
         for name in files:archive.write(root/name,name)
         for key in sorted(keys):
             archive.writestr('data/'+key,gzip.compress(canonical(repo.store.get_json(key)),mtime=0))

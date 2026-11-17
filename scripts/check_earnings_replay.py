@@ -19,11 +19,12 @@ def main():
     parser.add_argument('--data-dir', default='data')
     parser.add_argument('--summary', default='benchmark-summary.json')
     parser.add_argument('--output', default='replay-check.json')
+    parser.add_argument('--trial', default='tree_financials')
     args = parser.parse_args()
     summary = json.loads(Path(args.summary).read_text(encoding='utf-8'))
     repo = Repository(LocalStore(args.data_dir))
     bundle = load_panel(repo, summary['sample_dataset_id'])
-    trial = next(t for t in summary['trials'] if t['name'] == 'tree_financials')
+    trial = next(t for t in summary['trials'] if t['name'] == args.trial)
     prefix = 'earnings/experiments/'
     registration = repo.store.get_json(prefix+'registrations/'+trial['experiment_id']+'.json.gz')
     saved = repo.store.get_json(prefix+'results/'+trial['experiment_id']+'.json.gz')['report']
@@ -31,7 +32,8 @@ def main():
     universe = [frozen.get_json(k) for k in frozen.list_keys('earnings/universe/')]
     retired = {r['entity_id'] for r in universe if r['field'] == 'delisted' and r['value']}
     report = evaluate(bundle['rows'], EvaluationPolicy(**registration['evaluation_policy']),
-                      predictor=tree_factory(TreeConfig(**registration['model_config']['tree'])),
+                      predictor=tree_factory(TreeConfig(**registration['model_config']['tree']),
+                          seasonal_residual=registration['model_config'].get('target')=='scaled_residual_to_seasonal_naive'),
                       retired_entities=retired)
     report['data_exclusions'] = bundle['exclusions']
     report['id'] = digest({k: v for k, v in report.items() if k != 'id'})

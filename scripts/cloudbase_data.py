@@ -33,13 +33,20 @@ def export(source,output):
     coverage['github_history']=github_history.summary()
     (output/'coverage.json.gz').write_bytes(gzip.compress(core.dumps(coverage).encode(),mtime=0))
     snapshot='history/'+core.now().strftime('%Y%m%dT%H%M%S')+'-'+core.uuid.uuid4().hex[:8];entries={};chunk={};chunk_no=0;total=0;bytes_total=0
-    pairs=source_connection.execute('SELECT DISTINCT symbol,interval FROM observations ORDER BY symbol,interval').fetchall()
+    tables={r[0] for r in source_connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    use_bars='bars' in tables
+    pairs=source_connection.execute(f"SELECT DISTINCT symbol,interval FROM {'bars' if use_bars else 'observations'} ORDER BY symbol,interval").fetchall()
     for count,pair in enumerate(pairs,1):
         symbol,interval=pair
-        rows=source_connection.execute('SELECT payload,batch_id,fetched_at FROM observations WHERE symbol=? AND interval=? AND event_time>=? ORDER BY event_time',(symbol,interval,core.history_start())).fetchall()
-        records=[dict(core.unpack_payload(r['payload']),batch_id=r['batch_id'],fetched_at=r['fetched_at']) for r in rows]
+        if use_bars:
+            records=core.observations(symbol,interval,100000,c=source_connection)
+            last_batch_id=records[-1]['batch_id'] if records else None
+        else:
+            rows=source_connection.execute('SELECT payload,batch_id,fetched_at FROM observations WHERE symbol=? AND interval=? AND event_time>=? ORDER BY event_time',(symbol,interval,core.history_start())).fetchall()
+            records=[dict(core.unpack_payload(r['payload']),batch_id=r['batch_id'],fetched_at=r['fetched_at']) for r in rows]
+            last_batch_id=rows[-1]['batch_id'] if rows else None
         if not records:continue
-        batch=source_connection.execute('SELECT * FROM batches WHERE id=?',(rows[-1]['batch_id'],)).fetchone()
+        batch=source_connection.execute('SELECT * FROM batches WHERE id=?',(last_batch_id,)).fetchone()
         content={'records':records,'last_batch':dict(batch) if batch else None}
         key=symbol+'/'+interval;chunk[key]=content
         entries[key]={'chunk':snapshot+'/chunks/'+str(chunk_no).zfill(4)+'.json.gz','count':len(records),'start':records[0]['event_time'],'end':records[-1]['event_time']}

@@ -52,11 +52,13 @@ def main():
     old=next(t for t in reference['trials'] if t['name']=='tree_financials')
     prior=repo.store.get_json('earnings/experiments/results/'+old['experiment_id']+'.json.gz')['report']
     combined=report['predictions']+prior['predictions']
-    summary=dict(suite_id=suite['id'],data_version=reference['data_version'],dataset_id=bundle['id'],
+    summary=dict(suite_id=suite['id'],data_version=reference['data_version'],sample_dataset_id=bundle['id'],
         trials=[dict(name=t['name'],experiment_id=r['experiment_id'],metrics=r['report']['models'][candidate]['overall'])
                 for t,r in zip(declarations,results)],
         against_seasonal=paired_comparison(report['predictions'],candidate,'seasonal_naive',policy),
         against_level_tree=paired_comparison(combined,candidate,'quantile_tree_financials',policy),
+        benchmark_comparisons=report['benchmark_comparisons'],
+        model_groups=report['models'][candidate],
         registry_counts=counts(repo),holdout_opened=policy.include_holdout)
     Path(args.output).write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(summary,ensure_ascii=False),flush=True)

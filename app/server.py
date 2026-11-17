@@ -5,7 +5,7 @@ import time
 from contextlib import asynccontextmanager
 from datetime import datetime
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from . import core, collector, market, backfill, github_history
@@ -176,9 +176,9 @@ def index():return FileResponse(core.ROOT/'app/static/index.html')
 
 @app.get('/api/health')
 def health():
-    cov=coverage()
-    counts={r['interval']:r['rows'] for r in cov['history']}
-    with core.db() as c:batches=c.execute('SELECT count(*) FROM batches').fetchone()[0]
+    with core.db() as c:
+        counts={r['interval']:r['rows'] for r in c.execute('SELECT interval,sum(rows) rows FROM series_stats GROUP BY interval')}
+        batches=c.execute('SELECT count(*) FROM batches').fetchone()[0]
     return dict(mode='source_data',server_time=core.iso(),market=core.calendar_state(),counts=counts,batches=batches,
                 auto_refresh={k:v for k,v in AUTO.items() if k not in ('last_attempt','cooldown_until')},job=snapshot())
 
@@ -192,31 +192,43 @@ def asset_snapshot(symbol):
                 freshness=core.freshness(last,interval),daily_pct_source=daily[-1].get('pct_change_source') if daily else None)
 
 
+UNIVERSE_SORTS = {
+    'code': 'i.symbol',
+    'name': 'i.name,i.symbol',
+    'pct_desc': "CASE WHEN json_extract(q.payload,'$.pct_change_source') IS NULL THEN 1 ELSE 0 END, CAST(json_extract(q.payload,'$.pct_change_source') AS REAL) DESC, i.symbol",
+    'pct_asc': "CASE WHEN json_extract(q.payload,'$.pct_change_source') IS NULL THEN 1 ELSE 0 END, CAST(json_extract(q.payload,'$.pct_change_source') AS REAL) ASC, i.symbol",
+    'amount_desc': "CASE WHEN json_extract(q.payload,'$.amount_raw') IS NULL THEN 1 ELSE 0 END, CAST(json_extract(q.payload,'$.amount_raw') AS REAL) DESC, i.symbol",
+}
+
+
 @app.get('/api/universe')
 def universe(q:str='',kind:str='all',exchange:str='all',offset:int=0,limit:int=50,sort:str='code'):
     if kind not in ('all','stock','etf') or exchange not in ('all','SH','SZ','BJ'):raise HTTPException(400,'筛选条件不支持')
+    order=UNIVERSE_SORTS.get(sort)
+    if not order:raise HTTPException(400,'排序方式不支持')
     offset=max(0,offset);limit=max(1,min(100,limit));where=['i.active=1'];args=[]
     if kind!='all':where.append('i.kind=?');args.append(kind)
     if exchange!='all':where.append('i.exchange=?');args.append(exchange)
     if q:
         where.append('(instr(i.name,?)>0 OR instr(i.symbol,?)>0)');args.extend([q.strip(),q.strip().upper()])
-    clause=' AND '.join(where);order='i.name,i.symbol' if sort=='name' else 'i.symbol'
+    clause=' AND '.join(where)
     with core.db() as c:
         total=c.execute('SELECT count(*) FROM instruments i WHERE '+clause,args).fetchone()[0]
         all_count=c.execute('SELECT count(*) FROM instruments WHERE active=1').fetchone()[0]
         rows=c.execute('SELECT i.*,q.payload quote,q.batch_id quote_batch,t.status history_status FROM instruments i LEFT JOIN market_quotes q USING(symbol) LEFT JOIN history_tasks t ON t.symbol=i.symbol AND t.interval="1d" WHERE '+clause+' ORDER BY '+order+' LIMIT ? OFFSET ?',args+[limit,offset]).fetchall()
+    now_dt=core.now();gh_catalog=github_history.catalog()
     items=[]
     for row in rows:
         item=dict(row);raw=item.pop('quote');quote=core.json.loads(raw) if raw else None
         if quote:
             quote['batch_id']=item.pop('quote_batch');item['latest']=quote
-            age=(core.now()-datetime.fromisoformat(quote['fetched_at'])).total_seconds()
+            age=(now_dt-datetime.fromisoformat(quote['fetched_at'])).total_seconds()
             label='快照抓取已超3分钟' if age>180 else '源行情时点未知' if not quote['event_time'] else '行情快照'
             if quote['close'] is None:label='源未提供有效价格'
             item['freshness']={'state':'snapshot','label':label}
         else:
             item.pop('quote_batch',None);item['latest']=None;item['freshness']={'state':'missing','label':'快照未覆盖'}
-        item['github_available']=item['symbol'] in github_history.catalog()
+        item['github_available']=item['symbol'] in gh_catalog
         items.append(item)
     return dict(items=items,total=total,universe_total=all_count,offset=offset,limit=limit,server_time=core.iso())
 
@@ -244,24 +256,32 @@ def history_backfill(request:Request):
 
 
 @app.get('/api/series/{symbol}')
-def series(symbol:str,interval:str='1d',limit:int=2000,source:str='primary'):
-    if not core.instrument(symbol):raise HTTPException(404,'证券不在当前股票池中')
-    if interval not in ('1d','1m','5m'):raise HTTPException(400,'不支持的周期')
-    if source not in ('primary','github'):raise HTTPException(400,'数据源不支持')
-    if source=='github':
-        if interval!='1d':raise HTTPException(400,'GitHub归档仅提供日线')
-        try:result=github_history.series(symbol,max(1,min(limit,10000)))
-        except Exception as exc:raise HTTPException(502,'GitHub历史读取失败：'+str(exc)[:200])
-        if result is None:raise HTTPException(404,'该证券不在固定版本GitHub归档中，请切换主行情')
-        with core.db() as c:q=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
-        return dict(result,quote=core.json.loads(q['payload']) if q else None,github_available=True)
-    rows=core.observations(symbol,interval,max(1,min(limit,10000)))
+def series_route(symbol:str,interval:str='1d',limit:int=2000,source:str='primary'):
+    # Plain json.dumps: FastAPI's jsonable_encoder walk costs ~4x the query for 1-2k records.
+    return Response(core.json.dumps(series(symbol,interval,limit,source),ensure_ascii=False,allow_nan=False,separators=(',',':')),media_type='application/json')
+
+
+def series(symbol,interval='1d',limit=2000,source='primary'):
+    bounded=max(1,min(limit,10000))
     with core.db() as c:
+        inst=core.instrument(symbol,c=c)
+        if not inst:raise HTTPException(404,'证券不在当前股票池中')
+        if interval not in ('1d','1m','5m'):raise HTTPException(400,'不支持的周期')
+        if source not in ('primary','github'):raise HTTPException(400,'数据源不支持')
+        if source=='github':
+            if interval!='1d':raise HTTPException(400,'GitHub归档仅提供日线')
+            try:result=github_history.series(symbol,bounded)
+            except Exception as exc:raise HTTPException(502,'GitHub历史读取失败：'+str(exc)[:200])
+            if result is None:raise HTTPException(404,'该证券不在固定版本GitHub归档中，请切换主行情')
+            q=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
+            return dict(result,quote=core.json.loads(q['payload']) if q else None,github_available=True)
+        rows=core.observations(symbol,interval,bounded,c=c)
         quote=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
-        span=c.execute('SELECT min(event_time) start,max(event_time) end,count(*) count FROM observations WHERE symbol=? AND interval=? AND event_time>=?',(symbol,interval,core.history_start())).fetchone()
+        span=core.series_span(c,symbol,interval)
         batch=c.execute('SELECT * FROM batches WHERE symbol=? AND interval=? ORDER BY started_at DESC LIMIT 1',(symbol,interval)).fetchone()
-    return dict(instrument=core.instrument(symbol),interval=interval,chart_type='price_line' if interval=='1m' else 'candlestick',
-                history_window=core.history_window(),records=rows,quote=core.json.loads(quote['payload']) if quote else None,range=dict(span),freshness=core.freshness(rows[-1] if rows else None,interval),
+        fresh=core.freshness(rows[-1] if rows else None,interval,c=c)
+    return dict(instrument=inst,interval=interval,chart_type='price_line' if interval=='1m' else 'candlestick',
+                history_window=core.history_window(),records=rows,quote=core.json.loads(quote['payload']) if quote else None,range=span,freshness=fresh,
                 source='东方财富 / AKShare',github_available=symbol in github_history.catalog(),adjustment='不复权',volume_unit='未核验，仅保留原始量',
                 last_batch=dict(batch) if batch else None,limitations=['未核验成交量单位，不用于跨源量额比较','当前数据未提供历史复权因子，不计算投资收益率'])
 
@@ -282,8 +302,13 @@ def batch_detail(batch_id:str):
     with core.db() as c:r=c.execute('SELECT * FROM batches WHERE id=?',(batch_id,)).fetchone()
     if not r:raise HTTPException(404,'批次不存在')
     result=dict(r)
+    result['parsed_issues']=core.json.loads(r['issues'] or '{}')
     if r['raw_path']:
-        data=core.read_raw(core.DATA/r['raw_path'])
+        path=core.DATA/r['raw_path']
+        if not path.exists():
+            result['raw_missing']=True;result['issue_examples']=[];result['raw_sample']=[]
+            return result
+        data=core.read_raw(path)
         examples=[]
         for row in data['rows'] if r['interval'] in ('1d','1m','5m') else []:
             _,issues=core.normalize(row,r['symbol'],r['interval'],r['finished_at'])

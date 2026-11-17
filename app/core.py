@@ -1,4 +1,5 @@
 """Local research data store. Raw responses, versioned prices and explicit quality state."""
+import bisect
 import gzip
 import zlib
 import hashlib
@@ -11,6 +12,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from . import bars
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = Path(os.environ.get('FINANCE_DATA_DIR', ROOT / 'data'))
@@ -42,7 +44,14 @@ def db():
     DATA.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(DATA / 'workbench.sqlite', timeout=20)
     con.row_factory = sqlite3.Row
-    con.execute('PRAGMA journal_mode=WAL')
+    # journal_mode=WAL is persistent and set once in init(). In WAL mode synchronous=NORMAL
+    # keeps committed transactions durable against process crashes while avoiding an fsync
+    # on every commit; the backfill queue commits several times per security.
+    con.execute('PRAGMA synchronous=NORMAL')
+    con.execute('PRAGMA busy_timeout=20000')
+    con.execute('PRAGMA temp_store=MEMORY')
+    con.execute('PRAGMA cache_size=-65536')
+    con.execute('PRAGMA mmap_size=268435456')
     try:
         yield con
         con.commit()
@@ -53,17 +62,27 @@ def db():
         con.close()
 
 
+class MigrationRequired(RuntimeError):
+    pass
+
+
 def init():
     with db() as c:
-        c.executescript('''
+        c.execute('PRAGMA journal_mode=WAL')
+        tables={r[0] for r in c.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        storage=c.execute("SELECT value FROM metadata WHERE key='storage'").fetchone() if 'metadata' in tables else None
+        if 'observations' in tables and not storage:
+            if c.execute('SELECT 1 FROM observations LIMIT 1').fetchone():
+                raise MigrationRequired('数据库仍是旧版 JSON 价格存储，需要一次性迁移为列式 bars 表。'
+                                        '请停止服务与全部采集进程后运行：python3 -m scripts.migrate_bars --apply '
+                                        '（先不加 --apply 可只做无损校验演练）')
+            c.execute('DROP TABLE observations')
+        c.executescript(bars.SCHEMA+'''
         CREATE TABLE IF NOT EXISTS batches (
           id TEXT PRIMARY KEY, symbol TEXT, interval TEXT, endpoint TEXT, parameters TEXT,
           started_at TEXT, finished_at TEXT, status TEXT, raw_path TEXT, raw_sha256 TEXT,
           rows_in INTEGER DEFAULT 0, rows_accepted INTEGER DEFAULT 0, rows_rejected INTEGER DEFAULT 0,
           changed INTEGER DEFAULT 0, error TEXT, issues TEXT, source_version TEXT);
-        CREATE TABLE IF NOT EXISTS observations (
-          symbol TEXT, interval TEXT, event_time TEXT, payload TEXT, value_hash TEXT,
-          batch_id TEXT, fetched_at TEXT, PRIMARY KEY(symbol, interval, event_time));
         CREATE TABLE IF NOT EXISTS revisions (
           id INTEGER PRIMARY KEY, symbol TEXT, interval TEXT, event_time TEXT, payload TEXT,
           value_hash TEXT, batch_id TEXT, fetched_at TEXT);
@@ -84,11 +103,39 @@ def init():
           updated_at TEXT,batch_id TEXT,error TEXT,PRIMARY KEY(symbol,interval));
         CREATE INDEX IF NOT EXISTS history_tasks_status ON history_tasks(status,interval);
         CREATE INDEX IF NOT EXISTS batches_latest ON batches(symbol,interval,started_at DESC);
-
+        CREATE TABLE IF NOT EXISTS series_stats (
+          symbol TEXT,interval TEXT,first_time TEXT,last_time TEXT,rows INTEGER,
+          PRIMARY KEY(symbol,interval));
         ''')
-
         c.executemany('INSERT OR IGNORE INTO instruments VALUES(?,?,?,?,?,?,?,1)',
                       [(r['symbol'],r['code'],r['exchange'],r['name'],r['kind'],'bootstrap',iso()) for r in UNIVERSE.values()])
+        c.execute("INSERT OR IGNORE INTO metadata VALUES('storage','bars_v1')")
+        # One-time summary build so coverage/health never aggregate millions of rows.
+        if not c.execute("SELECT 1 FROM metadata WHERE key='series_stats_v2'").fetchone():
+            rebuild_series_stats(c)
+
+
+def ts_of(day):
+    """'YYYY-MM-DD' (Shanghai) -> epoch seconds at local midnight."""
+    return int(datetime.fromisoformat(day).replace(tzinfo=SH).timestamp())
+
+
+def event_time(ts):
+    return datetime.fromtimestamp(ts,SH).isoformat()
+
+
+def rebuild_series_stats(c):
+    c.execute('DELETE FROM series_stats')
+    for r in c.execute('SELECT symbol,interval,min(ts) f,max(ts) l,count(*) n FROM bars GROUP BY symbol,interval').fetchall():
+        c.execute('INSERT INTO series_stats VALUES(?,?,?,?,?)',(r['symbol'],r['interval'],event_time(r['f']),event_time(r['l']),r['n']))
+    c.execute("INSERT OR REPLACE INTO metadata VALUES('series_stats_v2',?)",(iso(),))
+
+
+def refresh_series_stats(c, symbol, interval):
+    """Exact per-series summary, recomputed from the primary-key B-tree (one series)."""
+    r=c.execute('SELECT min(ts) f,max(ts) l,count(*) n FROM bars WHERE symbol=? AND interval=?',(symbol,interval)).fetchone()
+    if r['n']:c.execute('INSERT OR REPLACE INTO series_stats VALUES(?,?,?,?,?)',(symbol,interval,event_time(r['f']),event_time(r['l']),r['n']))
+    else:c.execute('DELETE FROM series_stats WHERE symbol=? AND interval=?',(symbol,interval))
 
 
 def universe():
@@ -96,8 +143,12 @@ def universe():
         return {r['symbol']:dict(r) for r in c.execute('SELECT * FROM instruments WHERE active=1 ORDER BY symbol')}
 
 
-def instrument(symbol):
-    with db() as c:r=c.execute('SELECT * FROM instruments WHERE symbol=?',(symbol,)).fetchone()
+def instrument(symbol, c=None):
+    if c is None:
+        with db() as conn:
+            r = conn.execute('SELECT * FROM instruments WHERE symbol=?', (symbol,)).fetchone()
+    else:
+        r = c.execute('SELECT * FROM instruments WHERE symbol=?', (symbol,)).fetchone()
     return dict(r) if r else None
 
 
@@ -216,15 +267,32 @@ def publish(batch, rows, fetched_at=None):
     rejected+=sum(x['event_time'] in conflicts for x in accepted)
     accepted=sorted(unique.values(),key=lambda x:x['event_time'])
     changed=0
+    symbol,interval=spec['symbol'],spec['interval']
     with db() as c:
+        c.execute('INSERT OR IGNORE INTO batch_refs(batch_id,fetched_at) VALUES(?,?)',(batch,fetched_at))
+        ref=c.execute('SELECT id FROM batch_refs WHERE batch_id=? AND fetched_at=?',(batch,fetched_at)).fetchone()[0]
+        existing={}
+        if accepted:
+            existing={r['ts']:r['hash'] for r in c.execute(
+                'SELECT ts,hash FROM bars WHERE symbol=? AND interval=? AND ts BETWEEN ? AND ?',
+                (symbol,interval,accepted[0]['timestamp']//1000,accepted[-1]['timestamp']//1000))}
+        superseded=[];upserts=[]
         for row in accepted:
-            canonical=dumps(row);digest=hashlib.sha256(canonical.encode()).hexdigest();payload=b'Z1'+zlib.compress(canonical.encode(),level=3)
-            key=(spec['symbol'],spec['interval'],row['event_time'])
-            old=c.execute('SELECT value_hash FROM observations WHERE symbol=? AND interval=? AND event_time=?',key).fetchone()
-            if old is None or old['value_hash']!=digest:
+            values=bars.from_payload(row,SH,ref)
+            old=existing.get(values[2])
+            if old!=values[11]:
                 changed+=1
-                c.execute('INSERT INTO revisions(symbol,interval,event_time,payload,value_hash,batch_id,fetched_at) VALUES(?,?,?,?,?,?,?)',key+(payload,digest,batch,fetched_at))
-            c.execute('INSERT INTO observations VALUES(?,?,?,?,?,?,?) ON CONFLICT(symbol,interval,event_time) DO UPDATE SET payload=excluded.payload,value_hash=excluded.value_hash,batch_id=excluded.batch_id,fetched_at=excluded.fetched_at',key+(payload,digest,batch,fetched_at))
+                if old is not None:superseded.append(values[2])
+            upserts.append(values)
+        # revisions keeps superseded versions only (legacy JSON payload); current value lives in bars.
+        # Full history of a timestamp = revisions (older, by id) + bars (current).
+        for ts in superseded:
+            r=c.execute(f'SELECT b.{bars.COLUMNS.replace(",",",b.")},f.batch_id,f.fetched_at FROM bars b JOIN batch_refs f ON f.id=b.ref WHERE b.symbol=? AND b.interval=? AND b.ts=?',(symbol,interval,ts)).fetchone()
+            canonical=dumps(bars.to_payload(r,SH))
+            c.execute('INSERT INTO revisions(symbol,interval,event_time,payload,value_hash,batch_id,fetched_at) VALUES(?,?,?,?,?,?,?)',
+                      (symbol,interval,event_time(ts),b'Z1'+zlib.compress(canonical.encode(),level=3),hashlib.sha256(canonical.encode()).hexdigest(),r['batch_id'],r['fetched_at']))
+        c.executemany(f'INSERT OR REPLACE INTO bars({bars.COLUMNS}) VALUES({",".join("?"*14)})',upserts)
+        if accepted:refresh_series_stats(c,symbol,interval)
         status='empty' if not rows else 'quarantined' if not accepted else 'partial' if rejected else 'ok'
         c.execute('UPDATE batches SET status=?,finished_at=?,raw_path=?,raw_sha256=?,rows_in=?,rows_accepted=?,rows_rejected=?,changed=?,issues=? WHERE id=?',
                   (status,fetched_at,str(rel),hashlib.sha256(raw_bytes).hexdigest(),len(rows),len(accepted),rejected,changed,dumps(issues),batch))
@@ -237,50 +305,90 @@ def publish(batch, rows, fetched_at=None):
                 rows=len(rows),accepted=len(accepted),rejected=rejected,changed=changed,issues=issues)
 
 
-def observations(symbol, interval, limit=2000):
-    with db() as c:
-        rows=c.execute('SELECT * FROM observations WHERE symbol=? AND interval=? AND event_time>=? ORDER BY event_time DESC LIMIT ?',
-                       (symbol,interval,history_start(),limit)).fetchall()
-    return [dict(unpack_payload(r['payload']),batch_id=r['batch_id'],fetched_at=r['fetched_at']) for r in reversed(rows)]
-
-
-def calendar_state(at=None):
-    at=(at or now()).astimezone(SH);day=at.date().isoformat()
-    with db() as c:
-        r=c.execute("SELECT value FROM metadata WHERE key='calendar'").fetchone()
-    calendar=json.loads(r['value']) if r else None
-    if not calendar or not calendar['dates'][0]<=day<=calendar['dates'][-1]:
-        return dict(state='unknown_calendar',label='日历未覆盖',date=day)
-    days=calendar['dates'];prior=[d for d in days if d<day]
-    result=dict(date=day,previous_trade_date=prior[-1] if prior else None,calendar_source='新浪 / AKShare')
-    if day not in days:return dict(result,state='closed',label='休市',expected_daily=prior[-1] if prior else None)
-    minute=at.hour*60+at.minute
-    state='trading' if 570<=minute<690 or 780<=minute<900 else 'lunch' if 690<=minute<780 else 'preopen' if minute<570 else 'closed'
-    return dict(result,state=state,label={'trading':'交易时段','lunch':'午间休市','preopen':'盘前','closed':'已收盘'}[state],
-                expected_daily=day if minute>=1050 else (prior[-1] if prior else None))
-
-
-def freshness(record, interval, at=None):
-    at=at or now();market=calendar_state(at)
-    if not record:return dict(state='missing',label='尚无数据',market=market)
-    event=datetime.fromisoformat(record['event_time']);local=at.astimezone(SH)
-    if interval=='1d':
-        expected=market.get('expected_daily')
-        state='historical' if expected and event.date().isoformat()>=expected else 'stale' if expected else 'unknown'
+def observations(symbol, interval, limit=2000, c=None):
+    sql = (f'SELECT b.{bars.COLUMNS.replace(",", ",b.")},f.batch_id,f.fetched_at FROM bars b JOIN batch_refs f ON f.id=b.ref '
+           'WHERE b.symbol=? AND b.interval=? AND b.ts>=? ORDER BY b.ts DESC LIMIT ?')
+    params = (symbol, interval, ts_of(history_start()), limit)
+    if c is None:
+        with db() as conn:
+            rows = conn.execute(sql, params).fetchall()
     else:
-        end=datetime.combine(local.date(),datetime.min.time(),SH).replace(hour=11,minute=30) if market['state']=='lunch' else at
-        if market['state']=='closed':
-            target=market['date'] if market['date'] in calendar_dates() else market.get('previous_trade_date')
-            end=datetime.fromisoformat(target+'T15:00:00+08:00') if target else at
-        elif market['state']=='preopen':
-            target=market.get('previous_trade_date')
-            end=datetime.fromisoformat(target+'T15:00:00+08:00') if target else at
-        lag=(end-event).total_seconds()
-        state='unknown' if market['state']=='unknown_calendar' else 'stale' if lag>(420 if interval=='5m' else 180) else 'recent' if market['state']=='trading' else 'closed'
-    return dict(state=state,label={'missing':'尚无数据','historical':'历史日线','stale':'数据滞后','unknown':'时效待核验','recent':'近期观测','closed':'休市快照'}[state],market=market,
-                event_time=record['event_time'],fetched_at=record['fetched_at'])
+        rows = c.execute(sql, params).fetchall()
+    return [dict(bars.to_payload(r, SH), batch_id=r['batch_id'], fetched_at=r['fetched_at']) for r in reversed(rows)]
 
 
-def calendar_dates():
-    with db() as c:r=c.execute("SELECT value FROM metadata WHERE key='calendar'").fetchone()
-    return json.loads(r['value'])['dates'] if r else []
+def series_span(c, symbol, interval):
+    r=c.execute('SELECT min(ts) s,max(ts) e,count(*) n FROM bars WHERE symbol=? AND interval=? AND ts>=?',(symbol,interval,ts_of(history_start()))).fetchone()
+    return dict(start=event_time(r['s']) if r['n'] else None,end=event_time(r['e']) if r['n'] else None,count=r['n'])
+
+
+_CALENDAR_CACHE = {'key': None, 'dates': [], 'set': set()}
+
+
+def _load_calendar(c=None):
+    global _CALENDAR_CACHE
+    if c is None:
+        with db() as conn:
+            row = conn.execute("SELECT value FROM metadata WHERE key='calendar'").fetchone()
+    else:
+        row = c.execute("SELECT value FROM metadata WHERE key='calendar'").fetchone()
+    raw = row['value'] if row else None
+    key = (str(DATA), raw)
+    cached = _CALENDAR_CACHE
+    if cached['key'] == key:
+        return cached
+    dates = json.loads(raw)['dates'] if raw else []
+    loaded = {'key': key, 'dates': dates, 'set': set(dates)}
+    _CALENDAR_CACHE = loaded
+    return loaded
+
+
+def calendar_state(at=None, c=None):
+    at = (at or now()).astimezone(SH)
+    day = at.date().isoformat()
+    cal = _load_calendar(c)
+    days = cal['dates']
+    if not days or not days[0] <= day <= days[-1]:
+        return dict(state='unknown_calendar', label='日历未覆盖', date=day)
+    idx = bisect.bisect_left(days, day)
+    prior_day = days[idx - 1] if idx > 0 else None
+    result = dict(date=day, previous_trade_date=prior_day, calendar_source='新浪 / AKShare')
+    if day not in cal['set']:
+        return dict(result, state='closed', label='休市', expected_daily=prior_day)
+    minute = at.hour * 60 + at.minute
+    state = 'trading' if 570 <= minute < 690 or 780 <= minute < 900 else 'lunch' if 690 <= minute < 780 else 'preopen' if minute < 570 else 'closed'
+    return dict(result, state=state, label={'trading': '交易时段', 'lunch': '午间休市', 'preopen': '盘前', 'closed': '已收盘'}[state],
+                expected_daily=day if minute >= 1050 else prior_day)
+
+
+def freshness(record, interval, at=None, c=None):
+    at = at or now()
+    market = calendar_state(at, c=c)
+    if not record:
+        return dict(state='missing', label='尚无数据', market=market)
+    event = datetime.fromisoformat(record['event_time'])
+    local = at.astimezone(SH)
+    if interval == '1d':
+        expected = market.get('expected_daily')
+        state = 'historical' if expected and event.date().isoformat() >= expected else 'stale' if expected else 'unknown'
+    else:
+        end = datetime.combine(local.date(), datetime.min.time(), SH).replace(hour=11, minute=30) if market['state'] == 'lunch' else at
+        if market['state'] == 'closed':
+            target = market['date'] if market['date'] in calendar_dates(c=c) else market.get('previous_trade_date')
+            end = datetime.fromisoformat(target + 'T15:00:00+08:00') if target else at
+        elif market['state'] == 'preopen':
+            target = market.get('previous_trade_date')
+            end = datetime.fromisoformat(target + 'T15:00:00+08:00') if target else at
+        lag = (end - event).total_seconds()
+        state = 'unknown' if market['state'] == 'unknown_calendar' else 'stale' if lag > (420 if interval == '5m' else 180) else 'recent' if market['state'] == 'trading' else 'closed'
+    return dict(
+        state=state,
+        label={'missing': '尚无数据', 'historical': '历史日线', 'stale': '数据滞后', 'unknown': '时效待核验', 'recent': '近期观测', 'closed': '休市快照'}[state],
+        market=market,
+        event_time=record['event_time'],
+        fetched_at=record['fetched_at'],
+    )
+
+
+def calendar_dates(c=None):
+    return list(_load_calendar(c)['dates'])

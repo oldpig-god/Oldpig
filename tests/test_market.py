@@ -55,5 +55,56 @@ class MarketTests(unittest.TestCase):
     def test_coverage_does_not_equate_inventory_with_history(self):
         self.master();data=market.coverage()
         self.assertGreater(data['total'],0);self.assertEqual(data['quote_symbols'],0);self.assertEqual(data['history'],[])
+    def test_direct_snapshot_adapter_pages_and_maps_fields(self):
+        from app import spot_source
+        def page(n):
+            items=[{'f12':f'{510000+i}','f14':f'ETF{i}','f2':'-' if i==3 else 1.5,'f3':0.4,'f5':10,'f6':15,'f124':1762740000} for i in range((n-1)*100,min(n*100,150))]
+            return Mock(**{'json.return_value':{'rc':0,'data':{'total':150,'diff':items}}})
+        session=Mock();session.get.side_effect=lambda url,params,timeout:page(int(params['pn']))
+        with patch.object(spot_source.requests,'Session') as S,patch.object(spot_source.time,'sleep'):
+            S.return_value.__enter__.return_value=session
+            rows=spot_source.fetch('fund_etf_spot_em')
+        self.assertEqual(len(rows),150);self.assertIsNone(rows[3]['最新价']);self.assertEqual(rows[0]['更新时间'],'2025-11-10T02:00:00.000Z')
+        self.assertEqual(market.ingest(rows,'etf','fund_etf_spot_em',adapter=spot_source.VERSION)['status'],'ok')
+        with core.db() as c:
+            batch=c.execute("SELECT parameters FROM batches WHERE endpoint='fund_etf_spot_em'").fetchone()[0]
+            quote=json.loads(c.execute("SELECT payload FROM market_quotes WHERE symbol='510000.SH'").fetchone()[0])
+        self.assertEqual(json.loads(batch),{'adapter':'direct-clist-v1'});self.assertEqual(quote['time_semantics'],'source_update')
+    def test_direct_snapshot_incomplete_response_rejected(self):
+        from app import spot_source
+        session=Mock();session.get.return_value=Mock(**{'json.return_value':{'rc':0,'data':{'total':100,'diff':[{'f12':'510300','f14':'x','f2':1}]}}})
+        with patch.object(spot_source.requests,'Session') as S,patch.object(spot_source.time,'sleep'):
+            S.return_value.__enter__.return_value=session
+            with self.assertRaisesRegex(ValueError,'Incomplete'):spot_source.fetch('fund_etf_spot_em')
+    def test_direct_snapshot_failure_falls_back_to_sdk(self):
+        with patch.object(market.spot_source,'fetch',side_effect=RuntimeError('blocked')),patch.object(market,'fetch_sdk',return_value=[{'代码':'000001'}]) as sdk:
+            rows,adapter=market.fetch('stock_zh_a_spot_em')
+        self.assertEqual(adapter,'akshare-sdk');self.assertEqual(rows,[{'代码':'000001'}]);sdk.assert_called_once()
+    def test_source_block_stops_without_sdk_fallback(self):
+        blocked=market.spot_source.SourceBlocked('reset')
+        with patch.object(market.spot_source,'fetch',side_effect=blocked) as direct,patch.object(market,'fetch_sdk') as sdk:
+            results=market.refresh()
+        self.assertEqual([r['status'] for r in results],['error','error']);direct.assert_called_once();sdk.assert_not_called()
+    def test_direct_snapshot_connection_reset_is_not_retried(self):
+        from app import spot_source
+        session=Mock();session.get.side_effect=spot_source.requests.ConnectionError('reset')
+        with patch.object(spot_source.requests,'Session') as S,patch.object(spot_source.time,'sleep'):
+            S.return_value.__enter__.return_value=session
+            with self.assertRaises(spot_source.SourceBlocked):spot_source.fetch('stock_zh_a_spot_em')
+        self.assertEqual(session.get.call_count,1)
+    def test_backfill_requeue_is_incremental_after_clean_full_fetch(self):
+        from datetime import datetime
+        fetched='2026-11-10T09:00:00+00:00'
+        calls=[]
+        def fake(item,params):
+            calls.append(params['start_date'])
+            return [{'日期':'2026-11-09','开盘':4.1,'最高':4.3,'最低':4.0,'收盘':4.2,'成交量':1,'成交额':1}]
+        with patch.object(core,'now',return_value=datetime.fromisoformat(fetched)),patch.object(history_source,'fetch',side_effect=fake),patch.object(backfill.time,'sleep'):
+            with core.db() as c:c.execute("UPDATE instruments SET active=CASE WHEN symbol='510300.SH' THEN 1 ELSE 0 END")
+            backfill.enqueue();backfill.run(workers=1)
+            with core.db() as c:c.execute("UPDATE history_tasks SET status='pending'")
+            backfill.run(workers=1)
+        self.assertEqual(calls,['20211110','20261026'])
+        data=market.coverage();self.assertEqual(data['history'][0]['symbols'],1)
 
 if __name__=='__main__':unittest.main()

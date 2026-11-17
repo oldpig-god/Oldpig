@@ -1,3 +1,5 @@
+云端维护与其他 Agent 接手入口：[deploy/cloudbase/FOR_AGENT.md](deploy/cloudbase/FOR_AGENT.md)。包含现有环境、私有凭证位置、HTTP/日更发布步骤及验收方式。当前工作目录含其他 Agent 修改，构建前先检查实际差异。
+
 # 给接手 Agent：观澜本地金融研究工作台
 
 > **先区分轻量研究与全市场数据：** 使用最新main源码；新增六股技术面研究自带 `research/technical/snapshot/`，无需先下载3GB数据包。若需要完整行情库，再下载 `finance-v2026.11.10` 的两个分片，用 `scripts/join_release.py` 合并；解压旧ZIP后仅把 `data/` 复制到最新源码根目录，不要用旧代码覆盖最新程序。旧Release是不可变的历史交付版本，未包含本次六股模块。
@@ -236,3 +238,9 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 入口为 `scripts/earnings_data.py`，文档见 `docs-earnings-data.md`。原始PDF、财务版本、公开时间、单季度拆分和固定版本特征仓库位于独立 `earnings/` 云存储前缀。PDF采集另安装 `requirements-earnings.txt`；财务展示原缓存不作为历史PIT训练数据。2026-11-15已扩展到47家公司、含5家退市公司，完成固定基准和分位数树历史验证。结果、Windows独立重放包和云端数据版本见 [docs-earnings-evaluation.md](docs-earnings-evaluation.md)。增强模型未显著打败基准；保留最终两季度，不开放生产预测。原始PDF全量云镜像未完成，规范化研究输入与实验已上云。
 
 2026-11-16研究更新：PDF单元格解析修正，旧179样本结果撤回。当前196样本中增强模型缩放MAE为0.749%，同期基准0.686%。入口仍为docs-earnings-evaluation.md；benchmark-summary.json已指向修正版本。新增误差归因、GitHub CSV核对及预告原文基准，复现包包含对应记录。
+
+新一轮固定实验见[docs-earnings-residual.md](docs-earnings-residual.md)。残差模型在旧冻结数据上比较，半年报表头重提取另行记录。命令`python scripts/check_earnings_replay.py --summary research/earnings/residual-summary.json --trial seasonal_residual`可核对新模型。
+
+## 行情列式存储与工作台 v3 同步（2026-11-17）
+
+已将 `app/bars.py`（列式 `bars` 压缩存储与 `scripts/migrate_bars.py` 迁移脚本）、`series_stats` 快速健康统计、`/api/universe` 服务端排序、单连接 `/api/series/{symbol}` 复用以及工作台/相关性研究页面 v3 界面与手机端响应式修复合入当前仓库，并完成腾讯云 CloudBase `guanlan-api` 与 `guanlan-daily-sync` 更新发布；详细发布时间与线上验证见 [deploy/cloudbase/FOR_AGENT.md](deploy/cloudbase/FOR_AGENT.md)。

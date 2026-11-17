@@ -28,13 +28,14 @@ class HistoryWindowTests(unittest.TestCase):
         rows,quality=github_history.parse(content,'000001.SZ','2026-11-10T07:00:00+00:00')
         self.assertEqual(len(rows),1);self.assertEqual(quality['excluded_before_window'],1)
         self.assertTrue(rows[0]['event_time'].startswith('2021-11-10'))
-    def test_compressed_prices_and_raw_evidence_roundtrip(self):
+    def test_columnar_prices_and_raw_evidence_roundtrip(self):
         b=core.begin_batch('510300.SH','1d','test',{})
         core.publish(b,[{'日期':'2026-11-09','开盘':10,'收盘':11,'最高':12,'最低':9}],'2026-11-10T07:00:00+00:00')
         with core.db() as c:
-            payload=c.execute('SELECT payload FROM observations').fetchone()[0];batch=c.execute('SELECT * FROM batches').fetchone()
-        self.assertTrue(payload.startswith(b'Z1'));self.assertEqual(core.unpack_payload(payload)['close'],11)
+            bar=c.execute('SELECT * FROM bars').fetchone();batch=c.execute('SELECT * FROM batches').fetchone()
+        self.assertEqual((bar['open'],bar['high'],bar['low'],bar['close'],bar['extra']),(10,12,9,11,None))
         self.assertEqual(core.read_raw(core.DATA/batch['raw_path'])['rows'][0]['收盘'],11)
-        self.assertEqual(core.observations('510300.SH','1d')[0]['close'],11)
+        rec=core.observations('510300.SH','1d')[0]
+        self.assertEqual(rec['close'],11);self.assertEqual(rec['event_time'],'2026-11-09T15:00:00+08:00');self.assertEqual(rec['batch_id'],b)
 
 if __name__=='__main__':unittest.main()

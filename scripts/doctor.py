@@ -35,7 +35,8 @@ def main():
         try:
             with sqlite3.connect(path.as_uri()+'?mode=ro',uri=True,timeout=10) as c:
                 tables={r[0] for r in c.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-                missing={'instruments','observations','batches','metadata','history_tasks'}-tables
+                missing={'instruments','batches','metadata','history_tasks'}-tables
+                if 'bars' not in tables and 'observations' not in tables:missing.add('bars')
                 if missing:result['errors'].append('Missing tables: '+str(missing))
                 else:
                     result['active_instruments']=c.execute('SELECT count(*) FROM instruments WHERE active=1').fetchone()[0]
