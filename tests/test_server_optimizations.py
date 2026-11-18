@@ -184,8 +184,8 @@ class ServerOptimizationTests(unittest.TestCase):
         data = resp_1d.json()
         expected_keys = {
             'instrument', 'interval', 'chart_type', 'history_window', 'records',
-            'quote', 'range', 'freshness', 'source', 'github_available',
-            'adjustment', 'volume_unit', 'last_batch', 'limitations',
+            'quote', 'range', 'freshness', 'source',
+            'adjustment', 'volume_unit', 'last_batch', 'indicators', 'limitations',
         }
         self.assertTrue(expected_keys.issubset(data.keys()))
         self.assertEqual(data['instrument']['symbol'], SYMBOL)
@@ -236,112 +236,39 @@ class ServerOptimizationTests(unittest.TestCase):
         static_dir = core.ROOT / 'app' / 'static'
         index_html = (static_dir / 'index.html').read_text(encoding='utf-8')
         app_js = (static_dir / 'app.js').read_text(encoding='utf-8')
-        research_html = (static_dir / 'research' / 'index.html').read_text(encoding='utf-8')
-        research_js = (static_dir / 'research' / 'research.js').read_text(encoding='utf-8')
-
-        # Main workbench HTML contracts (existing check_market_ui.py + new controls)
+        self.assertFalse((static_dir / 'research').exists())
         for token in (
-            '协方差与相关性 ↗',
-            'href="/static/research/index.html"',
-            'id="session-wrap"',
-            'id="session-day"',
-            'id="watch-sort"',
-            'id="sort"',
-            'id="open"',
-            'id="high"',
-            'id="low"',
-            'id="tick-time"',
-            'id="price"',
-            'id="page-info"',
-            'id="prev-page"',
-            'id="next-page"',
-            'id="exchange"',
-            'id="search"',
-            'id="symbol"',
-            'id="snapshot-summary"',
-            'id="coverage-daily"',
-            'id="asset-count"',
-            'id="chart"',
-            'id="ma"',
-            'id="history-source"',
-            'id="freshness"',
-            'id="range"',
-            'id="history-origin"',
-            'id="history-audit"',
-            'id="adjustment"',
-            'id="quality-rows"',
-            'id="batch-evidence"',
-            'id="theme"',
-            'data-filter="etf"',
-            'data-interval="1d"',
-            'data-interval="5m"',
-            'data-interval="1m"',
-            'data-tab="quality"',
-            'data-tab="bars"',
+            'id="screen-run"', 'id="band"', 'id="funnel"', 'id="screen-rows"', 'id="screen-checks"', 'id="show-failed"',
+            'id="pass-count"', 'id="cand-count"', 'id="asof"', 'data-tab="screen"', 'data-tab="bars"', 'data-tab="quality"',
+            'id="session-wrap"', 'id="session-day"', 'id="watch-sort"', 'id="open"', 'id="high"', 'id="low"', 'id="tick-time"',
+            'id="price"', 'id="search"', 'id="symbol"', 'id="snapshot-summary"', 'id="chart"', 'id="ma"', 'id="ema"', 'id="macd"',
+            'id="ind-summary"', 'id="freshness"', 'id="range"', 'id="adjustment"', 'id="quality-rows"', 'id="batch-evidence"',
+            'id="theme"', 'id="stock-deep-link"', '/static/shared/shell.js', '/static/shared/theme.css',
+            'data-interval="1d"', 'data-interval="5m"', 'data-interval="1m"',
         ):
             self.assertIn(token, index_html)
-        for sort_val in ('value="code"', 'value="pct_desc"', 'value="pct_asc"', 'value="amount_desc"', 'value="name"'):
+        self.assertIsNone(re.search(r'(?<!gl-)research(?!-panel)', index_html))
+        for token in ('history-source', 'coverage', 'data-filter'):
+            self.assertNotIn(token, index_html)
+        for sort_val in ('value="cap"', 'value="pct_desc"', 'value="pct_asc"', 'value="pe"', 'value="industry"', 'value="name"'):
             self.assertIn(sort_val, index_html)
-
-        # Main workbench JS contracts
-        for token in (
-            '最新批量快照',
-            '#session-day',
-            '#session-wrap',
-            '#watch-sort',
-            '#page-info',
-            "'open'",
-            'data-close-evidence',
-            'is-1m',
-        ):
+        for token in ('/api/screen', '/api/screen/run', 'industry_band', '最新批量快照', '#session-day', '#session-wrap',
+                      '#watch-sort', "'open'", 'data-close-evidence', 'is-1m', 'macd_pane', "'EMA'", "'MACD'", '#ind-summary',
+                      'calcParams: [12, 20, 50]', '#stock-deep-link', 'guanlan-theme'):
             self.assertIn(token, app_js)
-        self.assertNotIn('pageTotal.toLocaleString()', app_js)
+        self.assertNotIn('github', app_js)
         self.assertIsNone(re.search(r'\.gl-fact-ohlc[^\n;]*\.hidden\s*=', app_js))
 
-        # Research page HTML contracts (check_research_ui.py + theme toggle)
-        for token in (
-            'id="research-theme"',
-            'data-theme="dark"',
-            'gl-theme',
-            'id="samples"',
-            'id="heatmap"',
-            'id="covariance-heatmap"',
-            'id="matrix"',
-            'id="covariance"',
-            'id="pair-detail"',
-            'id="search-pair"',
-            'id="sort"',
-            'id="pairs"',
-            'id="sensitivity"',
-            'download',
-        ):
-            self.assertIn(token, research_html)
-
-        # Research JS contracts
-        for token in (
-            'research-theme',
-            'gl-theme',
-            'is-selected',
-            'samples',
-            'heatmap',
-            'covariance-heatmap',
-            'matrix',
-            'covariance',
-            'pair-detail',
-            'search-pair',
-            'sort',
-            'pairs',
-            'sensitivity',
-            'toLocaleString()',
-            'toFixed(2)',
-        ):
-            self.assertIn(token, research_js)
+        stocks_html = (static_dir / 'stocks' / 'index.html').read_text(encoding='utf-8')
+        stocks_js = (static_dir / 'stocks' / 'stocks.js').read_text(encoding='utf-8')
+        for token in ('data-overlay="ema"', 'id="stock-continuous"', 'id="stock-macd-chart"', 'id="ema20-value"'):
+            self.assertIn(token, stocks_html)
+        for token in ('stock-macd-chart', 'HistogramSeries', "colKey('ema20')", 'stock-continuous', '/api/screen'):
+            self.assertIn(token, stocks_js)
 
         app_css = (static_dir / 'app.css').read_text(encoding='utf-8')
-        research_css = (static_dir / 'research' / 'research.css').read_text(encoding='utf-8')
-        self.assertIn('#watch-sort', app_css)
-        self.assertIn('.gl-facts.is-1m', app_css)
-        self.assertIn('.is-selected', research_css)
+        for token in ('#watch-sort', '.gl-facts.is-1m', '.gl-funnel', '.gl-check', 'body.terminal-app #gl-desk'):
+            self.assertIn(token, app_css)
 
 
 if __name__ == '__main__':

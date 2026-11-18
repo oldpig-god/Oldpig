@@ -44,9 +44,14 @@ def fetch(endpoint):
     return fetch_sdk(endpoint),'akshare-sdk'
 
 
+def _sdk_version():
+    try:return importlib.metadata.version('akshare')
+    except importlib.metadata.PackageNotFoundError:return 'none'
+
+
 def ingest(rows,kind,endpoint,fetched_at=None,inventory_only=False,adapter=None):
     core.init();fetched_at=fetched_at or core.iso()
-    batch=core.begin_batch('__'+kind.upper()+'__','inventory' if inventory_only else 'spot',endpoint,{'adapter':adapter} if adapter else {},importlib.metadata.version('akshare'))
+    batch=core.begin_batch('__'+kind.upper()+'__','inventory' if inventory_only else 'spot',endpoint,{'adapter':adapter} if adapter else {},_sdk_version())
     raw={'batch_id':batch,'endpoint':endpoint,'adapter':adapter,'fetched_at':fetched_at,'rows':rows}
     data=core.dumps(raw).encode();rel=core.Path('raw')/fetched_at[:10]/(batch+'.json');path=core.DATA/rel;path.parent.mkdir(parents=True,exist_ok=True)
     with path.open('xb') as f:f.write(data);f.flush();os.fsync(f.fileno())
@@ -75,6 +80,20 @@ def ingest(rows,kind,endpoint,fetched_at=None,inventory_only=False,adapter=None)
                        'event_time':event_time,'fetched_at':fetched_at,'volume_raw':core.numeric(r.get('成交量'),nonnegative=True),
                        'amount_raw':core.numeric(r.get('成交额'),nonnegative=True),'source':'东方财富 / AKShare','quality':'snapshot',
                        'time_semantics':'source_update' if event_time else 'fetch_time_only'}
+                if kind=='stock':
+                    # Screening fundamentals; None when the source omits them.
+                    industry=r.get('行业')
+                    value.update(market_cap=core.numeric(r.get('总市值'),positive=True),float_cap=core.numeric(r.get('流通市值'),positive=True),
+                                 pe_ttm=core.numeric(r.get('市盈率TTM')),pe_dynamic=core.numeric(r.get('市盈率-动态')),
+                                 industry=str(industry).strip() if industry not in (None,'','-') else None)
+                    if '市盈率TTM' not in r:
+                        # SDK fallback has no PE TTM / industry columns: keep the last direct values (marked with
+                        # their own fetch time) instead of wiping the fundamentals the screener depends on.
+                        old=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
+                        old=json.loads(old[0]) if old else {}
+                        if old.get('pe_ttm') is not None or old.get('industry'):
+                            value.update(pe_ttm=old.get('pe_ttm'),industry=old.get('industry'),
+                                         fundamentals_fetched_at=old.get('fundamentals_fetched_at') or old.get('fetched_at'))
                 c.execute('INSERT INTO market_quotes VALUES(?,?,?,?) ON CONFLICT(symbol) DO UPDATE SET payload=excluded.payload,batch_id=excluded.batch_id,fetched_at=excluded.fetched_at',
                           (symbol,core.dumps(value),batch,fetched_at))
         # Stock quote feeds also contain retired/converted securities. The official

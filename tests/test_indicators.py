@@ -65,3 +65,37 @@ class IndicatorTests(unittest.TestCase):
         for event in events:
             if event['period']=='train':self.assertLess(event['end_date'],500)
             else:self.assertGreaterEqual(event['date'],500)
+
+    def test_explicit_ema_and_cross_gap_continuous_indicators(self):
+        f=pd.read_csv(FIXTURES/'atr.csv',comment='#').iloc[:120].copy()
+        f.loc[60,['open','high','low','close','volume']]=np.nan
+        r=indicators.calculate(f)
+        self.assertIn('ema20',r.columns)
+        self.assertIn('ema60',r.columns)
+        # Strict columns reset after missing session 60, while c_* columns continue cleanly.
+        self.assertTrue(r['ma20'].iloc[60:80].isna().all())
+        self.assertTrue(r['ema20'].iloc[60:80].isna().all())
+        self.assertTrue(r['macd'].iloc[60:86].isna().all())
+        self.assertTrue(np.isnan(r['c_ma20'].iloc[60]))
+        self.assertTrue(np.isfinite(r['c_ma20'].iloc[61]))
+        self.assertTrue(np.isfinite(r['c_ema20'].iloc[61]))
+        self.assertTrue(np.isfinite(r['c_macd'].iloc[61]))
+        self.assertTrue(np.isfinite(r['c_macd_signal'].iloc[61]))
+
+        cont=indicators.calculate(f,continuous=True)
+        pd.testing.assert_series_equal(cont['ma20'],r['c_ma20'],check_names=False)
+        pd.testing.assert_series_equal(cont['ema20'],r['c_ema20'],check_names=False)
+        pd.testing.assert_series_equal(cont['macd'],r['c_macd'],check_names=False)
+
+    def test_series_indicators_is_json_safe_and_complete(self):
+        import json
+        rows=[{'event_time':f'2026-01-{i+1:02d}T15:00:00+08:00','close':10.0+i*0.1} for i in range(40)]
+        rows[20]['close']=None
+        meta=indicators.series_indicators(rows)
+        self.assertTrue(meta['continuous'])
+        self.assertIsNotNone(meta['latest']['ema20'])
+        self.assertIsNotNone(meta['latest']['macd'])
+        self.assertIsNotNone(rows[-1]['ema12'])
+        self.assertIsNotNone(rows[-1]['macd_hist'])
+        dumped=json.dumps({'meta':meta,'rows':rows},allow_nan=False)
+        self.assertIn('"ema20"',dumped)

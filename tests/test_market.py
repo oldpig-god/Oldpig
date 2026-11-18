@@ -22,6 +22,16 @@ class MarketTests(unittest.TestCase):
     def test_partial_membership_preserves_previous_universe(self):
         self.master();result=market.ingest([{'code':'000001','name':'平安银行'}],'stock','stock_info_a_code_name',inventory_only=True)
         self.assertEqual(result['status'],'partial');self.assertEqual(core.instrument('920002.BJ')['active'],1)
+    def test_sdk_fallback_keeps_last_pe_ttm_and_industry(self):
+        self.master()
+        market.ingest([{'代码':'000001','名称':'平安银行','最新价':11.8,'总市值':2.2e11,'市盈率TTM':5.1,'行业':'银行'}],'stock','stock_zh_a_spot_em',fetched_at='2026-11-17T08:00:00+00:00')
+        market.ingest([{'代码':'000001','名称':'平安银行','最新价':12.0,'总市值':2.3e11,'市盈率-动态':5.0}],'stock','stock_zh_a_spot_em',adapter='akshare-sdk')
+        with core.db() as c:q=json.loads(c.execute("SELECT payload FROM market_quotes WHERE symbol='000001.SZ'").fetchone()[0])
+        self.assertEqual((q['close'],q['market_cap'],q['pe_ttm'],q['industry']),(12.0,2.3e11,5.1,'银行'))
+        self.assertEqual(q['fundamentals_fetched_at'],'2026-11-17T08:00:00+00:00')
+        market.ingest([{'代码':'000001','名称':'平安银行','最新价':12.1,'市盈率TTM':'-','行业':'银行'}],'stock','stock_zh_a_spot_em')
+        with core.db() as c:q=json.loads(c.execute("SELECT payload FROM market_quotes WHERE symbol='000001.SZ'").fetchone()[0])
+        self.assertIsNone(q['pe_ttm']);self.assertNotIn('fundamentals_fetched_at',q)  # direct source value wins, even when missing
     def test_snapshot_time_is_not_fabricated_and_missing_price_retained(self):
         self.master();market.ingest([{'代码':'000001','名称':'平安银行','最新价':None}],'stock','stock_zh_a_spot_em')
         with TestClient(server.app) as client:
@@ -91,7 +101,8 @@ class MarketTests(unittest.TestCase):
         with patch.object(spot_source.requests,'Session') as S,patch.object(spot_source.time,'sleep'):
             S.return_value.__enter__.return_value=session
             with self.assertRaises(spot_source.SourceBlocked):spot_source.fetch('stock_zh_a_spot_em')
-        self.assertEqual(session.get.call_count,1)
+        # one attempt per documented host, no retries on the same host
+        self.assertEqual(session.get.call_count,len(spot_source.SPECS['stock_zh_a_spot_em']['urls']))
     def test_backfill_requeue_is_incremental_after_clean_full_fetch(self):
         from datetime import datetime
         fetched='2026-11-10T09:00:00+00:00'

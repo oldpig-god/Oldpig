@@ -106,6 +106,9 @@ def init():
         CREATE TABLE IF NOT EXISTS series_stats (
           symbol TEXT,interval TEXT,first_time TEXT,last_time TEXT,rows INTEGER,
           PRIMARY KEY(symbol,interval));
+        CREATE TABLE IF NOT EXISTS screen_runs (
+          id TEXT PRIMARY KEY,created_at TEXT,as_of TEXT,status TEXT,payload TEXT);
+        CREATE INDEX IF NOT EXISTS screen_runs_latest ON screen_runs(created_at DESC);
         ''')
         c.executemany('INSERT OR IGNORE INTO instruments VALUES(?,?,?,?,?,?,?,1)',
                       [(r['symbol'],r['code'],r['exchange'],r['name'],r['kind'],'bootstrap',iso()) for r in UNIVERSE.values()])

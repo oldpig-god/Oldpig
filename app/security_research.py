@@ -31,7 +31,7 @@ def coverage():
 def finite(value):return float(value) if value is not None and math.isfinite(float(value)) else None
 
 
-def analyze(payload,calendar):
+def analyze(payload,calendar,continuous:bool=False):
     instrument=payload['instrument'];policy=capabilities(instrument);rows=payload['records']
     by_date={};issues=[]
     for row in rows:
@@ -52,7 +52,7 @@ def analyze(payload,calendar):
     # Explicit zero-volume sessions are not valid indicator updates.
     zero=frame['volume'].eq(0)
     frame.loc[zero,['open','high','low','close','volume']]=float('nan')
-    calculated=indicators.calculate(frame)
+    calculated=indicators.calculate(frame,continuous=continuous)
     calculated['date']=calculated.index
     series=calculated.where(pd.notna(calculated),None).to_dict('records')
     for bar in series:
@@ -64,19 +64,32 @@ def analyze(payload,calendar):
     observations=[]
     def add(title,text,state='neutral'):observations.append(dict(title=title,text=text,state=state))
     if latest:
-        price=latest['close'];ma=latest.get('ma60');rsi=latest.get('rsi14');volume=latest.get('volume_ratio20')
+        price=latest['close']
+        ma=latest.get('ma60') if latest.get('ma60') is not None else latest.get('c_ma60')
+        ema=latest.get('ema20') if latest.get('ema20') is not None else latest.get('c_ema20')
+        dif=latest.get('macd') if latest.get('macd') is not None else latest.get('c_macd')
+        dea=latest.get('macd_signal') if latest.get('macd_signal') is not None else latest.get('c_macd_signal')
+        rsi=latest.get('rsi14');volume=latest.get('volume_ratio20')
         if ma is not None:add('中期趋势',('价格高于' if price>ma else '价格低于')+'60日均线；这是历史价格位置，不是收益预测。','up' if price>ma else 'down')
         else:add('中期趋势','连续有效样本不足60日，暂不判断中期结构。')
+        if ema is not None or dif is not None:
+            ema_txt=f'EMA20 为 {ema:.2f}' if ema is not None else 'EMA20 样本不足'
+            if dif is not None and dea is not None:
+                macd_txt=('DIF 高于 DEA（零轴上）' if dif>0 else 'DIF 高于 DEA（零轴下）') if dif>dea else ('DIF 低于 DEA（零轴上）' if dif>0 else 'DIF 低于 DEA（零轴下）')
+                add('指数均线与 MACD',f'{ema_txt}，{macd_txt}；仅描述趋势与平滑动量历史状态。','up' if dif>dea else 'down')
+            else:
+                add('指数均线与 MACD',f'{ema_txt}，MACD(12/26/9) 有效样本不足。')
         if rsi is not None:add('动量状态',f'RSI14 为 {rsi:.1f}，'+('处于常用超买区，但不代表马上下跌。' if rsi>=70 else '处于常用超卖区，但不代表马上反弹。' if rsi<=30 else '位于30—70常用观察区间。'))
         else:add('动量状态','有效样本不足，RSI保持空值。')
         if volume is not None:add('成交活跃度',f'原始成交量为此前20日均量的 {volume:.2f} 倍；仅比较同证券，不推断资金流向。')
         else:add('成交活跃度','成交量或连续20日样本不足，不推算量比。')
     if policy['risk_warning']:add('风险警示证券','可观察真实行情与指标；缺历史ST状态，不开放策略验证。','warning')
-    return dict(instrument=instrument,profile=policy,status='ready' if latest and latest.get('ma60') is not None else 'limited_history',
+    ready=bool(latest and (latest.get('ma60') is not None or latest.get('c_ma60') is not None))
+    return dict(instrument=instrument,profile=policy,status='ready' if ready else 'limited_history',
                 series=series,summary=summary,observations=observations,quote=payload.get('quote'),
                 source=payload['source'],adjustment='不复权价格观察；不计算投资收益率',range=dict(start=dates[0],end=dates[-1],count=len(by_date)),
                 freshness=daily_sync.freshness(summary.get('date'),calendar),quality=dict(valid_rows=len(by_date),missing_dates=missing,zero_volume_dates=list(frame.index[zero]),issues=issues),
-                note='个股研究覆盖名录内所有A股与ETF；不复权指标可能受除权除息影响。缺失交易日不填价，递推指标重新预热；历史数据日期不等于实时行情。')
+                note='个股研究覆盖名录内所有A股与ETF；不复权指标可能受除权除息影响。缺失交易日不填价，c_* 字段与图表连续模式按实际成交日连续计算递推指标；历史数据日期不等于实时行情。')
 
 
 def routes(series_loader,page=None):
@@ -98,8 +111,8 @@ def routes(series_loader,page=None):
             if len(items)>=max(1,min(limit,100)):break
         return dict(items=items)
     @router.get('/api/securities/{query}/analysis')
-    def security_analysis(query:str):
+    def security_analysis(query:str,continuous:bool=False):
         instrument=resolve(query)
-        try:return analyze(series_loader(instrument['symbol']),core.calendar_dates())
+        try:return analyze(series_loader(instrument['symbol']),core.calendar_dates(),continuous=continuous)
         except ValueError as exc:raise HTTPException(422,str(exc))
     return router

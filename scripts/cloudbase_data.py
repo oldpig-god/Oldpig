@@ -11,7 +11,7 @@ import sqlite3
 import sys
 import time
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from app import core,market,github_history
+from app import core,market
 from app.cloud_store import CloudStore
 
 
@@ -21,16 +21,17 @@ def export(source,output):
     source_connection=sqlite3.connect(source/'workbench.sqlite');source_connection.row_factory=sqlite3.Row
     seed=output/'seed.sqlite';seed.unlink(missing_ok=True)
     target=sqlite3.connect(seed)
-    names=['instruments','market_quotes','market_members','history_tasks','metadata']
+    tables_src={r[0] for r in source_connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    names=['instruments','market_quotes','market_members','history_tasks','metadata']+(['screen_runs'] if 'screen_runs' in tables_src else [])
     for name in names:
         ddl=source_connection.execute('SELECT sql FROM sqlite_master WHERE type="table" AND name=?',(name,)).fetchone()[0]
         target.execute(ddl)
         rows=source_connection.execute('SELECT * FROM '+name).fetchall()
-        target.executemany('INSERT INTO '+name+' VALUES('+','.join('?' for _ in rows[0])+')',[tuple(r) for r in rows])
+        if rows:
+            target.executemany('INSERT INTO '+name+' VALUES('+','.join('?' for _ in rows[0])+')',[tuple(r) for r in rows])
     target.commit();target.close()
     seed_content=gzip.compress(seed.read_bytes(),mtime=0);(output/'seed.sqlite.gz').write_bytes(seed_content)
     coverage=market.coverage()
-    coverage['github_history']=github_history.summary()
     (output/'coverage.json.gz').write_bytes(gzip.compress(core.dumps(coverage).encode(),mtime=0))
     snapshot='history/'+core.now().strftime('%Y%m%dT%H%M%S')+'-'+core.uuid.uuid4().hex[:8];entries={};chunk={};chunk_no=0;total=0;bytes_total=0
     tables={r[0] for r in source_connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}

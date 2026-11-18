@@ -22,6 +22,11 @@ class SecurityResearchTests(unittest.TestCase):
         p,d=self.payload();p['records'].pop(75);p['records'][-1]['volume_raw']=0;r=security_research.analyze(p,d)
         self.assertEqual(r['quality']['missing_dates'],[d[75]]);self.assertEqual(r['quality']['zero_volume_dates'],[d[-1]])
         self.assertIsNone(r['series'][76]['ma20']);self.assertIsNone(r['series'][-1]['close'])
+        self.assertIsNotNone(r['series'][76]['c_ma20']);self.assertIsNotNone(r['series'][76]['c_ema20'])
+        self.assertIsNotNone(r['series'][76]['c_macd']);self.assertIsNotNone(r['summary']['ema20'])
+        rc=security_research.analyze(p,d,continuous=True)
+        self.assertIsNotNone(rc['series'][76]['ma20']);self.assertEqual(rc['series'][76]['ma20'],r['series'][76]['c_ma20'])
+        self.assertTrue(any(o['title']=='指数均线与 MACD' for o in rc['observations']))
     def test_invalid_rows_excluded_and_conflicts_rejected(self):
         p,d=self.payload();p['records'][40]['high']=0;r=security_research.analyze(p,d)
         self.assertEqual(len(r['quality']['issues']),1)

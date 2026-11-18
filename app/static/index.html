@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>观澜 · 本地金融研究工作台</title>
+<title>观澜 · A股策略筛选台</title>
 <script>try{const t=localStorage.getItem('guanlan-theme')||localStorage.getItem('gl-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.dataset.theme=t;}catch(e){}</script>
 <link rel="stylesheet" href="/static/shared/theme.css">
 <link rel="stylesheet" href="/static/app.css">
@@ -20,26 +20,24 @@
   <div class="gl-brand">
     <span class="gl-logo">观</span>
     <span class="gl-brand-name">观澜</span>
-    <span class="gl-brand-sub">A股 / ETF 研究台</span>
+    <span class="gl-brand-sub">A股策略筛选台</span>
   </div>
 
-  <div class="gl-stats" aria-label="本地数据概况">
-    <div class="gl-stat"><span>证券</span><strong id="asset-count">—</strong></div>
-    <div class="gl-stat"><span>日线</span><strong id="daily-count">—</strong></div>
-    <div class="gl-stat"><span>分钟</span><strong id="minute-count">—</strong></div>
+  <div class="gl-stats" aria-label="筛选概况">
+    <div class="gl-stat"><span>入选</span><strong id="pass-count">—</strong></div>
+    <div class="gl-stat"><span>候选(&gt;500亿)</span><strong id="cand-count">—</strong></div>
+    <div class="gl-stat"><span>日线截至</span><strong id="asof">—</strong></div>
     <div class="gl-stat gl-market-pill" data-state="unknown"><i class="gl-pulse"></i><strong id="market">—</strong><span id="clock" class="gl-clock"></span></div>
   </div>
 
   <nav class="gl-actions" aria-label="操作">
     <span class="gl-mode" id="mode">本地源数据</span>
+    <button id="screen-run" class="gl-btn gl-primary" title="抓取全市场快照（市值 / PE TTM / 行业），对候选股取前复权日线并重新筛选">
+      <svg viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg><span>运行筛选</span></button>
     <button id="refresh" class="gl-btn" title="仅更新当前证券、当前周期">
       <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg><span>更新图表</span></button>
-    <button id="market-refresh" class="gl-btn" title="抓取 A股与 ETF 批量行情快照">
-      <svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span>全市场快照</span></button>
-    <button id="auto" class="gl-btn gl-toggle" aria-pressed="false" title="交易时段每 60 秒抓取一次全市场快照">
-      <i class="gl-switch"></i><span>开启全市场轮询</span></button>
-    <a class="gl-btn gl-link" href="/static/research/index.html" title="协方差与相关性研究">
-      <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>协方差与相关性 ↗</span></a>
+    <button id="auto" class="gl-btn gl-toggle" aria-pressed="false" title="交易时段每 60 秒抓取全市场快照；收盘后 16:05 自动运行一次筛选">
+      <i class="gl-switch"></i><span>开启自动</span></button>
     <button id="theme" class="gl-btn gl-icon" title="明暗切换" aria-label="明暗切换">
       <svg class="gl-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="gl-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -52,38 +50,28 @@
 <main class="gl-main">
 
   <!-- ═════ Watchlist ═════ -->
-  <aside class="gl-watch-panel" aria-label="全市场证券">
+  <aside class="gl-watch-panel" aria-label="策略入选股票">
     <div class="gl-watch-top">
       <label class="gl-search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" id="search" placeholder="搜索代码 / 名称" aria-label="搜索证券" autocomplete="off" spellcheck="false">
+        <input type="search" id="search" placeholder="名称 / 代码 / 行业" aria-label="搜索证券" autocomplete="off" spellcheck="false">
         <kbd>/</kbd>
       </label>
       <div class="gl-filter-row">
-        <div class="gl-seg gl-watch-tabs" role="group" aria-label="类型">
-          <button data-filter="all" aria-pressed="true">全部</button>
-          <button data-filter="stock" aria-pressed="false">股票</button>
-          <button data-filter="etf" aria-pressed="false">ETF</button>
-        </div>
-        <select id="exchange" aria-label="交易所">
-          <option value="all">全部市场</option>
-          <option value="SH">上海</option>
-          <option value="SZ">深圳</option>
-          <option value="BJ">北京</option>
+        <button id="band" class="gl-btn gl-toggle gl-band" aria-pressed="true" title="市盈率TTM须位于所属行业均值±2个标准差内（行业样本：同行业非ST且PE TTM&gt;0的A股）">
+          <i class="gl-switch"></i><span>行业PE ±2σ</span></button>
+        <select id="watch-sort" aria-label="列表排序">
+          <option value="cap">市值 ↓</option><option value="pct_desc">涨幅 ↓</option><option value="pct_asc">跌幅 ↑</option>
+          <option value="pe">PE TTM ↑</option><option value="industry">行业</option><option value="name">名称 ↑</option>
         </select>
       </div>
       <div class="gl-watch-head">
-        <button id="sort" class="gl-sort" title="切换排序">按名称排序</button>
-        <select id="watch-sort" aria-label="列表排序"><option value="code">代码 ↑</option><option value="pct_desc">涨幅 ↓</option><option value="pct_asc">跌幅 ↑</option><option value="amount_desc">成交额 ↓</option><option value="name">名称 ↑</option></select>
+        <span id="list-title">策略入选</span>
         <span>最新价 / 涨跌幅</span>
       </div>
     </div>
     <div id="gl-watch-list" role="listbox" aria-label="证券列表"></div>
-    <div class="gl-pagination">
-      <button id="prev-page" aria-label="上一页"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
-      <span id="page-info"></span>
-      <button id="next-page" aria-label="下一页"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-    </div>
+    <div class="gl-pagination"><span id="page-info"></span><span id="run-info"></span></div>
   </aside>
 
   <!-- ═════ Chart workspace ═════ -->
@@ -91,7 +79,7 @@
     <div class="gl-chart-panel">
       <div class="gl-security">
         <div class="gl-security-id">
-          <span class="gl-kind" id="kind">ETF</span>
+          <span class="gl-kind" id="kind">A股</span>
           <div>
             <h1 id="name">读取数据…</h1>
             <span id="symbol" class="gl-code"></span>
@@ -111,6 +99,7 @@
           <div><dt title="上游原始数值，单位未核验">原始量</dt><dd id="volume">—</dd></div>
           <div><dt title="上游原始数值">成交额</dt><dd id="amount">—</dd></div>
         </dl>
+        <a id="stock-deep-link" class="gl-btn" href="/stocks" title="查看该股票个股研究与财务报表"><span>个股与财报 ↗</span></a>
         <button id="focus" class="gl-btn gl-icon gl-focus" title="专注图表" aria-label="展开图表">
           <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
         </button>
@@ -128,17 +117,10 @@
         </label>
         <div class="gl-seg gl-indicators" role="group" aria-label="指标">
           <button id="ma" aria-pressed="true">MA</button>
+          <button id="ema" aria-pressed="false">EMA</button>
           <button id="vol" aria-pressed="true">VOL</button>
+          <button id="macd" aria-pressed="true">MACD</button>
         </div>
-        <label class="gl-source-select">
-          <span>数据源</span>
-          <select id="history-source">
-            <option value="primary">主行情 · 日线 / 分钟</option>
-            <option value="github">GitHub · 近5年补充</option>
-          </select>
-        </label>
-        <span id="history-audit" class="gl-muted-s"></span>
-        <a id="history-origin" hidden target="_blank" rel="noopener noreferrer">源文件 ↗</a>
         <button id="reset" class="gl-btn gl-ghost" title="重置缩放">
           <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg><span>重置</span></button>
       </div>
@@ -148,9 +130,11 @@
         <div id="chart-loading" class="gl-chart-loading" hidden><i></i></div>
       </div>
 
+      <div id="screen-checks" class="gl-checks" aria-label="策略条件检查"></div>
       <div class="gl-caption">
         <span id="snapshot-summary"></span>
         <span id="range"></span>
+        <span id="ind-summary" class="gl-muted-s"></span>
         <span id="adjustment" class="gl-tag">不复权 · 单一上游</span>
       </div>
       <div class="gl-source" id="source"></div>
@@ -159,13 +143,25 @@
     <!-- ═════ Bottom panel ═════ -->
     <section class="gl-research-panel">
       <div class="gl-tabs" role="tablist">
-        <button data-tab="bars" aria-pressed="true">行情明细</button>
-        <button data-tab="coverage" aria-pressed="false">数据覆盖</button>
+        <button data-tab="screen" aria-pressed="true">筛选明细</button>
+        <button data-tab="bars" aria-pressed="false">行情明细</button>
         <button data-tab="quality" aria-pressed="false">数据质量</button>
         <span id="job-status" class="gl-job" aria-live="polite"></span>
       </div>
 
-      <div id="tab-bars" class="gl-tab-body">
+      <div id="tab-screen" class="gl-tab-body">
+        <div id="funnel" class="gl-funnel" aria-label="筛选漏斗"></div>
+        <div id="run-warn" class="gl-run-warn" role="note" hidden></div>
+        <div class="gl-table-scroll">
+          <table class="gl-table gl-screen-table">
+            <thead><tr><th>证券</th><th>行业</th><th>总市值</th><th>PE TTM</th><th>行业PE带</th><th>MA5 / MA10 / MA20</th><th>EMA12 / EMA20 / EMA50</th><th>DIF / DEA</th><th>日线</th><th>结果</th></tr></thead>
+            <tbody id="screen-rows"></tbody>
+          </table>
+        </div>
+        <div class="gl-table-note"><label><input type="checkbox" id="show-failed"> 显示未通过的候选（总市值&gt;500亿、非ST）</label>　技术指标基于前复权日线最近一根已收盘K线；MACD(12,26,9)，DIF为快线、DEA为慢线；停牌日不计入均线。</div>
+      </div>
+
+      <div id="tab-bars" class="gl-tab-body" hidden>
         <div class="gl-table-scroll">
           <table class="gl-table">
             <thead><tr><th>上海时间</th><th>开盘</th><th>最高</th><th>最低</th><th>收盘</th><th>涨跌幅(源)</th><th>原始量</th><th>成交额</th></tr></thead>
@@ -173,25 +169,6 @@
           </table>
         </div>
         <div class="gl-table-note">分时走势不补造开盘、最高、最低；原始量保留上游数值，单位未核验；未闭合周期不作为历史记录展示。</div>
-      </div>
-
-      <div id="tab-coverage" class="gl-tab-body" hidden>
-        <div class="gl-coverage" aria-label="全市场覆盖进度">
-          <div class="gl-cov-card"><span>当前证券名录</span><strong id="coverage-universe">读取中…</strong></div>
-          <div class="gl-cov-card"><span>有效快照价格</span><strong id="coverage-quotes">—</strong><i class="gl-bar"><b id="bar-quotes"></b></i></div>
-          <div class="gl-cov-card"><span>窗口内有日线</span><strong id="coverage-daily">—</strong><i class="gl-bar"><b id="bar-daily"></b></i></div>
-          <div class="gl-cov-card"><span>近5年补采进度</span><strong id="coverage-tasks">—</strong><i class="gl-bar"><b id="bar-tasks"></b></i></div>
-        </div>
-        <div class="gl-cov-notes">
-          <p id="research-window"></p>
-          <p id="coverage-note"></p>
-          <p id="coverage-exceptions"></p>
-          <p id="github-coverage"></p>
-          <div class="gl-coverage-actions">
-            <button id="backfill" class="gl-btn gl-primary">继续补采日线</button>
-            <span id="coverage-source"></span>
-          </div>
-        </div>
       </div>
 
       <div id="tab-quality" class="gl-tab-body" hidden>

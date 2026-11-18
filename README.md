@@ -1,23 +1,23 @@
-# 观澜 · 全市场 A股 / ETF 研究工作台
+# 观澜 · A股策略筛选与研究工作台
 
 **给接手Agent：先读 [foragent.md](foragent.md)。推荐Windows Python 3.11 x64，也支持Linux/macOS。**
 
-**新增六股技术面研究（2026-11-11）**：直接克隆最新源码即可使用附带的轻量样本，无须先下载大数据库。安装研究依赖后运行 `python -X utf8 -m app.technical --snapshot research/technical/snapshot`，启动服务后打开 `/technical`。默认研究沪电股份、东山精密、宏和科技、鹏鼎控股、江海股份与三一重工，支持快照/完整日线分时点展示、均线/RSI/MACD/ATR/布林带、历史事件检验和六股相关性。
+**策略筛选工作台（2026-11-18 更新）**：主页 `/` 聚焦满足策略条件的 A股筛选与前复权行情分析。筛选引擎 `app/screener.py` 按 7 项规则从全市场 A股中逐级过滤（漏斗可审计）：非 ST（`not_st`）、总市值 > 500 亿元（`cap`）、`PE TTM > 0`（`pe_positive`）、行业 `PE TTM` 在同行业均值 ± 2σ 内（`pe_band`，同行业样本 < 5 时不淘汰，支持开关切换）、日线前复权 `MA5 > MA10` 或 `MA5 > MA20`（`ma`）、`EMA12 > EMA20` 或 `EMA12 > EMA50`（`ema`）以及 `MACD(12,26,9) DIF > DEA`（`macd`）。同时保留 `/stocks`、`/technical`、`/strategy`、`/compare`、`/discover`、`/data-health` 与 `/research` 多页面研究工作台。
+
+**六股技术面研究**：直接克隆最新源码即可使用附带的轻量样本，无须先下载大数据库。安装研究依赖后运行 `python -X utf8 -m app.technical --snapshot research/technical/snapshot`，启动服务后打开 `/technical`。默认研究沪电股份、东山精密、宏和科技、鹏鼎控股、江海股份与三一重工，支持快照/完整日线分时点展示、均线/RSI/MACD/ATR/布林带、历史事件检验和六股相关性。
 
 首次完整交付包与近5年全市场数据库位于 [finance-v2026.11.10 Release](https://github.com/oldpig-god/Oldpig/releases/tag/finance-v2026.11.10)。源码仓库保留轻量，未将约10GB解压数据写入Git历史。
 
 1. 从Release下载两个 `.zip.part001`、`.zip.part002` 附件，放在同一个目录。
 2. 使用Python合并并校验：`python -X utf8 scripts/join_release.py --parts-dir 分片目录 --output finance-workbench-20261110.zip`。
 3. 克隆最新源码。解压旧ZIP后，只把其中的 `data/` 目录复制到最新仓库根目录，保留最新程序；不要用旧包的 `app/` 覆盖新代码。Windows在最新仓库目录运行 `setup-windows.cmd`、`start-windows.cmd`；Linux使用 `bash setup-linux.sh`、`bash start-linux.sh`。
-4. 打开 `http://127.0.0.1:8765/`；共振研究入口在页面右上角。首次安装依赖需要网络，查看已保存数据可离线。
+4. 打开 `http://127.0.0.1:8765/` 查看策略筛选与图表终端，并可通过顶部导航进入 `/stocks`、`/technical` 等工作台。首次安装依赖需要网络，查看已保存数据可离线。
 
-完整包约3.07GB、解压约9.92GB；建议25GB可用空间。它包含7,245个证券的约740万条日线和研究结果，属于2026-11-10交接快照，并非未来启动日的实时数据。Windows已做兼容适配，尚需接收者在Windows实机验收。
+完整包约3.07GB、解压约9.92GB；建议25GB可用空间。运行时交易状态、名录与筛选结果以页面及 `/api/health`、`/api/screen` 为准。
 
-本地应用已扩展为全市场证券名录、批量行情快照和可续传历史日线采集。**统一研究范围为滚动近5年；2026-11-10交付时窗口为2021-11-10至2026-11-10，运行时随上海日期滚动。**2026-11-10 首轮发现 **5,580 只当前沪深京 A股、1,666 只沪深场内 ETF**，共 7,246 只。运行时覆盖数量与补采结果以页面和 `/api/coverage` 为准。
+A股范围以 AKShare / 腾讯行情接口取得的当前上市名录为准；行情快照中额外出现的退市、转换等代码保留在原始记录中，不计入当前覆盖。ETF 范围为上游 ETF 分类列表，可在全市场搜索中查看；主页策略筛选仅面向当前 A股名录。
 
-A股范围以 AKShare 从交易所取得的当前上市名录为准；行情快照中额外出现的退市、转换等代码保留在原始记录中，不计入当前覆盖。ETF 范围为上游 ETF 分类列表，包含股票、债券、商品、跨境等场内 ETF；不含场外联接基金。当前名录不等于历史退市证券全集。页面分别显示“窗口内有记录”和“近5年请求完成数”，后者未完成时表示仍在补齐旧年份。
-
-## 启动与全市场采集
+## 启动与策略筛选采集
 
 推荐 Python 3.11 64位；支持 Windows / Linux / macOS。进程锁在 Windows 使用 msvcrt，在 Unix 使用 fcntl。交接与安装请先看 [foragent.md](foragent.md)。
 
@@ -26,12 +26,12 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 # 初始化交易日历，同时取一只证券的日线
 .venv/bin/python -m app.collector --calendar --symbols 510300.SH --intervals 1d
-# 先取得交易所名录，再取得全市场行情
+# 先取得交易所名录与全市场行情快照
 .venv/bin/python -m app.market --inventory
 .venv/bin/python -m app.market
-# 四个并发工作线程；任务进度持久化，可中断续传
-.venv/bin/python -m app.backfill
-# 启动界面；历史采集可在另一终端同时运行
+# 运行一次策略筛选（先抓全市场快照，再对市值>500亿且PE>0的非ST候选拉取前复权日线）
+.venv/bin/python -m app.screener
+# 启动界面；也可通过右上角“运行筛选”在后台运行
 .venv/bin/python -m uvicorn app.server:app --host 127.0.0.1 --port 8765
 ```
 
@@ -39,54 +39,47 @@ python3 -m venv .venv
 
 ## 更新方式
 
-- **全市场快照**：「更新全市场快照」抓取 A股与 ETF 两类批量行情。「开启全市场轮询」在交易时段执行，最小调度间隔 60 秒，不重叠；源端分页使一轮实测超过一分钟，因此不承诺每只股票每分钟取得新报价。股票快照未提供源行情时间时只显示抓取时间，不把抓取时间当作成交时间。
+- **运行策略筛选**：页面点击「运行筛选」（或 `POST /api/screen/run`）会更新全市场名录与实时快照、筛选出非 ST 且总市值 > 500 亿、PE TTM > 0 的候选股票，再并发抓取候选前复权日线计算 MA / EMA / MACD，并为全部入选股票补齐 1d 前复权图表日线；结果写入 `screen_runs`。
+- **全市场快照**：「更新全市场快照」刷新批量行情；开启自动更新后，交易时段按周期刷新，16:05 后可触发当日盘后自动筛选，17:30 后调度日线更新。
 - **当前图表**：「更新当前图表」独立更新所选证券、所选周期。1 分钟趋势价格、5 分钟 K线仍按需抓取。批量快照不会伪造成全市场分钟 K线。
-- **历史日线**：队列从上海日期的五年前同日开始请求，盘中截止前一天，当天收盘后的最终发布仍有延迟。已有数据会去重并记录修订；完成任务在续传时跳过。页面「继续补采日线」可启动尚未处理的队列。
-- **失败重跑**：`python3 -m app.backfill --retry` 重新排入空响应、异常和部分拒绝任务；连续源请求失败会中止本轮，保留其余待处理任务。
-- **收盘处理**：启用轮询后，15:01 起补抓批量收盘快照，17:30 起将日线队列重新排入。轮询首轮会检查当日 A股名录是否已更新。交易日历需定期执行初始化命令更新，日历不覆盖时不自动采集。
 
-自动更新开关只保留至服务进程退出；设置 `FINANCE_AUTO_REFRESH=1` 可在启动时开启。未安装系统常驻服务。后台历史队列是独立进程；网页关闭不影响已启动的队列，但机器休眠或关机会中断采集，之后可续传。
+自动更新开关只保留至服务进程退出；设置 `FINANCE_AUTO_REFRESH=1` 可在启动时开启。未安装系统常驻服务。
 
 ## 页面与数据表
 
-全市场搜索和分页在后端执行，每页 50 只，支持 A股 / ETF、上海 / 深圳 / 北京筛选。覆盖面板分开显示名录数、有效报价数、已有日线证券数和队列状态，并列出价格缺失证券。主图与列表快照使用独立的时间标签。
+主页 `/` 左侧展示当前策略入选股票与筛选条件开关（含 `行业PE ±2σ` 开关、全市场搜索及多维排序）；右侧主图提供前复权日K / 5分 / 1分图表与 `MA(5,10,20)`、`EMA(12,20,50)`、`VOL`、`MACD(12,26,9)` 叠加显示，底部展示筛选漏斗、候选明细表、行情明细与数据质量证据。已移除早期共振研究页 `/static/research/index.html`、`/api/coverage`、`/api/backfill` 及 GitHub 补充历史源（`app/comovement.py`、`app/github_history.py`）。
 
 | 数据层 | 本地表 / 文件 | 含义 |
 |---|---|---|
 | 证券名录 | `instruments`、`market_members` | 当前上市范围、交易所、证券类型；保留非当前名单记录 |
-| 批量行情 | `market_quotes` | 最近快照与批次；缺失价格保留 null |
+| 批量行情 | `market_quotes` | 最近快照与市值 / 市盈率 / 行业字段；缺失值保留 null |
+| 策略筛选 | `screen_runs` | 每次筛选快照时间、漏斗计数、候选及入选明细、获取错误 |
 | 原始响应 | `data/raw/YYYY-MM-DD/*.json` | 不可覆盖的源数据批次、参数、哈希；新历史批次采用 .json.gz |
 | 价格历史 | `observations`、`revisions` | 当前记录及值变化历史；新价格载荷压缩保存，兼容旧格式 |
-| 作业与进度 | `batches`、`history_tasks`、`watermarks` | 校验结果、可续传任务与成功游标 |
+| 作业与进度 | `batches`、`bars`、`watermarks` | 校验结果、列式压缩日线与采集游标 |
 
-AKShare 用于名录、批量快照和按需分钟接口；全市场日线使用相同东方财富 Kline 端点的轻量 HTTP 适配器，核验响应证券代码及市场，避免逐只启动完整 SDK 进程。直接适配器设置 5 秒连接 / 20 秒读超时，批次标记 `direct-kline-v1`；SDK 单只请求仍有独立进程 25 秒期限。
-
-## GitHub 近5年补充
-
-图表上方选择「GitHub · 近5年补充」即可读取固定版本的 [tomuopc/a-stock-data](https://github.com/tomuopc/a-stock-data) CSV。当前可匹配主名录中的 6,089 只证券（4,584 只 A股、1,505 只 ETF），首次查看按需下载，之后使用本地缓存。开发验证时曾缓存并核验12只；本次交接包不包含这些外部缓存，接收方按需下载。查询时仅返回近5年窗口。原始 CSV 可能包含更早日期，仅保留作源文件哈希核验，不进入当前分析。归档截止 2026-06-26，最新行情仍来自主库。
-
-每个文件检查固定 commit 的 Git blob 哈希并记录 SHA-256；重叠日期自动比对 OHLC，页面显示差异计数和固定源文件链接。12 只合计 4,284 个重叠交易日，在设定价格容差内无差异。历史复权方式未在源仓库明确声明，因此独立展示、不覆盖主库。仓库无单独许可证文件，当前仅作本地研究，不发布其数据副本。
-
-[候选数据集与核验报告](research/github-data/selection.md)区分已接入、隔离和未完成下载的数据。另一个 ETF 数据集样本存在价格口径差异，未导入；约1GB的DuckDB候选在开发机只完成部分下载，未验完哈希，未计入覆盖，也未随交接包分发。
+AKShare / 腾讯行情与前复权直连适配器用于名录、批量快照、按需分钟线与候选日线，保留原始响应批次与 SHA-256 校验。
 
 ## 已知数据边界
 
-1. “全部名录已发现”“有一条日线”“历史无缺口”是不同状态。覆盖计数不代表上市以来全历史，也不涵盖历史退市全集。新上市、停牌、上游缺失等情况会显式保留。
+1. 策略筛选依赖当前行情快照中的总市值、PE TTM、行业分类与历史前复权日线；停牌、新股窗口不足或上游获取失败的候选不计入入选，并在页面显著提示 `fetch_errors`。
 2. 1 分钟接口按分时价格序列处理，开盘为 0 不自动判定有效价格也无效；不填造开高低。全市场尚未批量建立 1 分钟 / 5 分钟历史。
-3. 日线和 5 分钟价格不复权；未接公司行动、历史复权因子和 PIT 财务。不能直接据此计算投资总收益或完成严谨回测。
+3. 本工作台主页前复权技术条件与入选清单仅作规则筛选与研究展示，不构成投资建议；`/stocks` 等全市场历史指标与回测边界见各专项说明。
 4. 量额保留上游数值，单位尚未逐接口确认，暂不提供跨源量能比较。ETF NAV、IOPV 和费用字段未进入已核验分析层。
-5. 主行情库仍以东方财富为上游；GitHub / 通达信样本已完成重叠窗口比对，但并未对全市场全部日期进行双源核验。原始批次持续留存，尚未配置归档清理策略。
+5. 主行情库以东方财富与腾讯公开行情为上游；原始批次与 SQLite / CloudStore 记录分离保存。
 
 ## 验证
 
 ```bash
 python3 -m pip install -r requirements-dev.txt
-python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -q
+# 本地与云端辅助检查
+python3 -X utf8 scripts/doctor.py --technical-only
 # 先启动服务，默认浏览器为 /usr/bin/google-chrome
 python3 scripts/check_market_ui.py
 ```
 
-30 项管道 / 市场名录 / GitHub 校验 / 五年边界 / API 测试通过；21 项全市场浏览器检查通过。测试使用临时数据库；浏览器检查真实本地服务，包括全市场分页、北交所新代码、ETF 筛选、源价格比对、原始证据及手机布局。报告及截图：[design/v4](design/v4/)。
+测试使用临时数据库，验证策略筛选、技术指标、多页面 API、云端隔离安全与存储逻辑；`scripts/check_market_ui.py` 验证策略筛选主页、漏斗、切换规则开关及图表交互。
 
 ## 研究资料
 
@@ -100,23 +93,13 @@ python3 scripts/check_market_ui.py
 
 接口来源：[AKShare 股票数据](https://akshare.akfamily.xyz/data/stock/stock.html)、[ETF 数据](https://akshare.akfamily.xyz/data/fund/fund_public.html)、[A股名录源码](https://github.com/akfamily/akshare/blob/main/akshare/stock/stock_info.py)。图表使用本地 KLineChart 9.8.12，附 Apache-2.0 许可证。
 
-## 首轮共振研究
+## A股策略筛选工作台（2026-11-18）
 
-工作台右上角“共振研究”进入 `/static/research/index.html`。分析16只代表股票和3只宽基ETF，固定滚动近5年窗口。真实后复权日线单独存入 `data/research/`，不改主行情库；原始响应、SHA-256、参数与交易日历可审计。前复权对照保留在研究页，最大相关系数差约0.037；发现前复权现金分红调整会改变历史收益分母后，主分析采用后复权价格收益代理。两者都不宣称是已独立验证的分红再投资总回报。
-
-研究页含收益率与残差相关热力图、120组股票对、60交易日滚动曲线、训练/留出期比较、价格与收益率协方差、Ledoit–Wolf收缩协方差、含ETF的矩阵和数据说明。固定当前存续样本具有选择偏差；这是回顾性探索，不是时点回测或交易策略。方法参考PyPortfolioOpt与Riskfolio-Lib，实际运行使用scikit-learn、SciPy、NumPy、pandas。
-
-```bash
-python3 -m pip install -r requirements-research.txt
-python3 -m app.comovement
-# 复现本轮固定快照与前复权敏感性检验，不请求网络
-python3 -m app.comovement --snapshot data/research/20261110T154400 --reference app/static/research/qfq-analysis.json
-python3 -m unittest discover -s tests -q
-python3 scripts/check_research_ui.py
-```
-
-本轮验证：37项Python测试、11项研究页浏览器检查、21项原行情页回归检查通过。近5年全市场补采完成：7,245个证券有日线、7,397,946行，另1个返回空；1,294个证券在已观察首尾日期之间存在交易日数量缺口（原因未核验），未进行填充。最终覆盖见 `design/v4/coverage-five-years.json`，缺口审计见 `design/v4/history-window-audit.json`。
-
+主页 `/` 已重构为 A股策略筛选工作台（`app/screener.py`），接口为 `GET /api/screen?industry_band=true|false` 与 `POST /api/screen/run`：
+1. **前置基础过滤**：排除 ST / *ST（`not_st`）、要求总市值 > 500 亿元（`cap`）且市盈率 TTM > 0（`pe_positive`）。
+2. **行业市盈率区间**：按同行业非 ST 且 `PE TTM > 0` 的 A股计算均值与标准差，检验是否在均值 ± 2σ 内（`pe_band`）；同行业有效样本不足 5 只时不因该项淘汰，页面支持实时切换该条件开关。
+3. **前复权技术条件**：对通过前置条件的候选股票抓取前复权日线，验证最新收盘后满足 `MA5 > MA10` 或 `MA5 > MA20`（`ma`）、`EMA12 > EMA20` 或 `EMA12 > EMA50`（`ema`），以及 `MACD(12,26,9) DIF > DEA`（`macd`）。
+4. **移除项**：删除原首页全市场覆盖表与 `/api/coverage`、`/api/backfill`、GitHub 补充历史适配器（`app/github_history.py`）以及旧版共振研究页面 `/static/research/index.html`（`app/comovement.py`、`scripts/check_research_ui.py`）。
 
 ## 六股技术面研究（2026-11-11新增）
 

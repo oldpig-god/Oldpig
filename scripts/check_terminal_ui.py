@@ -25,7 +25,7 @@ with sync_playwright() as p:
  page.screenshot(path=str(out/'strategy-mobile.png'));page.set_viewport_size({'width':1440,'height':1050});page.screenshot(path=str(out/'strategy-desktop.png'))
  page.goto(u+'/strategy?symbol=688001.SH');page.wait_for_function("document.querySelector('#symbol').value==='688001.SH'");assert page.locator('#run').is_visible();assert not page.locator('#report').is_visible();checks.append('security links prefill a new experiment without displaying another security result')
  page.goto(u+'/technical');page.wait_for_function("document.querySelector('#selected-name').textContent.length>1");assert not page.locator('.selection-panel').is_visible();assert page.locator('#price-chart svg').is_visible();page.locator('#technical-quick-switch').select_option(index=1);assert '东山精密' in page.locator('#selected-name').inner_text();page.locator('#technical-selection-toggle').click();assert page.locator('.selection-panel').is_visible();page.locator('#technical-selection-toggle').click();page.screenshot(path=str(out/'technical-desktop.png'));checks.append('technical chart first, stock switcher and collapsible editor')
- for route in ['/', '/technical','/static/research/index.html']:
+ for route in ['/', '/technical']:
   page.goto(u+route);page.wait_for_timeout(600);assert page.locator('.terminal-sidebar').count()==1;page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),route;page.set_viewport_size({'width':1440,'height':1050})
  checks.append('market, technical and correlation pages share shell and fit mobile')
  assert not errors,errors;assert not bad_assets,bad_assets;checks.append('no JavaScript errors or missing static assets')

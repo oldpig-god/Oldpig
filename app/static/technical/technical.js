@@ -23,7 +23,7 @@ function selectedFacts(){
  ['量价','此前20日均量的 '+number(l.volume_ratio20)+' 倍',`本完整日线${!valid(l.prior_high20)?'历史不足，无法比较':l.close>l.prior_high20?'收盘高于':'未突破'}此前20日最高价。放量、上涨与突破需要分别核对。`],
  ['波动风险','ATR14 / 价格 '+number(l.atr_pct,1)+'%',`ATR约 ${number(l.atr14)} 个当前价格基准单位；近252日高点回撤 ${percent(l.drawdown252_pct)}。ATR不指示方向。`]];
  $('observations').innerHTML=facts.map(([title,value,text])=>`<article class="observation"><h3>${title}</h3><strong>${value}</strong><p>${text}</p></article>`).join('');
- $('levels').innerHTML=[['MA20 / MA60',number(l.ma20)+' / '+number(l.ma60)],['此前20日低 / 高',number(l.prior_low20)+' / '+number(l.prior_high20)],['此前60日低 / 高',number(l.prior_low60)+' / '+number(l.prior_high60)]].map(([label,value])=>`<div class="level-row"><span>${label}</span><b>${value}</b></div>`).join('');
+ $('levels').innerHTML=[['MA20 / MA60',number(l.ma20)+' / '+number(l.ma60)],['EMA20 / EMA60',number(l.ema20)+' / '+number(l.ema60)],['此前20日低 / 高',number(l.prior_low20)+' / '+number(l.prior_high20)],['此前60日低 / 高',number(l.prior_low60)+' / '+number(l.prior_high60)]].map(([label,value])=>`<div class="level-row"><span>${label}</span><b>${value}</b></div>`).join('');
 }
 const svg=(w,h,content)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" aria-hidden="true">${content}</svg>`;
 function line(rows,key,x,y,color,width=1.5){let path='',open=false;rows.forEach((r,i)=>{if(valid(r[key])){path+=(open?'L':'M')+x(i).toFixed(2)+','+y(r[key]).toFixed(2);open=true;}else open=false;});return `<path d="${path}" fill="none" stroke="${color}" stroke-width="${width}"/>`;}
@@ -42,7 +42,7 @@ function charts(){
  parts+=`<line id="cursor" class="cursor" x1="0" x2="0" y1="${top}" y2="${h-bottom}" visibility="hidden"/>`;
  $('price-chart').innerHTML=svg(w,h,parts);
  const chartSvg=$('price-chart').querySelector('svg');chartSvg.removeAttribute('aria-hidden');chartSvg.setAttribute('tabindex','0');chartSvg.setAttribute('role','img');chartSvg.setAttribute('aria-label',asset().name+'完整日线与均线；左右方向键查看日期');
- function inspect(i){cursorIndex=Math.max(0,Math.min(rows.length-1,i));const r=rows[cursorIndex],cross=$('cursor');cross.setAttribute('x1',x(cursorIndex));cross.setAttribute('x2',x(cursorIndex));cross.setAttribute('visibility','visible');$('chart-readout').textContent=`${r.date}　参考收 ${number(r.close)}　实际收 ${number(r.raw_close)}　MA20 ${number(r.ma20)}　RSI ${number(r.rsi14,1)}　ATR ${number(r.atr14)}　量比 ${number(r.volume_ratio20)}×`;}
+ function inspect(i){cursorIndex=Math.max(0,Math.min(rows.length-1,i));const r=rows[cursorIndex],cross=$('cursor');cross.setAttribute('x1',x(cursorIndex));cross.setAttribute('x2',x(cursorIndex));cross.setAttribute('visibility','visible');$('chart-readout').textContent=`${r.date}　参考收 ${number(r.close)}　实际收 ${number(r.raw_close)}　MA20 ${number(r.ma20)}　EMA20 ${number(r.ema20)}　DIF ${number(r.macd,3)}　RSI ${number(r.rsi14,1)}　量比 ${number(r.volume_ratio20)}×`;}
  chartSvg.addEventListener('pointermove',e=>{const box=chartSvg.getBoundingClientRect(),xx=(e.clientX-box.left)/box.width*w;inspect(Math.floor((xx-left)/plot*rows.length));});
  chartSvg.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();inspect(cursorIndex+(e.key==='ArrowLeft'?-1:1));}});inspect(rows.length-1);
  const vh=88,vmax=Math.max(2,...rows.map(r=>r.volume_ratio20).filter(valid))*1.05,vy=v=>vh-17-v/vmax*(vh-33);

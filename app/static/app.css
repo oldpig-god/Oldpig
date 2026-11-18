@@ -1,4 +1,4 @@
-/* 观澜 · 本地金融研究工作台 — terminal-style layout, dark first. Red = up, green = down (A-share convention). */
+/* 观澜 · A股策略筛选台 — terminal-style layout, dark first. Red = up, green = down (A-share convention). */
 :root,[data-theme=dark]{
   --bg:#0b0f17;--panel:#111723;--panel-2:#161d2b;--raise:#1b2333;--line:#222b3b;--line-2:#2c3749;
   --text:#e7ebf3;--text-2:#b4bdcc;--muted:#7d889b;--faint:#566074;
@@ -111,12 +111,12 @@ select:hover{border-color:var(--line-2)}
 .gl-empty{padding:40px 12px;text-align:center;color:var(--muted);font-size:12px}
 .gl-skel{height:46px;margin:4px 2px;border-radius:7px;background:linear-gradient(90deg,var(--panel-2) 0,var(--raise) 50%,var(--panel-2) 100%);background-size:200% 100%;animation:shimmer 1.2s infinite}
 @keyframes shimmer{to{background-position:-200% 0}}
-.gl-pagination{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.gl-pagination{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
 .gl-pagination button{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;color:var(--text-2)}
 .gl-pagination button:hover:not(:disabled){background:var(--raise)}
 
 /* ── workspace ── */
-.gl-work{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 290px;min-width:0;min-height:0}
+.gl-work{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 320px;min-width:0;min-height:0}
 .gl-chart-panel{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;padding:14px 18px 8px;background:var(--bg)}
 .gl-security{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding-bottom:12px}
 .gl-security-id{display:flex;align-items:center;gap:12px;min-width:0}
@@ -184,15 +184,37 @@ select:hover{border-color:var(--line-2)}
 .gl-evidence p{margin:0 0 6px;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
 .gl-evidence pre{margin:0;padding:10px;border-radius:7px;background:var(--panel-2);font:11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--text-2)}
 
-.gl-coverage{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:12px 16px 2px}
-.gl-cov-card{padding:10px 14px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line)}
-.gl-cov-card span{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}
-.gl-cov-card strong{font-size:15px;font-weight:600}
-.gl-bar{display:block;height:4px;margin-top:7px;border-radius:4px;background:var(--line)}
-.gl-bar b{display:block;height:100%;width:0;border-radius:4px;background:var(--accent);transition:width .4s}
-.gl-cov-notes{padding:4px 16px 12px}
-.gl-cov-notes p{margin:3px 0;font-size:12px;color:var(--muted)}
-.gl-coverage-actions{display:flex;align-items:center;gap:12px;margin-top:8px;font-size:11px;color:var(--faint)}
+/* ── screen ── */
+.gl-band{flex:1;height:30px;font-size:12px}
+#watch-sort{max-width:110px}
+.gl-w-ind{max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gl-w-sub{display:block;margin-top:2px;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.gl-watch-item.is-fail .gl-w-name{color:var(--muted)}
+.gl-section{padding:8px 6px 4px;font-size:11px;color:var(--faint)}
+#run-info{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gl-checks{display:flex;flex-wrap:wrap;gap:6px;padding:8px 2px 0}
+.gl-check{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:5px;font-size:11px;background:var(--raise);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.gl-check b{font-weight:650}
+.gl-check.ok{color:var(--up);background:var(--up-bg)}
+.gl-check.no{color:var(--down);background:var(--down-bg)}
+.gl-check.na{color:var(--warn);background:var(--warn-bg)}
+.gl-check.head{background:transparent;color:var(--text-2);padding-left:0}
+.gl-funnel{display:flex;align-items:stretch;gap:4px;padding:10px 14px;flex:none;overflow-x:auto;border-bottom:1px solid var(--line)}
+.gl-step{display:flex;flex-direction:column;gap:2px;min-width:94px;padding:6px 10px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);white-space:nowrap}
+.gl-step span{font-size:11px;color:var(--muted)}
+.gl-step strong{font-size:15px;font-weight:650;font-variant-numeric:tabular-nums}
+.gl-step.skipped{opacity:.5}
+.gl-step.final{border-color:var(--accent);background:var(--accent-bg)}
+.gl-step-arrow{align-self:center;color:var(--faint);font-size:12px}
+.gl-screen-table tbody tr{cursor:pointer}
+.gl-screen-table tbody tr.is-selected td{background:var(--accent-bg)}
+.gl-screen-table td.ok{color:var(--up)}.gl-screen-table td.no{color:var(--down)}
+.gl-mark{display:inline-block;width:16px;text-align:center;font-weight:700}
+.gl-mark.ok{color:var(--up)}.gl-mark.no{color:var(--down)}.gl-mark.na{color:var(--warn)}
+.gl-table-note label{display:inline-flex;align-items:center;gap:4px;color:var(--muted);cursor:pointer}
+.gl-table-note input{accent-color:var(--accent);margin:0}
+.gl-screen-table th,.gl-screen-table td{padding-left:10px;padding-right:10px}
+.gl-run-warn{flex:none;padding:6px 14px;font-size:11px;color:var(--warn);background:var(--warn-bg);border-bottom:1px solid var(--line);cursor:help}
 
 /* ── status bar ── */
 .gl-statusbar{display:flex;align-items:center;gap:18px;padding:0 14px;font-size:11px;color:var(--muted);background:var(--panel);border-top:1px solid var(--line);white-space:nowrap;overflow:hidden}
@@ -212,7 +234,6 @@ select:hover{border-color:var(--line-2)}
 @media(max-width:1200px) and (min-width:1025px){.gl-facts div:last-child{display:none}}
 @media(max-width:1024px){
   .gl-stats{display:none}.gl-facts{margin-left:0;width:100%}.gl-security{gap:14px;padding-right:44px}.gl-focus{position:absolute;right:18px;top:14px}.gl-chart-panel{position:relative}
-  .gl-coverage{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* page scrolls instead of squeezing chart + bottom panel into one viewport */
   #gl-desk{height:auto;min-height:100vh;grid-template-rows:52px auto 26px}
   .gl-watch-panel{position:sticky;top:0;height:calc(100vh - 52px);align-self:start}

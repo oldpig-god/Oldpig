@@ -6,7 +6,23 @@ import numpy as np
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 from app import core,tencent_source,daily_sync
-from app.comovement import block_ci,residualize
+
+
+def residualize(returns,market,fit=None):
+ x=np.column_stack([np.ones(len(returns)),market.to_numpy()])
+ beta=np.linalg.lstsq(x,returns.to_numpy(),rcond=None)[0] if fit is None else fit
+ residuals=pd.DataFrame(returns.to_numpy()-x@beta,index=returns.index,columns=returns.columns)
+ return residuals,beta
+
+
+def block_ci(x,y,seed=73,repetitions=1000,block=10):
+ rng=np.random.default_rng(seed);n=len(x)
+ starts=rng.integers(0,n,size=(repetitions,(n+block-1)//block))
+ idx=((starts[...,None]+np.arange(block))%n).reshape(repetitions,-1)[:,:n]
+ xx,yy=np.asarray(x)[idx],np.asarray(y)[idx]
+ xx-=xx.mean(axis=1,keepdims=True);yy-=yy.mean(axis=1,keepdims=True)
+ corr=(xx*yy).sum(axis=1)/np.sqrt((xx**2).sum(axis=1)*(yy**2).sum(axis=1))
+ return np.quantile(corr[np.isfinite(corr)],[.025,.975]).tolist()
 OUT=core.ROOT/'research/coal-components';OUT.mkdir(exist_ok=True)
 COAL={'601088.SH':'中国神华','601225.SH':'陕西煤业','601898.SH':'中煤能源','600188.SH':'兖矿能源','600985.SH':'淮北矿业','601699.SH':'潞安环能'}
 COMP={'002463.SZ':'沪电股份','002384.SZ':'东山精密','002938.SZ':'鹏鼎控股','002916.SZ':'深南电路','600183.SH':'生益科技','300408.SZ':'三环集团'}

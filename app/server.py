@@ -8,14 +8,11 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
-from . import core, collector, market, backfill, github_history
-import subprocess
-import sys
-from functools import lru_cache
+from . import core, collector, market, indicators, screener
 
-JOB = {'running':False,'started_at':None,'finished_at':None,'progress':0,'total':0,'last_result':None,'error':None}
+JOB = {'running':False,'kind':None,'stage':None,'started_at':None,'finished_at':None,'progress':0,'total':0,'last_result':None,'error':None}
 LOCK=threading.Lock()
-AUTO={'enabled':False,'interval_seconds':60,'last_attempt':0.,'daily_date':None,'close_date':None,'cooldown_until':0.}
+AUTO={'enabled':False,'interval_seconds':60,'last_attempt':0.,'screen_date':None,'cooldown_until':0.}
 STOP=threading.Event()
 TECH_JOB={'running':False,'started_at':None,'finished_at':None,'error':None}
 TECH_LOCK=threading.Lock()
@@ -29,7 +26,7 @@ def start_job(intervals, symbols=None, completed_marker=None):
     symbols=symbols or list(core.universe())
     with LOCK:
         if JOB['running']:return False
-        JOB.update(running=True,started_at=core.iso(),finished_at=None,progress=0,total=len(symbols)*len(intervals),error=None,last_result=None)
+        JOB.update(running=True,kind='chart',stage=None,started_at=core.iso(),finished_at=None,progress=0,total=len(symbols)*len(intervals),error=None,last_result=None)
     def progress(row):
         with LOCK:JOB.update(progress=JOB['progress']+1,last_result=row)
     def run():
@@ -57,7 +54,7 @@ def start_job(intervals, symbols=None, completed_marker=None):
 def start_market_job(completed_marker=None):
     with LOCK:
         if JOB['running']:return False
-        JOB.update(running=True,started_at=core.iso(),finished_at=None,progress=0,total=2,error=None,last_result=None)
+        JOB.update(running=True,kind='market',stage=None,started_at=core.iso(),finished_at=None,progress=0,total=2,error=None,last_result=None)
     def run():
         try:
             with core.db() as c:r=c.execute("SELECT value FROM metadata WHERE key='market_inventory'").fetchone()
@@ -65,7 +62,6 @@ def start_market_job(completed_marker=None):
             if not r or datetime.fromisoformat(core.json.loads(r['value'])['fetched_at']).astimezone(core.SH).date().isoformat()!=today:
                 market.refresh(inventory=True)
             results=market.refresh()
-            backfill.enqueue()
             with LOCK:
                 JOB.update(progress=2,last_result=results[-1] if results else None)
                 if completed_marker and all(r['status']=='ok' for r in results):AUTO[completed_marker[0]]=completed_marker[1]
@@ -81,15 +77,33 @@ def start_market_job(completed_marker=None):
     return True
 
 
-def launch_backfill():
-    log=(core.DATA/'backfill.log').open('a')
-    try:
-        process=subprocess.Popen([sys.executable,'-m','app.backfill'],cwd=core.ROOT,stdout=log,stderr=log,start_new_session=True)
-        return process.pid
-    finally:log.close()
+def start_screen_job(completed_marker=None, refresh=True):
+    with LOCK:
+        if JOB['running']:return False
+        JOB.update(running=True,kind='screen',started_at=core.iso(),finished_at=None,progress=0,total=0,error=None,last_result=None,stage='snapshot')
+    def progress(row):
+        with LOCK:JOB.update(progress=row['done'],total=row['total'],stage=row['stage'],last_result=row)
+    def run():
+        try:
+            result=screener.run(refresh=refresh,progress=progress)
+            with LOCK:
+                JOB['last_result']=result
+                if result.get('status')=='busy':JOB['error']='已有筛选进程运行，请稍后'
+                elif result.get('fetch_errors'):JOB['error']=f"{result['fetch_errors']}只候选日线获取失败，未通过技术面判断"
+                elif result.get('warnings'):JOB['error']=result['warnings'][0]
+                good=result.get('status')=='ok' or (result.get('status')=='partial' and result.get('fetch_errors',0)<=max(3,.05*(result.get('candidates') or 0)))
+                if completed_marker and good:AUTO[completed_marker[0]]=completed_marker[1]
+                elif completed_marker:AUTO['cooldown_until']=time.monotonic()+600
+        except Exception as exc:
+            with LOCK:JOB['error']=str(exc)[:400];AUTO['cooldown_until']=time.monotonic()+600
+        finally:
+            with LOCK:JOB.update(running=False,finished_at=core.iso(),stage=None)
+    threading.Thread(target=run,daemon=True).start()
+    return True
 
 
 def scheduler():
+    """When enabled: whole-market snapshots during sessions; one screen run after the close (16:05)."""
     while not STOP.wait(5):
         if not AUTO['enabled'] or snapshot()['running']:continue
         stamp=time.monotonic()
@@ -97,16 +111,9 @@ def scheduler():
         state=core.calendar_state();local=core.now().astimezone(core.SH)
         if state['state']=='trading':
             AUTO['last_attempt']=stamp;start_market_job()
-        elif state['date'] in core.calendar_dates() and local.hour*60+local.minute>=901 and AUTO['close_date']!=state['date']:
+        elif state['date'] in core.calendar_dates() and local.hour*60+local.minute>=965 and AUTO['screen_date']!=state['date']:
             AUTO['last_attempt']=stamp
-            start_market_job(('close_date',state['date']))
-        if state['date'] in core.calendar_dates() and local.hour*60+local.minute>=1050:
-            with core.db() as c:
-                r=c.execute("SELECT value FROM metadata WHERE key='daily_enqueued_date'").fetchone()
-                if not r or r['value']!=state['date']:
-                    c.execute("UPDATE history_tasks SET status='pending' WHERE interval='1d' AND status!='running'")
-                    c.execute("INSERT OR REPLACE INTO metadata VALUES('daily_enqueued_date',?)",(state['date'],))
-                    launch_backfill()
+            start_screen_job(('screen_date',state['date']))
 
 
 @asynccontextmanager
@@ -216,7 +223,7 @@ def universe(q:str='',kind:str='all',exchange:str='all',offset:int=0,limit:int=5
         total=c.execute('SELECT count(*) FROM instruments i WHERE '+clause,args).fetchone()[0]
         all_count=c.execute('SELECT count(*) FROM instruments WHERE active=1').fetchone()[0]
         rows=c.execute('SELECT i.*,q.payload quote,q.batch_id quote_batch,t.status history_status FROM instruments i LEFT JOIN market_quotes q USING(symbol) LEFT JOIN history_tasks t ON t.symbol=i.symbol AND t.interval="1d" WHERE '+clause+' ORDER BY '+order+' LIMIT ? OFFSET ?',args+[limit,offset]).fetchall()
-    now_dt=core.now();gh_catalog=github_history.catalog()
+    now_dt=core.now()
     items=[]
     for row in rows:
         item=dict(row);raw=item.pop('quote');quote=core.json.loads(raw) if raw else None
@@ -228,18 +235,8 @@ def universe(q:str='',kind:str='all',exchange:str='all',offset:int=0,limit:int=5
             item['freshness']={'state':'snapshot','label':label}
         else:
             item.pop('quote_batch',None);item['latest']=None;item['freshness']={'state':'missing','label':'快照未覆盖'}
-        item['github_available']=item['symbol'] in gh_catalog
         items.append(item)
     return dict(items=items,total=total,universe_total=all_count,offset=offset,limit=limit,server_time=core.iso())
-
-
-@lru_cache(maxsize=2)
-def cached_coverage(data_dir,bucket):return market.coverage()
-
-
-@app.get('/api/coverage')
-def coverage():
-    return dict(cached_coverage(str(core.DATA),int(time.monotonic()//15)),github_history=github_history.summary())
 
 
 @app.post('/api/market-refresh')
@@ -247,12 +244,6 @@ def market_refresh(request:Request):
     require_local_action(request)
     if not start_market_job():raise HTTPException(409,'采集任务正在执行')
     return snapshot()
-
-
-@app.post('/api/backfill')
-def history_backfill(request:Request):
-    require_local_action(request);backfill.enqueue()
-    return {'status':'queued','pid':launch_backfill()}
 
 
 @app.get('/api/series/{symbol}')
@@ -267,23 +258,17 @@ def series(symbol,interval='1d',limit=2000,source='primary'):
         inst=core.instrument(symbol,c=c)
         if not inst:raise HTTPException(404,'证券不在当前股票池中')
         if interval not in ('1d','1m','5m'):raise HTTPException(400,'不支持的周期')
-        if source not in ('primary','github'):raise HTTPException(400,'数据源不支持')
-        if source=='github':
-            if interval!='1d':raise HTTPException(400,'GitHub归档仅提供日线')
-            try:result=github_history.series(symbol,bounded)
-            except Exception as exc:raise HTTPException(502,'GitHub历史读取失败：'+str(exc)[:200])
-            if result is None:raise HTTPException(404,'该证券不在固定版本GitHub归档中，请切换主行情')
-            q=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
-            return dict(result,quote=core.json.loads(q['payload']) if q else None,github_available=True)
+        if source!='primary':raise HTTPException(400,'数据源不支持')
         rows=core.observations(symbol,interval,bounded,c=c)
         quote=c.execute('SELECT payload FROM market_quotes WHERE symbol=?',(symbol,)).fetchone()
         span=core.series_span(c,symbol,interval)
         batch=c.execute('SELECT * FROM batches WHERE symbol=? AND interval=? ORDER BY started_at DESC LIMIT 1',(symbol,interval)).fetchone()
         fresh=core.freshness(rows[-1] if rows else None,interval,c=c)
+    ind=indicators.series_indicators(rows) if interval!='1m' else {'latest':None,'continuous':True}
     return dict(instrument=inst,interval=interval,chart_type='price_line' if interval=='1m' else 'candlestick',
                 history_window=core.history_window(),records=rows,quote=core.json.loads(quote['payload']) if quote else None,range=span,freshness=fresh,
-                source='东方财富 / AKShare',github_available=symbol in github_history.catalog(),adjustment='不复权',volume_unit='未核验，仅保留原始量',
-                last_batch=dict(batch) if batch else None,limitations=['未核验成交量单位，不用于跨源量额比较','当前数据未提供历史复权因子，不计算投资收益率'])
+                source='东方财富 / AKShare',adjustment='不复权',volume_unit='未核验，仅保留原始量',
+                last_batch=dict(batch) if batch else None,indicators=ind,limitations=['未核验成交量单位，不用于跨源量额比较','当前数据未提供历史复权因子，不计算投资收益率'])
 
 
 @app.get('/api/quality')
@@ -348,6 +333,21 @@ def auto_refresh(body:AutoRefresh,request:Request):
     require_local_action(request)
     AUTO['enabled']=body.enabled
     return dict(enabled=AUTO['enabled'],interval_seconds=60,market=core.calendar_state())
+
+
+@app.get('/api/screen')
+def screen(industry_band:bool=True):
+    return Response(core.json.dumps(screener.view(screener.latest_payload(),industry_band),ensure_ascii=False,allow_nan=False,separators=(',',':')),media_type='application/json')
+
+
+class ScreenRun(BaseModel):refresh:bool=True
+
+
+@app.post('/api/screen/run')
+def screen_run(body:ScreenRun,request:Request):
+    require_local_action(request)
+    if not start_screen_job(refresh=body.refresh):raise HTTPException(409,'采集或筛选任务正在执行')
+    return snapshot()
 
 # Strategy validation has a separate immutable experiment ledger.
 from . import strategy_service

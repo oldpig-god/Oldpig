@@ -58,8 +58,15 @@ def run(store,max_symbols=160,budget_seconds=110,at=None,clock=time.monotonic):
             store.put_json(health_service.PREFIX+'runs/'+old['target']+'.json.gz',archive)
         # Progress belongs to a target day. Every symbol is revisited on the next target;
         # its durable delta watermark determines how much a previous failure must catch up.
-        known=core.universe();priority=['000034.SZ','002463.SZ','002384.SZ','603256.SH','002938.SZ','002484.SZ','600031.SH','510300.SH']
-        order=[s for s in priority if s in known]+[s for s in sorted(known) if s not in priority]
+        known=core.universe();priority=[]
+        screen=store.get_json('system/screen/latest.json.gz',optional=True)
+        if screen and screen.get('items'):
+            items=screen['items']
+            passers=[i['symbol'] for i in items if all((i.get('checks',{}).get(k) is not False) if k=='pe_band' else i.get('checks',{}).get(k) is True for k in ('not_st','cap','pe_positive','pe_band','ma','ema','macd'))]
+            priority=list(dict.fromkeys(passers+[i['symbol'] for i in items]))
+        priority+=[s for s in ['000034.SZ','002463.SZ','002384.SZ','603256.SH','002938.SZ','002484.SZ','600031.SH','510300.SH'] if s not in priority]
+        priority=[s for s in priority if s in known]
+        order=priority+[s for s in sorted(known) if s not in set(priority)]
         state=dict(target=target,calendar_end=calendar[-1],started_at=core.iso(),runs=runs,sources={},repair_completed=old.get('repair_completed',[]),jobs={s:dict(status='pending',attempts=0,**{k:old_jobs.get(s,{}).get(k) for k in ('last_success','last_failure','consecutive_failures')}) for s in order})
         store.put_json(STATE,state)
     # A previous invocation killed by the platform cannot report its exception. Recover

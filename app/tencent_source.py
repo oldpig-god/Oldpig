@@ -88,7 +88,17 @@ def parse_quotes(content,symbols):
         try:
             price=float(cells[3]);previous=float(cells[4]);stamp=datetime.strptime(cells[30],'%Y%m%d%H%M%S').replace(tzinfo=core.SH)
             if min(price,previous)<=0 or stamp>core.now().astimezone(core.SH)+timedelta(minutes=5):continue
-            result[symbol]={'symbol':symbol,'name':cells[1],'price':price,'previous_close':previous,'pct_change':(price/previous-1)*100,'event_time':stamp.isoformat(),'volume':core.numeric(cells[6],nonnegative=True)}
+            row={'symbol':symbol,'name':cells[1],'price':price,'previous_close':previous,'pct_change':(price/previous-1)*100,'event_time':stamp.isoformat(),'volume':core.numeric(cells[6],nonnegative=True)}
+            if len(cells)>45:
+                fcap=core.numeric(cells[44],positive=True);mcap=core.numeric(cells[45],positive=True)
+                if fcap is not None:row['float_cap']=fcap*1e8
+                if mcap is not None:row['market_cap']=mcap*1e8
+                pe=core.numeric(cells[39])
+                if pe is not None:row['pe_ttm']=pe
+                if len(cells)>52:
+                    ped=core.numeric(cells[52])
+                    if ped is not None:row['pe_dynamic']=ped
+            result[symbol]=row
         except (ValueError,IndexError):continue
     return result
 
@@ -110,7 +120,10 @@ def market_quotes(known):
     with ThreadPoolExecutor(max_workers=2) as pool:
         for result in pool.map(fetch,groups):
             for symbol,value in result.items():
-                rows[symbol]={'symbol':symbol,'close':value['price'],'pct_change_source':value['pct_change'],'event_time':value['event_time'],'fetched_at':stamp,'volume_raw':value['volume'],'amount_raw':None,'source':'腾讯证券 · 云端备用快照','quality':'snapshot','time_semantics':'source_update'}
+                item={'symbol':symbol,'close':value['price'],'pct_change_source':value['pct_change'],'event_time':value['event_time'],'fetched_at':stamp,'volume_raw':value['volume'],'amount_raw':None,'source':'腾讯证券 · 云端备用快照','quality':'snapshot','time_semantics':'source_update'}
+                for k in ('market_cap','float_cap','pe_ttm','pe_dynamic'):
+                    if k in value:item[k]=value[k]
+                rows[symbol]=item
     if len(rows)<len(known)*.8:raise ValueError('Tencent bulk quotes incomplete')
     return {'fetched_at':stamp,'items':rows,'source':'Tencent'}
 

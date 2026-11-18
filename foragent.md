@@ -4,7 +4,7 @@
 
 > **先区分轻量研究与全市场数据：** 使用最新main源码；新增六股技术面研究自带 `research/technical/snapshot/`，无需先下载3GB数据包。若需要完整行情库，再下载 `finance-v2026.11.10` 的两个分片，用 `scripts/join_release.py` 合并；解压旧ZIP后仅把 `data/` 复制到最新源码根目录，不要用旧代码覆盖最新程序。旧Release是不可变的历史交付版本，未包含本次六股模块。
 
-请先完整阅读本文件，然后在**最新源码的项目根目录**工作。目标是让接收者在自己的电脑查看真实 A股/ETF 行情和已保存的协方差研究，并按需继续更新。不要依赖原作者机器的路径、Python环境或已启动的服务。
+请先完整阅读本文件，然后在**最新源码的项目根目录**工作。目标是让接收者在自己的电脑查看真实 A股/ETF 行情、策略筛选结果与多工作台分析（`/stocks`、`/technical`、`/strategy`、`/compare`、`/discover`、`/data-health`、`/research`），并按需继续更新。不要依赖原作者机器的路径、Python环境或已启动的服务。
 
 ## 1. 交接内容与环境边界
 
@@ -27,9 +27,11 @@ py -3.11 -c "import sys,struct; print(sys.version); print(struct.calcsize('P')*8
 
 在资源管理器中先运行 `setup-windows.cmd`，安装成功后运行 `start-windows.cmd`。窗口保留运行时，打开：
 
-- 行情：`http://127.0.0.1:8765/`
-- 共振研究：`http://127.0.0.1:8765/static/research/index.html`
+- 策略筛选主页：`http://127.0.0.1:8765/`
+- 个股研究与财报：`http://127.0.0.1:8765/stocks`
+- 六股/自选技术面：`http://127.0.0.1:8765/technical`
 - API状态：`http://127.0.0.1:8765/api/health`
+- 策略筛选结果：`http://127.0.0.1:8765/api/screen`
 
 Agent应优先使用下列可检查退出码的PowerShell命令。无需激活虚拟环境，因此不受PowerShell激活脚本执行策略影响：
 
@@ -63,8 +65,8 @@ Linux若缺venv模块，安装发行版对应的python3-venv。绘图若缺中�
 
 1. 查看 `delivery-manifest.json` 与压缩包SHA-256；需要逐文件验证时运行 `python -X utf8 scripts/verify_delivery.py`，会顺序读取约10GB数据，不需要网络。
 2. `scripts/doctor.py`应输出Python/平台、已装依赖、上海时间、数据路径、SQLite schema和研究结果状态。失败先修环境，不要删库重建。深度SQLite检查可执行 `scripts/doctor.py --deep`，全库扫描较慢。
-3. 页面应能看到证券列表、覆盖数量、日线和“共振研究”入口；共振页应显示16只股票、3只ETF、1,172个共同收益率样本和120组股票对。
-4. 本次快照：5,580只A股、1,666只ETF；7,245个证券有日线、7,397,946条窗口内日线；1个空响应为688827.SH。1,294个证券在已观察首尾日期之间有交易日数量缺口，原因未全部核验。不得把采集任务完成解释为每只证券都有完整五年历史。
+3. 页面应能看到策略筛选入选列表、8级筛选漏斗、7项规则校验胶囊、前复权日K及 MA/EMA/MACD 附图，并可切换行业 `PE ±2σ` 条件开关与跳转到 `/stocks` 等研究页面。
+4. 若本地使用完整历史库运行 `python3 -X utf8 -m app.screener`，请先检查 `scripts/doctor.py` 与交易日历、行情快照是否有效；不得把采集任务完成解释为每只证券都有完整五年历史，且前复权日线获取失败的候选不计入入选。
 5. Python测试：`.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -q`（Unix替换Python路径）。交付前Linux运行结果记录在 `design/delivery-validation.json`。Windows原生执行仍需接收方确认，不能声称本包已在Windows实机验证。
 
 可选浏览器回归需要单独安装开发依赖与浏览器：
@@ -72,11 +74,10 @@ Linux若缺venv模块，安装发行版对应的python3-venv。绘图若缺中�
 ```powershell
 .\.venv\Scripts\python.exe -X utf8 -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -X utf8 -m playwright install chromium
-.\.venv\Scripts\python.exe -X utf8 scripts\check_research_ui.py
 .\.venv\Scripts\python.exe -X utf8 scripts\check_market_ui.py
 ```
 
-测试默认连接8765端口，请先启动服务。已装Chrome也可设置 `CHROME_PATH` 为其本机绝对路径。浏览器测试中的证券数量基于本次快照；更新名录后需核对预期变化。
+测试默认连接8765端口，请先启动服务。已装Chrome也可设置 `CHROME_PATH` 为其本机绝对路径。浏览器测试中的证券数量与筛选人数基于当前数据库快照；重新运行筛选后需核对变化。
 
 ## 5. 数据更新与环境变量
 
@@ -88,10 +89,8 @@ Linux若缺venv模块，安装发行版对应的python3-venv。绘图若缺中�
 # 更新当前证券名录、再更新批量行情
 .\.venv\Scripts\python.exe -X utf8 -m app.market --inventory
 .\.venv\Scripts\python.exe -X utf8 -m app.market
-# 续跑未完成的历史任务；本包已完成的任务会跳过
-.\.venv\Scripts\python.exe -X utf8 -m app.backfill
-# 仅在确需重新尝试异常/空任务时使用
-.\.venv\Scripts\python.exe -X utf8 -m app.backfill --retry
+# 运行一次策略筛选（先刷新全市场快照，再对非ST、总市值>500亿、PE>0候选抓前复权日线并更新入选图表日线）
+.\.venv\Scripts\python.exe -X utf8 -m app.screener
 ```
 
 - `FINANCE_DATA_DIR`：数据目录绝对路径。默认项目根目录下的 `data/`。若迁移数据，应复制整个data目录及其相对结构，不只复制SQLite文件；原始证据路径与任务状态互相关联。
@@ -99,20 +98,18 @@ Linux若缺venv模块，安装发行版对应的python3-venv。绘图若缺中�
 - 全市场日线为滚动五个日历年；主库为不复权价格。分钟数据按需获取，不代表全市场分钟覆盖。上游无有效值时保留缺失，不得造价补齐。
 - 首次跨机器验收时，若有代理环境变量，检查它们指向本机可用代理；不得沿用原作者的localhost代理地址。
 
-## 6. 研究逻辑与复现
+## 6. 策略筛选逻辑与复现
 
-入口 `app/comovement.py`。固定选取16只当前存续股票，另有沪深300/中证500/创业板ETF；有选择与存续偏差。研究使用单独采集的东方财富后复权（fqt=2）日线，不改主库。前复权对照为fqt=1；现金分红价格调整会改变历史收益分母，两种序列均未独立验证为分红再投资总回报。
+入口 `app/screener.py`（HTTP 入口 `GET /api/screen?industry_band=true|false`、`POST /api/screen/run`）。面向全市场当前 A股名录逐级筛选：
+1. `not_st`：排除 `ST`、`*ST` 及退市风险警示股票。
+2. `cap`：总市值 > 500 亿元。
+3. `pe_positive`：市盈率 TTM > 0。
+4. `pe_band`：所属同行业有效样本（非 ST 且 PE TTM > 0）计算均值与总体标准差，要求在均值 ± 2σ 内；同行业有效样本数 < 5 时不因该条件淘汰，并在前端提供开关切换 `industry_band`。
+5. `ma`：前复权日线最新收盘后 `MA5 > MA10` 或 `MA5 > MA20`。
+6. `ema`：前复权日线最新收盘后 `EMA12 > EMA20` 或 `EMA12 > EMA50`。
+7. `macd`：`MACD(12,26,9)` 短线超长线（`DIF > DEA`）。
 
-按保存的交易日历对齐后计算对数收益率；不填充缺失日、不跨缺失日期计算收益，不删除大涨跌。使用所有19个标的共同有效日期。按时间前80%筛选股票对，后20%回顾性检验。输出样本协方差、Ledoit–Wolf收缩协方差、Pearson/Spearman相关、扣除沪深300ETF线性影响后的残差相关、60交易日滚动相关、层次聚类与PCA。年化因子固定252。置信区间是探索性的区块bootstrap，未进行多重比较校正。
-
-```powershell
-# 完全本地复现本轮固定快照，不发网络请求
-.\.venv\Scripts\python.exe -X utf8 -m app.comovement --snapshot data/research/20261110T154400 --reference app/static/research/qfq-analysis.json
-# 重新抓取当前近5年并生成新研究，会更新研究页静态结果
-.\.venv\Scripts\python.exe -X utf8 -m app.comovement
-```
-
-研究结果在 `app/static/research/`，原始输入及manifest在 `data/research/`。重算前需要保留旧结果时先复制该结果目录。热力图与CSV均可下载。同步相关只描述历史共同波动，不能据此推断因果、领先关系或可套利价差。
+前复权日线仅对通过前3项前置条件的候选拉取，获取失败者记录 `fetch_errors` 且不计入入选；已入选股票同步写入 1d 图表缓存并在云端通过 CloudStore `system/screen/latest.json.gz` 同步展示。原旧版共振研究页 `/static/research/index.html`（`app/comovement.py`）、`app/github_history.py` 及 `/api/coverage`、`/api/backfill` 已清理移除。
 
 ## 7. 代码地图与接手约束
 
@@ -120,15 +117,16 @@ Linux若缺venv模块，安装发行版对应的python3-venv。绘图若缺中�
 |---|---|
 | `app/core.py` | SQLite结构、原始证据、规范化、修订、交易日历、五年窗口 |
 | `app/collector.py` / `provider.py` | 隔离的AKShare调用与按需采集 |
-| `app/market.py` / `history_source.py` / `backfill.py` | 全市场名录、批量报价、日线与持久队列 |
+| `app/market.py` / `history_source.py` / `spot_source.py` | 全市场名录、批量报价（含市值/PE/行业）、直连前复权日线 |
+| `app/screener.py` / `app/indicators.py` | A股策略筛选引擎、漏斗计算、MA/EMA/MACD 技术指标 |
 | `app/process_lock.py` | Windows msvcrt / Unix fcntl非阻塞进程锁；禁止同时运行同类采集器 |
-| `app/server.py` / `app/static/` | FastAPI、本地行情界面、独立研究页 |
-| `app/github_history.py` / `research/github-data/` | 固定commit目录索引与按需独立GitHub来源；复权未声明 |
+| `app/server.py` / `app/cloud_server.py` / `app/static/` | FastAPI 本地与云端服务、策略筛选主页 `/` 及多工作台路由 |
+| `app/daily_sync.py` / `app/cloud_store.py` | 云端每日增量同步（优先入选与候选股票）与私有存储适配 |
 | `contracts/` / `design/` | 集成范围、覆盖审计、视觉截图与历史设计；历史设计可能包含尚未实施的目标 |
 
-实际栈为 Python、SQLite、FastAPI、原生JavaScript、KLineChart、pandas/NumPy/SciPy/scikit-learn/Matplotlib。Polars、DuckDB、React等历史规划不是运行时依赖。PyPortfolioOpt与Riskfolio-Lib用于方法参考，本包未直接依赖或宣称实现其完整组合优化器。
+实际栈为 Python、SQLite、FastAPI、原生JavaScript、KLineChart（及各研究子页使用的 Lightweight Charts / ECharts / PyMiniRacer）。Polars、DuckDB、React等历史规划不是运行时依赖。
 
-修改时保留：来源参数与哈希、拒绝原因、复权标签、真实时点和缺失值。不将批量报价冒充分钟K线，不把抓取时间当成交时间，不混合未声明复权方式的GitHub价格与主库，不承诺无缺口全历史。服务仅本地研究，无账户、交易或下单功能。
+修改时保留：来源参数与哈希、拒绝原因、复权标签、真实时点和缺失值。不将批量报价冒充分钟K线，不把抓取时间当成交时间，不承诺无缺口全历史。服务仅用于筛选与研究，无实盘账户、交易或下单功能。
 
 不要在运行服务或采集进程时直接复制单独的SQLite主文件；WAL模式可能尚有已提交内容在旁文件中。备份应使用SQLite backup，或停掉全部写入进程后checkpoint再复制。不要删除用户原始数据库、证据文件或任务记录来掩盖启动问题。
 
@@ -244,3 +242,10 @@ API：`GET /api/technical/search?q=茅台`；`POST /api/technical/refresh`，JSO
 ## 行情列式存储与工作台 v3 同步（2026-11-17）
 
 已将 `app/bars.py`（列式 `bars` 压缩存储与 `scripts/migrate_bars.py` 迁移脚本）、`series_stats` 快速健康统计、`/api/universe` 服务端排序、单连接 `/api/series/{symbol}` 复用以及工作台/相关性研究页面 v3 界面与手机端响应式修复合入当前仓库，并完成腾讯云 CloudBase `guanlan-api` 与 `guanlan-daily-sync` 更新发布；详细发布时间与线上验证见 [deploy/cloudbase/FOR_AGENT.md](deploy/cloudbase/FOR_AGENT.md)。
+
+## A股策略筛选改版与云端同步（2026-11-18）
+
+已完成全项目向 A股策略筛选（非 ST、总市值 > 500亿、`PE TTM > 0`、行业 `PE TTM ± 2σ`、`MA5 > MA10/MA20`、`EMA12 > EMA20/EMA50`、`MACD DIF > DEA`）的重构，并将变更同步到当前仓库与腾讯云 CloudBase：
+- 后端新增/同步 `app/screener.py`、`app/spot_source.py`、`app/market.py`、`app/history_source.py`、`app/indicators.py`、`app/tencent_source.py`、`app/server.py`、`app/cloud_server.py` 与 `app/daily_sync.py`（日更队列优先处理筛选入选与候选股票），保留 `/stocks`、`/technical`、`/strategy`、`/compare`、`/discover`、`/data-health` 与 `/research` 多页面路由。
+- 前端主页 `/`（`app/static/{index.html,app.js,app.css}`）全面切换为策略筛选工作台（7项规则胶囊、8级筛选漏斗、行业 PE ±2σ 切换、`MA + EMA + VOL + MACD` 图表与 `/stocks` 快捷入口），同时移除旧版 `/static/research/index.html`、`app/comovement.py`、`app/github_history.py`、`/api/coverage` 与 `/api/backfill`。
+- 通过 `scripts/cloudbase_prepare.py --source-db ...` 将最新筛选快照 `system/screen/latest.json.gz`、全市场快照与入选股票前复权日线上传至私有 CloudStore，并更新部署 `guanlan-api` 与 `guanlan-daily-sync`；详细部署时间与线上验收见 [deploy/cloudbase/FOR_AGENT.md](deploy/cloudbase/FOR_AGENT.md)。

@@ -39,7 +39,8 @@ class CloudSecurityTests(unittest.TestCase):
     def test_auth_blocks_api_downloads_and_pages(self):
         self.assertEqual(self.client.get('/api/technical').status_code,401)
         self.assertEqual(self.client.get('/static/technical/analysis.json').status_code,401)
-        self.assertEqual(self.client.get('/static/research/analysis.json').status_code,401)
+        self.assertEqual(self.client.get('/api/screen').status_code,401)
+        self.assertEqual(self.client.post('/api/screen/run',json={}).status_code,401)
         self.assertEqual(self.client.get('/',follow_redirects=False).status_code,303)
         self.assertEqual(self.client.get('/healthz').json(),{'ok':True})
     def test_invalid_password_signed_cookie_and_logout(self):
@@ -72,10 +73,16 @@ class CloudSecurityTests(unittest.TestCase):
         r=self.client.get('/api/session',headers={'x-cloudbase-context':'secret-platform-value'})
         self.assertNotIn('secret-platform-value',r.text);self.assertNotIn('test-secret',r.text)
 
-    def test_cloud_backfill_really_refreshes_selected_daily_history(self):
+    def test_cloud_screen_reads_store_and_run_persists_latest(self):
+        sample={'id':'r1','created_at':'2026-11-18T00:00:00+00:00','as_of':'2026-11-17','status':'ok','counts':{'universe':10,'not_st':9},'items':[{'symbol':'600519.SH','code':'600519','exchange':'SH','name':'贵州茅台','industry':'白酒Ⅱ','close':1500,'pct_change':1.0,'amount':1e9,'market_cap':1.8e12,'float_cap':1.8e12,'pe_ttm':22.0,'quote_time':'2026-11-17T15:00:00+08:00','band':None,'technicals':None,'checks':{'not_st':True,'cap':True,'pe_positive':True,'pe_band':None,'ma':True,'ema':True,'macd':True},'fetch_error':None,'stale':False}]}
+        self.store.values['system/screen/latest.json.gz']=sample
         self.login()
-        with patch.object(self.module,'refresh_series',return_value={'mode':'cloud','updated':True}) as refresh:
-            r=self.client.post('/api/backfill',json={'symbols':['600519.SH'],'intervals':['1m']},headers={'x-workbench-action':'local-refresh'})
-        self.assertEqual(r.status_code,200)
-        self.assertEqual(refresh.call_args.args[1].symbols,['600519.SH'])
-        self.assertEqual(refresh.call_args.args[1].intervals,['1d'])
+        r=self.client.get('/api/screen?industry_band=true')
+        self.assertEqual(r.status_code,200);self.assertEqual(r.json()['passed'],1)
+        with patch.object(self.module.screener,'run',return_value={'status':'ok','id':'r2','passed':1}) as run_mock,patch.object(self.module.screener,'latest_payload',return_value=dict(sample,id='r2')):
+            post=self.client.post('/api/screen/run',json={'refresh':False},headers={'x-workbench-action':'local-refresh'})
+        self.assertEqual(post.status_code,200)
+        self.assertEqual(post.json()['mode'],'cloud')
+        self.assertFalse(post.json()['running'])
+        run_mock.assert_called_once_with(refresh=False,update_bars=False)
+        self.assertEqual(self.store.values['system/screen/latest.json.gz']['id'],'r2')

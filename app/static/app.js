@@ -3,14 +3,12 @@
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 const root = $('#gl-desk');
-const PAGE = 50;
-
 const state = {
-  assets: [], selected: '510300.SH', interval: '1d', filter: 'all', sortMode: 'code', tab: 'bars',
-  ma: true, vol: true, offset: 0, pageTotal: 0, historySource: 'primary', sessionDay: 'latest', focus: false, lastJob: false,
+  assets: [], screen: null, selected: null, interval: '1d', sortMode: 'cap', tab: 'screen', band: true, showFailed: false,
+  ma: true, ema: true, vol: true, macd: true, sessionDay: 'latest', focus: false, lastJob: false, searchHits: [],
 };
 let chart = null, current = null;
-let seriesAbort = null, seriesReq = 0, universeAbort = null, universeReq = 0, toastTimer = 0;
+let seriesAbort = null, seriesReq = 0, searchAbort = null, searchReq = 0, toastTimer = 0;
 
 /* ───────── formatting ───────── */
 const fmt = (v, d = 3) => v === null || v === undefined || Number.isNaN(Number(v)) ? '—'
@@ -22,6 +20,7 @@ const big = v => {
   if (a >= 1e4) return (n / 1e4).toFixed(2) + '万';
   return fmt(n, 0);
 };
+const yi = v => v === null || v === undefined ? '—' : Math.round(Number(v) / 1e8).toLocaleString() + '亿';
 const pct = v => v === null || v === undefined ? '—' : (v > 0 ? '+' : '') + Number(v).toFixed(2) + '%';
 const dir = v => v > 0 ? 'up' : v < 0 ? 'down' : '';
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -39,7 +38,11 @@ async function api(url, options = {}) {
 }
 async function action(path, body) {
   const result = await api(path, {method: 'POST', headers: {'content-type': 'application/json', 'x-workbench-action': 'local-refresh'}, body: JSON.stringify(body)});
-  if (result.mode === 'cloud') { await loadUniverse(); await loadSeries(); await loadCoverage(); }
+  if (result.mode === 'cloud') {
+    await loadScreen();
+    await loadSeries();
+    if (state.tab === 'quality') await loadQuality();
+  }
   return result;
 }
 
@@ -79,7 +82,7 @@ function applyTheme() {
     },
     indicator: {
       bars: [{upColor: alpha(up, .55), downColor: alpha(down, .55), noChangeColor: alpha(text, .5)}],
-      lines: [{color: accent, size: 1.2}, {color: ma2, size: 1.2}, {color: '#a07cff', size: 1.2}],
+      lines: [{color: accent, size: 1.2}, {color: ma2, size: 1.2}, {color: '#a07cff', size: 1.2}, {color: '#2dd4bf', size: 1.2}],
       tooltip: {text: font},
     },
     xAxis: {axisLine: {color: line}, tickLine: {show: false}, tickText: font},
@@ -116,58 +119,175 @@ function fitLastPriceLabel() {
 
 function indicators() {
   if (!chart) return;
+  const non1m = state.interval !== '1m';
   const hasMA = chart.getIndicatorByPaneId('candle_pane', 'MA');
-  const wantMA = state.ma && state.interval !== '1m';
+  const wantMA = state.ma && non1m;
   if (wantMA && !hasMA) chart.createIndicator({name: 'MA', calcParams: [5, 10, 20]}, true, {id: 'candle_pane'});
   if (!wantMA && hasMA) chart.removeIndicator('candle_pane', 'MA');
+  const hasEMA = chart.getIndicatorByPaneId('candle_pane', 'EMA');
+  const wantEMA = state.ema && non1m;
+  if (wantEMA && !hasEMA) {
+    chart.createIndicator({
+      name: 'EMA', calcParams: [12, 20, 50],
+      styles: {lines: [
+        {color: '#f59e0b', size: 1.2, style: 'dashed', dashedValue: [4, 3]},
+        {color: '#ec4899', size: 1.2, style: 'dashed', dashedValue: [4, 3]},
+        {color: '#14b8a6', size: 1.2, style: 'dashed', dashedValue: [4, 3]},
+      ]},
+    }, true, {id: 'candle_pane'});
+  }
+  if (!wantEMA && hasEMA) chart.removeIndicator('candle_pane', 'EMA');
   const hasVOL = chart.getIndicatorByPaneId('vol_pane', 'VOL');
-  if (state.vol && !hasVOL) chart.createIndicator({name: 'VOL', calcParams: [5, 10]}, false, {id: 'vol_pane', height: 86, minHeight: 50, gap: {top: 0.32, bottom: 0.02}});
+  if (state.vol && !hasVOL) chart.createIndicator({name: 'VOL', calcParams: [5, 10]}, false, {id: 'vol_pane', height: 68, minHeight: 44, gap: {top: 0.30, bottom: 0.02}});
   if (!state.vol && hasVOL) chart.removeIndicator('vol_pane', 'VOL');
-  $('#ma').disabled = state.interval === '1m';
+  const hasMACD = chart.getIndicatorByPaneId('macd_pane', 'MACD');
+  const wantMACD = state.macd && non1m;
+  if (wantMACD && !hasMACD) chart.createIndicator({name: 'MACD', calcParams: [12, 26, 9]}, false, {id: 'macd_pane', height: 78, minHeight: 48, gap: {top: 0.22, bottom: 0.08}});
+  if (!wantMACD && hasMACD) chart.removeIndicator('macd_pane', 'MACD');
+  $('#ma').disabled = !non1m;
+  $('#ema').disabled = !non1m;
+  $('#macd').disabled = !non1m;
   $('#ma').setAttribute('aria-pressed', String(wantMA));
+  $('#ema').setAttribute('aria-pressed', String(wantEMA));
   $('#vol').setAttribute('aria-pressed', String(state.vol));
+  $('#macd').setAttribute('aria-pressed', String(wantMACD));
 }
 
-/* ───────── watchlist ───────── */
-function freshnessDot(a) {
-  if (!a.latest) return 'none';
-  if (a.latest.close === null) return 'none';
-  return /超3分钟|未知/.test(a.freshness?.label || '') ? 'stale' : 'ok';
+/* ───────── screen list ───────── */
+const RULES = [['not_st', '非ST'], ['cap', '市值>500亿'], ['pe_positive', 'PE>0'], ['pe_band', '行业PE±2σ'], ['ma', 'MA'], ['ema', 'EMA'], ['macd', 'MACD']];
+const mark = v => v === true ? '<span class="gl-mark ok">✓</span>' : v === false ? '<span class="gl-mark no">✗</span>' : '<span class="gl-mark na" title="无法判断">?</span>';
+const SORTS = {
+  cap: (a, b) => (b.market_cap ?? 0) - (a.market_cap ?? 0),
+  pct_desc: (a, b) => (b.pct_change ?? -1e9) - (a.pct_change ?? -1e9),
+  pct_asc: (a, b) => (a.pct_change ?? 1e9) - (b.pct_change ?? 1e9),
+  pe: (a, b) => (a.pe_ttm ?? 1e9) - (b.pe_ttm ?? 1e9),
+  industry: (a, b) => String(a.industry).localeCompare(String(b.industry), 'zh') || (b.market_cap ?? 0) - (a.market_cap ?? 0),
+  name: (a, b) => a.name.localeCompare(b.name, 'zh'),
+};
+const screenItem = symbol => state.screen?.items.find(i => i.symbol === symbol);
+
+function visibleAssets() {
+  const q = $('#search').value.trim().toUpperCase();
+  const items = (state.screen?.items || []).filter(i => i.passed && (!q || i.symbol.includes(q) || i.name.toUpperCase().includes(q) || String(i.industry).toUpperCase().includes(q)));
+  return items.sort(SORTS[state.sortMode] || SORTS.cap);
 }
+
+function watchRow(a, fromScreen) {
+  const p = fromScreen ? a.pct_change : a.latest?.pct_change_source, price = fromScreen ? a.close : a.latest?.close;
+  const sub = fromScreen ? `${yi(a.market_cap)} · PE ${fmt(a.pe_ttm, 1)}`
+    : (a.screen ? (a.screen.passed ? '入选' : a.screen.fetch_error ? '候选 · 日线获取失败，未判定' : '候选未通过') : '不在候选池');
+  return `<button class="gl-watch-item${!fromScreen && !a.screen?.passed ? ' is-fail' : ''}" role="option" data-symbol="${esc(a.symbol)}" aria-pressed="${a.symbol === state.selected}">
+      <span><span class="gl-w-name">${esc(a.name)}</span>
+        <span class="gl-w-meta">${esc(a.symbol)}<span class="gl-w-badge gl-w-ind">${esc(fromScreen ? a.industry || '—' : a.exchange)}</span></span>
+        <span class="gl-w-sub">${esc(sub)}</span></span>
+      <span class="gl-w-right"><span class="gl-w-price">${fmt(price, 2)}</span><span class="gl-pct ${dir(p)}">${pct(p)}</span></span>
+    </button>`;
+}
+
 function renderWatch() {
   const list = $('#gl-watch-list');
-  list.innerHTML = state.assets.length ? state.assets.map(a => {
-    const p = a.latest?.pct_change_source;
-    const when = a.latest ? (a.latest.event_time ? '行情 ' : '抓取 ') + time(a.latest.event_time || a.latest.fetched_at).slice(5, 16) : '尚无快照';
-    return `<button class="gl-watch-item" role="option" data-symbol="${esc(a.symbol)}" aria-pressed="${a.symbol === state.selected}" title="${esc(a.freshness?.label)} · ${esc(when)}">
-      <span><span class="gl-w-name">${esc(a.name)}</span>
-        <span class="gl-w-meta"><i class="gl-w-dot ${freshnessDot(a)}"></i>${esc(a.symbol)}<span class="gl-w-badge">${a.kind === 'etf' ? 'ETF' : a.exchange}</span></span></span>
-      <span class="gl-w-right"><span class="gl-w-price">${fmt(a.latest?.close, digits(a))}</span><span class="gl-pct ${dir(p)}">${pct(p)}</span></span>
-    </button>`;
-  }).join('') : '<p class="gl-empty">没有匹配的证券</p>';
-  $$('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === state.filter)));
-  const {offset, pageTotal} = state;
-  $('#page-info').textContent = `${pageTotal ? offset + 1 : 0}–${Math.min(offset + state.assets.length, pageTotal)} / ${pageTotal}`;
-  $('#prev-page').disabled = offset === 0;
-  $('#next-page').disabled = offset + state.assets.length >= pageTotal;
+  state.assets = visibleAssets();
+  let html = state.assets.map(a => watchRow(a, true)).join('');
+  const q = $('#search').value.trim();
+  const extra = state.searchHits.filter(h => !state.assets.some(a => a.symbol === h.symbol));
+  if (q && extra.length) {
+    html += `<div class="gl-section">全市场搜索（不在入选结果中）</div>` + extra.map(h => watchRow({...h, screen: screenItem(h.symbol)}, false)).join('');
+  }
+  if (!html) html = state.screen?.run ? '<p class="gl-empty">没有匹配的入选股票</p>' : '<p class="gl-empty">尚无筛选结果，点击右上角“运行筛选”</p>';
+  list.innerHTML = html;
+  $('#list-title').textContent = `策略入选 ${state.screen?.passed ?? 0} 只` + (state.band ? '' : '（未用行业PE条件）');
+  $('#page-info').textContent = q ? `匹配 ${state.assets.length}` : '';
+  const run = state.screen?.run;
+  $('#run-info').textContent = run ? `筛选于 ${time(run.created_at).slice(5, 16)}` : '';
+  $('#band').setAttribute('aria-pressed', String(state.band));
 }
 function markSelected() {
   $$('.gl-watch-item').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.symbol === state.selected)));
+  $$('#screen-rows tr').forEach(r => r.classList.toggle('is-selected', r.dataset.row === state.selected));
   $(`.gl-watch-item[data-symbol="${CSS.escape(state.selected)}"]`)?.scrollIntoView({block: 'nearest'});
 }
 
-async function loadUniverse({skeleton = false} = {}) {
-  universeAbort?.abort(); universeAbort = new AbortController();
-  const id = ++universeReq;
-  if (skeleton) $('#gl-watch-list').innerHTML = '<div class="gl-skel"></div>'.repeat(10);
-  const q = new URLSearchParams({q: $('#search').value.trim(), kind: state.filter, exchange: $('#exchange').value, offset: state.offset, limit: PAGE, sort: state.sortMode});
+async function loadScreen() {
+  state.screen = await api('/api/screen?industry_band=' + state.band);
+  const run = state.screen.run;
+  $('#pass-count').textContent = run ? state.screen.passed : '—';
+  $('#cand-count').textContent = run ? state.screen.items.length : '—';
+  $('#asof').textContent = run?.as_of || '—';
+  renderWatch(); renderScreenTable(); renderChecks();
+  if (!state.selected || !screenItem(state.selected) && !current) {
+    state.selected = state.assets[0]?.symbol || '600519.SH';
+  }
+}
+
+async function searchUniverse() {
+  const q = $('#search').value.trim();
+  searchAbort?.abort();
+  if (q.length < 2) { state.searchHits = []; renderWatch(); return; }
+  searchAbort = new AbortController();
+  const id = ++searchReq;
   try {
-    const d = await api('/api/universe?' + q, {signal: universeAbort.signal});
-    if (id !== universeReq) return;
-    state.assets = d.items; state.pageTotal = d.total;
-    $('#asset-count').textContent = fmt(d.universe_total, 0);
-    renderWatch();
+    const d = await api('/api/universe?' + new URLSearchParams({q, kind: 'stock', limit: 20}), {signal: searchAbort.signal});
+    if (id !== searchReq) return;
+    state.searchHits = d.items;
   } catch (e) { if (e.name !== 'AbortError') throw e; }
+  renderWatch();
+}
+
+function bandText(i) {
+  const b = i.band;
+  if (!b) return '—';
+  if (b.low === null) return `样本${b.n}只，不足`;
+  return `${fmt(b.low, 1)} ~ ${fmt(b.high, 1)}`;
+}
+function renderFunnel() {
+  const f = state.screen?.funnel || [];
+  $('#funnel').innerHTML = f.length ? f.map((s, n) => `${n ? '<span class="gl-step-arrow">›</span>' : ''}<div class="gl-step${s.skipped ? ' skipped' : ''}${n === f.length - 1 ? ' final' : ''}"><span>${esc(s.label)}</span><strong>${s.count === null ? '跳过' : s.count.toLocaleString()}</strong></div>`).join('')
+    : '<span class="gl-muted-s">尚无筛选记录</span>';
+  const run = state.screen?.run, warn = $('#run-warn');
+  const failed = run?.fetch_errors || 0, notes = (run?.warnings || []).map(w => String(w).split('\n')[0].slice(0, 120));
+  warn.hidden = !run || (!failed && !notes.length);
+  if (!warn.hidden) {
+    warn.textContent = (failed ? `⚠ ${failed} 只候选的前复权日线获取失败，技术条件未判定、不计入入选；可稍后重新运行筛选。` : '⚠ ')
+      + (notes.length ? `上游提示 ${notes.length} 条（悬停查看）` : '');
+    warn.title = notes.join('\n');
+  }
+}
+function renderScreenTable() {
+  renderFunnel();
+  const items = (state.screen?.items || []).filter(i => state.showFailed || i.passed).sort(SORTS.cap);
+  $('#screen-rows').innerHTML = items.length ? items.map(i => {
+    const t = i.technicals || {}, c = i.checks;
+    return `<tr data-row="${esc(i.symbol)}" class="${i.symbol === state.selected ? 'is-selected' : ''}">
+      <td>${esc(i.name)}<small>${esc(i.symbol)}</small></td>
+      <td>${esc(i.industry || '—')}</td>
+      <td>${mark(c.cap)} ${yi(i.market_cap)}</td>
+      <td>${mark(c.pe_positive)} ${fmt(i.pe_ttm, 2)}</td>
+      <td>${mark(c.pe_band)} ${esc(bandText(i))}${i.band && i.band.mean !== null ? `<small>均值 ${fmt(i.band.mean, 1)} · σ ${fmt(i.band.std, 1)} · n=${i.band.n}</small>` : ''}</td>
+      <td>${mark(c.ma)} ${fmt(t.ma5, 2)} / ${fmt(t.ma10, 2)} / ${fmt(t.ma20, 2)}</td>
+      <td>${mark(c.ema)} ${fmt(t.ema12, 2)} / ${fmt(t.ema20, 2)} / ${fmt(t.ema50, 2)}</td>
+      <td>${mark(c.macd)} ${fmt(t.dif, 3)} / ${fmt(t.dea, 3)}</td>
+      <td>${esc(t.bar_date || (i.fetch_error ? '获取失败' : '—'))}${i.stale ? '<small>停牌/未更新</small>' : ''}</td>
+      <td class="${i.passed ? 'ok' : 'no'}">${i.passed ? '入选' : '未通过'}</td></tr>`;
+  }).join('') : `<tr><td colspan="10" class="gl-empty">${state.screen?.run ? '没有通过全部条件的股票' : '尚无筛选结果，点击“运行筛选”'}</td></tr>`;
+}
+function renderChecks() {
+  const box = $('#screen-checks');
+  const i = screenItem(state.selected);
+  if (!state.screen?.run) { box.innerHTML = ''; return; }
+  if (!i) { box.innerHTML = '<span class="gl-check na">不在候选池：ST、总市值≤500亿或缺快照字段</span>'; return; }
+  const t = i.technicals || {};
+  const detail = {
+    cap: yi(i.market_cap), pe_positive: fmt(i.pe_ttm, 2), pe_band: bandText(i),
+    ma: t.ma5 !== undefined ? `MA5 ${fmt(t.ma5, 2)}` : '', ema: t.ema12 !== undefined ? `EMA12 ${fmt(t.ema12, 2)}` : '',
+    macd: t.dif !== undefined ? `DIF ${fmt(t.dif, 3)} / DEA ${fmt(t.dea, 3)}` : '', not_st: '',
+  };
+  const head = i.fetch_error && !i.technicals
+    ? `<span class="gl-check head" title="${esc(i.fetch_error)}">✗ 未入选 · 前复权日线获取失败，技术条件未判定</span>`
+    : `<span class="gl-check head">${i.passed ? '✓ 入选' : '✗ 未通过'} · 日线 ${esc(t.bar_date || '—')}（前复权）${i.stale ? ' · 停牌/未更新' : ''}</span>`;
+  box.innerHTML = head + RULES.map(([k, label]) => {
+    const v = i.checks[k], skip = k === 'pe_band' && !state.band;
+    return `<span class="gl-check ${skip ? '' : v === true ? 'ok' : v === false ? 'no' : 'na'}"><b>${v === true ? '✓' : v === false ? '✗' : '?'}</b>${esc(label)}${detail[k] ? ' ' + esc(detail[k]) : ''}${skip ? '（未启用）' : ''}</span>`;
+  }).join('');
 }
 
 /* ───────── series ───────── */
@@ -177,14 +297,11 @@ function renderSeries(data) {
   current = data;
   const a = data.instrument, rows = data.records, last = rows.at(-1), d = digits(a);
   const p = last?.pct_change_source ?? null;
-  $('#history-origin').hidden = !data.provenance;
-  if (data.provenance) $('#history-origin').href = data.provenance.repository + '/blob/' + data.provenance.commit + '/' + data.provenance.path.split('/').map(encodeURIComponent).join('/');
-  $('#adjustment').textContent = data.adjustment;
-  $('#history-audit').textContent = data.audit ? `重叠 ${data.audit.compared_days} 日 · OHLC差异 ${data.audit.ohlc_mismatch_days} 日` : '';
-  $('#history-source option[value=github]').disabled = !data.github_available;
-  $$('[data-interval]').forEach(b => { b.disabled = state.historySource === 'github' && b.dataset.interval !== '1d'; });
+  $('#adjustment').textContent = data.adjustment + ' · 图表';
 
   $('#name').textContent = a.name;
+  const deep = $('#stock-deep-link');
+  if (deep) deep.href = '/stocks?symbol=' + encodeURIComponent(a.symbol);
   $('#symbol').textContent = a.symbol + ' · ' + (a.kind === 'etf' ? 'ETF' : 'A股') + ' · ' + ({SH: '上交所', SZ: '深交所', BJ: '北交所'}[a.exchange] || a.exchange);
   $('#kind').textContent = a.kind === 'etf' ? 'ETF' : a.exchange;
   $('#price').textContent = fmt(last?.close, d); setQuoteClass($('#price'), p);
@@ -219,11 +336,14 @@ function renderSeries(data) {
     ? `最新批量快照 ${fmt(data.quote.close, d)} CNY · ${data.quote.event_time ? '行情 ' + time(data.quote.event_time).slice(5, 16) : '源时点未知'} · 抓取 ${time(data.quote.fetched_at).slice(5, 16)}`
     : '暂无批量行情快照';
   $('#range').textContent = data.range.start ? `${data.range.start.slice(0, 10)} → ${data.range.end.slice(0, 10)} · ${data.range.count.toLocaleString()} 条` : '暂无已保存记录';
+  const ind = data.indicators?.latest;
+  $('#ind-summary').textContent = state.interval !== '1m' && ind
+    ? `图表(不复权) MA5 ${fmt(ind.ma5, d)} · EMA12 ${fmt(ind.ema12, d)} · DIF ${fmt(ind.macd, 3)} · DEA ${fmt(ind.macd_signal, 3)} · MACD ${fmt(ind.macd_hist, 3)}`
+    : '';
   let src = `来源：${data.source}　行情时点：${time(last?.event_time)}　抓取：${time(last?.fetched_at)}`;
   if (data.last_batch?.status === 'error') src += '　⚠ 最近抓取失败，当前展示已保存数据';
   $('#source').textContent = src; $('#source').title = src;
-  $('#status').textContent = state.historySource === 'github' ? 'GitHub 固定版本历史；源未声明复权口径；不覆盖主行情'
-    : state.interval === '1m' ? '分时价格序列；未将缺失 OHLC 补成 K 线' : '已校验价格 K 线；不复权，不计算投资收益率';
+  $('#status').textContent = state.interval === '1m' ? '分时价格序列；未将缺失 OHLC 补成 K 线' : '已校验价格 K 线；不复权，不计算投资收益率';
 
   const body = $('#bar-rows');
   body.innerHTML = viewRows.length ? viewRows.slice(-200).reverse().map(r => `<tr>
@@ -249,8 +369,7 @@ function renderSeries(data) {
 }
 
 async function loadSeries() {
-  const asset = state.assets.find(a => a.symbol === state.selected);
-  if (state.historySource === 'github' && asset?.github_available === false) { state.historySource = 'primary'; $('#history-source').value = 'primary'; }
+  const asset = screenItem(state.selected);
   seriesAbort?.abort(); seriesAbort = new AbortController();
   const id = ++seriesReq;
   if (asset) $('#name').textContent = asset.name;
@@ -258,8 +377,7 @@ async function loadSeries() {
   $('#chart-loading').hidden = false;
   $$('[data-interval]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.interval === state.interval)));
   try {
-    const limit = state.historySource === 'github' ? 10000 : 2000;
-    const data = await api(`/api/series/${encodeURIComponent(state.selected)}?interval=${state.interval}&source=${state.historySource}&limit=${limit}`, {signal: seriesAbort.signal});
+    const data = await api(`/api/series/${encodeURIComponent(state.selected)}?interval=${state.interval}&limit=2000`, {signal: seriesAbort.signal});
     if (id === seriesReq) renderSeries(data);
   } catch (e) {
     if (e.name !== 'AbortError') { error('价格数据读取失败：' + e.message); $('#freshness').textContent = '读取失败'; chart?.clearData(); }
@@ -268,26 +386,7 @@ async function loadSeries() {
   }
 }
 
-/* ───────── coverage / quality ───────── */
-const bar = (sel, n, total) => { $(sel).style.width = total ? Math.min(100, n / total * 100).toFixed(1) + '%' : '0'; };
-async function loadCoverage() {
-  const d = await api('/api/coverage');
-  let stock = 0, etf = 0;
-  d.instruments.forEach(r => { if (r.kind === 'stock') stock += r.count; else etf += r.count; });
-  const hist = i => d.history.find(r => r.interval === i)?.symbols || 0;
-  const tasks = d.tasks.filter(r => r.interval === '1d'), n = s => tasks.find(r => r.status === s)?.count || 0;
-  const taskTotal = tasks.reduce((s, r) => s + r.count, 0);
-  $('#coverage-universe').textContent = `A股 ${stock.toLocaleString()} · ETF ${etf.toLocaleString()}`;
-  $('#coverage-quotes').textContent = `${d.valid_quote_prices.toLocaleString()} / ${d.total.toLocaleString()}`; bar('#bar-quotes', d.valid_quote_prices, d.total);
-  $('#coverage-daily').textContent = `${hist('1d').toLocaleString()} / ${d.total.toLocaleString()} 只`; bar('#bar-daily', hist('1d'), d.total);
-  $('#coverage-tasks').textContent = `已完成 ${n('done').toLocaleString()} · 待处理 ${(n('pending') + n('running')).toLocaleString()}`; bar('#bar-tasks', n('done'), taskTotal);
-  $('#coverage-note').textContent = `1分钟详图已有 ${hist('1m')} 只；5分钟详图已有 ${hist('5m')} 只。日线空响应 ${n('empty')}，异常 ${n('error') + n('partial') + n('quarantined')}。记录存在不代表历史无缺口。`;
-  $('#research-window').textContent = `研究窗口 ${d.history_window.start} — ${d.history_window.end}（滚动近5年）`;
-  $('#coverage-source').textContent = '名录核验 ' + time(d.sources.market_inventory?.fetched_at).slice(0, 10) + ' · 快照无有效价格 ' + (d.total - d.valid_quote_prices) + ' 只';
-  $('#github-coverage').textContent = d.github_history ? `GitHub 近5年补充：${d.github_history.available_current_symbols} 只有归档文件，已缓存 ${d.github_history.cached_symbols} 只；独立源截止 ${d.github_history.cutoff}，不计入主库覆盖。` : '';
-  $('#coverage-exceptions').textContent = d.missing_price_examples?.length ? '快照价格缺失：' + d.missing_price_examples.map(r => r.name + ' ' + r.symbol).join('、') : '快照价格均有效';
-}
-
+/* ───────── quality ───────── */
 async function loadQuality() {
   try {
     const data = await api('/api/quality?symbol=' + encodeURIComponent(state.selected));
@@ -312,10 +411,9 @@ async function evidence(id) {
 
 function switchTab(value) {
   state.tab = value;
-  ['bars', 'coverage', 'quality'].forEach(t => { $('#tab-' + t).hidden = t !== value; });
+  ['screen', 'bars', 'quality'].forEach(t => { $('#tab-' + t).hidden = t !== value; });
   $$('[data-tab]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === value)));
   if (value === 'quality') loadQuality();
-  if (value === 'coverage') loadCoverage().catch(e => error(e.message));
 }
 
 /* ───────── health polling ───────── */
@@ -324,25 +422,22 @@ async function health() {
     const h = await api('/api/health');
     const mode = $('#mode');
     mode.textContent = h.mode === 'cloud' ? '云端源数据' : '本地源数据'; mode.classList.remove('offline');
-    $('#daily-count').textContent = big(h.counts['1d']);
-    $('#minute-count').textContent = big(h.counts['1m']);
     $('#market').textContent = h.market.label;
     $('.gl-market-pill').dataset.state = h.market.state;
     $('#clock').textContent = time(h.server_time).slice(11, 19);
     $('#auto').setAttribute('aria-pressed', String(h.auto_refresh.enabled));
     $('#auto span').textContent = h.mode === 'cloud'
       ? (h.auto_refresh.enabled ? '关闭当前证券轮询' : '开启当前证券轮询')
-      : (h.auto_refresh.enabled ? '关闭全市场轮询' : '开启全市场轮询');
-    $('#refresh').disabled = h.job.running || state.historySource === 'github';
-    $('#market-refresh').disabled = h.job.running;
-    const job = $('#job-status');
-    job.textContent = h.job.running ? `采集中 ${h.job.progress}/${h.job.total}` : h.job.error || (h.mode === 'cloud' ? '云端保存' : '本地保存');
+      : (h.auto_refresh.enabled ? '关闭自动' : '开启自动');
+    $('#refresh').disabled = h.job.running;
+    $('#screen-run').disabled = h.job.running;
+    const job = $('#job-status'), stage = {snapshot: '抓取全市场快照', technicals: '候选前复权日线', chart_bars: '更新入选图表日线'}[h.job.stage];
+    job.textContent = h.job.running ? (h.job.kind === 'screen' ? `筛选中 · ${stage || ''} ${h.job.total ? h.job.progress + '/' + h.job.total : ''}` : `采集中 ${h.job.progress}/${h.job.total}`) : h.job.error || (h.mode === 'cloud' ? '云端保存' : '本地保存');
     job.classList.toggle('busy', h.job.running);
     if (h.job.error && !h.job.running && state.lastJob) error(h.job.error);
     if (state.lastJob && !h.job.running) {
-      await loadUniverse(); await loadSeries();
+      await loadScreen(); await loadSeries();
       if (state.tab === 'quality') await loadQuality();
-      if (state.tab === 'coverage') await loadCoverage();
     }
     state.lastJob = h.job.running;
   } catch (e) {
@@ -354,7 +449,7 @@ async function health() {
 /* ───────── interactions ───────── */
 async function select(symbol) {
   if (!symbol || symbol === state.selected) return;
-  state.selected = symbol; markSelected();
+  state.selected = symbol; markSelected(); renderChecks();
   await loadSeries();
   if (state.tab === 'quality') loadQuality();
 }
@@ -371,52 +466,39 @@ root.addEventListener('click', async e => {
   try {
     if (b.dataset.symbol) await select(b.dataset.symbol);
     else if (b.dataset.interval) { state.interval = b.dataset.interval; await loadSeries(); }
-    else if (b.dataset.filter) { state.filter = b.dataset.filter; state.offset = 0; await loadUniverse({skeleton: true}); }
     else if (b.dataset.tab) switchTab(b.dataset.tab);
     else if (b.dataset.batch) await evidence(b.dataset.batch);
     else if (b.hasAttribute('data-close-evidence')) $('#batch-evidence').hidden = true;
     else switch (b.id) {
-      case 'sort': state.sortMode = state.sortMode === 'name' ? 'code' : 'name'; b.textContent = state.sortMode === 'name' ? '按代码排序' : '按名称排序'; $('#watch-sort').value = state.sortMode; state.offset = 0; await loadUniverse(); break;
-      case 'prev-page': case 'next-page':
-        state.offset = Math.max(0, state.offset + (b.id === 'next-page' ? PAGE : -PAGE));
-        await loadUniverse({skeleton: true}); $('#gl-watch-list').scrollTop = 0; break;
-      case 'backfill': await action('/api/backfill', {symbols: [state.selected], intervals: ['1d']}); await loadCoverage(); error('日线补采已触发'); break;
-      case 'market-refresh': await action('/api/market-refresh', {}); state.lastJob = true; await health(); break;
-      case 'refresh': b.disabled = true; await action('/api/refresh', {symbols: [state.selected], intervals: [state.interval]}); state.lastJob = true; await health(); break;
+      case 'band': state.band = !state.band; await loadScreen(); break;
+      case 'screen-run': b.disabled = true; { const res = await action('/api/screen/run', {refresh: true}); state.lastJob = Boolean(res?.running); } await health(); break;
+      case 'refresh': b.disabled = true; { const res = await action('/api/refresh', {symbols: [state.selected], intervals: [state.interval]}); state.lastJob = Boolean(res?.running); } await health(); break;
       case 'auto': await action('/api/auto-refresh', {enabled: b.getAttribute('aria-pressed') !== 'true'}); await health(); break;
-      case 'theme':
-        if (window.Guanlan?.toggleTheme) window.Guanlan.toggleTheme();
-        else setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
-        break;
+      case 'theme': setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'); break;
       case 'focus': toggleFocus(); break;
       case 'ma': state.ma = !state.ma; indicators(); break;
+      case 'ema': state.ema = !state.ema; indicators(); break;
       case 'vol': state.vol = !state.vol; indicators(); break;
+      case 'macd': state.macd = !state.macd; indicators(); break;
       case 'reset': chart?.setBarSpace(state.interval === '1m' ? 3 : 8); chart?.scrollToRealTime(); chart?.resize(); break;
     }
   } catch (err) { error(err.message); await health(); }
 });
 
-$('#history-source').addEventListener('change', async () => {
-  state.historySource = $('#history-source').value;
-  if (state.historySource === 'github') state.interval = '1d';
-  await loadSeries(); await health();
-});
 let searchTimer;
 $('#search').addEventListener('input', () => {
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => { state.offset = 0; loadUniverse().catch(e => error(e.message)); }, 180);
+  renderWatch();
+  searchTimer = setTimeout(() => { searchUniverse().catch(e => error(e.message)); }, 220);
 });
 $('#search').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && state.assets[0]) { e.preventDefault(); select(state.assets[0].symbol); }
+  const first = $('#gl-watch-list [data-symbol]')?.dataset.symbol;
+  if (e.key === 'Enter' && first) { e.preventDefault(); select(first); }
   if (e.key === 'Escape') { e.target.value = ''; e.target.dispatchEvent(new Event('input')); e.target.blur(); }
 });
-$('#exchange').addEventListener('change', () => { state.offset = 0; loadUniverse({skeleton: true}).catch(e => error(e.message)); });
-$('#watch-sort').addEventListener('change', () => {
-  state.sortMode = $('#watch-sort').value;
-  $('#sort').textContent = state.sortMode === 'name' ? '按代码排序' : '按名称排序';
-  state.offset = 0;
-  loadUniverse({skeleton: true}).catch(e => error(e.message));
-});
+$('#watch-sort').addEventListener('change', () => { state.sortMode = $('#watch-sort').value; renderWatch(); markSelected(); });
+$('#show-failed').addEventListener('change', () => { state.showFailed = $('#show-failed').checked; renderScreenTable(); });
+$('#screen-rows').addEventListener('click', e => { const r = e.target.closest('tr[data-row]'); if (r) select(r.dataset.row).catch(err => error(err.message)); });
 $('#session-day').addEventListener('change', () => {
   state.sessionDay = $('#session-day').value;
   if (current) renderSeries(current);
@@ -445,17 +527,18 @@ document.addEventListener('keydown', e => {
     } else {
       $('#chart').innerHTML = '<p class="gl-empty">图表组件加载失败，仍可查看行情明细</p>';
     }
-    await Promise.all([loadUniverse({skeleton: true}), health()]);
+    $('#gl-watch-list').innerHTML = '<div class="gl-skel"></div>'.repeat(10);
+    await Promise.all([loadScreen(), health()]);
+    markSelected(); renderChecks();
     await loadSeries();
-    loadCoverage().catch(e => error(e.message));
     setInterval(health, 5000);
-    setInterval(() => { if (state.tab === 'coverage') loadCoverage().catch(e => error(e.message)); }, 15000);
     setInterval(async () => {
+      if (state.lastJob) return;
       try {
-        if ($('#mode').textContent === '云端源数据' && $('#auto').getAttribute('aria-pressed') === 'true' && $('#market').textContent === '交易时段' && state.historySource === 'primary') {
+        if ($('#mode').textContent === '云端源数据' && $('#auto').getAttribute('aria-pressed') === 'true' && $('#market').textContent === '交易时段') {
           await action('/api/refresh', {symbols: [state.selected], intervals: [state.interval]});
         }
-        await loadUniverse();
+        await loadScreen();
       } catch (e) { error(e.message); }
     }, 60000);
     matchMedia('(prefers-color-scheme: light)').addEventListener('change', ev => {

@@ -119,3 +119,18 @@ tcb fn deploy guanlan-api --httpFn --runtime Python3.10 --force \
   - 响应式与界面检查：无头 Chromium 桌面 `1440×900` 与手机 `390×844`（`/`、`/static/research/index.html`）`scrollWidth === innerWidth` 无水平溢出、无运行时错误。
   - 线上验收：`/healthz` 返回 `200 {"ok":true}`；未登录 `/api/technical` 与 `/api/universe` 返回 `401`、`/` 返回 `303 /login`；登录后 `/api/health`、`app.css`（含 `minmax(0,1fr)` 修复）、`/api/universe?sort=pct_desc&limit=5`、`/api/series/510300.SH?interval=1d&limit=10`、`/api/daily-sync/status`（`target_date=2026-11-16`、`current=7231/7246`）及 `/stocks`、`/compare`、`/discover`、`/data-health`、`/technical`、`/strategy` 均返回 `200`。
   - 盈利预测离线实验文件（`docs-earnings-residual.md` 及 `research/earnings/residual-*` 等）与本次网页/日更发布分离记录。
+
+## 最近发布记录（2026-11-18）
+
+- **策略筛选改版与多工作台整合**：
+  - 主页 `/` 切换为 A股策略筛选工作台（`app/screener.py`），按 7 项规则过滤：非 ST（`not_st`）、总市值 > 500亿（`cap`）、`PE TTM > 0`（`pe_positive`）、行业 `PE TTM` 在同行业均值 ± 2σ 内（`pe_band`，样本 < 5 不淘汰，支持开关切换）、前复权日线 `MA5 > MA10` 或 `MA5 > MA20`（`ma`）、`EMA12 > EMA20` 或 `EMA12 > EMA50`（`ema`）、`MACD(12,26,9) DIF > DEA`（`macd`）。
+  - 新增 `GET /api/screen?industry_band=true|false` 与 `POST /api/screen/run`；`app/daily_sync.py` 优先同步筛选入选与候选股票；`/stocks` 快捷按钮动态读取 `/api/screen` 前 8 只入选股票；保留 `/stocks`、`/technical`、`/strategy`、`/compare`、`/discover`、`/data-health`、`/research` 工作台及 K 线 `EMA12/20/50`、`MACD(12,26,9)` 附图支持。
+  - 移除旧版 `/static/research/index.html`、`app/comovement.py`、`app/github_history.py`、`/api/coverage`、`/api/backfill` 及 `research/github-data/`。
+- **CloudStore 数据同步**：
+  - `scripts/cloudbase_prepare.py --source-db /home/xietianyou/work/finance-workbench/data/workbench.sqlite` 已同步最新筛选快照 `system/screen/latest.json.gz`（`as_of: 2026-11-17`，漏斗 `[5580, 5383, 325, 308, 301, 153, 115, 91]`，含行业 PE 区间入选 `91` 只、不含行业 PE 区间入选 `94` 只）、`7597` 条行情快照与 `91` 只入选股票前复权日线 overlay。
+- **云函数部署状态（`tcb fn list --env-id prime-elk-d3g17lc3y0b140937`）**：
+  - `guanlan-api`（`lam-rt70mht9`）：`Modification time: 2026-11-18 14:06:06`，`Status: Deployment completed`
+  - `guanlan-daily-sync`（`lam-idj2c4wx`）：`Modification time: 2026-11-18 14:13:37`，`Status: Deployment completed`
+- **测试与线上验证**：
+  - 本地校验：`node --check` 通过，`scripts/doctor.py --technical-only` 通过（`errors: []`, `warnings: []`），`python3 -X utf8 -m unittest discover -s tests -q` 全套 `330` 项测试通过。
+  - 线上验证（`https://prime-elk-d3g17lc3y0b140937-1458390455.ap-shanghai.app.tcloudbase.com`）：`/healthz` 200、未登录 `/` 303 跳转 `/login`、未登录 `/api/screen` 401、已移除 `/static/research/index.html` 404；登录后 `/api/screen?industry_band=true` 返回 `91` 只、关闭行业 PE 条件返回 `94` 只，`/api/series/601398.SH` 返回截至 `2026-11-17` 前复权日线及 `ema50`，`/api/daily-sync/status` 返回 200（`total: 7246`）；Playwright 桌面端（`1440x900`）与移动端（`390x844`）验证 `/` 与 `/stocks` 无横向溢出且业务请求全部成功（`bad_responses: []`）。

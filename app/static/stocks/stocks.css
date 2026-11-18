@@ -3,3 +3,15 @@
 @media(max-width:760px){.stock-workspace{display:flex;flex-direction:column;gap:20px}.stock-primary{width:100%}.terminal-app .security-browser{position:static;width:100%}.workspace-heading{display:block}.coverage-indicator{width:fit-content;margin-top:16px}.quick-picks{gap:6px}.quick-picks>span{width:100%;margin-bottom:4px}.terminal-app .quick-picks button{font-size:10px;padding:5px 9px}.security-price strong{font-size:34px}.security-price>div{margin-left:8px;font-size:10px}.security-heading{gap:8px}.security-identity h2{font-size:19px}.security-avatar{width:36px;height:36px}.security-meta{gap:6px;font-size:10px}.security-facts{gap:8px}.security-facts b{font-size:11px}.chart-toolbar{flex-wrap:wrap}#stock-chart{height:310px}.indicator-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 0;padding:20px 0}.indicator-strip>div{padding:0 18px}.indicator-strip>div:nth-child(2){border:0}.observation-grid{grid-template-columns:1fr}.section-header{gap:8px}.section-header h2{font-size:16px}.section-header .subtle{font-size:9px}.stock-chart-footer{font-size:9px;gap:4px}.terminal-app #security-list{max-height:300px}}
 
 .data-freshness{margin:0 0 12px;padding:12px 14px;border:1px solid var(--ui-border);border-radius:8px;font-size:12px;line-height:1.7;color:var(--ui-muted)}.data-freshness[data-state="stale"],.data-freshness[data-state="missing"]{border-color:var(--ui-gold);color:var(--ui-gold)}.data-freshness[data-state="current"]{color:var(--ui-text)}.daily-sync-status{font-size:11px;color:var(--ui-muted);line-height:1.8;margin-bottom:18px;overflow-wrap:anywhere}
+.chart-toolbar{flex-wrap:wrap}
+.terminal-app .continuity-toggle{padding:6px 10px;font-size:11px;border-radius:7px;background:transparent;color:var(--ui-muted);border:1px solid var(--ui-border)}
+.terminal-app .continuity-toggle[aria-pressed=true]{color:var(--ui-accent);border-color:var(--ui-accent);background:var(--ui-accent-soft)}
+.ema12-key,.ema20-key,.ema60-key,.dif-key,.dea-key,.hist-key{display:inline-block;width:12px;height:2px}
+.ema12-key{background:#f59e0b}.ema20-key,.dif-key{background:#ec4899}.ema60-key,.dea-key{background:#14b8a6}.hist-key{height:6px;background:var(--ui-red)}
+.macd-subchart{margin-top:8px;padding-top:8px;border-top:1px dashed var(--ui-border)}
+.macd-legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:10px;color:var(--ui-muted);margin-bottom:4px}
+.macd-legend>span{display:flex;align-items:center;gap:5px}
+.macd-legend b{font-weight:400;font-variant-numeric:tabular-nums}
+.macd-note{margin-left:auto;color:var(--ui-subtle)}
+#stock-macd-chart{height:122px;width:100%;min-width:0}
+@media(max-width:760px){#stock-macd-chart{height:105px}}

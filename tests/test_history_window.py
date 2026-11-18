@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from datetime import datetime
 from unittest.mock import patch
-from app import core,collector,github_history
+from app import core,collector
 
 class HistoryWindowTests(unittest.TestCase):
     def setUp(self):
@@ -23,11 +23,6 @@ class HistoryWindowTests(unittest.TestCase):
         base['日期']='2021-11-09'
         value,flags=core.normalize(base,'510300.SH','1d','2026-11-10T07:00:00+00:00')
         self.assertIsNone(value);self.assertIn('outside_research_window',flags)
-    def test_github_data_uses_same_window(self):
-        content=b'time,open,close,high,low,vol\n2020-01-02,10,11,12,9,100\n2021-11-10,10,11,12,9,100\n'
-        rows,quality=github_history.parse(content,'000001.SZ','2026-11-10T07:00:00+00:00')
-        self.assertEqual(len(rows),1);self.assertEqual(quality['excluded_before_window'],1)
-        self.assertTrue(rows[0]['event_time'].startswith('2021-11-10'))
     def test_columnar_prices_and_raw_evidence_roundtrip(self):
         b=core.begin_batch('510300.SH','1d','test',{})
         core.publish(b,[{'日期':'2026-11-09','开盘':10,'收盘':11,'最高':12,'最低':9}],'2026-11-10T07:00:00+00:00')
